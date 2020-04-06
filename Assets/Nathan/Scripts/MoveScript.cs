@@ -13,12 +13,14 @@ public class MoveScript : MonoBehaviour
     public CharacterController Controller;
     public float gravity = 20.0F;
 
+    public SoundSpawner Sound;
+
 
     private Vector3 moveDirection = Vector3.zero;
 
 
 
-    public int speed;
+    public float speed;
     public int speedTPS;
     public int sensi;
 
@@ -27,6 +29,9 @@ public class MoveScript : MonoBehaviour
 
     bool turning;
     float Timer;
+    float SoundTimer;
+    float horizontal;
+    float vertical;
 
     // Start is called before the first frame update
     void Start()
@@ -49,13 +54,13 @@ public class MoveScript : MonoBehaviour
             {
                 myType = MoveType.TPS;
             }
-
         }
 
         if (myType == MoveType.TPS)
         {
             CameraTPS.SetActive(true);
             CameraTopDown.SetActive(false);
+
             transform.Rotate(new Vector3(0,Input.GetAxis("Mouse X"), 0) * Time.deltaTime * sensi);
 
             if (Controller.isGrounded)
@@ -64,8 +69,8 @@ public class MoveScript : MonoBehaviour
                 moveDirection = transform.TransformDirection(moveDirection);
                 moveDirection *= speedTPS;
             }
-            moveDirection.y -= gravity * Time.deltaTime;
-            Controller.Move(moveDirection * Time.deltaTime);
+            //moveDirection.y -= gravity * Time.deltaTime;
+            Controller.SimpleMove(moveDirection);
 
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
@@ -83,27 +88,52 @@ public class MoveScript : MonoBehaviour
                     turning = false;
                 }
             }
-
-
         }
+
+        SoundTimer -= Time.deltaTime;
+        if(SoundTimer <= 0)
+        {
+            if (speed > 3.5f && speed<4.5f)
+            {
+                Sound.SoundPlay(5);
+                SoundTimer = 0.7f;
+            }
+
+            if (speed >= 4.5f)
+            {
+                Sound.SoundPlay(10);
+                SoundTimer = 0.3f;
+            }
+        }
+
         if (myType == MoveType.TopDown)
         {
             CameraTopDown.SetActive(true);
             CameraTPS.SetActive(false);
 
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
-            Controller.SimpleMove(new Vector3(horizontal * Time.deltaTime * speed, 0, vertical * Time.deltaTime * speed));
+            horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"),0.05f);
+            vertical = Mathf.Lerp(vertical, Input.GetAxis("Vertical"), 0.05f);
+
+            if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+            {
+                speed = Mathf.Abs(horizontal)*5;
+            }
+            else
+            {
+                speed = Mathf.Abs(vertical)*5;
+            }
+
+            Controller.SimpleMove(new Vector3(horizontal * speed, 0, vertical * speed));
+
+            Debug.Log(vertical);
+            Debug.Log(horizontal);
 
             if (Input.GetAxis("Horizontal") !=0 || Input.GetAxis("Vertical") != 0)
             {
-                transform.eulerAngles = new Vector3(0, Mathf.Atan2(horizontal, vertical) * 180 / Mathf.PI, 0);  
+                float heading = Mathf.Atan2(horizontal, vertical);
+                transform.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg,0);
             }
-
-
-
         }
-
     }
 
     private void FixedUpdate()

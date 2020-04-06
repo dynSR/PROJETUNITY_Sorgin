@@ -4,26 +4,53 @@ using UnityEngine;
 
 public class SonScale : MonoBehaviour
 {
+    [Range(0, 50)]
+    public int segments = 50;
+    public float range;
 
-    public float Taille;
-    public Outline Outliner;
-    // Start is called before the first frame update
+    LineRenderer line;
+
+    Color Fade;
+
     void Start()
     {
-        
+        line = gameObject.GetComponent<LineRenderer>();
+        Fade = Color.white;
+
+        line.positionCount = segments + 1;
+        line.useWorldSpace = false;
+        CreatePoints();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(Taille,0.1f,Taille), 2f * Time.deltaTime);
-        if (Outliner.OutlineWidth > 0)
+        transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(1,1,1), 1f * Time.deltaTime);
+
+        Fade.a -= Time.deltaTime;
+        line.endColor = Fade;
+        line.startColor = Fade;
+
+        if (Fade.a <= 0)
         {
-            Outliner.OutlineWidth -= 10f*Time.deltaTime;
+            Destroy(gameObject);
         }
-        else
+    }
+
+    void CreatePoints()
+    {
+        float x;
+        float y;
+
+        float angle = 20f;
+
+        for (int i = 0; i < (segments + 1); i++)
         {
-            Outliner.OutlineWidth =0;
+            x = Mathf.Sin(Mathf.Deg2Rad * angle) * range;
+            y = Mathf.Cos(Mathf.Deg2Rad * angle) * range;
+
+            line.SetPosition(i, new Vector3(x, y, 0));
+
+            angle += (360f / segments);
         }
     }
 }

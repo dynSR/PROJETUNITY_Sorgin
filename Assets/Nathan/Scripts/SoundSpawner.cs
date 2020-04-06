@@ -30,13 +30,9 @@ public class SoundSpawner : MonoBehaviour
         }
     }
 
-    void SoundPlay(float Taille)
+    public void SoundPlay(float Taille)
     {
-        if (Son != null)
-        {
-            Destroy(Son.gameObject);
-        }
-        Son = Instantiate(PrefabSon, transform.position, transform.rotation);
-        Son.GetComponent<SonScale>().Taille = Taille;
+        Son = Instantiate(PrefabSon, transform.position, Quaternion.Euler(90,0,0));
+        Son.GetComponent<SonScale>().range = Taille;
     }
 }
