@@ -93,17 +93,20 @@ public class MoveScript : MonoBehaviour
         SoundTimer -= Time.deltaTime;
         if(SoundTimer <= 0)
         {
+            Sound.SoundPlay(speed * 2);
+            SoundTimer = 0.5f;
+            /*
             if (speed > 3.5f && speed<4.5f)
             {
-                Sound.SoundPlay(5);
+                Sound.SoundPlay(speed*2);
                 SoundTimer = 0.7f;
             }
 
             if (speed >= 4.5f)
             {
-                Sound.SoundPlay(10);
+                Sound.SoundPlay(speed*2);
                 SoundTimer = 0.3f;
-            }
+            }*/
         }
 
         if (myType == MoveType.TopDown)
