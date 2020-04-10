@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject[] spellsAvailableInShop;
+    public int amntOfSpellBoughtable = 0;
 
-    // Update is called once per frame
-    void Update()
+    public static ShopManager s_Singleton;
+    private void Awake()
     {
-        
+        if (s_Singleton != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            s_Singleton = this;
+        }
     }
 }
