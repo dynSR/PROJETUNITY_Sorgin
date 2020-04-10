@@ -9,8 +9,6 @@ public class UIManager : MonoBehaviour
     public int playerPointsCountValue;
     [SerializeField] private TextMeshProUGUI playerPointsCountValueText;
 
-    [SerializeField] private GameObject shopGameObjReference;
-
     public List<SpellCompartment> playerSpellsCompartment;
 
     public GameObject playerSpellActivationCompartment;
@@ -58,9 +56,9 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ShopDisplayToggle()
+    public void UIWindowsDisplayToggle(GameObject obj)
     {
-        shopGameObjReference.SetActive(!shopGameObjReference.activeSelf);
+        obj.SetActive(!obj.activeSelf);
     }
 
     public void OnClickAddPointsButton(int valueToAdd)

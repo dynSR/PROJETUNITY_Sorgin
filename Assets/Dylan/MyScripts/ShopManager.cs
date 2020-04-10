@@ -17,6 +17,10 @@ public class ShopManager : MonoBehaviour
         else
         {
             s_Singleton = this;
+
+            if (spellsAvailableInShop.Length == 0)
+                Debug.LogError("Please populate the spell avalaible in shop list !!!!!!!!!!");
         }
     }
+
 }
