@@ -13,10 +13,14 @@ public class ArmoireAnimation : MonoBehaviour
     public CinemachineVirtualCamera CamArmoire;
     public float Speed;
 
+    public GameObject Text;
+
 
     bool Lerp;
     bool Inside;
     bool Animating;
+
+    bool InTrigger;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +31,22 @@ public class ArmoireAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Text.SetActive(InTrigger);
+
+        if (InTrigger)
+        {
+            if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA")) && !Animating && !Inside)
+            {
+                Animating = true;
+                LaunchAnim();
+            }
+
+            if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA")) && !Animating && Inside)
+            {
+                Animating = true;
+                OutAnim();
+            }
+        }
 
         if (Lerp)
         {
@@ -39,20 +59,14 @@ public class ArmoireAnimation : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (Input.GetKeyDown(KeyCode.Space) && !Animating && !Inside)
-            {
-                Animating = true;
-                Player = other.gameObject;
-                LaunchAnim();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space) && !Animating && Inside)
-            {
-                Animating = true;
-                Player = other.gameObject;
-                OutAnim();
-            }
+            InTrigger = true;
+            Player = other.gameObject;
         }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        InTrigger = false;
     }
 
     void LaunchAnim()
@@ -71,6 +85,8 @@ public class ArmoireAnimation : MonoBehaviour
 
     void Animate()
     {
+        CamArmoire.Priority = 12;
+
         //Player.transform.parent = PlayerPositionHolder.transform;
         Anim.SetBool("Enter", true);
         Player.GetComponentInChildren<Animator>().SetBool("Enter", true);
@@ -78,13 +94,14 @@ public class ArmoireAnimation : MonoBehaviour
     }
     void AnimateOut()
     {
+        CamArmoire.Priority = 8;
+
         Anim.SetBool("Enter", false);
         Player.GetComponentInChildren<Animator>().SetBool("Enter", false);
     }
 
     void CameraOff()
     {
-        CamArmoire.Priority = 8;
         Player.transform.parent = null;
         Player.GetComponent<MoveScript>().enabled = true;
         Animating = false;
@@ -94,7 +111,6 @@ public class ArmoireAnimation : MonoBehaviour
 
     void CameraOn()
     {
-        CamArmoire.Priority = 12;
         Animating = false;
         Inside = true;
     }

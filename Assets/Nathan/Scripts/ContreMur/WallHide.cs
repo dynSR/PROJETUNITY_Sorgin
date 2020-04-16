@@ -24,6 +24,7 @@ public class WallHide : MonoBehaviour
     public Detector RightDetector;
     public Detector BehindDetector;
 
+    float Timer;
 
 
     // Start is called before the first frame update
@@ -35,6 +36,8 @@ public class WallHide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Timer -= Time.deltaTime;
+
         if (Wall != null && !Hided)
         {
             ClosestPt = Wall.GetComponent<Collider>().ClosestPoint(transform.position);
@@ -45,27 +48,57 @@ public class WallHide : MonoBehaviour
                 Debug.Log("bordel ca devrait marcher");
                 wantedRotation = Quaternion.LookRotation(hit.normal);
 
-
-                if (Input.GetKeyDown(KeyCode.M))
+                if (hit.transform.CompareTag("Wall"))
                 {
-                    Invoke("ChangeHided", 0.05f);
+                    ball.SetActive(true);
+                    if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA") )
+                    {
+                        if (Timer <= 0)
+                        {
+                            Invoke("ChangeHided", 0.05f);
+                            Timer = 1;
+                        }
+                    }
+                }
+                else
+                {
+                    ball.SetActive(false);
                 }
             }
         }
-
-
-        if (Input.GetKeyDown(KeyCode.M) && Hided)
+        else
         {
-            ChangeHided();
+            ball.SetActive(false);
+        }
+
+
+        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA")) && Hided)
+        {
+            if (Timer <= 0)
+            {
+                Player.GetComponent<MoveScript>().TopDownCamera();
+
+                Invoke("ChangeHided", 1f);
+                Timer = 1;
+            }
         }
 
         if (Hided)
         {
-            Hide();
+            ball.SetActive(false);
+
+            Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, wantedRotation, 500f * Time.deltaTime);
+
+            if(Player.transform.rotation == wantedRotation)
+            {
+                Hide();
+            }
         }
 
         //DEBUG
+
         ball.transform.position = ClosestPt;
+
         Debug.DrawRay(transform.position, ClosestPt-transform.position, Color.red);
         //DEBUG
 
@@ -75,7 +108,6 @@ public class WallHide : MonoBehaviour
 
     void Hide()
     {
-        Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation,wantedRotation,500f*Time.deltaTime);
 
         Player.GetComponent<MoveScript>().MoveWall(RightDetector.On, LeftDetector.On, BehindDetector.On);
 

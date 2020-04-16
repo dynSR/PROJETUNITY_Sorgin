@@ -29,15 +29,20 @@ public class MoveScript : MonoBehaviour
     bool turning;
     float Timer;
     public float SoundTimer;
-    float horizontal;
+    public float horizontal;
     float vertical;
 
     public bool OnWall;
+    bool ChangedCam = false;
+
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        CameraTopDown.SetActive(true);
+        CameraTPS.SetActive(false);
     }
 
     // Update is called once per frame
@@ -100,8 +105,6 @@ public class MoveScript : MonoBehaviour
 
         if (myType == MoveType.TopDown && !OnWall)
         {
-            CameraTopDown.SetActive(true);
-            CameraTPS.SetActive(false);
 
             vertical = Mathf.Lerp(vertical, Input.GetAxis("Vertical"), 0.05f);
             horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"), 0.05f);
@@ -117,43 +120,73 @@ public class MoveScript : MonoBehaviour
             moveDirection.Normalize();
             Controller.SimpleMove(moveDirection * speed);
 
+            if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+            {
+                speed = Mathf.Abs(horizontal) * 5;
+            }
+            else
+            {
+                speed = Mathf.Abs(vertical) * 5;
+            }
+
+            ChangedCam = false;
+
         }
 
-        if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
-        {
-            speed = Mathf.Abs(horizontal)*5;
-        }
-        else
-        {
-            speed = Mathf.Abs(vertical)*5;
-        }
+    }
 
+    public void WallCamera()
+    {
+        CameraTopDown.SetActive(false);
+        CameraTPS.SetActive(true);
+    }
+
+    public void TopDownCamera()
+    {
+        CameraTopDown.SetActive(true);
+        CameraTPS.SetActive(false);
     }
 
     public void WallBack(float vert)
     {
         vertical = -vert;
+        speed = 0;
+
     }
 
     public void MoveWall(bool CanGoRight, bool CanGoLeft, bool ChangeCamera)
     {
-        if (ChangeCamera)
+        if (!ChangedCam)
         {
-            CameraTopDown.SetActive(false);
-            CameraTPS.SetActive(true);
+            WallCamera();
+            ChangedCam = true;
         }
+
 
         horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"), 0.05f);
         moveDirection = new Vector3(-horizontal, 0, vertical);
         moveDirection = transform.TransformDirection(moveDirection);
 
-        if (horizontal <= 0 && CanGoRight)
+        if (horizontal <= 0 && !CanGoRight)
         {
-            Controller.SimpleMove(moveDirection);
+            horizontal = 0;
         }
-        if (horizontal >= 0 && CanGoLeft)
+
+        if (horizontal >= 0 && !CanGoLeft)
         {
-            Controller.SimpleMove(moveDirection);
+            horizontal = 0;
         }
+
+        if (Input.GetAxis("Horizontal")==0 && !CanGoRight)
+        {
+            horizontal = 1;
+        }
+
+        if (Input.GetAxis("Horizontal") == 0 && !CanGoLeft)
+        {
+            horizontal = -1;
+        }
+        Controller.SimpleMove(moveDirection);
+
     }
 }
