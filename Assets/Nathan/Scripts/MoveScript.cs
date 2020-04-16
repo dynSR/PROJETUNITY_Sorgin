@@ -16,8 +16,7 @@ public class MoveScript : MonoBehaviour
     public SoundSpawner Sound;
 
 
-    private Vector3 moveDirection = Vector3.zero;
-
+    public Vector3 moveDirection = Vector3.zero;
 
 
     public float speed;
@@ -29,11 +28,12 @@ public class MoveScript : MonoBehaviour
 
     bool turning;
     float Timer;
-    float SoundTimer;
+    public float SoundTimer;
     float horizontal;
     float vertical;
 
-    // Start is called before the first frame update
+    public bool OnWall;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -56,7 +56,7 @@ public class MoveScript : MonoBehaviour
             }
         }
 
-        if (myType == MoveType.TPS)
+        /*if (myType == MoveType.TPS)
         {
             CameraTPS.SetActive(true);
             CameraTopDown.SetActive(false);
@@ -88,62 +88,72 @@ public class MoveScript : MonoBehaviour
                     turning = false;
                 }
             }
-        }
+        }*/
 
-        SoundTimer -= Time.deltaTime;
+        SoundTimer -= Time.deltaTime*(speed);
+
         if(SoundTimer <= 0)
         {
             Sound.SoundPlay(speed * 2);
-            SoundTimer = 0.5f;
-            /*
-            if (speed > 3.5f && speed<4.5f)
-            {
-                Sound.SoundPlay(speed*2);
-                SoundTimer = 0.7f;
-            }
-
-            if (speed >= 4.5f)
-            {
-                Sound.SoundPlay(speed*2);
-                SoundTimer = 0.3f;
-            }*/
+            SoundTimer = 2f;
         }
 
-        if (myType == MoveType.TopDown)
+        if (myType == MoveType.TopDown && !OnWall)
         {
             CameraTopDown.SetActive(true);
             CameraTPS.SetActive(false);
 
-            horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"),0.05f);
             vertical = Mathf.Lerp(vertical, Input.GetAxis("Vertical"), 0.05f);
+            horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"), 0.05f);
 
-            if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
-            {
-                speed = Mathf.Abs(horizontal)*5;
-            }
-            else
-            {
-                speed = Mathf.Abs(vertical)*5;
-            }
 
-            Controller.SimpleMove(new Vector3(horizontal * speed, 0, vertical * speed));
-
-            Debug.Log(vertical);
-            Debug.Log(horizontal);
-
-            if (Input.GetAxis("Horizontal") !=0 || Input.GetAxis("Vertical") != 0)
+            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) //Rotation du perso
             {
                 float heading = Mathf.Atan2(horizontal, vertical);
-                transform.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg,0);
-            }
+                transform.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg, 0);
+            } //FIN rotation perso
+
+            moveDirection = new Vector3(horizontal, 0, vertical);
+            moveDirection.Normalize();
+            Controller.SimpleMove(moveDirection * speed);
+
         }
+
+        if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+        {
+            speed = Mathf.Abs(horizontal)*5;
+        }
+        else
+        {
+            speed = Mathf.Abs(vertical)*5;
+        }
+
     }
 
-    private void FixedUpdate()
+    public void WallBack(float vert)
     {
-        if (myType == MoveType.TPS)
+        vertical = -vert;
+    }
+
+    public void MoveWall(bool CanGoRight, bool CanGoLeft, bool ChangeCamera)
+    {
+        if (ChangeCamera)
         {
-            //Rb.AddForce(Vector3.forward * speed);
+            CameraTopDown.SetActive(false);
+            CameraTPS.SetActive(true);
+        }
+
+        horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"), 0.05f);
+        moveDirection = new Vector3(-horizontal, 0, vertical);
+        moveDirection = transform.TransformDirection(moveDirection);
+
+        if (horizontal <= 0 && CanGoRight)
+        {
+            Controller.SimpleMove(moveDirection);
+        }
+        if (horizontal >= 0 && CanGoLeft)
+        {
+            Controller.SimpleMove(moveDirection);
         }
     }
 }
