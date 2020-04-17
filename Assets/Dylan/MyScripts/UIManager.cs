@@ -11,8 +11,12 @@ public class UIManager : MonoBehaviour
 
     public List<SpellCompartment> playerSpellsCompartment;
 
-    public GameObject playerSpellActivationCompartment;
+    public GameObject playerSpellActivationFeedback;
     private bool spellCompartmentIsActive = false;
+
+    [SerializeField] private CanvasGroup validationPopupWindow;
+    public float canvasFadeTime;
+
 
     public static UIManager s_Singleton;
     private void Awake()
@@ -46,22 +50,39 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.JoystickButton6))
         {
             Debug.Log("L2 pressed");
-            ActivateObjectCompartment();
+            SetStateOfSpellActivationFeedback();
         }
 
         if (Input.GetKeyDown(KeyCode.JoystickButton0))
         {
-            Debug.Log("X pressed");
-            UseObject();
+            Debug.Log("Square pressed");
+            UseSpell();
         }
     }
 
+    //General Display Toggle for every UI elements that need it
     public void UIWindowsDisplayToggle(GameObject obj)
     {
         obj.SetActive(!obj.activeSelf);
     }
 
-    public void OnClickAddPointsButton(int valueToAdd)
+    public void HidePopupValidationWindow()
+    {
+        StartCoroutine(FadeCanvasGroup(validationPopupWindow, validationPopupWindow.alpha, 0, canvasFadeTime));
+        validationPopupWindow.blocksRaycasts = false;
+
+        foreach (Button _buttons in validationPopupWindow.GetComponentsInChildren<Button>())
+        {
+            _buttons.enabled = false;
+        }
+
+        BuySpell _bS = validationPopupWindow.GetComponentInChildren<BuySpell>();
+
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(_bS.buttonSelected.gameObject);
+    }
+
+    public void AddPointsToPlayerScore(int valueToAdd)
     {
         playerPointsCountValue += valueToAdd;
         SetPlayerPointsCountValue();
@@ -72,7 +93,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void OnClickSpellButton(int valueToSubstract)
+    public void SetValueToSubstract(int valueToSubstract)
     {
         playerPointsCountValue -= valueToSubstract;
         SetPlayerPointsCountValue();
@@ -83,45 +104,208 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
     void SetPlayerPointsCountValue()
     {
         playerPointsCountValueText.text = playerPointsCountValue.ToString();
     }
 
-    void ActivateObjectCompartment()
+    void SetStateOfSpellActivationFeedback()
     {
-        playerSpellActivationCompartment.SetActive(!playerSpellActivationCompartment.activeSelf);
+        playerSpellActivationFeedback.SetActive(!playerSpellActivationFeedback.activeSelf);
         spellCompartmentIsActive = !spellCompartmentIsActive;
     }
 
-    void UseObject()
+    void UseSpell()
     {
-        if (spellCompartmentIsActive)
+        if (spellCompartmentIsActive && playerSpellsCompartment[0].MyCompartmentSpell != null)
         {
             Spell activatedSpell = playerSpellsCompartment[0].MyCompartmentSpell;
+            playerSpellsCompartment[0].MyCompartmentSpell = null;
+
+            DisableElementImageCompotent(playerSpellsCompartment[0].GetComponent<Image>());
+
+            SetStateOfSpellActivationFeedback();
+            ShopManager.s_Singleton.amntOfSpellBought--;
             Debug.Log(activatedSpell.MySpellName);
         }
     }
 
     void SwitchCompetences()
     {
-        Spell tempSpell01 = playerSpellsCompartment[0].MyCompartmentSpell;
-        Spell tempSpell02 = playerSpellsCompartment[1].MyCompartmentSpell;
-        Spell tempSpell03 = playerSpellsCompartment[2].MyCompartmentSpell;
+        // Check si les compartiments possèdent un spell renseigné
+        if (ShopManager.s_Singleton.amntOfSpellBought == 0)
+        {
+            Debug.Log("No spell referenced");
+            return;
+        }
 
-        Sprite tempSpellIcon01 = playerSpellsCompartment[0].MyCompartmentSpell.MySpellIcon;
-        Sprite tempSpellIcon02 = playerSpellsCompartment[1].MyCompartmentSpell.MySpellIcon;
-        Sprite tempSpellIcon03 = playerSpellsCompartment[2].MyCompartmentSpell.MySpellIcon;
+        else if (ShopManager.s_Singleton.amntOfSpellBought == 1)
+        {
+            //Si premier emplacement n'est pas vide --> dernier emplacement
+            if (playerSpellsCompartment[0].MyCompartmentSpell != null)
+            {
+                Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
+                //SWAP
+                SwapAndResetSpells(playerSpellsCompartment[2], playerSpellsCompartment[0]);
+                
+                //Enable and change Image
+                EnableAndChangeElementImageComponent(playerSpellsCompartment[2].GetComponent<Image>(), playerSpellsCompartment[0].MyCompartmentSpell.MySpellIcon);
+                //Disable previous image
+                DisableElementImageCompotent(playerSpellsCompartment[0].GetComponent<Image>());
+                playerSpellsCompartment[0].MyCompartmentSpell = null;
+            }
 
-        //FRONT TO BACK
-        playerSpellsCompartment[0].MyCompartmentSpell = tempSpell02;
-        playerSpellsCompartment[0].GetComponent<Image>().sprite = tempSpellIcon02;
-        //MID TO FRONT
-        playerSpellsCompartment[1].MyCompartmentSpell = tempSpell03;
-        playerSpellsCompartment[1].GetComponent<Image>().sprite = tempSpellIcon03;
-        //BACK TO MID
-        playerSpellsCompartment[2].MyCompartmentSpell = tempSpell01;
-        playerSpellsCompartment[2].GetComponent<Image>().sprite = tempSpellIcon01;
+            //Sinon si troisième emplacement n'est pas vide --> deuxième emplacement
+            else if (playerSpellsCompartment[2].MyCompartmentSpell != null)
+            {
+                Debug.Log("troisième emplacement n'est pas vide --> deuxième emplacement");
+                SwapAndResetSpells(playerSpellsCompartment[1], playerSpellsCompartment[2]);
+                
+
+                EnableAndChangeElementImageComponent(playerSpellsCompartment[1].GetComponent<Image>(), playerSpellsCompartment[2].MyCompartmentSpell.MySpellIcon);
+
+                DisableElementImageCompotent(playerSpellsCompartment[2].GetComponent<Image>());
+                playerSpellsCompartment[2].MyCompartmentSpell = null;
+            }
+
+            //Sinon si deuxième emplacement n'est pas vide --> premier emplacement
+            else if (playerSpellsCompartment[1].MyCompartmentSpell != null)
+            {
+                Debug.Log("deuxième emplacement n'est pas vide --> premier emplacement");
+                SwapAndResetSpells(playerSpellsCompartment[0], playerSpellsCompartment[1]);
+               
+
+                EnableAndChangeElementImageComponent(playerSpellsCompartment[0].GetComponent<Image>(), playerSpellsCompartment[1].MyCompartmentSpell.MySpellIcon);
+
+                DisableElementImageCompotent(playerSpellsCompartment[1].GetComponent<Image>());
+                playerSpellsCompartment[1].MyCompartmentSpell = null;
+            }
+
+        }
+
+        else if (ShopManager.s_Singleton.amntOfSpellBought == 2)
+        {
+            //Si premier emplacement n'est pas vide --> dernier emplacement
+            if (playerSpellsCompartment[0].MyCompartmentSpell != null && playerSpellsCompartment[1].MyCompartmentSpell != null)
+            {
+                Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
+                //SWAP
+                SwapAndResetSpells(playerSpellsCompartment[2], playerSpellsCompartment[0]);
+                //Enable and change Image
+                EnableAndChangeElementImageComponent(playerSpellsCompartment[2].GetComponent<Image>(), playerSpellsCompartment[0].MyCompartmentSpell.MySpellIcon);
+
+                //
+                //SWAP
+                SwapAndResetSpells(playerSpellsCompartment[0], playerSpellsCompartment[1]);
+                //Enable and change Image
+                EnableAndChangeElementImageComponent(playerSpellsCompartment[0].GetComponent<Image>(), playerSpellsCompartment[1].MyCompartmentSpell.MySpellIcon);
+
+                //Disable previous image
+                DisableElementImageCompotent(playerSpellsCompartment[1].GetComponent<Image>());
+                //Reset previous spell
+                playerSpellsCompartment[1].MyCompartmentSpell = null;
+            }
+
+            else if (playerSpellsCompartment[0].MyCompartmentSpell != null && playerSpellsCompartment[2].MyCompartmentSpell != null)
+            {
+                Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
+                //SWAP
+                SwapAndResetSpells(playerSpellsCompartment[1], playerSpellsCompartment[2]);
+                //Enable and change Image
+                EnableAndChangeElementImageComponent(playerSpellsCompartment[1].GetComponent<Image>(), playerSpellsCompartment[2].MyCompartmentSpell.MySpellIcon);
+
+                //
+                //SWAP
+                SwapAndResetSpells(playerSpellsCompartment[2], playerSpellsCompartment[0]);
+                //Enable and change Image
+                EnableAndChangeElementImageComponent(playerSpellsCompartment[2].GetComponent<Image>(), playerSpellsCompartment[0].MyCompartmentSpell.MySpellIcon);
+
+                //Disable previous image
+                DisableElementImageCompotent(playerSpellsCompartment[0].GetComponent<Image>());
+                //Reset previous spell
+                playerSpellsCompartment[0].MyCompartmentSpell = null;
+            }
+
+            else if (playerSpellsCompartment[1].MyCompartmentSpell != null && playerSpellsCompartment[2].MyCompartmentSpell != null)
+            {
+                Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
+                //SWAP
+                SwapAndResetSpells(playerSpellsCompartment[0], playerSpellsCompartment[1]);
+                //Enable and change Image
+                EnableAndChangeElementImageComponent(playerSpellsCompartment[0].GetComponent<Image>(), playerSpellsCompartment[1].MyCompartmentSpell.MySpellIcon);
+
+                //
+                //SWAP
+                SwapAndResetSpells(playerSpellsCompartment[1], playerSpellsCompartment[2]);
+                //Enable and change Image
+                EnableAndChangeElementImageComponent(playerSpellsCompartment[1].GetComponent<Image>(), playerSpellsCompartment[2].MyCompartmentSpell.MySpellIcon);
+
+                //Disable previous image
+                DisableElementImageCompotent(playerSpellsCompartment[2].GetComponent<Image>());
+                //Reset previous spell
+                playerSpellsCompartment[2].MyCompartmentSpell = null;
+            }
+        }
+
+        else if (ShopManager.s_Singleton.amntOfSpellBought == 3)
+        {
+            Spell _spellCompartment00 = playerSpellsCompartment[0].MyCompartmentSpell;
+            Spell _spellCompartment01 = playerSpellsCompartment[1].MyCompartmentSpell;
+            Spell _spellCompartment02 = playerSpellsCompartment[2].MyCompartmentSpell;
+
+            Sprite _spriteSpellCompartment00 = playerSpellsCompartment[0].GetComponent<Image>().sprite;
+            Sprite _spriteSpellCompartment01 = playerSpellsCompartment[1].GetComponent<Image>().sprite;
+            Sprite _spriteSpellCompartment02 = playerSpellsCompartment[2].GetComponent<Image>().sprite;
+
+            playerSpellsCompartment[0].MyCompartmentSpell = _spellCompartment01;
+            playerSpellsCompartment[0].GetComponent<Image>().sprite = _spriteSpellCompartment01;
+
+            playerSpellsCompartment[2].MyCompartmentSpell = _spellCompartment00;
+            playerSpellsCompartment[2].GetComponent<Image>().sprite = _spriteSpellCompartment00;
+
+            playerSpellsCompartment[1].MyCompartmentSpell = _spellCompartment02;
+            playerSpellsCompartment[1].GetComponent<Image>().sprite = _spriteSpellCompartment02;
+        }
+    }
+
+    void SwapAndResetSpells(SpellCompartment spellToChange, SpellCompartment wantedSpell)
+    {
+        spellToChange.MyCompartmentSpell = wantedSpell.MyCompartmentSpell;
+    }
+
+    void EnableAndChangeElementImageComponent(Image imageToChange, Sprite wantedImageSprite)
+    {
+        if (!imageToChange.enabled)
+            imageToChange.enabled = true;
+
+        imageToChange.sprite = wantedImageSprite;
+    }
+
+    void DisableElementImageCompotent(Image imageToDisable)
+    {
+        imageToDisable.enabled = false;
+        imageToDisable.sprite = null;
+    }
+
+
+    public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
+    {
+        float _timerStartedLerping = Time.time;
+        float timeSinceStarted = Time.time - _timerStartedLerping;
+        float percentageComplete = timeSinceStarted / lerpTime;
+
+        while (true)
+        {
+            timeSinceStarted = Time.time - _timerStartedLerping;
+            percentageComplete = timeSinceStarted / lerpTime;
+
+            float currentValue = Mathf.Lerp(start, end, percentageComplete);
+
+            cg.alpha = currentValue;
+
+            if (percentageComplete >= 1) break;
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 }

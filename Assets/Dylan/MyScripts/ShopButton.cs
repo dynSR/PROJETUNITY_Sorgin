@@ -11,8 +11,11 @@ public class ShopButton : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI spellNameText;
     [SerializeField] private TextMeshProUGUI spellValueText;
-    
-    [SerializeField] private Spell spell;
+
+    public Spell spell;
+    public bool isBoughtable = false;
+
+    [SerializeField] private CanvasGroup validationPopupWindow;
 
     private void Start()
     {
@@ -31,7 +34,8 @@ public class ShopButton : MonoBehaviour
         //Possible d'acheter la compétence --> Update de la couleur du bouton (enabled)
         if (UIManager.s_Singleton.playerPointsCountValue >= spell.MySpellValue)
         {
-            Debug.Log("Can buy " + gameObject.name);
+            isBoughtable = true;
+            //Debug.Log("Can buy " + gameObject.name);
             SetButtonColor(enabledButtonColor);
             return true;
         }
@@ -39,7 +43,8 @@ public class ShopButton : MonoBehaviour
         //Impossible d'acheter la compétence --> Update de la couleur du bouton (disabled)
         else if (UIManager.s_Singleton.playerPointsCountValue < spell.MySpellValue)
         {
-            Debug.Log("Cannot buy " + gameObject.name);
+            isBoughtable = false;
+            //Debug.Log("Cannot buy " + gameObject.name);
             SetButtonColor(disabledButtonColor);
             return false;
         }
@@ -47,23 +52,23 @@ public class ShopButton : MonoBehaviour
         return CheckIfCanBuySpells();
     }
 
-    public void BuySpell()
+    public void DisplayPopupValidationWindow()
     {
-        if (UIManager.s_Singleton.playerPointsCountValue >= spell.MySpellValue)
+        if (isBoughtable)
         {
-            for (int i = 0; i < UIManager.s_Singleton.playerSpellsCompartment.Count; i++)
+            StartCoroutine(UIManager.s_Singleton.FadeCanvasGroup(validationPopupWindow, validationPopupWindow.alpha, 1, UIManager.s_Singleton.canvasFadeTime));
+
+            validationPopupWindow.blocksRaycasts = true;
+
+            foreach (Button _buttons in validationPopupWindow.GetComponentsInChildren<Button>())
             {
-                if (UIManager.s_Singleton.playerSpellsCompartment[i].GetComponent<SpellCompartment>().MyCompartmentSpell == null && ShopManager.s_Singleton.amntOfSpellBoughtable < 3)
-                {
-                    ShopManager.s_Singleton.amntOfSpellBoughtable++;
-                    UIManager.s_Singleton.OnClickSpellButton(spell.MySpellValue);
-                    UIManager.s_Singleton.playerSpellsCompartment[i].GetComponent<SpellCompartment>().MyCompartmentSpell = spell;
-                    UIManager.s_Singleton.playerSpellsCompartment[i].GetComponent<Image>().enabled = true;
-                    UIManager.s_Singleton.playerSpellsCompartment[i].GetComponent<Image>().sprite = spell.MySpellIcon;
-                    return;
-                }
+                _buttons.enabled = true;
             }
+
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+            UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(validationPopupWindow.transform.GetChild(1).GetChild(1).gameObject);
         }
+            
     }
 
     void SetButtonColor(Color _color)

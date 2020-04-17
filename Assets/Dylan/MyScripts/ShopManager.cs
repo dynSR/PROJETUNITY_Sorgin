@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShopManager : MonoBehaviour
 {
     public GameObject[] spellsAvailableInShop;
-    public int amntOfSpellBoughtable = 0;
+    public int amntOfSpellBought = 0;
 
     public static ShopManager s_Singleton;
     private void Awake()
