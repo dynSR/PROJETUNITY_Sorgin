@@ -48,6 +48,6 @@ public class UIManagerProces : MonoBehaviour
 
     public void ButtonMain()
     {
-        SceneManager.LoadScene("SBMainScene");
+        SceneManager.LoadScene("SBLobbyScene");
     }
 }
