@@ -13,12 +13,11 @@ public class WallHide : MonoBehaviour
 
     public GameObject ball; //DEBUG
 
-    Quaternion wantedRotation;
+    public Quaternion wantedRotation;
     int layer_mask;
     bool Hided;
 
-    bool Left = true;
-    bool Right = true;
+    bool Waitforrotation;
 
     public Detector LeftDetector;
     public Detector RightDetector;
@@ -45,7 +44,6 @@ public class WallHide : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(transform.position, ClosestPt-transform.position, out hit, Mathf.Infinity,layer_mask))
             {
-                Debug.Log("bordel ca devrait marcher");
                 wantedRotation = Quaternion.LookRotation(hit.normal);
 
                 if (hit.transform.CompareTag("Wall"))
@@ -57,6 +55,8 @@ public class WallHide : MonoBehaviour
                         {
                             Invoke("ChangeHided", 0.05f);
                             Timer = 1;
+                            Invoke("ChangeWaitforRot", 0.25f);
+
                         }
                     }
                 }
@@ -78,8 +78,10 @@ public class WallHide : MonoBehaviour
             {
                 Player.GetComponent<MoveScript>().TopDownCamera();
 
-                Invoke("ChangeHided", 1f);
+                Invoke("ChangeHided", 0.5f);
                 Timer = 1;
+                Waitforrotation = false;
+
             }
         }
 
@@ -89,9 +91,10 @@ public class WallHide : MonoBehaviour
 
             Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, wantedRotation, 500f * Time.deltaTime);
 
-            if(Player.transform.rotation == wantedRotation)
+            if (Waitforrotation)
             {
                 Hide();
+                Debug.Log("LaunchMovewall");
             }
         }
 
@@ -104,6 +107,11 @@ public class WallHide : MonoBehaviour
 
         Player.GetComponent<MoveScript>().OnWall = Hided;
 
+    }
+
+    void ChangeWaitforRot()
+    {
+        Waitforrotation = true;
     }
 
     void Hide()
@@ -125,6 +133,7 @@ public class WallHide : MonoBehaviour
     void ChangeHided()
     {
         Hided = !Hided;
+        Debug.Log("Changed");
     }
 
     void OnTriggerStay(Collider other)

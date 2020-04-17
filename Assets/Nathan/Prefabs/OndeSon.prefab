@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8090414997524278214}
   - component: {fileID: -2372071472418501937}
   - component: {fileID: 7330438092541669889}
-  m_Layer: 0
+  - component: {fileID: 6937348282486078097}
+  m_Layer: 2
   m_Name: OndeSon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segments: 50
   range: 0
+  SphereCol: {fileID: 6937348282486078097}
 --- !u!120 &7330438092541669889
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -88,7 +90,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.01
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -141,3 +143,16 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!135 &6937348282486078097
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8090414997524278219}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5.69
+  m_Center: {x: 0, y: 0, z: 0}

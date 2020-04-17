@@ -7,6 +7,7 @@ public class SonScale : MonoBehaviour
     [Range(0, 50)]
     public int segments = 50;
     public float range;
+    public SphereCollider SphereCol;
 
     LineRenderer line;
 
@@ -14,6 +15,8 @@ public class SonScale : MonoBehaviour
 
     void Start()
     {
+
+        SphereCol.radius = range;
         line = gameObject.GetComponent<LineRenderer>();
         Fade = Color.white;
 
@@ -51,6 +54,14 @@ public class SonScale : MonoBehaviour
             line.SetPosition(i, new Vector3(x, y, 0));
 
             angle += (360f / segments);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Ennemy"))
+        {
+            other.transform.GetComponentInChildren<EnnemyView>().Detection += range / 40;
         }
     }
 }

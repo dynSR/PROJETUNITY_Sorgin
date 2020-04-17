@@ -31,7 +31,14 @@ public class ArmoireAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Text.SetActive(InTrigger);
+        if (!Inside)
+        {
+            Text.SetActive(InTrigger);
+        }
+        else
+        {
+            Text.SetActive(false);
+        }
 
         if (InTrigger)
         {

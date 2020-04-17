@@ -99,7 +99,7 @@ public class MoveScript : MonoBehaviour
 
         if(SoundTimer <= 0)
         {
-            Sound.SoundPlay(speed * 2);
+            Sound.SoundPlay(speed * 4);
             SoundTimer = 2f;
         }
 
