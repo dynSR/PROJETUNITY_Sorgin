@@ -15,7 +15,10 @@ public class UIManagerSB : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            ButtonReturnMenu();
+        }
     }
 
     public void ButtonProces()
@@ -31,6 +34,13 @@ public class UIManagerSB : MonoBehaviour
     public void ButtonExfiltration()
     {
         SceneManager.LoadScene("SampleScene");
+    }
+
+    public void ButtonReturnMenu()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene("SBLobbyScene");
     }
 
     public void ButtonQuit()
