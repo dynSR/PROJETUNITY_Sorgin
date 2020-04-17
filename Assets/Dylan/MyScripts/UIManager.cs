@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
     private bool spellCompartmentIsActive = false;
 
     [SerializeField] private CanvasGroup validationPopupWindow;
+    [SerializeField] private GameObject debugSpellUsedPopupWindow;
+    public TextMeshProUGUI debugSpellUsedText;
     public float canvasFadeTime;
 
 
@@ -120,8 +122,8 @@ public class UIManager : MonoBehaviour
         if (spellCompartmentIsActive && playerSpellsCompartment[0].MyCompartmentSpell != null)
         {
             Spell activatedSpell = playerSpellsCompartment[0].MyCompartmentSpell;
+            StartCoroutine(UseSpellDebug(playerSpellsCompartment[0].MyCompartmentSpell.MySpellName));
             playerSpellsCompartment[0].MyCompartmentSpell = null;
-
             DisableElementImageCompotent(playerSpellsCompartment[0].GetComponent<Image>());
 
             SetStateOfSpellActivationFeedback();
@@ -287,6 +289,16 @@ public class UIManager : MonoBehaviour
         imageToDisable.sprite = null;
     }
 
+    IEnumerator UseSpellDebug(string spellUsedName)
+    {
+        debugSpellUsedPopupWindow.SetActive(true);
+
+        debugSpellUsedText.text = "You used " + spellUsedName;
+
+        yield return new WaitForSeconds(0.5f);
+
+        debugSpellUsedPopupWindow.SetActive(false);
+    }
 
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
     {
