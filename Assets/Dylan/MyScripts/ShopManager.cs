@@ -22,5 +22,4 @@ public class ShopManager : MonoBehaviour
                 Debug.LogError("Please populate the spell avalaible in shop list !!!!!!!!!!");
         }
     }
-
 }

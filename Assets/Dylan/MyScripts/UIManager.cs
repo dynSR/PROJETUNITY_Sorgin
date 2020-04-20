@@ -9,15 +9,14 @@ public class UIManager : MonoBehaviour
     public int playerPointsCountValue;
     [SerializeField] private TextMeshProUGUI playerPointsCountValueText;
 
-    public List<SpellCompartment> playerSpellsCompartment;
+    public List<SpellCompartment> spellsCompartments;
 
-    public GameObject playerSpellActivationFeedback;
-    private bool spellCompartmentIsActive = false;
+    public GameObject spellActivationFeedback;
+    private bool isSpellCompartmentActive = false;
 
-    [SerializeField] private CanvasGroup validationPopupWindow;
-    [SerializeField] private GameObject debugSpellUsedPopupWindow;
-    public TextMeshProUGUI debugSpellUsedText;
-    public float canvasFadeTime;
+    [SerializeField] private CanvasGroup purchaseValidationPopup;
+
+    public float fadeTime = 0.25f;
 
 
     public static UIManager s_Singleton;
@@ -30,9 +29,6 @@ public class UIManager : MonoBehaviour
         else
         {
             s_Singleton = this;
-
-            //Cursor.visible = false;
-            //Cursor.lockState = CursorLockMode.Locked;
         }
     }
 
@@ -46,13 +42,13 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.JoystickButton4))
         {
             Debug.Log("L1 pressed");
-            SwitchCompetences();
+            SwitchSpellsInPlayerInventory();
         }
 
         if (Input.GetKeyDown(KeyCode.JoystickButton6))
         {
             Debug.Log("L2 pressed");
-            SetStateOfSpellActivationFeedback();
+            ToggleSpellActivationFeedback();
         }
 
         if (Input.GetKeyDown(KeyCode.JoystickButton0))
@@ -62,26 +58,30 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //General Display Toggle for every UI elements that need it
+    //Utilisé dans les button component pour afficher / désafficher un élément d'UI
     public void UIWindowsDisplayToggle(GameObject obj)
     {
         obj.SetActive(!obj.activeSelf);
     }
 
-    public void HidePopupValidationWindow()
+    public void ResetEventSystemFirstSelectedGameObjet(GameObject obj)
     {
-        StartCoroutine(FadeCanvasGroup(validationPopupWindow, validationPopupWindow.alpha, 0, canvasFadeTime));
-        validationPopupWindow.blocksRaycasts = false;
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(obj);
+    }
 
-        foreach (Button _buttons in validationPopupWindow.GetComponentsInChildren<Button>())
+    public void HideValidationPopup()
+    {
+        StartCoroutine(FadeCanvasGroup(purchaseValidationPopup, purchaseValidationPopup.alpha, 0, fadeTime));
+        purchaseValidationPopup.blocksRaycasts = false;
+
+        foreach (Button _buttons in purchaseValidationPopup.GetComponentsInChildren<Button>())
         {
             _buttons.enabled = false;
         }
 
-        BuySpell _bS = validationPopupWindow.GetComponentInChildren<BuySpell>();
-
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(_bS.buttonSelected.gameObject);
+        PurchaseASpell purchasedSpell = purchaseValidationPopup.GetComponentInChildren<PurchaseASpell>();
+        ResetEventSystemFirstSelectedGameObjet(purchasedSpell.selectedButton.gameObject);
     }
 
     public void AddPointsToPlayerScore(int valueToAdd)
@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
 
         foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
-            obj.GetComponent<ShopButton>().CheckIfCanBuySpells();
+            obj.GetComponent<ShopButtonBehaviour>().CheckIfPlayerCanPurchaseASpell();
         }
     }
 
@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
 
         foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
-            obj.GetComponent<ShopButton>().CheckIfCanBuySpells();
+            obj.GetComponent<ShopButtonBehaviour>().CheckIfPlayerCanPurchaseASpell();
         }
     }
 
@@ -111,76 +111,79 @@ public class UIManager : MonoBehaviour
         playerPointsCountValueText.text = playerPointsCountValue.ToString();
     }
 
-    void SetStateOfSpellActivationFeedback()
+    void ToggleSpellActivationFeedback()
     {
-        playerSpellActivationFeedback.SetActive(!playerSpellActivationFeedback.activeSelf);
-        spellCompartmentIsActive = !spellCompartmentIsActive;
+        spellActivationFeedback.SetActive(!spellActivationFeedback.activeSelf);
+        isSpellCompartmentActive = !isSpellCompartmentActive;
     }
 
+    void DeactivateSpellActivationFeedback()
+    {
+        spellActivationFeedback.SetActive(false);
+        isSpellCompartmentActive = false;
+    }
+
+    #region Spells Management
     void UseSpell()
     {
-        if (spellCompartmentIsActive && playerSpellsCompartment[0].MyCompartmentSpell != null)
+        if (isSpellCompartmentActive && spellsCompartments[0].MyCompartmentSpell != null)
         {
-            Spell activatedSpell = playerSpellsCompartment[0].MyCompartmentSpell;
-            StartCoroutine(UseSpellDebug(playerSpellsCompartment[0].MyCompartmentSpell.MySpellName));
-            playerSpellsCompartment[0].MyCompartmentSpell = null;
-            DisableElementImageCompotent(playerSpellsCompartment[0].GetComponent<Image>());
+            //Spell activatedSpell = spellsCompartments[0].MyCompartmentSpell;
+            spellsCompartments[0].MyCompartmentSpell = null;
 
-            SetStateOfSpellActivationFeedback();
+            DisableElementImageCompotent(spellsCompartments[0].GetComponent<Image>());
+
+            DeactivateSpellActivationFeedback();
             ShopManager.s_Singleton.amntOfSpellBought--;
-            Debug.Log(activatedSpell.MySpellName);
         }
     }
 
-    void SwitchCompetences()
+    void SwitchSpellsInPlayerInventory()
     {
         // Check si les compartiments possèdent un spell renseigné
         if (ShopManager.s_Singleton.amntOfSpellBought == 0)
-        {
-            Debug.Log("No spell referenced");
             return;
-        }
 
         else if (ShopManager.s_Singleton.amntOfSpellBought == 1)
         {
             //Si premier emplacement n'est pas vide --> dernier emplacement
-            if (playerSpellsCompartment[0].MyCompartmentSpell != null)
+            if (spellsCompartments[0].MyCompartmentSpell != null)
             {
                 Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
                 //SWAP
-                SwapAndResetSpells(playerSpellsCompartment[2], playerSpellsCompartment[0]);
-                
+                SwapSpellComponent(spellsCompartments[2], spellsCompartments[0]);
+
                 //Enable and change Image
-                EnableAndChangeElementImageComponent(playerSpellsCompartment[2].GetComponent<Image>(), playerSpellsCompartment[0].MyCompartmentSpell.MySpellIcon);
+                EnableAndChangeElementImageComponent(spellsCompartments[2].GetComponent<Image>(), spellsCompartments[0].MyCompartmentSpell.MySpellIcon);
                 //Disable previous image
-                DisableElementImageCompotent(playerSpellsCompartment[0].GetComponent<Image>());
-                playerSpellsCompartment[0].MyCompartmentSpell = null;
+                DisableElementImageCompotent(spellsCompartments[0].GetComponent<Image>());
+                spellsCompartments[0].MyCompartmentSpell = null;
             }
 
             //Sinon si troisième emplacement n'est pas vide --> deuxième emplacement
-            else if (playerSpellsCompartment[2].MyCompartmentSpell != null)
+            else if (spellsCompartments[2].MyCompartmentSpell != null)
             {
                 Debug.Log("troisième emplacement n'est pas vide --> deuxième emplacement");
-                SwapAndResetSpells(playerSpellsCompartment[1], playerSpellsCompartment[2]);
-                
+                SwapSpellComponent(spellsCompartments[1], spellsCompartments[2]);
 
-                EnableAndChangeElementImageComponent(playerSpellsCompartment[1].GetComponent<Image>(), playerSpellsCompartment[2].MyCompartmentSpell.MySpellIcon);
 
-                DisableElementImageCompotent(playerSpellsCompartment[2].GetComponent<Image>());
-                playerSpellsCompartment[2].MyCompartmentSpell = null;
+                EnableAndChangeElementImageComponent(spellsCompartments[1].GetComponent<Image>(), spellsCompartments[2].MyCompartmentSpell.MySpellIcon);
+
+                DisableElementImageCompotent(spellsCompartments[2].GetComponent<Image>());
+                spellsCompartments[2].MyCompartmentSpell = null;
             }
 
             //Sinon si deuxième emplacement n'est pas vide --> premier emplacement
-            else if (playerSpellsCompartment[1].MyCompartmentSpell != null)
+            else if (spellsCompartments[1].MyCompartmentSpell != null)
             {
                 Debug.Log("deuxième emplacement n'est pas vide --> premier emplacement");
-                SwapAndResetSpells(playerSpellsCompartment[0], playerSpellsCompartment[1]);
-               
+                SwapSpellComponent(spellsCompartments[0], spellsCompartments[1]);
 
-                EnableAndChangeElementImageComponent(playerSpellsCompartment[0].GetComponent<Image>(), playerSpellsCompartment[1].MyCompartmentSpell.MySpellIcon);
 
-                DisableElementImageCompotent(playerSpellsCompartment[1].GetComponent<Image>());
-                playerSpellsCompartment[1].MyCompartmentSpell = null;
+                EnableAndChangeElementImageComponent(spellsCompartments[0].GetComponent<Image>(), spellsCompartments[1].MyCompartmentSpell.MySpellIcon);
+
+                DisableElementImageCompotent(spellsCompartments[1].GetComponent<Image>());
+                spellsCompartments[1].MyCompartmentSpell = null;
             }
 
         }
@@ -188,89 +191,89 @@ public class UIManager : MonoBehaviour
         else if (ShopManager.s_Singleton.amntOfSpellBought == 2)
         {
             //Si premier emplacement n'est pas vide --> dernier emplacement
-            if (playerSpellsCompartment[0].MyCompartmentSpell != null && playerSpellsCompartment[1].MyCompartmentSpell != null)
+            if (spellsCompartments[0].MyCompartmentSpell != null && spellsCompartments[1].MyCompartmentSpell != null)
             {
                 Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
                 //SWAP
-                SwapAndResetSpells(playerSpellsCompartment[2], playerSpellsCompartment[0]);
+                SwapSpellComponent(spellsCompartments[2], spellsCompartments[0]);
                 //Enable and change Image
-                EnableAndChangeElementImageComponent(playerSpellsCompartment[2].GetComponent<Image>(), playerSpellsCompartment[0].MyCompartmentSpell.MySpellIcon);
+                EnableAndChangeElementImageComponent(spellsCompartments[2].GetComponent<Image>(), spellsCompartments[0].MyCompartmentSpell.MySpellIcon);
 
                 //
                 //SWAP
-                SwapAndResetSpells(playerSpellsCompartment[0], playerSpellsCompartment[1]);
+                SwapSpellComponent(spellsCompartments[0], spellsCompartments[1]);
                 //Enable and change Image
-                EnableAndChangeElementImageComponent(playerSpellsCompartment[0].GetComponent<Image>(), playerSpellsCompartment[1].MyCompartmentSpell.MySpellIcon);
+                EnableAndChangeElementImageComponent(spellsCompartments[0].GetComponent<Image>(), spellsCompartments[1].MyCompartmentSpell.MySpellIcon);
 
                 //Disable previous image
-                DisableElementImageCompotent(playerSpellsCompartment[1].GetComponent<Image>());
+                DisableElementImageCompotent(spellsCompartments[1].GetComponent<Image>());
                 //Reset previous spell
-                playerSpellsCompartment[1].MyCompartmentSpell = null;
+                spellsCompartments[1].MyCompartmentSpell = null;
             }
 
-            else if (playerSpellsCompartment[0].MyCompartmentSpell != null && playerSpellsCompartment[2].MyCompartmentSpell != null)
+            else if (spellsCompartments[0].MyCompartmentSpell != null && spellsCompartments[2].MyCompartmentSpell != null)
             {
                 Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
                 //SWAP
-                SwapAndResetSpells(playerSpellsCompartment[1], playerSpellsCompartment[2]);
+                SwapSpellComponent(spellsCompartments[1], spellsCompartments[2]);
                 //Enable and change Image
-                EnableAndChangeElementImageComponent(playerSpellsCompartment[1].GetComponent<Image>(), playerSpellsCompartment[2].MyCompartmentSpell.MySpellIcon);
+                EnableAndChangeElementImageComponent(spellsCompartments[1].GetComponent<Image>(), spellsCompartments[2].MyCompartmentSpell.MySpellIcon);
 
                 //
                 //SWAP
-                SwapAndResetSpells(playerSpellsCompartment[2], playerSpellsCompartment[0]);
+                SwapSpellComponent(spellsCompartments[2], spellsCompartments[0]);
                 //Enable and change Image
-                EnableAndChangeElementImageComponent(playerSpellsCompartment[2].GetComponent<Image>(), playerSpellsCompartment[0].MyCompartmentSpell.MySpellIcon);
+                EnableAndChangeElementImageComponent(spellsCompartments[2].GetComponent<Image>(), spellsCompartments[0].MyCompartmentSpell.MySpellIcon);
 
                 //Disable previous image
-                DisableElementImageCompotent(playerSpellsCompartment[0].GetComponent<Image>());
+                DisableElementImageCompotent(spellsCompartments[0].GetComponent<Image>());
                 //Reset previous spell
-                playerSpellsCompartment[0].MyCompartmentSpell = null;
+                spellsCompartments[0].MyCompartmentSpell = null;
             }
 
-            else if (playerSpellsCompartment[1].MyCompartmentSpell != null && playerSpellsCompartment[2].MyCompartmentSpell != null)
+            else if (spellsCompartments[1].MyCompartmentSpell != null && spellsCompartments[2].MyCompartmentSpell != null)
             {
                 Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
                 //SWAP
-                SwapAndResetSpells(playerSpellsCompartment[0], playerSpellsCompartment[1]);
+                SwapSpellComponent(spellsCompartments[0], spellsCompartments[1]);
                 //Enable and change Image
-                EnableAndChangeElementImageComponent(playerSpellsCompartment[0].GetComponent<Image>(), playerSpellsCompartment[1].MyCompartmentSpell.MySpellIcon);
+                EnableAndChangeElementImageComponent(spellsCompartments[0].GetComponent<Image>(), spellsCompartments[1].MyCompartmentSpell.MySpellIcon);
 
                 //
                 //SWAP
-                SwapAndResetSpells(playerSpellsCompartment[1], playerSpellsCompartment[2]);
+                SwapSpellComponent(spellsCompartments[1], spellsCompartments[2]);
                 //Enable and change Image
-                EnableAndChangeElementImageComponent(playerSpellsCompartment[1].GetComponent<Image>(), playerSpellsCompartment[2].MyCompartmentSpell.MySpellIcon);
+                EnableAndChangeElementImageComponent(spellsCompartments[1].GetComponent<Image>(), spellsCompartments[2].MyCompartmentSpell.MySpellIcon);
 
                 //Disable previous image
-                DisableElementImageCompotent(playerSpellsCompartment[2].GetComponent<Image>());
+                DisableElementImageCompotent(spellsCompartments[2].GetComponent<Image>());
                 //Reset previous spell
-                playerSpellsCompartment[2].MyCompartmentSpell = null;
+                spellsCompartments[2].MyCompartmentSpell = null;
             }
         }
 
         else if (ShopManager.s_Singleton.amntOfSpellBought == 3)
         {
-            Spell _spellCompartment00 = playerSpellsCompartment[0].MyCompartmentSpell;
-            Spell _spellCompartment01 = playerSpellsCompartment[1].MyCompartmentSpell;
-            Spell _spellCompartment02 = playerSpellsCompartment[2].MyCompartmentSpell;
+            Spell _spellCompartment00 = spellsCompartments[0].MyCompartmentSpell;
+            Spell _spellCompartment01 = spellsCompartments[1].MyCompartmentSpell;
+            Spell _spellCompartment02 = spellsCompartments[2].MyCompartmentSpell;
 
-            Sprite _spriteSpellCompartment00 = playerSpellsCompartment[0].GetComponent<Image>().sprite;
-            Sprite _spriteSpellCompartment01 = playerSpellsCompartment[1].GetComponent<Image>().sprite;
-            Sprite _spriteSpellCompartment02 = playerSpellsCompartment[2].GetComponent<Image>().sprite;
+            Sprite _spriteSpellCompartment00 = spellsCompartments[0].GetComponent<Image>().sprite;
+            Sprite _spriteSpellCompartment01 = spellsCompartments[1].GetComponent<Image>().sprite;
+            Sprite _spriteSpellCompartment02 = spellsCompartments[2].GetComponent<Image>().sprite;
 
-            playerSpellsCompartment[0].MyCompartmentSpell = _spellCompartment01;
-            playerSpellsCompartment[0].GetComponent<Image>().sprite = _spriteSpellCompartment01;
+            spellsCompartments[0].MyCompartmentSpell = _spellCompartment01;
+            spellsCompartments[0].GetComponent<Image>().sprite = _spriteSpellCompartment01;
 
-            playerSpellsCompartment[2].MyCompartmentSpell = _spellCompartment00;
-            playerSpellsCompartment[2].GetComponent<Image>().sprite = _spriteSpellCompartment00;
+            spellsCompartments[2].MyCompartmentSpell = _spellCompartment00;
+            spellsCompartments[2].GetComponent<Image>().sprite = _spriteSpellCompartment00;
 
-            playerSpellsCompartment[1].MyCompartmentSpell = _spellCompartment02;
-            playerSpellsCompartment[1].GetComponent<Image>().sprite = _spriteSpellCompartment02;
+            spellsCompartments[1].MyCompartmentSpell = _spellCompartment02;
+            spellsCompartments[1].GetComponent<Image>().sprite = _spriteSpellCompartment02;
         }
     }
 
-    void SwapAndResetSpells(SpellCompartment spellToChange, SpellCompartment wantedSpell)
+    void SwapSpellComponent(SpellCompartment spellToChange, SpellCompartment wantedSpell)
     {
         spellToChange.MyCompartmentSpell = wantedSpell.MyCompartmentSpell;
     }
@@ -288,18 +291,9 @@ public class UIManager : MonoBehaviour
         imageToDisable.enabled = false;
         imageToDisable.sprite = null;
     }
+    #endregion
 
-    IEnumerator UseSpellDebug(string spellUsedName)
-    {
-        debugSpellUsedPopupWindow.SetActive(true);
-
-        debugSpellUsedText.text = "You used " + spellUsedName;
-
-        yield return new WaitForSeconds(0.5f);
-
-        debugSpellUsedPopupWindow.SetActive(false);
-    }
-
+    #region Canvas Fade Coroutine
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
     {
         float _timerStartedLerping = Time.time;
@@ -320,4 +314,5 @@ public class UIManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
+    #endregion
 }
