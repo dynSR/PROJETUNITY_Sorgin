@@ -9,7 +9,7 @@ public class Spell : MonoBehaviour
     [SerializeField] private Sprite spellIcon;
     [SerializeField] private int spellCooldown;
     [SerializeField] private int spellValue;
-    [TextArea]
+    [TextArea(1, 5)]
     [SerializeField] private string spellEffectDescription;
 
     public string MySpellName { get => spellName; }

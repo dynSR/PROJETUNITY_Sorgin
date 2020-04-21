@@ -5,24 +5,29 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
+public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler, IDeselectHandler
 {
+    [Header("BUTTON COLORS")]
     [SerializeField] private Color purchasableButtonColor;
     [SerializeField] private Color unpurchasableButtonColor;
 
-    [SerializeField] private TextMeshProUGUI spellNameText;
 
+    [Header("SPELL ATTACHED TO THE BUTTON")]
     public Spell spell;
     public bool isPurchasable = false;
+    [SerializeField] private TextMeshProUGUI spellNameText;
 
+    [Header("VALIDATION POPUP PARAMETERS")]
     [SerializeField] private CanvasGroup validationPopupWindow;
-    [SerializeField] private GameObject buttonsLayoutValidationPopup;
-    [SerializeField] private GameObject purchaseValidationButton;
+    [SerializeField] private GameObject validationPopupButtonLayout;
+    [SerializeField] private GameObject purchaseButton;
 
-    [SerializeField] private Image tooltipSpellImage;
-    [SerializeField] private TextMeshProUGUI tooltipSpellNameText;
-    [SerializeField] private TextMeshProUGUI tooltipSpellValueText;
-    [SerializeField] private TextMeshProUGUI tooltipSpellEffectDescriptionText;
+    [Header("TOOLTIP PARAMETERS")]
+    [SerializeField] private GameObject tooltipGameObject;
+    [SerializeField] private Image spellTooltipImage;
+    [SerializeField] private TextMeshProUGUI spellTooltipNameText;
+    [SerializeField] private TextMeshProUGUI spellTooltipValueText;
+    [SerializeField] private TextMeshProUGUI spellTooltipEffectDescriptionText;
 
     private void Start()
     {
@@ -68,17 +73,18 @@ public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
         if (isPurchasable)
         {
             Debug.Log("Display Validation Popup");
-            StartCoroutine(UIManager.s_Singleton.FadeCanvasGroup(validationPopupWindow, validationPopupWindow.alpha, 1, UIManager.s_Singleton.fadeTime));
+            StartCoroutine(UIManager.s_Singleton.FadeCanvasGroup(validationPopupWindow, validationPopupWindow.alpha, 1, UIManager.s_Singleton.fadeDuration));
 
             validationPopupWindow.blocksRaycasts = true;
 
-            foreach (Button _buttons in buttonsLayoutValidationPopup.GetComponentsInChildren<Button>())
+            foreach (Button _buttons in validationPopupButtonLayout.GetComponentsInChildren<Button>())
             {
                 _buttons.enabled = true;
             }
 
-            UIManager.s_Singleton.ResetEventSystemFirstSelectedGameObjet(buttonsLayoutValidationPopup.transform.GetChild(1).gameObject);
+            UIManager.s_Singleton.ResetEventSystemFirstSelectedGameObjet(validationPopupButtonLayout.transform.GetChild(1).gameObject);
 
+            UIManager.s_Singleton.purschaseValidationPopupIsDisplayed = true;
             //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
             //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(validationPopupWindow.transform.GetChild(1).GetChild(1).gameObject);
         }     
@@ -93,19 +99,25 @@ public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
     {
         Debug.Log("On Submit click event");
         DisplayValidationPopup();
-        purchaseValidationButton.GetComponent<PurchaseASpell>().selectedButton = GetComponent<Button>();
+        purchaseButton.GetComponent<PurchaseASpell>().selectedButton = GetComponent<Button>();
     }
 
     void SetTooltipInformations()
     {
-        tooltipSpellNameText.text = spell.MySpellName;
-        tooltipSpellValueText.text = spell.MySpellValue.ToString();
-        tooltipSpellEffectDescriptionText.text = spell.MySpellEffectDescription;
-        tooltipSpellImage.sprite = spell.MySpellIcon;
+        spellTooltipNameText.text = spell.MySpellName;
+        spellTooltipValueText.text = spell.MySpellValue.ToString();
+        spellTooltipEffectDescriptionText.text = spell.MySpellEffectDescription;
+        spellTooltipImage.sprite = spell.MySpellIcon;
     }
 
     public void OnSelect(BaseEventData eventData)
     {
         SetTooltipInformations();
+        tooltipGameObject.SetActive(true);
+    }
+
+    public void OnDeselect(BaseEventData eventData)
+    {
+        tooltipGameObject.SetActive(false);
     }
 }
