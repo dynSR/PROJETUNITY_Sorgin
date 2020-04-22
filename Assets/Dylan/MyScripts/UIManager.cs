@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [Header("PLAYER POINTS PARAMETERS")]
-    public int playerPointsCountValue;
-    [SerializeField] private TextMeshProUGUI playerPointsCountValueText;
+    public int playerPointsValue;
+    [SerializeField] private TextMeshProUGUI playerPointsValueText;
 
     [Header("SPELL COMPARTMENT PARAMETERS")]
     public List<SpellCompartment> spellsCompartments;
@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     [Header("FADE DURATION")]
     public float fadeDuration = 0.25f;
 
+    bool coroutineIsOver = false;
 
     public static UIManager s_Singleton;
     private void Awake()
@@ -101,29 +102,45 @@ public class UIManager : MonoBehaviour
 
     public void AddPointsToPlayerScore(int valueToAdd)
     {
-        playerPointsCountValue += valueToAdd;
+        playerPointsValue += valueToAdd;
         SetPlayerPointsCountValue();
 
         foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
-            obj.GetComponent<ShopButtonBehaviour>().CheckIfPlayerCanPurchaseASpell();
+            obj.GetComponent<ShopButtonBehaviour>().CheckIfPlayerCanPurchaseASpell(playerPointsValue);
         }
     }
 
     public void SetValueToSubstract(int valueToSubstract)
     {
-        playerPointsCountValue -= valueToSubstract;
-        SetPlayerPointsCountValue();
+        int tempPlayerPointsValue = playerPointsValue;
+        tempPlayerPointsValue -= valueToSubstract;
 
         foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
-            obj.GetComponent<ShopButtonBehaviour>().CheckIfPlayerCanPurchaseASpell();
+            obj.GetComponent<ShopButtonBehaviour>().CheckIfPlayerCanPurchaseASpell(tempPlayerPointsValue);
         }
+
+        StartCoroutine(SubstractionCoroutine(valueToSubstract, 50));
+        SetPlayerPointsCountValue();
     }
 
     void SetPlayerPointsCountValue()
     {
-        playerPointsCountValueText.text = playerPointsCountValue.ToString();
+        playerPointsValueText.text = playerPointsValue.ToString();
+    }
+
+    IEnumerator SubstractionCoroutine(int substractValueToReach, int valueToSubtractPerTicks)
+    {
+        int startValue = 0;
+        do
+        {
+            startValue += valueToSubtractPerTicks;
+            playerPointsValue -= valueToSubtractPerTicks;
+            SetPlayerPointsCountValue();
+            yield return new WaitForEndOfFrame();
+
+        } while (startValue != substractValueToReach);
     }
 
     void ToggleSpellActivationFeedback()

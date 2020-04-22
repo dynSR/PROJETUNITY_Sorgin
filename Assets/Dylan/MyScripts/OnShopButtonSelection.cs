@@ -10,6 +10,7 @@ public class OnShopButtonSelection : MonoBehaviour, ISelectHandler, IDeselectHan
 
     [SerializeField] private CanvasGroup valueToSubstractDisplayer;
     [SerializeField] private TextMeshProUGUI valueToSubstractText;
+    private Image buttonSelectionImage;
 
     public void OnDeselect(BaseEventData eventData)
     {
@@ -20,7 +21,10 @@ public class OnShopButtonSelection : MonoBehaviour, ISelectHandler, IDeselectHan
         }
 
         //GetComponent<Image>().enabled = false;
-        GetComponent<Image>().color = new Color(255, 255, 255, 0);
+        //GetComponent<Image>().color = new Color(255, 255, 255, 0);
+
+        buttonSelectionImage = GetComponentInChildren<Image>();
+        buttonSelectionImage.enabled = false;
     }
 
     public void OnSelect(BaseEventData eventData)
@@ -33,6 +37,8 @@ public class OnShopButtonSelection : MonoBehaviour, ISelectHandler, IDeselectHan
         }
 
         //GetComponent<Image>().enabled = true;
-        GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        //GetComponent<Image>().color = new Color(255, 255, 255, 255);
+        buttonSelectionImage = GetComponentInChildren<Image>();
+        buttonSelectionImage.enabled = true;
     }
 }

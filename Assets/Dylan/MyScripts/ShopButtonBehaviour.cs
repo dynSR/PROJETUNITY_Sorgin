@@ -42,14 +42,14 @@ public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
         //DEBUG
         gameObject.name = spell.MySpellName;
             
-        CheckIfPlayerCanPurchaseASpell();
+        CheckIfPlayerCanPurchaseASpell(UIManager.s_Singleton.playerPointsValue);
     }
 
 
-    public bool CheckIfPlayerCanPurchaseASpell()
+    public bool CheckIfPlayerCanPurchaseASpell(int valueToCompare)
     {
         //Possible d'acheter la compétence --> Update de la couleur du bouton (achetable)
-        if (UIManager.s_Singleton.playerPointsCountValue >= spell.MySpellValue)
+        if (valueToCompare >= spell.MySpellValue)
         {
             Debug.Log("Can buy " + spell.MySpellName);
             isPurchasable = true;
@@ -58,14 +58,14 @@ public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
         }
 
         //Impossible d'acheter la compétence --> Update de la couleur du bouton (non-achetable)
-        else if (UIManager.s_Singleton.playerPointsCountValue < spell.MySpellValue)
+        else if (valueToCompare < spell.MySpellValue)
         {
             isPurchasable = false;
             SetButtonColor(unpurchasableButtonColor);
             return false;
         }
 
-        return CheckIfPlayerCanPurchaseASpell();
+        return CheckIfPlayerCanPurchaseASpell(valueToCompare);
     }
 
     public void DisplayValidationPopup()
