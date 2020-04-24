@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{27DA0271-5227-4282-85CC-8CEA843BD806}" SchemaVersion="97">
 	<SoundBanks>
-		<WorkUnit Name="Default Work Unit" ID="{27DA0271-5227-4282-85CC-8CEA843BD806}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{27DA0271-5227-4282-85CC-8CEA843BD806}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="UI_Sounds" ID="{3C650FA6-6BD6-456B-A7B0-F39ED1310D94}">
+					<ObjectInclusionList>
+						<ObjectRef Name="UI_MenuClickButtons" ID="{9A0E4436-23DA-44CE-86B8-80F89A0619D1}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="UI_MenuButtons" ID="{D5C0CA8A-7642-4746-BD1D-F87884A85AEB}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="UI_Validation" ID="{ED1FC313-00C3-4A58-AB22-8961C5F22007}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundBanks>
 </WwiseDocument>

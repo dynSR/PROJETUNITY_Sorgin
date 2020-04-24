@@ -33,9 +33,9 @@ public class OnShopButtonSelection : MonoBehaviour, ISelectHandler, IDeselectHan
         {
             valueToSubstractText.text = "- " + GetComponent<PurchaseASpell>().selectedButton.GetComponent<ShopButtonBehaviour>().spell.MySpellValue.ToString();
             valueToSubstractDisplayer.alpha = 1;
-
         }
 
+        AkSoundEngine.PostEvent("UI_MenuClickButtons", this.gameObject);
         //GetComponent<Image>().enabled = true;
         //GetComponent<Image>().color = new Color(255, 255, 255, 255);
         buttonSelectionImage = GetComponentInChildren<Image>();
