@@ -4,7 +4,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2304387734	UI_MenuButtons			\Default Work Unit\UI_MenuButtons	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	510571323	Sound_UI_Click	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\Sound_UI_Click_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UI_Click		38716
-	838961577	Sound_UIButtonValidation	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\Sound_UIButtonValidation_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UIButtonValidation		19001924
-	1040224254	Sound_UI_MenuButtons	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\Sound_UI_MenuButtons_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UI_MenuButtons		104328
+	510571323	Sound_UI_Click	D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\.cache\Mac\SFX\Sound_UI_Click_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UI_Click		38716
+	838961577	Sound_UIButtonValidation	D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\.cache\Mac\SFX\Sound_UIButtonValidation_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UIButtonValidation		19001924
+	1040224254	Sound_UI_MenuButtons	D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\.cache\Mac\SFX\Sound_UI_MenuButtons_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UI_MenuButtons		104328
 

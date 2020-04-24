@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
 	<RootPaths>
-		<ProjectRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
