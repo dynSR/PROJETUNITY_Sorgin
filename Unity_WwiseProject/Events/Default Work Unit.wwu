@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" SchemaVersion="97">
 	<Events>
-		<WorkUnit Name="Default Work Unit" ID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="UI_Validation" ID="{ED1FC313-00C3-4A58-AB22-8961C5F22007}">
+					<ChildrenList>
+						<Action Name="" ID="{0C2D74A6-8A44-4D37-86C8-9D5D4E0E0C26}" ShortID="1041995722">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Sound_UIButtonValidation" ID="{CF855BA4-7C4C-46F1-9F7B-CA8A471B163E}" WorkUnitID="{1BF8B83F-70A0-4817-8052-5611AAFA4F16}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="UI_MenuButtons" ID="{D5C0CA8A-7642-4746-BD1D-F87884A85AEB}">
+					<ChildrenList>
+						<Action Name="" ID="{497507D7-3C1A-4E46-913B-FC8DC21A26B4}" ShortID="703249740">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Sound_UI_MenuButtons" ID="{09A584F3-F7EC-425C-BED5-170D58B66708}" WorkUnitID="{1BF8B83F-70A0-4817-8052-5611AAFA4F16}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="UI_MenuClickButtons" ID="{9A0E4436-23DA-44CE-86B8-80F89A0619D1}">
+					<ChildrenList>
+						<Action Name="" ID="{4E0E25B0-EEE0-419C-8A92-DF80FC66C08C}" ShortID="79026008">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Sound_UI_Click" ID="{101C178D-1BB1-407D-AEA0-BF06D5F4FDCD}" WorkUnitID="{1BF8B83F-70A0-4817-8052-5611AAFA4F16}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
 	</Events>
 </WwiseDocument>

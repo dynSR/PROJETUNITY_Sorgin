@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
+	<RootPaths>
+		<ProjectRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="905868302" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\UI_Sounds</ObjectPath>
+			<ShortName>UI_Sounds</ShortName>
+			<Path>UI_Sounds.bnk</Path>
+			<IncludedEvents>
+				<Event Id="2304387734" Name="UI_MenuButtons" ObjectPath="\Events\Default Work Unit\UI_MenuButtons" DurationType="OneShot" DurationMin="0.543052" DurationMax="0.543052">
+					<IncludedMemoryFiles>
+						<File Id="1040224254" Language="SFX">
+							<ShortName>Sound_UI_MenuButtons.wav</ShortName>
+							<Path>SFX\Sound_UI_MenuButtons_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="753952496" Name="UI_MenuClickButtons" ObjectPath="\Events\Default Work Unit\UI_MenuClickButtons" DurationType="OneShot" DurationMin="0.218753" DurationMax="0.218753">
+					<IncludedMemoryFiles>
+						<File Id="510571323" Language="SFX">
+							<ShortName>Sound_UI_Click.wav</ShortName>
+							<Path>SFX\Sound_UI_Click_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2207745295" Name="UI_Validation" ObjectPath="\Events\Default Work Unit\UI_Validation" DurationType="OneShot" DurationMin="107.720291" DurationMax="107.720291">
+					<IncludedMemoryFiles>
+						<File Id="838961577" Language="SFX">
+							<ShortName>Sound_UIButtonValidation.wav</ShortName>
+							<Path>SFX\Sound_UIButtonValidation_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>
