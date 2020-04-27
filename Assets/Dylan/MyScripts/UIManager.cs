@@ -15,6 +15,12 @@ public class UIManager : MonoBehaviour
     public GameObject spellActivationFeedback;
     private bool spellCompartmentIsActive = false;
 
+    [Header("PS4 INPUTS")]
+    [SerializeField] private string PS4Input_L1;
+    [SerializeField] private string PS4Input_L2;
+    [SerializeField] private string PS4Input_O;
+    [SerializeField] private string PS4Input_Square;
+
     [Header("PURCHASE VALIDATION POPUP")]
     [SerializeField] private CanvasGroup purchaseValidationPopup;
     [HideInInspector]
@@ -46,27 +52,27 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.JoystickButton4))
+        if (Input.GetButtonDown(PS4Input_L1))
         {
             Debug.Log("L1 pressed");
             SwitchSpellsInPlayerInventory();
         }
 
-        if (Input.GetKeyDown(KeyCode.JoystickButton6))
+        if (Input.GetButtonDown(PS4Input_L2))
         {
             Debug.Log("L2 pressed");
             ToggleSpellActivationFeedback();
         }
 
-        if (Input.GetKeyDown(KeyCode.JoystickButton0))
+        if (Input.GetButtonDown(PS4Input_Square))
         {
             Debug.Log("Square pressed");
             UseSpell();
         }
 
-        if (purschaseValidationPopupIsDisplayed && Input.GetKeyDown(KeyCode.JoystickButton2))
+        if (purschaseValidationPopupIsDisplayed && Input.GetButtonDown(PS4Input_O))
         {
-            Debug.Log("Square pressed");
+            Debug.Log("Circle pressed");
             HideValidationPopup();
         }
     }
@@ -75,6 +81,16 @@ public class UIManager : MonoBehaviour
     public void UIWindowsDisplayToggle(GameObject obj)
     {
         obj.SetActive(!obj.activeSelf);
+    }
+
+    public void UIWindowsDisplay(GameObject obj)
+    {
+        obj.SetActive(true);
+    }
+
+    public void UIWindowsHide(GameObject obj)
+    {
+        obj.SetActive(false);
     }
 
     public void ResetEventSystemFirstSelectedGameObjet(GameObject obj)

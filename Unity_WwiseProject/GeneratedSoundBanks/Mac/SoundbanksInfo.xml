@@ -40,7 +40,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="854029772" Name="UI_OpenningWindow" ObjectPath="\Events\Default Work Unit\UI_OpenningWindow" DurationType="OneShot" DurationMin="0.543052" DurationMax="0.543052">
+				<Event Id="854029772" Name="UI_OpenningWindow" ObjectPath="\Events\Default Work Unit\UI_OpenningWindow" DurationType="OneShot" DurationMin="0.585400" DurationMax="0.585400">
 					<IncludedMemoryFiles>
 						<File Id="1040224254" Language="SFX">
 							<ShortName>Sound_UI_MenuButtons.wav</ShortName>
