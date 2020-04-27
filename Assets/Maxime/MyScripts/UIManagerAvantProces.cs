@@ -6,6 +6,8 @@ public class UIManagerAvantProces : MonoBehaviour
 {
     public static UIManagerAvantProces singleton;
 
+    private ProofManager proofManager;
+
     private void Awake()
     {
         if (singleton)
@@ -20,7 +22,7 @@ public class UIManagerAvantProces : MonoBehaviour
 
     void Start()
     {
-        
+        proofManager = ProofManager.singleton;
     }
 
     void Update()
@@ -30,21 +32,28 @@ public class UIManagerAvantProces : MonoBehaviour
 
     public void ProofDisplayUpdate(int currentProofIndex)
     {
-        ProofManager proofManager = ProofManager.singleton;
-        int roundedAxis = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
+        int roundedAxis = Mathf.RoundToInt(1 * Mathf.Sign(Input.GetAxis("Horizontal")));
+        Debug.Log("Rounded axis : " + roundedAxis);
         proofManager.proofList[currentProofIndex].SetActive(true);
-        if (currentProofIndex == 0 && roundedAxis == -1)
+        Debug.Log("Active : " + currentProofIndex);
+
+        if (currentProofIndex == 0 && roundedAxis == 1)
         {
             proofManager.proofList[proofManager.proofList.Length-1].SetActive(false);
+            Debug.Log("Unactive : " + (proofManager.proofList.Length - 1));
+            return;
         }
-        else if(currentProofIndex == proofManager.proofList.Length-1 && roundedAxis == 1)
+        else if(currentProofIndex == proofManager.proofList.Length-1 && roundedAxis == -1)
         {
             proofManager.proofList[0].SetActive(false);
+            Debug.Log("Unactive : " + 0);
+            return;
         }
         else
         {
             proofManager.proofList[currentProofIndex - roundedAxis].SetActive(false);
+            Debug.Log("Unactive : " + (currentProofIndex - roundedAxis));
         }
-        
+
     }
 }

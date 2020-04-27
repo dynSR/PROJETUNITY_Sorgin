@@ -39,17 +39,13 @@ public class ProofManager : MonoBehaviour
             if (Input.GetAxis("Horizontal") < -0.1)
             {
                 PreviousProof();
-                Debug.Log(activeProof);
                 timerSwap = 0.5f;
-                return;
             }
 
             if (Input.GetAxis("Horizontal") > 0.1)
             {
                 NextProof();
-                Debug.Log(activeProof);
                 timerSwap = 0.5f;
-                return;
             }
         }
     }
@@ -60,6 +56,7 @@ public class ProofManager : MonoBehaviour
         {
             activeProof += 1;
             UIManagerAvantProces.singleton.ProofDisplayUpdate(activeProof);
+            return;
         }
         else
         {
@@ -75,6 +72,7 @@ public class ProofManager : MonoBehaviour
         {
             activeProof -= 1;
             UIManagerAvantProces.singleton.ProofDisplayUpdate(activeProof);
+            return;
         }
         else
         {
