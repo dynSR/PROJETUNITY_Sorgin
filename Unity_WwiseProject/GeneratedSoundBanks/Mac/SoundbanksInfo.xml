@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="12" SoundbankVersion="135">
 	<RootPaths>
-		<ProjectRoot>D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\</ProjectRoot>
-		<SourceFilesRoot>D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\.cache\Mac\</SourceFilesRoot>
-		<SoundBanksRoot>D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\GeneratedSoundBanks\Mac\</SoundBanksRoot>
+		<ProjectRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\</ProjectRoot>
+		<SourceFilesRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\</SourceFilesRoot>
+		<SoundBanksRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\GeneratedSoundBanks\Mac\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -16,7 +16,31 @@
 			<ShortName>UI_Sounds</ShortName>
 			<Path>UI_Sounds.bnk</Path>
 			<IncludedEvents>
-				<Event Id="2304387734" Name="UI_MenuButtons" ObjectPath="\Events\Default Work Unit\UI_MenuButtons" DurationType="OneShot" DurationMin="0.543052" DurationMax="0.543052">
+				<Event Id="802869157" Name="UI_MouseOverButton" ObjectPath="\Events\Default Work Unit\UI_MouseOverButton" DurationType="OneShot" DurationMin="0.653566" DurationMax="0.653566">
+					<IncludedMemoryFiles>
+						<File Id="474486204" Language="SFX">
+							<ShortName>Sound_MouveOver01.wav</ShortName>
+							<Path>SFX\Sound_MouveOver01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1591403137" Name="UI_MouseOverButton_01" ObjectPath="\Events\Default Work Unit\UI_MouseOverButton_01" DurationType="OneShot" DurationMin="0.800000" DurationMax="0.800000">
+					<IncludedMemoryFiles>
+						<File Id="123009712" Language="SFX">
+							<ShortName>Sound_MouveOver02.wav</ShortName>
+							<Path>SFX\Sound_MouveOver02_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1591403138" Name="UI_MouseOverButton_02" ObjectPath="\Events\Default Work Unit\UI_MouseOverButton_02" DurationType="OneShot" DurationMin="0.565685" DurationMax="0.565685">
+					<IncludedMemoryFiles>
+						<File Id="432213072" Language="SFX">
+							<ShortName>Sound_MouveOver03.wav</ShortName>
+							<Path>SFX\Sound_MouveOver03_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="854029772" Name="UI_OpenningWindow" ObjectPath="\Events\Default Work Unit\UI_OpenningWindow" DurationType="OneShot" DurationMin="0.543052" DurationMax="0.543052">
 					<IncludedMemoryFiles>
 						<File Id="1040224254" Language="SFX">
 							<ShortName>Sound_UI_MenuButtons.wav</ShortName>
@@ -24,19 +48,19 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="753952496" Name="UI_MenuClickButtons" ObjectPath="\Events\Default Work Unit\UI_MenuClickButtons" DurationType="OneShot" DurationMin="0.218753" DurationMax="0.218753">
+				<Event Id="2192364134" Name="UI_Validation01" ObjectPath="\Events\Default Work Unit\UI_Validation01" DurationType="OneShot" DurationMin="0.800000" DurationMax="0.800000">
+					<IncludedMemoryFiles>
+						<File Id="769262107" Language="SFX">
+							<ShortName>Sound_ButtonValidation.wav</ShortName>
+							<Path>SFX\Sound_ButtonValidation_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2192364133" Name="UI_Validation02" ObjectPath="\Events\Default Work Unit\UI_Validation02" DurationType="OneShot" DurationMin="0.343260" DurationMax="0.343260">
 					<IncludedMemoryFiles>
 						<File Id="510571323" Language="SFX">
 							<ShortName>Sound_UI_Click.wav</ShortName>
 							<Path>SFX\Sound_UI_Click_10C4C929.wem</Path>
-						</File>
-					</IncludedMemoryFiles>
-				</Event>
-				<Event Id="2207745295" Name="UI_Validation" ObjectPath="\Events\Default Work Unit\UI_Validation" DurationType="OneShot" DurationMin="107.720291" DurationMax="107.720291">
-					<IncludedMemoryFiles>
-						<File Id="838961577" Language="SFX">
-							<ShortName>Sound_UIButtonValidation.wav</ShortName>
-							<Path>SFX\Sound_UIButtonValidation_10C4C929.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

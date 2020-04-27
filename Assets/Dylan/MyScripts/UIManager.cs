@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
 
         foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
-            obj.GetComponent<ShopButtonBehaviour>().CheckIfPlayerCanPurchaseASpell(playerPointsValue);
+            obj.GetComponent<ShopButton>().CheckIfPlayerCanPurchaseASpell(playerPointsValue);
         }
     }
 
@@ -118,7 +118,7 @@ public class UIManager : MonoBehaviour
 
         foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
-            obj.GetComponent<ShopButtonBehaviour>().CheckIfPlayerCanPurchaseASpell(tempPlayerPointsValue);
+            obj.GetComponent<ShopButton>().CheckIfPlayerCanPurchaseASpell(tempPlayerPointsValue);
         }
 
         StartCoroutine(SubstractionCoroutine(valueToSubstract, 50));

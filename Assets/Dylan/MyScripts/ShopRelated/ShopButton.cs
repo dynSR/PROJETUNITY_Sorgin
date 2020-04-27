@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler, IDeselectHandler
+public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDeselectHandler
 {
     [Header("BUTTON COLORS")]
-    [SerializeField] private Color purchasableButtonColor;
-    [SerializeField] private Color unpurchasableButtonColor;
+    [SerializeField] private Color purchasableButtonColor = Color.white;
+    [SerializeField] private Color unpurchasableButtonColor = Color.red;
 
 
-    [Header("SPELL ATTACHED TO THE BUTTON")]
+    [Header("SPELL ATTACHED TO THE BUTTON - DEBUG")]
     public Spell spell;
     public bool isPurchasable = false;
     [SerializeField] private TextMeshProUGUI spellNameText;
@@ -20,10 +20,10 @@ public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
     [Header("VALIDATION POPUP PARAMETERS")]
     [SerializeField] private CanvasGroup validationPopupWindow;
     [SerializeField] private GameObject validationPopupButtonLayout;
-    [SerializeField] private GameObject purchaseButton;
+    [SerializeField] private GameObject validationPopupPurchaseButton;
 
-    [Header("TOOLTIP PARAMETERS")]
-    [SerializeField] private GameObject tooltipGameObject;
+    [Header("SPELL TOOLTIP PARAMETERS")]
+    [SerializeField] private GameObject spellTooltipGameObject;
     [SerializeField] private Image spellTooltipImage;
     [SerializeField] private TextMeshProUGUI spellTooltipNameText;
     [SerializeField] private TextMeshProUGUI spellTooltipValueText;
@@ -33,6 +33,9 @@ public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
     {
         if (spell == null)
             spell = GetComponent<Spell>();
+
+        if (spellNameText == null)
+            spellNameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
         if (spell != null)
         {
@@ -85,8 +88,6 @@ public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
             UIManager.s_Singleton.ResetEventSystemFirstSelectedGameObjet(validationPopupButtonLayout.transform.GetChild(1).gameObject);
 
             UIManager.s_Singleton.purschaseValidationPopupIsDisplayed = true;
-            //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-            //UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(validationPopupWindow.transform.GetChild(1).GetChild(1).gameObject);
         }     
     }
 
@@ -99,7 +100,7 @@ public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
     {
         Debug.Log("On Submit click event");
         DisplayValidationPopup();
-        purchaseButton.GetComponent<PurchaseASpell>().selectedButton = GetComponent<Button>();
+        validationPopupPurchaseButton.GetComponent<PurchaseASpell>().selectedButton = GetComponent<Button>();
     }
 
     void SetTooltipInformations()
@@ -113,11 +114,11 @@ public class ShopButtonBehaviour : MonoBehaviour, ISubmitHandler, ISelectHandler
     public void OnSelect(BaseEventData eventData)
     {
         SetTooltipInformations();
-        tooltipGameObject.SetActive(true);
+        spellTooltipGameObject.SetActive(true);
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        tooltipGameObject.SetActive(false);
+        spellTooltipGameObject.SetActive(false);
     }
 }

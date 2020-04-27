@@ -11,7 +11,7 @@ public class PurchaseASpell : MonoBehaviour
     public void PurchaseSelectedSpell()
     {
         //Est-que le sort contenu dans la bouton est achetable ? ...
-        if (selectedButton.GetComponent<ShopButtonBehaviour>().isPurchasable)
+        if (selectedButton.GetComponent<ShopButton>().isPurchasable)
         {
             for (int i = 0; i < UIManager.s_Singleton.spellsCompartments.Count; i++)
             {
@@ -22,12 +22,12 @@ public class PurchaseASpell : MonoBehaviour
                     ShopManager.s_Singleton.amntOfSpellBought++;
 
                     //Définition de la valeur à soustraire aux points totaux du joueur
-                    UIManager.s_Singleton.SetValueToSubstract(selectedButton.GetComponent<ShopButtonBehaviour>().spell.MySpellValue);
+                    UIManager.s_Singleton.SetValueToSubstract(selectedButton.GetComponent<ShopButton>().spell.MySpellValue);
 
                     //Activation du component image + changement de son sprite du compartiment de sort dans lequel le sort acheté a été ajouté
-                    UIManager.s_Singleton.spellsCompartments[i].GetComponent<SpellCompartment>().MyCompartmentSpell = selectedButton.GetComponent<ShopButtonBehaviour>().spell;
+                    UIManager.s_Singleton.spellsCompartments[i].GetComponent<SpellCompartment>().MyCompartmentSpell = selectedButton.GetComponent<ShopButton>().spell;
                     UIManager.s_Singleton.spellsCompartments[i].GetComponent<Image>().enabled = true;
-                    UIManager.s_Singleton.spellsCompartments[i].GetComponent<Image>().sprite = selectedButton.GetComponent<ShopButtonBehaviour>().spell.MySpellIcon;
+                    UIManager.s_Singleton.spellsCompartments[i].GetComponent<Image>().sprite = selectedButton.GetComponent<ShopButton>().spell.MySpellIcon;
 
                     return;
                 }

@@ -1,10 +1,16 @@
 Event	ID	Name			Wwise Object Path	Notes
-	753952496	UI_MenuClickButtons			\Default Work Unit\UI_MenuClickButtons	
-	2207745295	UI_Validation			\Default Work Unit\UI_Validation	
-	2304387734	UI_MenuButtons			\Default Work Unit\UI_MenuButtons	
+	802869157	UI_MouseOverButton			\Default Work Unit\UI_MouseOverButton	
+	854029772	UI_OpenningWindow			\Default Work Unit\UI_OpenningWindow	
+	1591403137	UI_MouseOverButton_01			\Default Work Unit\UI_MouseOverButton_01	
+	1591403138	UI_MouseOverButton_02			\Default Work Unit\UI_MouseOverButton_02	
+	2192364133	UI_Validation02			\Default Work Unit\UI_Validation02	
+	2192364134	UI_Validation01			\Default Work Unit\UI_Validation01	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	510571323	Sound_UI_Click	D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\.cache\Mac\SFX\Sound_UI_Click_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UI_Click		38716
-	838961577	Sound_UIButtonValidation	D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\.cache\Mac\SFX\Sound_UIButtonValidation_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UIButtonValidation		19001924
-	1040224254	Sound_UI_MenuButtons	D:\CoursB2\Projet Bordeaux\Unity\Unity_WwiseProject\.cache\Mac\SFX\Sound_UI_MenuButtons_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UI_MenuButtons		104328
+	123009712	Sound_MouveOver02	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\Sound_MouveOver02_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_MouveOver02		141184
+	432213072	Sound_MouveOver03	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\Sound_MouveOver03_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_MouveOver03		70624
+	474486204	Sound_MouveOver01	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\Sound_MouveOver01_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_MouveOver01		141184
+	510571323	Sound_ButtonValidation02	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\Sound_UI_Click_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_ButtonValidation02		38716
+	769262107	Sound_ButtonValidation01	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\Sound_ButtonValidation_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_ButtonValidation01		141184
+	1040224254	Sound_UI_WindowOpenning01	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\Sound_UI_MenuButtons_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\UIButtonSounds\Sound_UI_WindowOpenning01		104328
 

@@ -40,7 +40,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 7102da272752824285cc8cea843bd806
     GuidInternal: 
-    m_lastTime: -8586138655758931025
+    m_lastTime: -8586136322258914740
     List:
     - name: UI_Sounds
       guid: a60f653cd66b6b45a7b0f39ed1310d94
@@ -56,41 +56,77 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: f6d22cfe9df30d41a0fe5a80752cf912
     GuidInternal: 
-    m_lastTime: -8586138680037120047
+    m_lastTime: -8586136322481817092
     List:
-    - name: UI_MenuButtons
-      guid: 8acac0d542764647bd1df87884a85aeb
-      id: 2304387734
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: UI_MenuButtons
-        ObjectType: 3
-      Path: Default Work Unit\UI_MenuButtons
-      maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
-    - name: UI_MenuClickButtons
+    - name: UI_MouseOverButton
       guid: 36440e9ada23ce4486b880f89a0619d1
-      id: 753952496
+      id: 802869157
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: UI_MenuClickButtons
+      - ElementName: UI_MouseOverButton
         ObjectType: 3
-      Path: Default Work Unit\UI_MenuClickButtons
+      Path: Default Work Unit\UI_MouseOverButton
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
-    - name: UI_Validation
-      guid: 13c31fedc300584aab228961c5f22007
-      id: 2207745295
+    - name: UI_MouseOverButton_01
+      guid: 6b93a1ab263beb49b076630bafa0952c
+      id: 1591403137
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: UI_Validation
+      - ElementName: UI_MouseOverButton_01
         ObjectType: 3
-      Path: Default Work Unit\UI_Validation
+      Path: Default Work Unit\UI_MouseOverButton_01
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: UI_MouseOverButton_02
+      guid: 370af934636e874b84b665fe3d749b17
+      id: 1591403138
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: UI_MouseOverButton_02
+        ObjectType: 3
+      Path: Default Work Unit\UI_MouseOverButton_02
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: UI_OpenningWindow
+      guid: 8acac0d542764647bd1df87884a85aeb
+      id: 854029772
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: UI_OpenningWindow
+        ObjectType: 3
+      Path: Default Work Unit\UI_OpenningWindow
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: UI_Validation01
+      guid: 13c31fedc300584aab228961c5f22007
+      id: 2192364134
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: UI_Validation01
+        ObjectType: 3
+      Path: Default Work Unit\UI_Validation01
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: UI_Validation02
+      guid: 09abcedaa68b9a4681ed508c30994f0d
+      id: 2192364133
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: UI_Validation02
+        ObjectType: 3
+      Path: Default Work Unit\UI_Validation02
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1

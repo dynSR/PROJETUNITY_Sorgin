@@ -668,7 +668,7 @@ RectTransform:
   m_Children:
   - {fileID: 541555517}
   m_Father: {fileID: 799960350}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.10063935, y: 0}
   m_AnchorMax: {x: 0.8991453, y: 0.4211237}
@@ -805,9 +805,10 @@ GameObject:
   - component: {fileID: 179690189}
   - component: {fileID: 179690192}
   - component: {fileID: 179690191}
-  - component: {fileID: 179690190}
-  - component: {fileID: 179690193}
   - component: {fileID: 179690194}
+  - component: {fileID: 179690193}
+  - component: {fileID: 179690190}
+  - component: {fileID: 179690195}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_00
   m_TagString: Untagged
@@ -923,18 +924,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 179690188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b723169157693a2478a227ff314023d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 874fb6ba3c870cd428264eff1650f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
   unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
   spell: {fileID: 0}
   isPurchasable: 0
-  spellNameText: {fileID: 1370842121}
+  spellNameText: {fileID: 0}
   validationPopupWindow: {fileID: 1618618056}
   validationPopupButtonLayout: {fileID: 1156254140}
-  purchaseButton: {fileID: 895569651}
-  tooltipGameObject: {fileID: 799960349}
+  validationPopupPurchaseButton: {fileID: 895569651}
+  spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
   spellTooltipNameText: {fileID: 1986724644}
   spellTooltipValueText: {fileID: 276790160}
@@ -956,6 +957,20 @@ MonoBehaviour:
   spellCooldown: 0
   spellValue: 1250
   spellEffectDescription: Entrave la cible pour 2 secondes, elle ne peut plus bouger.
+--- !u!114 &179690195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179690188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd497e2f13d4754da7470ae2d8a8c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionWwiseEventSoundName: UI_MouseOverButton_01
+  submitWwiseEventSoundName: UI_Validation02
 --- !u!1 &210002607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,9 +1299,10 @@ GameObject:
   - component: {fileID: 260656294}
   - component: {fileID: 260656297}
   - component: {fileID: 260656296}
-  - component: {fileID: 260656295}
-  - component: {fileID: 260656298}
   - component: {fileID: 260656299}
+  - component: {fileID: 260656298}
+  - component: {fileID: 260656295}
+  - component: {fileID: 260656300}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_02
   m_TagString: Untagged
@@ -1402,18 +1418,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 260656293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b723169157693a2478a227ff314023d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 874fb6ba3c870cd428264eff1650f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
   unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
   spell: {fileID: 0}
   isPurchasable: 0
-  spellNameText: {fileID: 522630468}
+  spellNameText: {fileID: 0}
   validationPopupWindow: {fileID: 1618618056}
   validationPopupButtonLayout: {fileID: 1156254140}
-  purchaseButton: {fileID: 895569651}
-  tooltipGameObject: {fileID: 799960349}
+  validationPopupPurchaseButton: {fileID: 895569651}
+  spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
   spellTooltipNameText: {fileID: 1986724644}
   spellTooltipValueText: {fileID: 276790160}
@@ -1436,6 +1452,20 @@ MonoBehaviour:
   spellValue: 1500
   spellEffectDescription: "Dans une zone autour du joueur, permet de d\xE9tecter
     les objets d'int\xE9r\xEAts et les dangers."
+--- !u!114 &260656300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260656293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd497e2f13d4754da7470ae2d8a8c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionWwiseEventSoundName: UI_MouseOverButton_01
+  submitWwiseEventSoundName: UI_Validation02
 --- !u!1 &276790158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,7 +1496,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 799960350}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.47033688}
   m_AnchorMax: {x: 1, y: 0.5246066}
@@ -2535,9 +2565,10 @@ GameObject:
   - component: {fileID: 568552391}
   - component: {fileID: 568552396}
   - component: {fileID: 568552395}
-  - component: {fileID: 568552394}
-  - component: {fileID: 568552393}
   - component: {fileID: 568552392}
+  - component: {fileID: 568552393}
+  - component: {fileID: 568552394}
+  - component: {fileID: 568552397}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_05
   m_TagString: Untagged
@@ -2592,18 +2623,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 568552390}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b723169157693a2478a227ff314023d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 874fb6ba3c870cd428264eff1650f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
   unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
   spell: {fileID: 0}
   isPurchasable: 0
-  spellNameText: {fileID: 106561022}
+  spellNameText: {fileID: 0}
   validationPopupWindow: {fileID: 1618618056}
   validationPopupButtonLayout: {fileID: 1156254140}
-  purchaseButton: {fileID: 895569651}
-  tooltipGameObject: {fileID: 799960349}
+  validationPopupPurchaseButton: {fileID: 895569651}
+  spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
   spellTooltipNameText: {fileID: 1986724644}
   spellTooltipValueText: {fileID: 276790160}
@@ -2687,6 +2718,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568552390}
   m_CullTransparentMesh: 0
+--- !u!114 &568552397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568552390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd497e2f13d4754da7470ae2d8a8c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionWwiseEventSoundName: UI_MouseOverButton_01
+  submitWwiseEventSoundName: UI_Validation02
 --- !u!1 &629913512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,7 +3258,7 @@ GameObject:
   - component: {fileID: 799960350}
   - component: {fileID: 799960353}
   m_Layer: 5
-  m_Name: TooltipContent
+  m_Name: SpellTooltipContent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3230,11 +3275,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1809989077}
   - {fileID: 1178141196}
   - {fileID: 1986724643}
   - {fileID: 276790159}
   - {fileID: 142852919}
+  - {fileID: 1809989077}
   m_Father: {fileID: 559818321}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3447,7 +3492,7 @@ MonoBehaviour:
     m_SelectOnUp: {fileID: 83958893}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnRight: {fileID: 179690190}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0.5882353}
@@ -3807,6 +3852,7 @@ GameObject:
   - component: {fileID: 895569653}
   - component: {fileID: 895569657}
   - component: {fileID: 895569656}
+  - component: {fileID: 895569654}
   m_Layer: 5
   m_Name: YesButton
   m_TagString: Untagged
@@ -3900,6 +3946,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &895569654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895569651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd497e2f13d4754da7470ae2d8a8c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionWwiseEventSoundName: 
+  submitWwiseEventSoundName: UI_Validation01
 --- !u!222 &895569655
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3946,9 +4006,10 @@ GameObject:
   - component: {fileID: 994078401}
   - component: {fileID: 994078406}
   - component: {fileID: 994078405}
-  - component: {fileID: 994078404}
-  - component: {fileID: 994078403}
   - component: {fileID: 994078402}
+  - component: {fileID: 994078403}
+  - component: {fileID: 994078404}
+  - component: {fileID: 994078407}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_06
   m_TagString: Untagged
@@ -4003,18 +4064,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 994078400}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b723169157693a2478a227ff314023d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 874fb6ba3c870cd428264eff1650f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
   unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
   spell: {fileID: 0}
   isPurchasable: 0
-  spellNameText: {fileID: 1250138133}
+  spellNameText: {fileID: 0}
   validationPopupWindow: {fileID: 1618618056}
   validationPopupButtonLayout: {fileID: 1156254140}
-  purchaseButton: {fileID: 895569651}
-  tooltipGameObject: {fileID: 799960349}
+  validationPopupPurchaseButton: {fileID: 895569651}
+  spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
   spellTooltipNameText: {fileID: 1986724644}
   spellTooltipValueText: {fileID: 276790160}
@@ -4098,6 +4159,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 994078400}
   m_CullTransparentMesh: 0
+--- !u!114 &994078407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994078400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd497e2f13d4754da7470ae2d8a8c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionWwiseEventSoundName: UI_MouseOverButton_01
+  submitWwiseEventSoundName: UI_Validation02
 --- !u!1 &999586325
 GameObject:
   m_ObjectHideFlags: 0
@@ -4220,6 +4295,7 @@ GameObject:
   - component: {fileID: 1097288955}
   - component: {fileID: 1097288953}
   - component: {fileID: 1097288956}
+  - component: {fileID: 1097288954}
   m_Layer: 5
   m_Name: NoButton
   m_TagString: Untagged
@@ -4302,6 +4378,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1097288954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097288951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd497e2f13d4754da7470ae2d8a8c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionWwiseEventSoundName: 
+  submitWwiseEventSoundName: UI_Validation02
 --- !u!222 &1097288955
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4335,7 +4425,7 @@ GameObject:
   - component: {fileID: 1156254141}
   - component: {fileID: 1156254142}
   m_Layer: 5
-  m_Name: ButtonsLayout
+  m_Name: ValidationPopupButtonsLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4417,7 +4507,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 799960350}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.67837036}
   m_AnchorMax: {x: 1, y: 1}
@@ -4714,9 +4804,10 @@ GameObject:
   - component: {fileID: 1345615471}
   - component: {fileID: 1345615474}
   - component: {fileID: 1345615473}
-  - component: {fileID: 1345615472}
-  - component: {fileID: 1345615475}
   - component: {fileID: 1345615476}
+  - component: {fileID: 1345615475}
+  - component: {fileID: 1345615472}
+  - component: {fileID: 1345615477}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_03
   m_TagString: Untagged
@@ -4832,18 +4923,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1345615470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b723169157693a2478a227ff314023d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 874fb6ba3c870cd428264eff1650f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
   unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
   spell: {fileID: 0}
   isPurchasable: 0
-  spellNameText: {fileID: 567857597}
+  spellNameText: {fileID: 0}
   validationPopupWindow: {fileID: 1618618056}
   validationPopupButtonLayout: {fileID: 1156254140}
-  purchaseButton: {fileID: 895569651}
-  tooltipGameObject: {fileID: 799960349}
+  validationPopupPurchaseButton: {fileID: 895569651}
+  spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
   spellTooltipNameText: {fileID: 1986724644}
   spellTooltipValueText: {fileID: 276790160}
@@ -4868,6 +4959,20 @@ MonoBehaviour:
     la position indiqu\xE9e par le joueur. Ce clone disparait apr\xE8s avoir \xE9t\xE9
     rep\xE9r\xE9 ou apr\xE8s 5 secondes, \xE0 compt\xE9 de son arriv\xE9e \xE0 la
     position souhait\xE9e."
+--- !u!114 &1345615477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345615470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd497e2f13d4754da7470ae2d8a8c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionWwiseEventSoundName: UI_MouseOverButton_01
+  submitWwiseEventSoundName: UI_Validation02
 --- !u!1 &1357363098
 GameObject:
   m_ObjectHideFlags: 0
@@ -4879,9 +4984,10 @@ GameObject:
   - component: {fileID: 1357363099}
   - component: {fileID: 1357363102}
   - component: {fileID: 1357363101}
-  - component: {fileID: 1357363100}
-  - component: {fileID: 1357363103}
   - component: {fileID: 1357363104}
+  - component: {fileID: 1357363103}
+  - component: {fileID: 1357363100}
+  - component: {fileID: 1357363105}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_01
   m_TagString: Untagged
@@ -4997,18 +5103,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1357363098}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b723169157693a2478a227ff314023d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 874fb6ba3c870cd428264eff1650f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
   unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
   spell: {fileID: 0}
   isPurchasable: 0
-  spellNameText: {fileID: 225822815}
+  spellNameText: {fileID: 0}
   validationPopupWindow: {fileID: 1618618056}
   validationPopupButtonLayout: {fileID: 1156254140}
-  purchaseButton: {fileID: 895569651}
-  tooltipGameObject: {fileID: 799960349}
+  validationPopupPurchaseButton: {fileID: 895569651}
+  spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
   spellTooltipNameText: {fileID: 1986724644}
   spellTooltipValueText: {fileID: 276790160}
@@ -5030,6 +5136,20 @@ MonoBehaviour:
   spellCooldown: 0
   spellValue: 1000
   spellEffectDescription: "Permet de d\xE9verrouiller une porte verrouill\xE9e."
+--- !u!114 &1357363105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357363098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd497e2f13d4754da7470ae2d8a8c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionWwiseEventSoundName: UI_MouseOverButton_01
+  submitWwiseEventSoundName: UI_Validation02
 --- !u!1 &1370842119
 GameObject:
   m_ObjectHideFlags: 0
@@ -5740,7 +5860,7 @@ GameObject:
   - component: {fileID: 1618618056}
   - component: {fileID: 1618618054}
   m_Layer: 5
-  m_Name: BuyValidationPopup
+  m_Name: ValidationPopupWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5898,9 +6018,10 @@ GameObject:
   - component: {fileID: 1735808507}
   - component: {fileID: 1735808512}
   - component: {fileID: 1735808511}
-  - component: {fileID: 1735808510}
-  - component: {fileID: 1735808509}
   - component: {fileID: 1735808508}
+  - component: {fileID: 1735808509}
+  - component: {fileID: 1735808510}
+  - component: {fileID: 1735808513}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_04
   m_TagString: Untagged
@@ -5954,18 +6075,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1735808506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b723169157693a2478a227ff314023d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 874fb6ba3c870cd428264eff1650f1a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
   unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
   spell: {fileID: 0}
   isPurchasable: 0
-  spellNameText: {fileID: 1797261778}
+  spellNameText: {fileID: 0}
   validationPopupWindow: {fileID: 1618618056}
   validationPopupButtonLayout: {fileID: 1156254140}
-  purchaseButton: {fileID: 895569651}
-  tooltipGameObject: {fileID: 799960349}
+  validationPopupPurchaseButton: {fileID: 895569651}
+  spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
   spellTooltipNameText: {fileID: 1986724644}
   spellTooltipValueText: {fileID: 276790160}
@@ -6049,6 +6170,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735808506}
   m_CullTransparentMesh: 0
+--- !u!114 &1735808513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735808506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd497e2f13d4754da7470ae2d8a8c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionWwiseEventSoundName: UI_MouseOverButton_01
+  submitWwiseEventSoundName: UI_Validation02
 --- !u!1 &1797261776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6217,7 +6352,7 @@ GameObject:
   - component: {fileID: 1809989079}
   - component: {fileID: 1809989078}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SpellTooltipDecorationSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6235,7 +6370,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 799960350}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.40691662}
   m_AnchorMax: {x: 1, y: 1}
@@ -6312,9 +6447,9 @@ MonoBehaviour:
   m_VerticalAxis: Vertical
   m_SubmitButton: Validation
   m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_InputActionsPerSecond: 15
+  m_RepeatDelay: 0.25
+  m_ForceModuleActive: 1
 --- !u!114 &1847433729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6543,7 +6678,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 799960350}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5246066}
   m_AnchorMax: {x: 1, y: 0.61106753}

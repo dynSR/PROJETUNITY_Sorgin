@@ -5,7 +5,24 @@
 			<ChildrenList>
 				<Folder Name="UIButtonSounds" ID="{3F4EB688-ADCE-42DC-B529-EA5063013F67}" ShortID="238822964">
 					<ChildrenList>
-						<Sound Name="Sound_UI_Click" ID="{101C178D-1BB1-407D-AEA0-BF06D5F4FDCD}" ShortID="80622185">
+						<Sound Name="Sound_ButtonValidation02" ID="{101C178D-1BB1-407D-AEA0-BF06D5F4FDCD}" ShortID="80622185">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>55</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-780</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
@@ -27,7 +44,19 @@
 								<ActiveSource Name="Sound_UI_Click" ID="{B97E6592-58F6-43DC-BEE4-EB42B4CF00B9}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="Sound_UI_MenuButtons" ID="{09A584F3-F7EC-425C-BED5-170D58B66708}" ShortID="312717239">
+						<Sound Name="Sound_UI_WindowOpenning01" ID="{09A584F3-F7EC-425C-BED5-170D58B66708}" ShortID="312717239">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>30</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
@@ -49,7 +78,19 @@
 								<ActiveSource Name="Sound_UI_MenuButtons" ID="{7A088A60-59A1-4B19-A0AB-86E7D0D7AB30}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
-						<Sound Name="Sound_UIButtonValidation" ID="{CF855BA4-7C4C-46F1-9F7B-CA8A471B163E}" ShortID="635115795">
+						<Sound Name="Sound_ButtonValidation01" ID="{28174357-64BF-4A9F-8B20-5D79E6EC02C3}" ShortID="248267855">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>55</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
@@ -59,16 +100,116 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="Sound_UIButtonValidation" ID="{FA818BFE-A526-4DAB-90B6-619ABBCB0E42}">
+								<AudioFileSource Name="Sound_ButtonValidation" ID="{7BC02613-3AD8-4CCD-A274-D4FB1FC7801E}">
 									<Language>SFX</Language>
-									<AudioFile>Sound_UIButtonValidation.wav</AudioFile>
+									<AudioFile>Sound_ButtonValidation.wav</AudioFile>
 									<MediaIDList>
-										<MediaID ID="838961577"/>
+										<MediaID ID="769262107"/>
 									</MediaIDList>
 								</AudioFileSource>
 							</ChildrenList>
 							<ActiveSourceList>
-								<ActiveSource Name="Sound_UIButtonValidation" ID="{FA818BFE-A526-4DAB-90B6-619ABBCB0E42}" Platform="Linked"/>
+								<ActiveSource Name="Sound_ButtonValidation" ID="{7BC02613-3AD8-4CCD-A274-D4FB1FC7801E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Sound_MouveOver01" ID="{28E3774D-504A-4B6D-B439-0E3093AF153C}" ShortID="188104953">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>12</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>350</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Sound_MouveOver01" ID="{617C21D0-6497-4F34-9EA8-6E63BC4A4B25}">
+									<Language>SFX</Language>
+									<AudioFile>Sound_MouveOver01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="474486204"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Sound_MouveOver01" ID="{617C21D0-6497-4F34-9EA8-6E63BC4A4B25}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Sound_MouveOver02" ID="{59A39446-80B4-4AB1-8402-8F58C65E5666}" ShortID="160191470">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Sound_MouveOver02" ID="{FE115CCD-8899-46D2-A74C-FFC1D299C27B}">
+									<Language>SFX</Language>
+									<AudioFile>Sound_MouveOver02.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="123009712"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Sound_MouveOver02" ID="{FE115CCD-8899-46D2-A74C-FFC1D299C27B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Sound_MouveOver03" ID="{A711B5F4-C333-4D39-9009-699312366A55}" ShortID="846925574">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>55</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>50</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-600</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Sound_MouveOver03" ID="{DDC4846E-4017-4AC3-9636-D221954C324C}">
+									<Language>SFX</Language>
+									<AudioFile>Sound_MouveOver03.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="432213072"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Sound_MouveOver03" ID="{DDC4846E-4017-4AC3-9636-D221954C324C}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
