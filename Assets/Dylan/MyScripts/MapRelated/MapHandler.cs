@@ -20,7 +20,7 @@ public class MapHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Input.GetAxis("PS4_DPadVertical"));
+        //Debug.Log(Input.GetAxis("PS4_DPadVertical"));
 
         CheckDpadYValue();
 
@@ -62,11 +62,15 @@ public class MapHandler : MonoBehaviour
     {
         UIManager.s_Singleton.UIWindowsDisplay(mapWindow);
         mapIsDisplayed = true;
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.Confined;
     }
 
     void HideMap()
     {
         UIManager.s_Singleton.UIWindowsHide(mapWindow);
         mapIsDisplayed = false;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
 }
