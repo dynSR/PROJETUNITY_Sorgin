@@ -10,18 +10,6 @@ public class DebugGUI : MonoBehaviour
     [Multiline]
     [SerializeField] private string textToDisplay;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnGUI()
     {
         GUI.Box(new Rect(rectPosition.x, rectPosition.y, rectWidth, rectHeigth), textToDisplay);

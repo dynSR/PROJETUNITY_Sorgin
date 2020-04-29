@@ -11,7 +11,8 @@ public class ValidationPopupButtonSelection : MonoBehaviour, ISelectHandler, IDe
     [SerializeField] private CanvasGroup valueToSubstractDisplayer;
     [SerializeField] private TextMeshProUGUI valueToSubstractText;
     private Image buttonSelectionImage;
-    
+
+    //Summary : À la désélection du bouton --> désaffiche la valeur du sort à soustraire au total des points du joueur et la reset + désaffichage du réticule de sélection.
     public void OnDeselect(BaseEventData eventData)
     {
         if(EventSystem.current.currentSelectedGameObject == this.gameObject && valueToSubstractDisplayer != null)
@@ -27,6 +28,7 @@ public class ValidationPopupButtonSelection : MonoBehaviour, ISelectHandler, IDe
         buttonSelectionImage.enabled = false;
     }
 
+    //Summary : À la sélection du bouton --> affiche la valeur du sort à soustraire au total des points du joueur + affichage du réticule de sélection.
     public void OnSelect(BaseEventData eventData)
     {
         if (EventSystem.current.currentSelectedGameObject == this.gameObject && ShopManager.s_Singleton.amntOfSpellBought != 3 && valueToSubstractText != null)

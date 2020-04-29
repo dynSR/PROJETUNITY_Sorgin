@@ -93,13 +93,15 @@ public class UIManager : MonoBehaviour
         obj.SetActive(false);
     }
 
+    //Summary : Permet de reset et de déterminer le premier objet sélectionné dans l'Event System (obligatoire à cause de l'utilisation de la manette)
     public void ResetEventSystemFirstSelectedGameObjet(GameObject obj)
     {
-        //Permet de reset et de déterminer le premier objet sélectionné dans l'Event System (obligatoire à cause de l'utilisation de la manette)
+        
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(obj);
     }
 
+    //Summary : Permet de désafficher la fenêtre de confirmation d'achat 
     public void HideValidationPopup()
     {
         StartCoroutine(FadeCanvasGroup(purchaseValidationPopup, purchaseValidationPopup.alpha, 0, fadeDuration));
@@ -116,6 +118,8 @@ public class UIManager : MonoBehaviour
         purschaseValidationPopupIsDisplayed = false;
     }
 
+
+    //Summary : Permet d'attribuer un nombre de points au joueur. Dès que le joueur reçoit de nouveaux points, on vérifie si de nouveaux sort sont maintenant achetables.
     public void AddPointsToPlayerScore(int valueToAdd)
     {
         playerPointsValue += valueToAdd;
@@ -127,6 +131,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //Summary : Permet de set up la valeur du sort qui est en train d'être acheté + Opération de soustraction de celle-ci.
     public void SetValueToSubstract(int valueToSubstract)
     {
         int tempPlayerPointsValue = playerPointsValue;
@@ -141,11 +146,13 @@ public class UIManager : MonoBehaviour
         SetPlayerPointsCountValue();
     }
 
+    //Summary : Permet de mettre à jour la valeur des points possédés par le joueur.
     void SetPlayerPointsCountValue()
     {
         playerPointsValueText.text = playerPointsValue.ToString();
     }
 
+    //Summary : Utiliser pour faire défiler les points lorsque le joueur achète quelque chose (effet de décrémentation dynamique) jusqu'à l'atteinte de la valeur totale à soustraite.
     IEnumerator SubstractionCoroutine(int substractValueToReach, int valueToSubtractPerTicks)
     {
         int startValue = 0;
@@ -159,18 +166,22 @@ public class UIManager : MonoBehaviour
         } while (startValue != substractValueToReach);
     }
 
+
+    //Summary : Permet d'afficher ou désafficher le feedback d'activation des sorts en fonction de l'appui Input.
     void ToggleSpellActivationFeedback()
     {
         spellActivationFeedback.SetActive(!spellActivationFeedback.activeSelf);
         spellCompartmentIsActive = !spellCompartmentIsActive;
     }
 
+    //Summary : Désaffiche le feedback d'activation des sorts
     void DeactivateSpellActivationFeedback()
     {
         spellActivationFeedback.SetActive(false);
         spellCompartmentIsActive = false;
     }
 
+    //Summary : Permet de gérer le switch des sort équipés
     #region Spells Management
     void UseSpell()
     {
@@ -353,6 +364,8 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+
+    //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.
     #region Canvas Fade Coroutine
     public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
     {

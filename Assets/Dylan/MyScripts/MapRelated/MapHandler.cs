@@ -5,22 +5,17 @@ using UnityEngine;
 public class MapHandler : MonoBehaviour
 {
     [SerializeField] private GameObject mapWindow;
+    [SerializeField] private GameObject debugButtons;
+    [SerializeField] private string displayingOrHidingMapWwiseEventSoundName;
 
     private bool mapIsDisplayed = false;
     private bool canDisplayOrHideMap = true;
     private bool dpadYIsPressed = false;
     public float dpadY;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(Input.GetAxis("PS4_DPadVertical"));
+        Debug.Log(Input.GetAxis("PS4_DPadVertical"));
 
         CheckDpadYValue();
 
@@ -28,49 +23,58 @@ public class MapHandler : MonoBehaviour
         {
             if (!mapIsDisplayed)
             {
-                Debug.Log("Display Map");
+                //Debug.Log("Display Map");
                 DisplayMap();
                 canDisplayOrHideMap = false;
             }
             else if (mapIsDisplayed)
             {
-                Debug.Log("Hide Map");
+                //Debug.Log("Hide Map");
                 HideMap();
                 canDisplayOrHideMap = false;
             }
         }
     }
 
+    //Summary : Permet de vérifier si la flèche du haut est pressée par le joueur...
     void CheckDpadYValue()
     {
         dpadY = Input.GetAxis("PS4_DPadVertical");
        
+        //Si la valeur de cette input dépasse une certaine valeur alors...
         if (dpadY >= 0.75f) 
         { 
+            //La touche est pressée.
             dpadYIsPressed = true;
         } 
         else 
         { 
+            //Sinon, elle n'est pas pressée par le joueur...
             dpadYIsPressed = false;
+
+            //Alors lejoueur peut de nouveau appuyer sur cette input pour moddifier l'état d'affichage de la carte.
             canDisplayOrHideMap = true;
         }
 
     }
 
-
+    //Summary : Permet d'afficher la carte
     void DisplayMap()
     {
+        //Debug.Log("Display Map");
         UIManager.s_Singleton.UIWindowsDisplay(mapWindow);
+        UIManager.s_Singleton.UIWindowsHide(debugButtons);
         mapIsDisplayed = true;
-        //Cursor.visible = true;
-        //Cursor.lockState = CursorLockMode.Confined;
+        AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
     }
 
+    //Summary : Permet de cacher la carte
     void HideMap()
     {
+        //Debug.Log("Hide Map");
         UIManager.s_Singleton.UIWindowsHide(mapWindow);
+        UIManager.s_Singleton.UIWindowsDisplay(debugButtons);
         mapIsDisplayed = false;
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
     }
 }

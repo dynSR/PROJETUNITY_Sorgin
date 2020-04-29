@@ -5,20 +5,19 @@ using UnityEngine;
 public class CursorMovement : MonoBehaviour
 {
     [SerializeField] private float cursorSensitivity = 0.75f;
-    [SerializeField] private float smoothValue = 0.75f;
-    [SerializeField] private RectTransform _canvasRect;
+    [SerializeField] private RectTransform mapWindow;
+    [SerializeField] private string instantiatingAMarkerWwiseEventSoundName;
 
     [SerializeField] GameObject[] markers;
+    public GameObject debugObjectOverlapped;
 
     private RectTransform rectTransform;
 
-    // Start is called before the first frame update
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         CursorMovements();
@@ -26,23 +25,18 @@ public class CursorMovement : MonoBehaviour
         //Press X
         if (Input.GetButtonDown("PS4_X"))
         {
-
-        }
-        //Press O
-        if (Input.GetButtonDown("PS4_O"))
-        {
-
+            InstantiateAMarker(markers[0], this.transform);
         }
         //Press Square
         if (Input.GetButtonDown("PS4_Square"))
         {
-
+            InstantiateAMarker(markers[1], this.transform);
         }
         //Press Triangle
-        if (Input.GetButtonDown("PS4_Triangle"))
-        {
-
-        }
+        //if (Input.GetButtonDown("PS4_Triangle"))
+        //{
+        //    InstantiateAMarker();
+        //}
     }
 
     //Summary : Gestion des déplacements du curseur à l'intérieur de l'affichage de la carte
@@ -57,12 +51,68 @@ public class CursorMovement : MonoBehaviour
         position.x += velX * cursorSensitivity;
 
         //Bouge le curseur à la nouvelle position donnée, modifiée par les inputs + assurance du fait que le curseur reste toujours affiché entièrement à l'écran dans le rectTransform de l'UI Manager.
-        rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, new Vector2(Mathf.Clamp(position.x, _canvasRect.rect.xMin - rectTransform.rect.xMin, _canvasRect.rect.xMax - rectTransform.rect.xMax), Mathf.Clamp(position.y, _canvasRect.rect.yMin - rectTransform.rect.yMin, _canvasRect.rect.yMax - rectTransform.rect.yMax)), 1);
+        rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, new Vector2(Mathf.Clamp(position.x, mapWindow.rect.xMin - rectTransform.rect.xMin, mapWindow.rect.xMax - rectTransform.rect.xMax), Mathf.Clamp(position.y, mapWindow.rect.yMin - rectTransform.rect.yMin, mapWindow.rect.yMax - rectTransform.rect.yMax)), 1);
     }
 
     //Summary : Permet d'instancier un marqueur (jalon de repère) à une position donnée
     private void InstantiateAMarker(GameObject markerToInstantiate, Transform positionToInstantiate)
     {
-        Instantiate(markerToInstantiate, positionToInstantiate);
+        //Crée un marqueur à l'endroit du curseur
+        GameObject instantiatedObj = Instantiate(markerToInstantiate, positionToInstantiate) as GameObject;
+        SetParent(instantiatedObj, mapWindow.transform);
+
+        //Joue un son de création
+        AkSoundEngine.PostEvent(instantiatingAMarkerWwiseEventSoundName, this.gameObject);
     }
+
+    void SetParent(GameObject objToSet, Transform parent)
+    {
+        Debug.Log("Setting the Parent of the instantiated object");
+        objToSet.transform.SetParent(parent);
+    }
+
+
+
+    ///     
+
+
+
+
+    //GameObject GetTheOverlappedRect(GameObject overlappedRect)
+    //{
+    //    return overlappedRect;
+    //}
+
+    //bool CheckIfTwoRectsOverlap(RectTransform rectTransform01, RectTransform rectTransform02)
+    //{
+    //    Rect rect1 = new Rect(rectTransform01.sizeDelta.x / 2, rectTransform01.sizeDelta.y / 2, rectTransform01.rect.width / 2, rectTransform01.rect.height / 2);
+    //    Rect rect2 = new Rect(rectTransform02.sizeDelta.x / 2, rectTransform02.sizeDelta.y / 2, rectTransform02.rect.width / 2, rectTransform02.rect.height / 2);
+
+    //    if (!rect1.Overlaps(rect2)) return false;
+    //    else
+    //    {
+    //        debugObjectOverlapped = GetTheOverlappedRect(rectTransform02.gameObject);
+    //        return true;
+    //    }
+    //}
+
+    ////Summary : Permet d'effacer un marqueur (jalon de repère) à la position du curseur
+    //private void EraseAMarker()
+    //{
+    //    Debug.Log("Trying to erase a marker");
+
+    //    if (CheckIfTwoRectsOverlap(this.rectTransform, obj01.GetComponent<RectTransform>()))
+    //    {
+    //        Debug.Log(markers[0].GetComponent<RectTransform>().name);
+    //        Debug.Log("Erasing the landmark overlapped by the cursor" + markers[0].name);
+    //        Destroy(debugObjectOverlapped.gameObject);
+    //    }
+
+    //    else if (CheckIfTwoRectsOverlap(this.rectTransform, obj02.GetComponent<RectTransform>()))
+    //    {
+    //        Debug.Log(markers[0].GetComponent<RectTransform>().name);
+    //        Debug.Log("Erasing the landmark overlapped by the cursor " + markers[1].name);
+    //        Destroy(debugObjectOverlapped.gameObject);
+    //    }
+    //}
 }
