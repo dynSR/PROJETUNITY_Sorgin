@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.AI;
 public class EnnemyView : MonoBehaviour
 {
+    public List<Transform> Waypoints;
+    public Transform Waypoint;
 
-    public CharacterController Player;
-    public Transform PlayerPos;
+    public Vector3 Destination;
+    Transform PlayerPos;
 
     public NavMeshAgent Nav;
-
-    public Camera Cam;
 
     public Transform Eye;
 
@@ -19,6 +19,9 @@ public class EnnemyView : MonoBehaviour
 
     float Timer;
     float LostTimer;
+    float SoundTimer;
+
+
     bool Done;
     bool Follow;
 
@@ -27,14 +30,14 @@ public class EnnemyView : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Waypoint = Waypoints[0];
     }
 
     // Update is called once per frame
     void Update()
     {
         Timer -= Time.deltaTime;
-        Detection = Mathf.Clamp(Detection, 0, 1);
+        Detection = Mathf.Clamp(Detection, 0, 1.1f);
 
         if (OnTrigger)
         {
@@ -53,6 +56,7 @@ public class EnnemyView : MonoBehaviour
         {
             Detection += (Time.deltaTime/Vector3.Distance(Eye.position, PlayerPos.position))*4;
             LostTimer = 1;
+            Destination = PlayerPos.position;
             if (!Done)
             {
                 Done = true;
@@ -71,12 +75,13 @@ public class EnnemyView : MonoBehaviour
 
         if(Detection >= 1)
         {
+            LostTimer = 1;
             Follow = true;
         }
 
         if (Follow && LostTimer>0)
         {
-            //Nav.destination = PlayerPos.position;
+            Nav.destination = Destination;
         }
 
         if(Detection <= 0)
@@ -84,18 +89,33 @@ public class EnnemyView : MonoBehaviour
             LostTimer -= Time.deltaTime;
         }
 
-        DetectionLevel.Instance.DetectionAmount = Detection;
+        if (LostTimer <= 0)
+        {
+            Nav.destination = Waypoint.position;
 
+            if (!Nav.pathPending)
+            {
+                if (Nav.remainingDistance <= Nav.stoppingDistance)
+                {
+                    if (!Nav.hasPath || Nav.velocity.sqrMagnitude == 0f)
+                    {
+                        Waypoint = Waypoints[Random.Range(0, Waypoints.Count)];
+                    }
+                }
+            }
+        }
+        DetectionLevel.Instance.DetectionAmount = Detection;
     }
 
 
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             OnTrigger = true;
+            PlayerPos = other.transform;
         }
     }
 

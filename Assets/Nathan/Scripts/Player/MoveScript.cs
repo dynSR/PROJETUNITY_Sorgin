@@ -33,6 +33,7 @@ public class MoveScript : MonoBehaviour
     float vertical;
 
     public bool OnWall;
+    public bool OnArmoire;
     bool ChangedCam = false;
 
 

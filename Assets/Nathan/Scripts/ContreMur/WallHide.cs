@@ -49,7 +49,7 @@ public class WallHide : MonoBehaviour
                 if (hit.transform.CompareTag("Wall"))
                 {
                     ball.SetActive(true);
-                    if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA") )
+                    if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA")) && Player.GetComponent<MoveScript>().OnArmoire==false)
                     {
                         if (Timer <= 0)
                         {
@@ -94,7 +94,6 @@ public class WallHide : MonoBehaviour
             if (Waitforrotation)
             {
                 Hide();
-                Debug.Log("LaunchMovewall");
             }
         }
 

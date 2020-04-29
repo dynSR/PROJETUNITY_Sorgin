@@ -16,6 +16,7 @@ public class ArmoireAnimation : MonoBehaviour
     public GameObject Text;
 
 
+
     bool Lerp;
     bool Inside;
     bool Animating;
@@ -46,6 +47,7 @@ public class ArmoireAnimation : MonoBehaviour
             {
                 Animating = true;
                 LaunchAnim();
+                Player.GetComponent<MoveScript>().OnArmoire = true;
             }
 
             if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA")) && !Animating && Inside)
@@ -114,11 +116,13 @@ public class ArmoireAnimation : MonoBehaviour
         Animating = false;
         Inside = false;
         Lerp = false;
+        Player.GetComponent<MoveScript>().OnArmoire = false;
     }
 
     void CameraOn()
     {
         Animating = false;
         Inside = true;
+
     }
 }

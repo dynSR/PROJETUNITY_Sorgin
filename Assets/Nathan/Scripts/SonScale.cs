@@ -62,6 +62,7 @@ public class SonScale : MonoBehaviour
         if (other.CompareTag("Ennemy"))
         {
             other.transform.GetComponentInChildren<EnnemyView>().Detection += range / 40;
+            other.transform.GetComponentInChildren<EnnemyView>().Destination = transform.position;
         }
     }
 }
