@@ -7,15 +7,23 @@ public class MapHandler : MonoBehaviour
     [SerializeField] private GameObject mapWindow;
     [SerializeField] private GameObject debugButtons;
     [SerializeField] private string displayingOrHidingMapWwiseEventSoundName;
+    [SerializeField] private RectTransform cursorRectTransform;
+    private Vector2 cursorRectTransformPos;
 
     private bool mapIsDisplayed = false;
     private bool canDisplayOrHideMap = true;
     private bool dpadYIsPressed = false;
-    public float dpadY;
+    private float dpadY;
+
+
+    private void Start()
+    {
+        cursorRectTransformPos = cursorRectTransform.localPosition;
+    }
 
     void Update()
     {
-        Debug.Log(Input.GetAxis("PS4_DPadVertical"));
+        //Debug.Log(Input.GetAxis("PS4_DPadVertical"));
 
         CheckDpadYValue();
 
@@ -66,6 +74,8 @@ public class MapHandler : MonoBehaviour
         UIManager.s_Singleton.UIWindowsHide(debugButtons);
         mapIsDisplayed = true;
         AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
+
+        cursorRectTransform.localPosition = cursorRectTransformPos;
     }
 
     //Summary : Permet de cacher la carte

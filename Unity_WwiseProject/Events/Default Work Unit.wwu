@@ -69,6 +69,28 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="UI_PlacingAMarker" ID="{3FCB1EAA-19F2-47C2-B9CA-A0948400DE03}">
+					<ChildrenList>
+						<Action Name="" ID="{00CC9D5A-F71B-4503-AAB4-6CDB499706F4}" ShortID="621434094">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_PlacingAMarker01" ID="{4700AE41-54DA-4C5E-8E56-7D34E09E0F41}" WorkUnitID="{1BF8B83F-70A0-4817-8052-5611AAFA4F16}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="UI_ErasingAMarker" ID="{2F9B2E85-313B-4B72-89BE-6322AB4FCC2D}">
+					<ChildrenList>
+						<Action Name="" ID="{192354E9-3D9C-4B4D-8526-215D7FAE2C1A}" ShortID="44596248">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_ErasingAMarker" ID="{512D428A-2AFF-409B-8104-D1DB6E27A87D}" WorkUnitID="{1BF8B83F-70A0-4817-8052-5611AAFA4F16}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

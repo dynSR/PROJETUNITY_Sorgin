@@ -40,7 +40,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 7102da272752824285cc8cea843bd806
     GuidInternal: 
-    m_lastTime: -8586136322258914740
+    m_lastTime: -8586133726060538921
     List:
     - name: UI_Sounds
       guid: a60f653cd66b6b45a7b0f39ed1310d94
@@ -56,7 +56,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: f6d22cfe9df30d41a0fe5a80752cf912
     GuidInternal: 
-    m_lastTime: -8586136322481817092
+    m_lastTime: -8586133726251025917
     List:
     - name: UI_MouseOverButton
       guid: 36440e9ada23ce4486b880f89a0619d1
@@ -103,6 +103,18 @@ MonoBehaviour:
       - ElementName: UI_OpenningWindow
         ObjectType: 3
       Path: Default Work Unit\UI_OpenningWindow
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: UI_PlacingAMarker
+      guid: aa1ecb3ff219c247b9caa0948400de03
+      id: 1055753129
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: UI_PlacingAMarker
+        ObjectType: 3
+      Path: Default Work Unit\UI_PlacingAMarker
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1

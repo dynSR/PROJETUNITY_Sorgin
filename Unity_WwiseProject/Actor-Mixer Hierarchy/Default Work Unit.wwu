@@ -14,7 +14,7 @@
 								</Property>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
-										<Value>-780</Value>
+										<Value>-650</Value>
 									</ValueList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
@@ -60,6 +60,16 @@
 									<ValueList>
 										<Value>-130</Value>
 									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{00EB1A56-E4D7-4F75-9ADF-840D4561D948}">
+												<PropertyList>
+													<Property Name="Max" Type="Real64" Value="250"/>
+													<Property Name="Min" Type="Real64" Value="-1000"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
@@ -90,10 +100,25 @@
 						</Sound>
 						<Sound Name="Sound_ButtonValidation01" ID="{28174357-64BF-4A9F-8B20-5D79E6EC02C3}" ShortID="248267855">
 							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>25</Value>
+									</ValueList>
+								</Property>
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
 										<Value>55</Value>
 									</ValueList>
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{C7C3CB88-A768-4A68-BDA7-AD75CA5FB6B4}">
+												<PropertyList>
+													<Property Name="Max" Type="Real64" Value="50"/>
+													<Property Name="Min" Type="Real64" Value="-50"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
@@ -157,6 +182,26 @@
 							</ActiveSourceList>
 						</Sound>
 						<Sound Name="Sound_MouveOver02" ID="{59A39446-80B4-4AB1-8402-8F58C65E5666}" ShortID="160191470">
+							<PropertyList>
+								<Property Name="Lowpass" Type="int16">
+									<ValueList>
+										<Value>25</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{0A81A932-41C0-40B3-BAC3-668FFEC56EDA}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="75"/>
+													<Property Name="Min" Type="Real64" Value="-75"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
@@ -220,6 +265,90 @@
 							</ChildrenList>
 							<ActiveSourceList>
 								<ActiveSource Name="Sound_MouveOver03" ID="{DDC4846E-4017-4AC3-9636-D221954C324C}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="SFX_PlacingAMarker01" ID="{4700AE41-54DA-4C5E-8E56-7D34E09E0F41}" ShortID="528967898">
+							<PropertyList>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{23D6BDBC-B58B-4B05-BB69-4467FB966963}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="75"/>
+													<Property Name="Min" Type="Real64" Value="-75"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="SFX_PlacingAMarker01" ID="{75CEC482-8CB8-4FEB-AE22-78468AACE653}">
+									<Language>SFX</Language>
+									<AudioFile>SFX_PlacingAMarker01.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="455674255"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="SFX_PlacingAMarker01" ID="{75CEC482-8CB8-4FEB-AE22-78468AACE653}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="SFX_ErasingAMarker" ID="{512D428A-2AFF-409B-8104-D1DB6E27A87D}" ShortID="243995891">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>75</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ModifierList>
+										<ModifierInfo>
+											<Modifier Name="" ID="{F1C796C0-7440-4C9B-8988-59C4A07B010D}">
+												<PropertyList>
+													<Property Name="Enabled" Type="bool" Value="True"/>
+													<Property Name="Max" Type="Real64" Value="230"/>
+													<Property Name="Min" Type="Real64" Value="-230"/>
+												</PropertyList>
+											</Modifier>
+										</ModifierInfo>
+									</ModifierList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="SFX_ErasingAMarker" ID="{3C2C13D3-B7C0-445F-A2C8-8CD56777FA74}">
+									<Language>SFX</Language>
+									<AudioFile>SFX_ErasingAMarker.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="1016264871"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="SFX_ErasingAMarker" ID="{3C2C13D3-B7C0-445F-A2C8-8CD56777FA74}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>

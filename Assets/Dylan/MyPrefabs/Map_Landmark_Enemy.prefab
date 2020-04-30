@@ -94,7 +94,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 25
+  m_SortingOrder: 24
   m_TargetDisplay: 0
 --- !u!114 &-3054553059372701503
 MonoBehaviour:
@@ -108,3 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebf27ad6836c0448bf4b775753dd093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  erasingAMarkerWwiseEventSoundName: UI_ErasingAMarker
+  valueToDivideBy: 2

@@ -8,8 +8,10 @@
 						<ObjectRef Name="UI_MouseOverButton" ID="{9A0E4436-23DA-44CE-86B8-80F89A0619D1}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="UI_Validation02" ID="{DACEAB09-8BA6-469A-81ED-508C30994F0D}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="UI_OpenningWindow" ID="{D5C0CA8A-7642-4746-BD1D-F87884A85AEB}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="UI_PlacingAMarker" ID="{3FCB1EAA-19F2-47C2-B9CA-A0948400DE03}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="UI_MouseOverButton_01" ID="{ABA1936B-3B26-49EB-B076-630BAFA0952C}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="UI_Validation01" ID="{ED1FC313-00C3-4A58-AB22-8961C5F22007}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="UI_ErasingAMarker" ID="{2F9B2E85-313B-4B72-89BE-6322AB4FCC2D}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
 						<ObjectRef Name="UI_MouseOverButton_02" ID="{34F90A37-6E63-4B87-84B6-65FE3D749B17}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
 					</ObjectInclusionList>
 					<ObjectExclusionList/>

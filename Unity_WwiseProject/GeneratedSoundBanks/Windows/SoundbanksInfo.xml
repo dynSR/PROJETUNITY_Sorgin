@@ -16,6 +16,14 @@
 			<ShortName>UI_Sounds</ShortName>
 			<Path>UI_Sounds.bnk</Path>
 			<IncludedEvents>
+				<Event Id="95358240" Name="UI_ErasingAMarker" ObjectPath="\Events\Default Work Unit\UI_ErasingAMarker" DurationType="OneShot" DurationMin="0.800702" DurationMax="1.044397">
+					<IncludedMemoryFiles>
+						<File Id="1016264871" Language="SFX">
+							<ShortName>SFX_ErasingAMarker.wav</ShortName>
+							<Path>SFX\SFX_ErasingAMarker_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="802869157" Name="UI_MouseOverButton" ObjectPath="\Events\Default Work Unit\UI_MouseOverButton" DurationType="OneShot" DurationMin="0.653566" DurationMax="0.653566">
 					<IncludedMemoryFiles>
 						<File Id="474486204" Language="SFX">
@@ -24,7 +32,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1591403137" Name="UI_MouseOverButton_01" ObjectPath="\Events\Default Work Unit\UI_MouseOverButton_01" DurationType="OneShot" DurationMin="0.800000" DurationMax="0.800000">
+				<Event Id="1591403137" Name="UI_MouseOverButton_01" ObjectPath="\Events\Default Work Unit\UI_MouseOverButton_01" DurationType="OneShot" DurationMin="0.766083" DurationMax="0.835419">
 					<IncludedMemoryFiles>
 						<File Id="123009712" Language="SFX">
 							<ShortName>Sound_MouveOver02.wav</ShortName>
@@ -48,6 +56,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1055753129" Name="UI_PlacingAMarker" ObjectPath="\Events\Default Work Unit\UI_PlacingAMarker" DurationType="OneShot" DurationMin="0.117974" DurationMax="0.128652">
+					<IncludedMemoryFiles>
+						<File Id="455674255" Language="SFX">
+							<ShortName>SFX_PlacingAMarker01.wav</ShortName>
+							<Path>SFX\SFX_PlacingAMarker01_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2192364134" Name="UI_Validation01" ObjectPath="\Events\Default Work Unit\UI_Validation01" DurationType="OneShot" DurationMin="0.800000" DurationMax="0.800000">
 					<IncludedMemoryFiles>
 						<File Id="769262107" Language="SFX">
@@ -56,7 +72,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2192364133" Name="UI_Validation02" ObjectPath="\Events\Default Work Unit\UI_Validation02" DurationType="OneShot" DurationMin="0.343260" DurationMax="0.343260">
+				<Event Id="2192364133" Name="UI_Validation02" ObjectPath="\Events\Default Work Unit\UI_Validation02" DurationType="OneShot" DurationMin="0.318428" DurationMax="0.318428">
 					<IncludedMemoryFiles>
 						<File Id="510571323" Language="SFX">
 							<ShortName>Sound_UI_Click.wav</ShortName>

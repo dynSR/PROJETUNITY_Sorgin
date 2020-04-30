@@ -3,7 +3,10 @@
 	<UserProjectSettingsInfo>
 		<UserProjectSettings Name="" ID="{DB2DB8FD-BD1E-434D-B35B-49E41AACECDA}">
 			<PropertyList>
+				<Property Name="Event Action List\{2F9B2E85-313B-4B72-89BE-6322AB4FCC2D}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{34F90A37-6E63-4B87-84B6-65FE3D749B17}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{3FCB1EAA-19F2-47C2-B9CA-A0948400DE03}\x64_Expand States" Type="string" Value=""/>
+				<Property Name="Event Action List\{557F502F-8EBC-48A2-90D7-969F936FF696}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{9A0E4436-23DA-44CE-86B8-80F89A0619D1}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{ABA1936B-3B26-49EB-B076-630BAFA0952C}\x64_Expand States" Type="string" Value=""/>
 				<Property Name="Event Action List\{D5C0CA8A-7642-4746-BD1D-F87884A85AEB}\x64_Expand States" Type="string" Value=""/>
@@ -32,7 +35,7 @@
 				<Property Name="GenerateSoundBanks\x64_SelectedPlatforms" Type="string" Value=""/>
 				<Property Name="GenerateSoundBanks\x64_SelectedSoundBanks" Type="string" Value=""/>
 				<Property Name="HardwareController\CurrentSession" Type="string" Value="{2451DD2E-A7B2-45E6-B93B-6F49B9B887AD}"/>
-				<Property Name="HardwareController\{2451DD2E-A7B2-45E6-B93B-6F49B9B887AD}\x64_ActiveGroups" Type="string" Value="drdgPsTq/02l74o7Wg89SAGACOT/////4Hl8Nk8zMkaSQsjiX3uM5AGACOT/////"/>
+				<Property Name="HardwareController\{2451DD2E-A7B2-45E6-B93B-6F49B9B887AD}\x64_ActiveGroups" Type="string" Value="drdgPsTq/02l74o7Wg89SAGAlTr/////4Hl8Nk8zMkaSQsjiX3uM5AGAlTr/////"/>
 				<Property Name="MeterView\LastObject1" Type="string" Value="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}"/>
 				<Property Name="MeterView\MeterMode1" Type="int32" Value="1"/>
 				<Property Name="MeterView\MeterMode1Viewpoint0" Type="int32" Value="1"/>
