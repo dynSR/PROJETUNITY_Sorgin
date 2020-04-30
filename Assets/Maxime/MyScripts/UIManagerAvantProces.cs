@@ -30,30 +30,27 @@ public class UIManagerAvantProces : MonoBehaviour
         
     }
 
-    public void ProofDisplayUpdate(int currentProofIndex)
+    //affichage des docs
+    //newActiveProofIndex est le nouveau doc actif
+    //updateDirection 1 = bouton R1 (suivant), -1 = bouton L1 (precedent)
+    public void ProofDocDisplayUpdate(int newActiveProofIndex, int updateDirection)
     {
-        int roundedAxis = Mathf.RoundToInt(1 * Mathf.Sign(Input.GetAxis("Horizontal")));
-        Debug.Log("Rounded axis : " + roundedAxis);
-        proofManager.proofList[currentProofIndex].SetActive(true);
-        Debug.Log("Active : " + currentProofIndex);
+        proofManager.proofDocList[newActiveProofIndex].SetActive(true);
+        Debug.Log("Active : " + newActiveProofIndex);
 
-        if (currentProofIndex == 0 && roundedAxis == 1)
+        if (newActiveProofIndex == 0 && updateDirection == 1)
         {
-            proofManager.proofList[proofManager.proofList.Length-1].SetActive(false);
-            Debug.Log("Unactive : " + (proofManager.proofList.Length - 1));
+            proofManager.proofDocList[proofManager.proofDocList.Length-1].SetActive(false);
             return;
         }
-        else if(currentProofIndex == proofManager.proofList.Length-1 && roundedAxis == -1)
+        else if(newActiveProofIndex == proofManager.proofDocList.Length-1 && updateDirection == -1)
         {
-            proofManager.proofList[0].SetActive(false);
-            Debug.Log("Unactive : " + 0);
+            proofManager.proofDocList[0].SetActive(false);
             return;
         }
         else
         {
-            proofManager.proofList[currentProofIndex - roundedAxis].SetActive(false);
-            Debug.Log("Unactive : " + (currentProofIndex - roundedAxis));
+            proofManager.proofDocList[newActiveProofIndex - updateDirection].SetActive(false);
         }
-
     }
 }

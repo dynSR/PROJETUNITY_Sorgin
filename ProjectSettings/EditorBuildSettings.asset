@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Nathan/Scenes/SampleScene.unity
     guid: 8ddca0989a9ce814c96d6e711b386b8b
+  - enabled: 1
+    path: Assets/Maxime/MyScenes/SBSceneAvProces.unity
+    guid: fea57cc22ea52ae499bb58f1addd2bd4
   m_configObjects: {}

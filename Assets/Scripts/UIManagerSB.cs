@@ -21,6 +21,11 @@ public class UIManagerSB : MonoBehaviour
         }
     }
 
+    public void ButtonAvantProces()
+    {
+        SceneManager.LoadScene("SBSceneAvProces");
+    }
+
     public void ButtonProces()
     {
         SceneManager.LoadScene("SBSceneProces");

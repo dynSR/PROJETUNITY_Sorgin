@@ -6,9 +6,15 @@ public class ProofManager : MonoBehaviour
 {
     public static ProofManager singleton;
 
-    public GameObject[] proofList;
-    private int activeProof;
-    private float timerSwap = 0f;
+    private bool objectMode;
+
+    public GameObject[] proofDocList;
+    public GameObject[] proofObjsList;
+
+    private int activeDocProof;
+    private int activeObjProof;
+
+    public float rotationSpeed;
 
     private void Awake()
     {
@@ -24,60 +30,161 @@ public class ProofManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        activeProof = 0;
+        activeDocProof = 0;
+        activeObjProof = 0;
+        objectMode = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(timerSwap > 0)
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("PS4_L1"))
         {
-            timerSwap -= Time.deltaTime;
+            int myUpdateDir = -1;
+            PreviousProof(myUpdateDir);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("PS4_R1"))
+        {
+            int myUpdateDir = 1;
+            NextProof(myUpdateDir);
+        }
+
+        if(Input.GetKeyDown(KeyCode.T) || Input.GetAxis("PS4_DPadHorizontal") > 0)
+        {
+            SwitchMode();
+        }
+
+        RotateActiveObj();
+    }
+
+
+    //Passe a la preuve suivante
+    private void NextProof(int updateDirection)
+    {
+        if (objectMode)
+        {
+            proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
+            if (activeObjProof != proofObjsList.Length - 1)
+            {
+                activeObjProof += 1;
+                ProofObjDisplayUpdate(activeObjProof, updateDirection);
+                return;
+            }
+            else
+            {
+                activeObjProof = 0;
+                ProofObjDisplayUpdate(activeObjProof, updateDirection);
+            }
         }
         else
         {
-            if (Input.GetAxis("Horizontal") < -0.1)
+            if (activeDocProof != proofDocList.Length - 1)
             {
-                PreviousProof();
-                timerSwap = 0.5f;
+                activeDocProof += 1;
+                UIManagerAvantProces.singleton.ProofDocDisplayUpdate(activeDocProof, updateDirection);
+                return;
             }
-
-            if (Input.GetAxis("Horizontal") > 0.1)
+            else
             {
-                NextProof();
-                timerSwap = 0.5f;
+                activeDocProof = 0;
+                UIManagerAvantProces.singleton.ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
         }
     }
 
-    private void NextProof()
+    //Passe a la preuve precedente
+    private void PreviousProof(int updateDirection)
     {
-        if(activeProof != proofList.Length-1)
+        if (objectMode)
         {
-            activeProof += 1;
-            UIManagerAvantProces.singleton.ProofDisplayUpdate(activeProof);
-            return;
+            proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
+            if (activeObjProof != 0)
+            {
+                activeObjProof -= 1;
+                ProofObjDisplayUpdate(activeObjProof, updateDirection);
+                return;
+            }
+            else
+            {
+                activeObjProof = proofObjsList.Length - 1;
+                ProofObjDisplayUpdate(activeObjProof, updateDirection);
+            }
         }
         else
         {
-            activeProof = 0;
-            UIManagerAvantProces.singleton.ProofDisplayUpdate(activeProof);
+            if (activeDocProof != 0)
+            {
+                activeDocProof -= 1;
+                UIManagerAvantProces.singleton.ProofDocDisplayUpdate(activeDocProof, updateDirection);
+                return;
+            }
+            else
+            {
+                activeDocProof = proofDocList.Length - 1;
+                UIManagerAvantProces.singleton.ProofDocDisplayUpdate(activeDocProof, updateDirection);
+            }
         }
-        
     }
-    
-    private void PreviousProof()
+
+    //affichage des objets
+    //newActiveProofIndex est le nouvel objet actif
+    //updateDirection 1 = bouton R1 (suivant), -1 = bouton L1 (precedent)
+    private void ProofObjDisplayUpdate(int newActiveProofIndex, int updateDirection)
     {
-        if (activeProof != 0)
+        proofObjsList[newActiveProofIndex].SetActive(true);
+        Debug.Log("Active : " + newActiveProofIndex);
+
+        if (newActiveProofIndex == 0 && updateDirection == 1)
         {
-            activeProof -= 1;
-            UIManagerAvantProces.singleton.ProofDisplayUpdate(activeProof);
+            proofObjsList[proofObjsList.Length - 1].SetActive(false);
+            return;
+        }
+        else if (newActiveProofIndex == proofObjsList.Length - 1 && updateDirection == -1)
+        {
+            proofObjsList[0].SetActive(false);
             return;
         }
         else
         {
-            activeProof = proofList.Length-1;
-            UIManagerAvantProces.singleton.ProofDisplayUpdate(activeProof);
+            proofObjsList[newActiveProofIndex - updateDirection].SetActive(false);
+        }
+    }
+
+    //switch entre l'affichage des docs et des objets
+    private void SwitchMode()
+    {
+        objectMode = !objectMode;
+        if (objectMode)
+        {
+            proofDocList[activeDocProof].SetActive(false);
+            proofObjsList[activeObjProof].SetActive(true);
+        }
+        else
+        {
+            proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
+            proofObjsList[activeObjProof].SetActive(false);
+            proofDocList[activeDocProof].SetActive(true);
+        }
+    }
+
+    private void RotateActiveObj()
+    {
+        if (objectMode)
+        {
+            //float xAxis = Input.GetAxis("PS4_LStick_Horizontal");
+            //float yAxis = Input.GetAxis("PS4_LStick_Vertical");
+            float xAxis = Input.GetAxis("Vertical");
+            float yAxis = Input.GetAxis("Horizontal");
+            if(xAxis != 0 || yAxis != 0)
+            {
+                proofObjsList[activeObjProof].gameObject.transform.Rotate(xAxis * rotationSpeed, yAxis * -rotationSpeed, 0f);
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
+            }
         }
     }
 }
