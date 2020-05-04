@@ -176,9 +176,12 @@ public class ProofManager : MonoBehaviour
             //float yAxis = Input.GetAxis("PS4_LStick_Vertical");
             float xAxis = Input.GetAxis("Vertical");
             float yAxis = Input.GetAxis("Horizontal");
+            
             if(xAxis != 0 || yAxis != 0)
             {
-                proofObjsList[activeObjProof].gameObject.transform.Rotate(xAxis * rotationSpeed, yAxis * -rotationSpeed, 0f);
+                Quaternion newYRotation = Quaternion.AngleAxis(yAxis * -rotationSpeed, Vector3.up);
+                Quaternion newXrotation = Quaternion.AngleAxis(xAxis * -rotationSpeed, Vector3.left);
+                proofObjsList[activeObjProof].gameObject.transform.rotation = newXrotation * newYRotation * proofObjsList[activeObjProof].gameObject.transform.rotation;
             }
 
             if (Input.GetKeyDown(KeyCode.R))
