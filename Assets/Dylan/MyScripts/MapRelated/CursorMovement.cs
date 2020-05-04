@@ -8,14 +8,13 @@ public class CursorMovement : MonoBehaviour
     [SerializeField] private RectTransform mapWindow;
     [SerializeField] private string instantiatingAMarkerWwiseEventSoundName;
 
-    [SerializeField] GameObject[] markers;
-    public GameObject debugObjectOverlapped;
+    [SerializeField] private GameObject[] markers;
 
-    private RectTransform rectTransform;
+    private RectTransform myRectTransform;
 
     void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
+        myRectTransform = GetComponent<RectTransform>();
     }
 
     void Update()
@@ -23,20 +22,20 @@ public class CursorMovement : MonoBehaviour
         CursorMovements();
 
         //Press X
-        if (Input.GetButtonDown("PS4_X"))
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A"))
         {
             InstantiateAMarker(markers[0], this.transform);
         }
         //Press Square
-        if (Input.GetButtonDown("PS4_Square"))
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
         {
             InstantiateAMarker(markers[1], this.transform);
         }
         //Press Triangle
-        //if (Input.GetButtonDown("PS4_Triangle"))
-        //{
-        //    InstantiateAMarker();
-        //}
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Triangle") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_Y"))
+        {
+            InstantiateAMarker(markers[2], this.transform);
+        }
     }
 
     //Summary : Gestion des déplacements du curseur à l'intérieur de l'affichage de la carte
@@ -45,13 +44,13 @@ public class CursorMovement : MonoBehaviour
         float velY = Input.GetAxis("PS4_LStick_Vertical");
         float velX = Input.GetAxis("PS4_LStick_Horizontal");
 
-        Vector2 position = rectTransform.anchoredPosition;
+        Vector2 position = myRectTransform.anchoredPosition;
 
         position.y += velY * cursorSensitivity;
         position.x += velX * cursorSensitivity;
 
         //Bouge le curseur à la nouvelle position donnée, modifiée par les inputs + assurance du fait que le curseur reste toujours affiché entièrement à l'écran dans le rectTransform de l'UI Manager.
-        rectTransform.anchoredPosition = Vector2.Lerp(rectTransform.anchoredPosition, new Vector2(Mathf.Clamp(position.x, mapWindow.rect.xMin - rectTransform.rect.xMin, mapWindow.rect.xMax - rectTransform.rect.xMax), Mathf.Clamp(position.y, mapWindow.rect.yMin - rectTransform.rect.yMin, mapWindow.rect.yMax - rectTransform.rect.yMax)), 1);
+        myRectTransform.anchoredPosition = Vector2.Lerp(myRectTransform.anchoredPosition, new Vector2(Mathf.Clamp(position.x, mapWindow.rect.xMin - myRectTransform.rect.xMin, mapWindow.rect.xMax - myRectTransform.rect.xMax), Mathf.Clamp(position.y, mapWindow.rect.yMin - myRectTransform.rect.yMin, mapWindow.rect.yMax - myRectTransform.rect.yMax)), 1);
     }
 
     //Summary : Permet d'instancier un marqueur (jalon de repère) à une position donnée
@@ -67,15 +66,12 @@ public class CursorMovement : MonoBehaviour
 
     void SetParent(GameObject objToSet, Transform parent)
     {
-        Debug.Log("Setting the Parent of the instantiated object");
+        //Debug.Log("Setting the Parent of the instantiated object");
         objToSet.transform.SetParent(parent);
     }
 
 
-
     ///     
-
-
 
 
     //GameObject GetTheOverlappedRect(GameObject overlappedRect)

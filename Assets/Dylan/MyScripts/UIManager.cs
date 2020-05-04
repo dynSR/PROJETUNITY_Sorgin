@@ -15,12 +15,6 @@ public class UIManager : MonoBehaviour
     public GameObject spellActivationFeedback;
     private bool spellCompartmentIsActive = false;
 
-    [Header("PS4 INPUTS")]
-    [SerializeField] private string PS4Input_L1;
-    [SerializeField] private string PS4Input_L2;
-    [SerializeField] private string PS4Input_O;
-    [SerializeField] private string PS4Input_Square;
-
     [Header("PURCHASE VALIDATION POPUP")]
     [SerializeField] private CanvasGroup purchaseValidationPopup;
     [HideInInspector]
@@ -28,8 +22,6 @@ public class UIManager : MonoBehaviour
 
     [Header("FADE DURATION")]
     public float fadeDuration = 0.25f;
-
-    bool coroutineIsOver = false;
 
     public static UIManager s_Singleton;
     private void Awake()
@@ -52,25 +44,25 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown(PS4Input_L1))
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LB"))
         {
             Debug.Log("L1 pressed");
             SwitchSpellsInPlayerInventory();
         }
 
-        if (Input.GetButtonDown(PS4Input_L2))
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LT"))
         {
             Debug.Log("L2 pressed");
             ToggleSpellActivationFeedback();
         }
 
-        if (Input.GetButtonDown(PS4Input_Square))
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
         {
             Debug.Log("Square pressed");
             UseSpell();
         }
 
-        if (purschaseValidationPopupIsDisplayed && Input.GetButtonDown(PS4Input_O))
+        if (purschaseValidationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
         {
             Debug.Log("Circle pressed");
             HideValidationPopup();
@@ -207,7 +199,7 @@ public class UIManager : MonoBehaviour
             //Si premier emplacement n'est pas vide --> dernier emplacement
             if (spellsCompartments[0].MyCompartmentSpell != null)
             {
-                Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
+                //Debug.Log("premier emplacement n'est pas vide --> dernier emplacement");
 
                 //Swap
                 SwapSpellInCompartmentSpell(spellsCompartments[2], spellsCompartments[0]);
@@ -223,7 +215,7 @@ public class UIManager : MonoBehaviour
             //Sinon si troisième emplacement n'est pas vide --> deuxième emplacement
             else if (spellsCompartments[2].MyCompartmentSpell != null)
             {
-                Debug.Log("troisième emplacement n'est pas vide --> deuxième emplacement");
+                //Debug.Log("troisième emplacement n'est pas vide --> deuxième emplacement");
 
                 //Swap
                 SwapSpellInCompartmentSpell(spellsCompartments[1], spellsCompartments[2]);
@@ -239,7 +231,7 @@ public class UIManager : MonoBehaviour
             //Sinon si deuxième emplacement n'est pas vide --> premier emplacement
             else if (spellsCompartments[1].MyCompartmentSpell != null)
             {
-                Debug.Log("deuxième emplacement n'est pas vide --> premier emplacement");
+                //Debug.Log("deuxième emplacement n'est pas vide --> premier emplacement");
 
                 //Swap
                 SwapSpellInCompartmentSpell(spellsCompartments[0], spellsCompartments[1]);

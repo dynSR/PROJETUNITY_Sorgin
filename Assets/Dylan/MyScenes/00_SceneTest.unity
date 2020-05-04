@@ -445,7 +445,6 @@ MonoBehaviour:
   markers:
   - {fileID: 305858552022410308, guid: 2b6195bc09ccb6247ae8ac0020c96e93, type: 3}
   - {fileID: 6197468401549040382, guid: 6604fcc0e23a53e4dbf1a4e290d59aab, type: 3}
-  debugObjectOverlapped: {fileID: 0}
 --- !u!223 &69420780
 Canvas:
   m_ObjectHideFlags: 0
@@ -501,10 +500,10 @@ RectTransform:
   m_Father: {fileID: 711240613}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 222.5, y: -54.860466}
-  m_SizeDelta: {x: 395, y: 109.72093}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &83958893
 MonoBehaviour:
@@ -2763,9 +2762,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapWindow: {fileID: 295245316}
+  shopWindow: {fileID: 559818320}
   debugButtons: {fileID: 711240612}
   displayingOrHidingMapWwiseEventSoundName: UI_OpenningWindow
   cursorRectTransform: {fileID: 69420776}
+--- !u!1 &448624347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 448624349}
+  - component: {fileID: 448624348}
+  m_Layer: 0
+  m_Name: ControllerConnectionHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &448624348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448624347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae71abe7fef0b4d4a870315ad081aebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PS4ControllerIsConnected: 0
+  XboxControllerIsConnected: 0
+--- !u!4 &448624349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448624347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &522630466
 GameObject:
   m_ObjectHideFlags: 0
@@ -4027,7 +4072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &711240613
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4210,7 +4255,6 @@ GameObject:
   - component: {fileID: 811743259}
   - component: {fileID: 811743258}
   - component: {fileID: 811743263}
-  - component: {fileID: 811743264}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -4237,10 +4281,6 @@ MonoBehaviour:
   - {fileID: 1191858859}
   - {fileID: 692343939}
   spellActivationFeedback: {fileID: 2117242326}
-  PS4Input_L1: PS4_L1
-  PS4Input_L2: PS4_L2
-  PS4Input_O: PS4_O
-  PS4Input_Square: PS4_Square
   purchaseValidationPopup: {fileID: 1618618056}
   purschaseValidationPopupIsDisplayed: 0
   fadeDuration: 0.25
@@ -4343,18 +4383,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e603a924a0f32e34fac4ed525cbc939e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &811743264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811743257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae71abe7fef0b4d4a870315ad081aebe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &842425643
 GameObject:
   m_ObjectHideFlags: 0
@@ -4389,10 +4417,10 @@ RectTransform:
   m_Father: {fileID: 711240613}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 222.5, y: -174.58139}
-  m_SizeDelta: {x: 395, y: 109.72093}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &842425645
 MonoBehaviour:
@@ -4985,7 +5013,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.17836058, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -14.39, y: -12.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &960817398
@@ -7330,7 +7358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.07574733, y: 0}
   m_AnchorMax: {x: 0.2081504, y: 0.53247386}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1704090254
@@ -7965,9 +7993,9 @@ MonoBehaviour:
   m_VerticalAxis: Vertical
   m_SubmitButton: Validation
   m_CancelButton: Cancel
-  m_InputActionsPerSecond: 15
+  m_InputActionsPerSecond: 11.5
   m_RepeatDelay: 0.25
-  m_ForceModuleActive: 1
+  m_ForceModuleActive: 0
 --- !u!114 &1847433729
 MonoBehaviour:
   m_ObjectHideFlags: 0

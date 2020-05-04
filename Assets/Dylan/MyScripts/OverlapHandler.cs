@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyOnCursorOverlap : MonoBehaviour
+public class OverlapHandler : MonoBehaviour
 {
     [SerializeField] private string erasingAMarkerWwiseEventSoundName;
     [SerializeField] private float valueToDivideBy = 2f;
 
     CursorMovement _cursor;
-    RectTransform rectTransform;
+
+    [HideInInspector]
+    public RectTransform rectTransform;
 
     void Start()
     {
@@ -18,17 +20,26 @@ public class DestroyOnCursorOverlap : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("PS4_O"))
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
         {
-            Debug.Log("O pressed");
-            EraseAMarker();
+            if (Input.GetButtonDown("PS4_O"))
+            {
+                Debug.Log("O pressed");
+                EraseAMarker();
+            }
         }
-
-        Debug.Log(CheckIfTwoRectsOverlap(_cursor.GetComponent<RectTransform>(), rectTransform));
+        else if(ConnectedController.s_Singleton.XboxControllerIsConnected)
+        {
+            if(Input.GetButtonDown("XBOX_B"))
+            {
+                Debug.Log("B pressed");
+                EraseAMarker();
+            }
+        }
     }
 
     //Summary : Permet de vérifier si deux rect transform se supperposent, ici c'est celui du curseur et d'un marqueur x...
-    bool CheckIfTwoRectsOverlap(RectTransform rectTransform01, RectTransform rectTransform02)
+    public bool CheckIfTwoRectsOverlap(RectTransform rectTransform01, RectTransform rectTransform02)
     {
         Rect rect1 = new Rect(rectTransform01.localPosition.x, rectTransform01.localPosition.y, rectTransform01.rect.width / valueToDivideBy, rectTransform01.rect.height / valueToDivideBy);
         Rect rect2 = new Rect(rectTransform02.localPosition.x, rectTransform02.localPosition.y, rectTransform02.rect.width / valueToDivideBy, rectTransform02.rect.height / valueToDivideBy);

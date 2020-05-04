@@ -5,7 +5,10 @@ using UnityEngine;
 public class MapHandler : MonoBehaviour
 {
     [SerializeField] private GameObject mapWindow;
+    //DEBUG
+    [SerializeField] private GameObject shopWindow;
     [SerializeField] private GameObject debugButtons;
+
     [SerializeField] private string displayingOrHidingMapWwiseEventSoundName;
     [SerializeField] private RectTransform cursorRectTransform;
     private Vector2 cursorRectTransformPos;
@@ -27,7 +30,7 @@ public class MapHandler : MonoBehaviour
 
         CheckDpadYValue();
 
-        if (Input.GetAxis("PS4_DPadVertical") >= 0.75f && canDisplayOrHideMap)
+        if (canDisplayOrHideMap && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_DPadVertical") >= 0.75f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_DPadVertical") >= 0.75f))
         {
             if (!mapIsDisplayed)
             {
@@ -72,6 +75,9 @@ public class MapHandler : MonoBehaviour
         //Debug.Log("Display Map");
         UIManager.s_Singleton.UIWindowsDisplay(mapWindow);
         UIManager.s_Singleton.UIWindowsHide(debugButtons);
+
+        if(shopWindow.activeInHierarchy)
+            UIManager.s_Singleton.UIWindowsHide(shopWindow);
         mapIsDisplayed = true;
         AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
 

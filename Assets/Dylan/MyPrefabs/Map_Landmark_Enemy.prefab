@@ -109,4 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   erasingAMarkerWwiseEventSoundName: UI_ErasingAMarker
-  valueToDivideBy: 2
+  valueToDivideBy: 1.75
+  rectTransform: {fileID: 0}
