@@ -21,4 +21,5 @@ public class MainMenuButtons : MonoBehaviour, ISelectHandler, IDeselectHandler
         buttonsTooltipText.text = buttonTooltipText;
         buttonsTooltipText.transform.gameObject.SetActive(true);
     }
+
 }

@@ -9,13 +9,32 @@ public class UIManager_MainMenu : MonoBehaviour
     [Header("NAME OF SCENES TO LOAD")]
     [SerializeField] private string sceneToLoadOnClickPlayButton;
 
-    [Header("WWISE EVENT SOUND NAME")]
-    [SerializeField] private string displayingWindowWwiseEventSoundName;
+    [Header("FADING PARAMETERS")]
+    [SerializeField] private CanvasGroup mainMenuWindow;
+    [SerializeField] private CanvasGroup inputsDisplayerWindow;
+    [SerializeField] private CanvasGroup optionsWindow;
+    [SerializeField] private CanvasGroup creditsWindow;
+    [SerializeField] private float lerpTime = 0.75f;
+    [SerializeField] private float transitionBetweenTwoFades = 1.25f;
+    private float transitionBetweenTwoFadesAtStart;
+
+    public static UIManager_MainMenu s_Singleton;
+    private void Awake()
+    {
+        if (s_Singleton != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            s_Singleton = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        transitionBetweenTwoFadesAtStart = transitionBetweenTwoFades;
     }
 
     // Update is called once per frame
@@ -25,8 +44,13 @@ public class UIManager_MainMenu : MonoBehaviour
         {
             ButtonReturnMenu();
         }
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B"))
+        {
+            StartCoroutine(BackToMainMenu());
+        }
     }
 
+    #region Debug Buttons
     public void ButtonAvantProces()
     {
         SceneManager.LoadScene("SBSceneAvProces");
@@ -51,9 +75,11 @@ public class UIManager_MainMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        SceneManager.LoadScene("SBLobbyScene");
+        SceneManager.LoadScene("Scene_MainMenu");
     }
+    #endregion
 
+    #region Main menu buttons
     public void OnClickPlayButton()
     {
         SceneManager.LoadScene(sceneToLoadOnClickPlayButton);
@@ -61,23 +87,66 @@ public class UIManager_MainMenu : MonoBehaviour
 
     public void OnClickDisplayInputsButton()
     {
-        AkSoundEngine.PostEvent(displayingWindowWwiseEventSoundName, this.gameObject);
+        StartCoroutine(AlternateTwoFadingsAtTheSameTime(inputsDisplayerWindow, mainMenuWindow));
     }
 
     public void OnClickOptionsButton()
     {
-        AkSoundEngine.PostEvent(displayingWindowWwiseEventSoundName, this.gameObject);
+        StartCoroutine(AlternateTwoFadingsAtTheSameTime(optionsWindow, mainMenuWindow));
     }
 
     public void OnClickCreditsButton()
     {
-        AkSoundEngine.PostEvent(displayingWindowWwiseEventSoundName, this.gameObject);
+        StartCoroutine(AlternateTwoFadingsAtTheSameTime(creditsWindow, mainMenuWindow));
     }
 
     public void OnClickQuitButton()
     {
         Debug.Log("Quitte le jeu");
         Application.Quit();
+    }
+    #endregion
+    private void HideAWindow(CanvasGroup windowCanvas)
+    {
+        Debug.Log("Trying to reach HideAWindow Function...");
+        StartCoroutine(FadeCanvasGroup(windowCanvas, windowCanvas.alpha, 0, lerpTime));
+    }
+
+    private void DisplayAWindow(CanvasGroup windowCanvas)
+    {
+        Debug.Log("Trying to reach DisplayAWindow Function...");
+        StartCoroutine(FadeCanvasGroup(windowCanvas, windowCanvas.alpha, 1, lerpTime));
+    }
+
+    IEnumerator AlternateTwoFadingsAtTheSameTime(CanvasGroup windowToDisplay, CanvasGroup windowToHide)
+    {
+        Debug.Log("Access to AlternateTwoFadingsAtTheSameTime, trying to hide.....");
+        HideAWindow(windowToHide);
+
+        yield return new WaitForSeconds(transitionBetweenTwoFades);
+
+        Debug.Log("Trying to display.....");
+        DisplayAWindow(windowToDisplay);
+    }
+
+    IEnumerator BackToMainMenu()
+    {
+        if (inputsDisplayerWindow.alpha == 1)
+        {
+            HideAWindow(inputsDisplayerWindow);
+        }
+        else if (optionsWindow.alpha == 1)
+        {
+            HideAWindow(optionsWindow);
+        }
+        else if (creditsWindow.alpha == 1)
+        {
+            HideAWindow(creditsWindow);
+        }
+
+        yield return new WaitForSeconds(transitionBetweenTwoFades);
+
+        DisplayAWindow(mainMenuWindow);
     }
 
     //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.

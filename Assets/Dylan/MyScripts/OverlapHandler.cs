@@ -7,14 +7,14 @@ public class OverlapHandler : MonoBehaviour
     [SerializeField] private string erasingAMarkerWwiseEventSoundName;
     [SerializeField] private float valueToDivideBy = 2f;
 
-    CursorMovement _cursor;
+    CursorHandler _cursor;
 
     [HideInInspector]
     public RectTransform rectTransform;
 
     void Start()
     {
-        _cursor = GameObject.Find("MapCursor").GetComponent<CursorMovement>();
+        _cursor = GameObject.Find("MapCursor").GetComponent<CursorHandler>();
         rectTransform = GetComponent<RectTransform>();
     }
 
@@ -48,13 +48,15 @@ public class OverlapHandler : MonoBehaviour
     }
 
     //Summary : Permet d'effacer un marqueur (jalon de repère) à la position du curseur
-    private void EraseAMarker()
+    public void EraseAMarker()
     {
         Debug.Log("Trying to erase a marker");
 
         //Si Le RectTransform attaché au Curseur est par-dessus le RectTransform attaché à l'objet utilisant ce script alors...
         if (CheckIfTwoRectsOverlap(_cursor.GetComponent<RectTransform>(), rectTransform))
         {
+            _cursor.markersPlaced.Remove(gameObject);
+
             //Cette objet est détruit...
             Destroy(gameObject);
 

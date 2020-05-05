@@ -40,7 +40,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 7102da272752824285cc8cea843bd806
     GuidInternal: 
-    m_lastTime: -8586133726060538921
+    m_lastTime: -8586133649526758272
     List:
     - name: UI_Sounds
       guid: a60f653cd66b6b45a7b0f39ed1310d94
@@ -56,8 +56,20 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: f6d22cfe9df30d41a0fe5a80752cf912
     GuidInternal: 
-    m_lastTime: -8586133726251025917
+    m_lastTime: -8586133639695934636
     List:
+    - name: UI_ErasingAMarker
+      guid: 852e9b2f3b31724b89be6322ab4fcc2d
+      id: 95358240
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: UI_ErasingAMarker
+        ObjectType: 3
+      Path: Default Work Unit\UI_ErasingAMarker
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: UI_MouseOverButton
       guid: 36440e9ada23ce4486b880f89a0619d1
       id: 802869157
@@ -172,7 +184,11 @@ MonoBehaviour:
     List: []
   ExpandedItems:
   - /Unity_WwiseProject
+  - /Unity_WwiseProject/Auxiliary Busses
+  - /Unity_WwiseProject/Auxiliary Busses/Default Work Unit
   - /Unity_WwiseProject/Events
   - /Unity_WwiseProject/Events/Default Work Unit
+  - /Unity_WwiseProject/SoundBanks
+  - /Unity_WwiseProject/SoundBanks/Default Work Unit
   autoPopulateEnabled: 1
   CurrentPluginConfig: 
