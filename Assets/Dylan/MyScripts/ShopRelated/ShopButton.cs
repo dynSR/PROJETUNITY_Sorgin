@@ -11,7 +11,6 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     [SerializeField] private Color purchasableButtonColor = Color.white;
     [SerializeField] private Color unpurchasableButtonColor = Color.red;
 
-
     [Header("SPELL ATTACHED TO THE BUTTON - DEBUG")]
     public Spell spell;
     public bool isPurchasable = false;
