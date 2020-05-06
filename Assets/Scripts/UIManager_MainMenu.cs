@@ -2,21 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIManager_MainMenu : MonoBehaviour
 {
     [Header("NAME OF SCENES TO LOAD")]
     [SerializeField] private string sceneToLoadOnClickPlayButton;
 
+    [Header("MENU BUTTONS")]
+    [SerializeField] private GameObject mainMenuFirstButton;
+    [SerializeField] private GameObject optionsButton;
+    [SerializeField] private GameObject optionsFirstButton;
+
     [Header("FADING PARAMETERS")]
+    [SerializeField] private CanvasGroup splashScreenWindow;
     [SerializeField] private CanvasGroup mainMenuWindow;
     [SerializeField] private CanvasGroup inputsDisplayerWindow;
     [SerializeField] private CanvasGroup optionsWindow;
     [SerializeField] private CanvasGroup creditsWindow;
     [SerializeField] private float lerpTime = 0.75f;
     [SerializeField] private float transitionBetweenTwoFades = 1.25f;
-    private float transitionBetweenTwoFadesAtStart;
+
+    [Header("INPUTS LAYOUT IMAGES")]
+    [SerializeField] private Image inputsLayoutImage;
+    [SerializeField] private Sprite[] inputsLayoutImageArray;
+    public int imageToDisplayIdx = 0;
+
+    public bool splashScreenIsDisplayed = true;
+    public bool mainMenuIsDisplayed = false;
+    public bool inputsDisplayerIsDisplayed = false;
 
     public static UIManager_MainMenu s_Singleton;
     private void Awake()
@@ -34,20 +49,76 @@ public class UIManager_MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transitionBetweenTwoFadesAtStart = transitionBetweenTwoFades;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (splashScreenIsDisplayed && !mainMenuIsDisplayed && Input.anyKeyDown && (ConnectedController.s_Singleton.PS4ControllerIsConnected || ConnectedController.s_Singleton.XboxControllerIsConnected))
+        {
+            HideSplashScreenAndDisplayMainMenu();
+        }
         if (Input.GetKeyDown(KeyCode.M))
         {
             ButtonReturnMenu();
         }
-        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B"))
+        if (!mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
         {
             StartCoroutine(BackToMainMenu());
         }
+        if (mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
+        {
+            HideMainMenuAndDisplaySplashScreen();
+        }
+
+        SwitchFromInputLayoutDisplayed();
+    }
+
+    void SwitchFromInputLayoutDisplayed()
+    {
+        ////DEBUG;
+        //if (inputsLayoutImage == inputsLayoutImageArray[0])
+        //{
+        //    Debug.Log("Inputs Avant-Procès");
+        //}
+        //else if (inputsLayoutImage == inputsLayoutImageArray[0])
+        //{
+        //    Debug.Log("Inputs Avant-Procès");
+        //}
+        //else if (inputsLayoutImage == inputsLayoutImageArray[0])
+        //{
+        //    Debug.Log("Inputs Avant-Procès");
+        //}
+
+        if (inputsDisplayerIsDisplayed)
+        {
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LB"))
+            {
+                if (imageToDisplayIdx == 0)
+                {
+                    imageToDisplayIdx = inputsLayoutImageArray.Length-1;
+                }
+                else
+                {
+                    imageToDisplayIdx--;
+                }
+            }
+            else if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_R1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_RB"))
+            {
+                if (imageToDisplayIdx == inputsLayoutImageArray.Length-1)
+                {
+                    imageToDisplayIdx = 0;
+                }
+                else
+                {
+                    imageToDisplayIdx++;
+                }
+            }
+        }
+
+        inputsLayoutImage.sprite = inputsLayoutImageArray[imageToDisplayIdx];
+
     }
 
     #region Debug Buttons
@@ -88,16 +159,21 @@ public class UIManager_MainMenu : MonoBehaviour
     public void OnClickDisplayInputsButton()
     {
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(inputsDisplayerWindow, mainMenuWindow));
+        mainMenuIsDisplayed = false;
+        inputsDisplayerIsDisplayed = true;
     }
 
     public void OnClickOptionsButton()
     {
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(optionsWindow, mainMenuWindow));
+        SetEventSystemFirstSelectedGameObject(optionsFirstButton);
+        mainMenuIsDisplayed = false;
     }
 
     public void OnClickCreditsButton()
     {
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(creditsWindow, mainMenuWindow));
+        mainMenuIsDisplayed = false;
     }
 
     public void OnClickQuitButton()
@@ -106,16 +182,44 @@ public class UIManager_MainMenu : MonoBehaviour
         Application.Quit();
     }
     #endregion
+
     private void HideAWindow(CanvasGroup windowCanvas)
     {
         Debug.Log("Trying to reach HideAWindow Function...");
         StartCoroutine(FadeCanvasGroup(windowCanvas, windowCanvas.alpha, 0, lerpTime));
+        windowCanvas.blocksRaycasts = false;
+        windowCanvas.interactable = false;
     }
 
     private void DisplayAWindow(CanvasGroup windowCanvas)
     {
         Debug.Log("Trying to reach DisplayAWindow Function...");
         StartCoroutine(FadeCanvasGroup(windowCanvas, windowCanvas.alpha, 1, lerpTime));
+        windowCanvas.blocksRaycasts = true;
+        windowCanvas.interactable = true;
+    }
+
+    private void HideSplashScreenAndDisplayMainMenu()
+    {
+        EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
+        StartCoroutine(AlternateTwoFadingsAtTheSameTime(mainMenuWindow ,splashScreenWindow));
+        
+        splashScreenIsDisplayed = false;
+        mainMenuIsDisplayed = true;
+    }
+
+    private void HideMainMenuAndDisplaySplashScreen()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        StartCoroutine(AlternateTwoFadingsAtTheSameTime(splashScreenWindow, mainMenuWindow));
+        splashScreenIsDisplayed = true;
+        mainMenuIsDisplayed = false;
+    }
+
+    void SetEventSystemFirstSelectedGameObject(GameObject objToSetAsFirstGameObject)
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(objToSetAsFirstGameObject);
     }
 
     IEnumerator AlternateTwoFadingsAtTheSameTime(CanvasGroup windowToDisplay, CanvasGroup windowToHide)
@@ -134,10 +238,12 @@ public class UIManager_MainMenu : MonoBehaviour
         if (inputsDisplayerWindow.alpha == 1)
         {
             HideAWindow(inputsDisplayerWindow);
+            inputsDisplayerIsDisplayed = false;
         }
         else if (optionsWindow.alpha == 1)
         {
             HideAWindow(optionsWindow);
+            EventSystem.current.SetSelectedGameObject(optionsButton);
         }
         else if (creditsWindow.alpha == 1)
         {
@@ -146,7 +252,9 @@ public class UIManager_MainMenu : MonoBehaviour
 
         yield return new WaitForSeconds(transitionBetweenTwoFades);
 
+        //SetEventSystemFirstSelectedGameObject(mainMenuFirstButton);
         DisplayAWindow(mainMenuWindow);
+        mainMenuIsDisplayed = true;
     }
 
     //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.

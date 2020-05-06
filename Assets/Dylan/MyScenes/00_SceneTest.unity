@@ -786,10 +786,10 @@ RectTransform:
   m_Father: {fileID: 1170194416}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 670, y: -24.653397}
+  m_SizeDelta: {x: 275, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &129011437
 MonoBehaviour:
@@ -988,6 +988,7 @@ GameObject:
   - component: {fileID: 179690193}
   - component: {fileID: 179690190}
   - component: {fileID: 179690195}
+  - component: {fileID: 179690196}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_00
   m_TagString: Untagged
@@ -1010,10 +1011,10 @@ RectTransform:
   m_Father: {fileID: 879300268}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 278.425, y: -133.40002}
-  m_SizeDelta: {x: 475, y: 95}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &179690190
 MonoBehaviour:
@@ -1150,6 +1151,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionWwiseEventSoundName: UI_MouseOverButton_01
   submitWwiseEventSoundName: UI_Validation02
+  isSelected: 1
+--- !u!114 &179690196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179690188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &207140519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,10 +1197,10 @@ RectTransform:
   m_Father: {fileID: 1170194416}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 380, y: -24.653397}
+  m_SizeDelta: {x: 275, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &207140521
 MonoBehaviour:
@@ -1332,10 +1346,10 @@ RectTransform:
   m_Father: {fileID: 207140520}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 51.307503, y: -50}
+  m_SizeDelta: {x: 82.615005, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215419225
 MonoBehaviour:
@@ -1618,6 +1632,7 @@ GameObject:
   - component: {fileID: 260656298}
   - component: {fileID: 260656295}
   - component: {fileID: 260656300}
+  - component: {fileID: 260656301}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_02
   m_TagString: Untagged
@@ -1640,10 +1655,10 @@ RectTransform:
   m_Father: {fileID: 879300268}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 278.425, y: -393.40002}
-  m_SizeDelta: {x: 475, y: 95}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &260656295
 MonoBehaviour:
@@ -1781,6 +1796,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionWwiseEventSoundName: UI_MouseOverButton_01
   submitWwiseEventSoundName: UI_Validation02
+  isSelected: 1
+--- !u!114 &260656301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260656293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &276790158
 GameObject:
   m_ObjectHideFlags: 0
@@ -2473,10 +2501,10 @@ RectTransform:
   m_Father: {fileID: 129011436}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 53.317505, y: -50}
+  m_SizeDelta: {x: 86.63501, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &334339655
 MonoBehaviour:
@@ -2590,10 +2618,10 @@ RectTransform:
   m_Father: {fileID: 1179699478}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 166.70999, y: -50}
+  m_SizeDelta: {x: 196.58, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &406818769
 MonoBehaviour:
@@ -2730,7 +2758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &429429960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3058,7 +3086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &559818321
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3287,6 +3315,7 @@ GameObject:
   - component: {fileID: 568552393}
   - component: {fileID: 568552394}
   - component: {fileID: 568552397}
+  - component: {fileID: 568552398}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_05
   m_TagString: Untagged
@@ -3309,10 +3338,10 @@ RectTransform:
   m_Father: {fileID: 879300268}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 278.425, y: -783.4}
-  m_SizeDelta: {x: 475, y: 95}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &568552392
 MonoBehaviour:
@@ -3450,6 +3479,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionWwiseEventSoundName: UI_MouseOverButton_01
   submitWwiseEventSoundName: UI_Validation02
+  isSelected: 1
+--- !u!114 &568552398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568552390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &629913512
 GameObject:
   m_ObjectHideFlags: 0
@@ -4202,10 +4244,10 @@ RectTransform:
   m_Father: {fileID: 1998320329}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 37.612495, y: -50}
+  m_SizeDelta: {x: 55.224995, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &802679936
 MonoBehaviour:
@@ -4256,7 +4298,6 @@ GameObject:
   - component: {fileID: 811743260}
   - component: {fileID: 811743259}
   - component: {fileID: 811743258}
-  - component: {fileID: 811743263}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -4373,20 +4414,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &811743263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 811743257}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e603a924a0f32e34fac4ed525cbc939e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToLoadOnClickPlayButton: 
-  displayingWindowWwiseEventSoundName: 
 --- !u!1 &842425643
 GameObject:
   m_ObjectHideFlags: 0
@@ -4573,8 +4600,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: OUI
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 33a5376243bdbc54dac675e2d3b23d4d, type: 2}
+  m_sharedMaterial: {fileID: -9042483601604927454, guid: 33a5376243bdbc54dac675e2d3b23d4d,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4804,6 +4832,7 @@ GameObject:
   - component: {fileID: 895569657}
   - component: {fileID: 895569656}
   - component: {fileID: 895569654}
+  - component: {fileID: 895569658}
   m_Layer: 5
   m_Name: YesButton
   m_TagString: Untagged
@@ -4911,6 +4940,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionWwiseEventSoundName: 
   submitWwiseEventSoundName: UI_Validation01
+  isSelected: 1
 --- !u!222 &895569655
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4946,6 +4976,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedButton: {fileID: 0}
+--- !u!114 &895569658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895569651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &937489550
 GameObject:
   m_ObjectHideFlags: 0
@@ -5145,6 +5187,7 @@ GameObject:
   - component: {fileID: 994078403}
   - component: {fileID: 994078404}
   - component: {fileID: 994078407}
+  - component: {fileID: 994078408}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_06
   m_TagString: Untagged
@@ -5167,10 +5210,10 @@ RectTransform:
   m_Father: {fileID: 879300268}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 278.425, y: -913.4}
-  m_SizeDelta: {x: 475, y: 95}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &994078402
 MonoBehaviour:
@@ -5308,6 +5351,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionWwiseEventSoundName: UI_MouseOverButton_01
   submitWwiseEventSoundName: UI_Validation02
+  isSelected: 1
+--- !u!114 &994078408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994078400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &999586325
 GameObject:
   m_ObjectHideFlags: 0
@@ -5430,6 +5486,7 @@ GameObject:
   - component: {fileID: 1097288955}
   - component: {fileID: 1097288953}
   - component: {fileID: 1097288956}
+  - component: {fileID: 1097288954}
   m_Layer: 5
   m_Name: NoButton
   m_TagString: Untagged
@@ -5512,6 +5569,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1097288954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097288951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &1097288955
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5629,10 +5698,10 @@ RectTransform:
   m_Father: {fileID: 1179699478}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 39.21, y: -50}
+  m_SizeDelta: {x: 58.420002, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1170093816
 MonoBehaviour:
@@ -5841,10 +5910,10 @@ RectTransform:
   m_Father: {fileID: 1170194416}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1540, y: -24.653397}
+  m_SizeDelta: {x: 275, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1179699479
 MonoBehaviour:
@@ -6129,6 +6198,7 @@ GameObject:
   - component: {fileID: 1345615475}
   - component: {fileID: 1345615472}
   - component: {fileID: 1345615477}
+  - component: {fileID: 1345615478}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_03
   m_TagString: Untagged
@@ -6151,10 +6221,10 @@ RectTransform:
   m_Father: {fileID: 879300268}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 278.425, y: -523.4}
-  m_SizeDelta: {x: 475, y: 95}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1345615472
 MonoBehaviour:
@@ -6294,6 +6364,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionWwiseEventSoundName: UI_MouseOverButton_01
   submitWwiseEventSoundName: UI_Validation02
+  isSelected: 1
+--- !u!114 &1345615478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345615470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1357363098
 GameObject:
   m_ObjectHideFlags: 0
@@ -6309,6 +6392,7 @@ GameObject:
   - component: {fileID: 1357363103}
   - component: {fileID: 1357363100}
   - component: {fileID: 1357363105}
+  - component: {fileID: 1357363106}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_01
   m_TagString: Untagged
@@ -6331,10 +6415,10 @@ RectTransform:
   m_Father: {fileID: 879300268}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 278.425, y: -263.40002}
-  m_SizeDelta: {x: 475, y: 95}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1357363100
 MonoBehaviour:
@@ -6471,6 +6555,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionWwiseEventSoundName: UI_MouseOverButton_01
   submitWwiseEventSoundName: UI_Validation02
+  isSelected: 1
+--- !u!114 &1357363106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357363098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1370842119
 GameObject:
   m_ObjectHideFlags: 0
@@ -6815,10 +6912,10 @@ RectTransform:
   m_Father: {fileID: 1862957826}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 40.1, y: -50}
+  m_SizeDelta: {x: 60.2, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1513914625
 MonoBehaviour:
@@ -6987,8 +7084,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: NON
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 33a5376243bdbc54dac675e2d3b23d4d, type: 2}
+  m_sharedMaterial: {fileID: -9042483601604927454, guid: 33a5376243bdbc54dac675e2d3b23d4d,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7433,10 +7531,10 @@ RectTransform:
   m_Father: {fileID: 1998320329}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 165.11249, y: -50}
+  m_SizeDelta: {x: 199.775, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1713916336
 MonoBehaviour:
@@ -7572,6 +7670,7 @@ GameObject:
   - component: {fileID: 1735808509}
   - component: {fileID: 1735808510}
   - component: {fileID: 1735808513}
+  - component: {fileID: 1735808514}
   m_Layer: 5
   m_Name: AvalaibleSpellButton_04
   m_TagString: Untagged
@@ -7594,10 +7693,10 @@ RectTransform:
   m_Father: {fileID: 879300268}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 278.425, y: -653.4}
-  m_SizeDelta: {x: 475, y: 95}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1735808508
 MonoBehaviour:
@@ -7734,6 +7833,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectionWwiseEventSoundName: UI_MouseOverButton_01
   submitWwiseEventSoundName: UI_Validation02
+  isSelected: 1
+--- !u!114 &1735808514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735808506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1797261776
 GameObject:
   m_ObjectHideFlags: 0
@@ -8061,10 +8173,10 @@ RectTransform:
   m_Father: {fileID: 129011436}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 180.8175, y: -50}
+  m_SizeDelta: {x: 168.36499, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1848064294
 MonoBehaviour:
@@ -8387,10 +8499,10 @@ RectTransform:
   m_Father: {fileID: 1170194416}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 960, y: -24.653397}
+  m_SizeDelta: {x: 275, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1862957827
 MonoBehaviour:
@@ -8449,10 +8561,10 @@ RectTransform:
   m_Father: {fileID: 207140520}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 174.80751, y: -50}
+  m_SizeDelta: {x: 180.38501, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1952604881
 MonoBehaviour:
@@ -8605,10 +8717,10 @@ RectTransform:
   m_Father: {fileID: 1862957826}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 167.6, y: -50}
+  m_SizeDelta: {x: 194.8, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1961152620
 MonoBehaviour:
@@ -8918,10 +9030,10 @@ RectTransform:
   m_Father: {fileID: 1170194416}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1250, y: -24.653397}
+  m_SizeDelta: {x: 275, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1998320330
 MonoBehaviour:

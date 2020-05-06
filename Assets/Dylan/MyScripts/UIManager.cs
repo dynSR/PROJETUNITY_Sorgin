@@ -88,7 +88,6 @@ public class UIManager : MonoBehaviour
     //Summary : Permet de reset et de déterminer le premier objet sélectionné dans l'Event System (obligatoire à cause de l'utilisation de la manette)
     public void ResetEventSystemFirstSelectedGameObjet(GameObject obj)
     {
-        
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(obj);
     }

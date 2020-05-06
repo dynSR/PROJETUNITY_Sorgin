@@ -22,7 +22,11 @@ public class ConnectedController : MonoBehaviour
         {
             s_Singleton = this;
         }
-        CheckWhatTypeOfControllerIsConnected();
+    }
+
+    private void Start()
+    {
+        InvokeRepeating("CheckWhatTypeOfControllerIsConnected", 0, 2f);
     }
 
     void CheckWhatTypeOfControllerIsConnected()
@@ -37,12 +41,17 @@ public class ConnectedController : MonoBehaviour
                 Xbox_One_Controller = 0;
                 PS4ControllerIsConnected = true;
             }
-            if (names[x].Length == 33)
+            else if(names[x].Length == 33)
             {
                 print("XBOX ONE CONTROLLER IS CONNECTED");
                 PS4_Controller = 0;
                 Xbox_One_Controller = 1;
                 XboxControllerIsConnected = true;
+            }
+            else
+            {
+                Debug.LogError("NO CONTROLLER CONNECTED");
+                Time.timeScale = 0;
             }
         }
     }
