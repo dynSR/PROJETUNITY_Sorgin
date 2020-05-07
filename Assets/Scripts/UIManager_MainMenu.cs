@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class UIManager_MainMenu : MonoBehaviour
 {
@@ -24,14 +25,15 @@ public class UIManager_MainMenu : MonoBehaviour
     [SerializeField] private float lerpTime = 0.75f;
     [SerializeField] private float transitionBetweenTwoFades = 1.25f;
 
-    [Header("INPUTS LAYOUT IMAGES")]
+    [Header("INPUTS LAYOUT PARAMETERS")]
     [SerializeField] private Image inputsLayoutImage;
     [SerializeField] private Sprite[] inputsLayoutImageArray;
+    [SerializeField] private TextMeshProUGUI inputLayoutDisplayedIdx;
     public int imageToDisplayIdx = 0;
 
-    public bool splashScreenIsDisplayed = true;
-    public bool mainMenuIsDisplayed = false;
-    public bool inputsDisplayerIsDisplayed = false;
+    private bool splashScreenIsDisplayed = true;
+    private bool mainMenuIsDisplayed = false;
+    private bool inputsDisplayerIsDisplayed = false;
 
     public static UIManager_MainMenu s_Singleton;
     private void Awake()
@@ -77,19 +79,22 @@ public class UIManager_MainMenu : MonoBehaviour
 
     void SwitchFromInputLayoutDisplayed()
     {
-        ////DEBUG;
-        //if (inputsLayoutImage == inputsLayoutImageArray[0])
-        //{
-        //    Debug.Log("Inputs Avant-Procès");
-        //}
-        //else if (inputsLayoutImage == inputsLayoutImageArray[0])
-        //{
-        //    Debug.Log("Inputs Avant-Procès");
-        //}
-        //else if (inputsLayoutImage == inputsLayoutImageArray[0])
-        //{
-        //    Debug.Log("Inputs Avant-Procès");
-        //}
+        //DEBUG;
+        if (inputsLayoutImage.sprite == inputsLayoutImageArray[0])
+        {
+            Debug.Log("Inputs Avant-Procès");
+            inputLayoutDisplayedIdx.text = "1 / 3";
+        }
+        else if (inputsLayoutImage.sprite == inputsLayoutImageArray[1])
+        {
+            Debug.Log("Inputs Procès");
+            inputLayoutDisplayedIdx.text = "2 / 3";
+        }
+        else if (inputsLayoutImage.sprite == inputsLayoutImageArray[2])
+        {
+            Debug.Log("Inputs Exfiltration");
+            inputLayoutDisplayedIdx.text = "3 / 3";
+        }
 
         if (inputsDisplayerIsDisplayed)
         {
