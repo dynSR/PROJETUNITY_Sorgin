@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ProofManager : MonoBehaviour
 {
@@ -33,29 +35,33 @@ public class ProofManager : MonoBehaviour
         activeDocProof = 0;
         activeObjProof = 0;
         objectMode = false;
+        UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("PS4_L1"))
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("PS4_L1") || Input.GetButtonDown("XBOX_LB"))
         {
             int myUpdateDir = -1;
             PreviousProof(myUpdateDir);
         }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("PS4_R1"))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("PS4_R1") || Input.GetButtonDown("XBOX_RB"))
         {
             int myUpdateDir = 1;
             NextProof(myUpdateDir);
         }
 
-        if(Input.GetKeyDown(KeyCode.T) || Input.GetAxis("PS4_DPadHorizontal") > 0)
+        if(Input.GetKeyDown(KeyCode.T) || Input.GetAxis("PS4_DPadHorizontal") > 0 || Input.GetAxis("XBOX_DPadHorizontal") > 0)
         {
             SwitchMode();
         }
 
-        RotateActiveObj();
+        if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            RotateActiveObj();
+        }
     }
 
 
@@ -69,27 +75,29 @@ public class ProofManager : MonoBehaviour
             {
                 activeObjProof += 1;
                 ProofObjDisplayUpdate(activeObjProof, updateDirection);
-                return;
             }
             else
             {
                 activeObjProof = 0;
                 ProofObjDisplayUpdate(activeObjProof, updateDirection);
             }
+
+            UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
         }
         else
         {
             if (activeDocProof != proofDocList.Length - 1)
             {
                 activeDocProof += 1;
-                UIManagerAvantProces.singleton.ProofDocDisplayUpdate(activeDocProof, updateDirection);
-                return;
+                ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
             else
             {
                 activeDocProof = 0;
-                UIManagerAvantProces.singleton.ProofDocDisplayUpdate(activeDocProof, updateDirection);
+                ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
+
+            UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
         }
     }
 
@@ -116,38 +124,62 @@ public class ProofManager : MonoBehaviour
             if (activeDocProof != 0)
             {
                 activeDocProof -= 1;
-                UIManagerAvantProces.singleton.ProofDocDisplayUpdate(activeDocProof, updateDirection);
+                ProofDocDisplayUpdate(activeDocProof, updateDirection);
                 return;
             }
             else
             {
                 activeDocProof = proofDocList.Length - 1;
-                UIManagerAvantProces.singleton.ProofDocDisplayUpdate(activeDocProof, updateDirection);
+                ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
+        }
+    }
+
+    //affichage des docs
+    //newActiveProofIndex est le nouveau doc actif
+    //updateDirection 1 = bouton R1 (suivant), -1 = bouton L1 (precedent)
+    private void ProofDocDisplayUpdate(int newActiveProofIndex, int newUpdateDirection)
+    {
+        proofDocList[newActiveProofIndex].SetActive(true);
+        Debug.Log("Active : " + newActiveProofIndex);
+
+        if (newActiveProofIndex == 0 && newUpdateDirection == 1)
+        {
+            proofDocList[proofDocList.Length - 1].SetActive(false);
+            return;
+        }
+        else if (newActiveProofIndex == proofDocList.Length - 1 && newUpdateDirection == -1)
+        {
+            proofDocList[0].SetActive(false);
+            return;
+        }
+        else
+        {
+            proofDocList[newActiveProofIndex - newUpdateDirection].SetActive(false);
         }
     }
 
     //affichage des objets
     //newActiveProofIndex est le nouvel objet actif
     //updateDirection 1 = bouton R1 (suivant), -1 = bouton L1 (precedent)
-    private void ProofObjDisplayUpdate(int newActiveProofIndex, int updateDirection)
+    private void ProofObjDisplayUpdate(int newActiveProofIndex, int newUpdateDirection)
     {
         proofObjsList[newActiveProofIndex].SetActive(true);
         Debug.Log("Active : " + newActiveProofIndex);
 
-        if (newActiveProofIndex == 0 && updateDirection == 1)
+        if (newActiveProofIndex == 0 && newUpdateDirection == 1)
         {
             proofObjsList[proofObjsList.Length - 1].SetActive(false);
             return;
         }
-        else if (newActiveProofIndex == proofObjsList.Length - 1 && updateDirection == -1)
+        else if (newActiveProofIndex == proofObjsList.Length - 1 && newUpdateDirection == -1)
         {
             proofObjsList[0].SetActive(false);
             return;
         }
         else
         {
-            proofObjsList[newActiveProofIndex - updateDirection].SetActive(false);
+            proofObjsList[newActiveProofIndex - newUpdateDirection].SetActive(false);
         }
     }
 
@@ -159,15 +191,18 @@ public class ProofManager : MonoBehaviour
         {
             proofDocList[activeDocProof].SetActive(false);
             proofObjsList[activeObjProof].SetActive(true);
+            UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
         }
         else
         {
             proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
             proofObjsList[activeObjProof].SetActive(false);
             proofDocList[activeDocProof].SetActive(true);
+            UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
         }
     }
 
+    //gère la rotation de l'objet
     private void RotateActiveObj()
     {
         if (objectMode)
