@@ -79,23 +79,6 @@ public class UIManager_MainMenu : MonoBehaviour
 
     void SwitchFromInputLayoutDisplayed()
     {
-        //DEBUG;
-        if (inputsLayoutImage.sprite == inputsLayoutImageArray[0])
-        {
-            Debug.Log("Inputs Avant-Procès");
-            inputLayoutDisplayedIdx.text = "1 / 3";
-        }
-        else if (inputsLayoutImage.sprite == inputsLayoutImageArray[1])
-        {
-            Debug.Log("Inputs Procès");
-            inputLayoutDisplayedIdx.text = "2 / 3";
-        }
-        else if (inputsLayoutImage.sprite == inputsLayoutImageArray[2])
-        {
-            Debug.Log("Inputs Exfiltration");
-            inputLayoutDisplayedIdx.text = "3 / 3";
-        }
-
         if (inputsDisplayerIsDisplayed)
         {
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LB"))
@@ -119,6 +102,22 @@ public class UIManager_MainMenu : MonoBehaviour
                 {
                     imageToDisplayIdx++;
                 }
+            }
+
+            if (inputsLayoutImage.sprite == inputsLayoutImageArray[0])
+            {
+                Debug.Log("Inputs Avant-Procès");
+                inputLayoutDisplayedIdx.text = "1 / 3";
+            }
+            else if (inputsLayoutImage.sprite == inputsLayoutImageArray[1])
+            {
+                Debug.Log("Inputs Procès");
+                inputLayoutDisplayedIdx.text = "2 / 3";
+            }
+            else if (inputsLayoutImage.sprite == inputsLayoutImageArray[2])
+            {
+                Debug.Log("Inputs Exfiltration");
+                inputLayoutDisplayedIdx.text = "3 / 3";
             }
         }
 

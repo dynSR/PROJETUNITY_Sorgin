@@ -726,13 +726,29 @@ InputManager:
     axis: 6
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Validation
+    m_Name: Validation_PS4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: return
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: joystick button 1
+    gravity: 10
+    dead: 0.1
+    sensitivity: 10
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: Validation_XBOX
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: joystick button 0
     gravity: 10
     dead: 0.1
     sensitivity: 10
