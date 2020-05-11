@@ -118,7 +118,6 @@ public class ProofManager : MonoBehaviour
             {
                 activeObjProof -= 1;
                 ProofObjDisplayUpdate(activeObjProof, updateDirection);
-                return;
             }
             else
             {
@@ -126,7 +125,7 @@ public class ProofManager : MonoBehaviour
                 ProofObjDisplayUpdate(activeObjProof, updateDirection);
             }
 
-            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof, proofObjsList.Length);
+            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
         }
         else
         {
@@ -134,7 +133,6 @@ public class ProofManager : MonoBehaviour
             {
                 activeDocProof -= 1;
                 ProofDocDisplayUpdate(activeDocProof, updateDirection);
-                return;
             }
             else
             {
@@ -142,7 +140,7 @@ public class ProofManager : MonoBehaviour
                 ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
 
-            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof, proofObjsList.Length);
+            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
         }
     }
 
