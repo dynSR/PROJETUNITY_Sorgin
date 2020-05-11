@@ -17,7 +17,7 @@ TagManager:
   - 
   - 
   - Wall
-  - 
+  - ParticleEffects
   - 
   - 
   - 
@@ -43,4 +43,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 91152275
+    locked: 0
+  - name: Midground
+    uniqueID: 1670086139
+    locked: 0
+  - name: Foreground
+    uniqueID: 671617803
+    locked: 0
+  - name: UI
+    uniqueID: 2917889271
     locked: 0

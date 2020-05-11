@@ -31,6 +31,12 @@ public class UIManager_MainMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI inputLayoutDisplayedIdx;
     public int imageToDisplayIdx = 0;
 
+    [Header("SUB-MENUS INPUTS LANDMARK")]
+    [SerializeField] private GameObject mainMenuInputsLandmark;
+    [SerializeField] private GameObject inputsDisplayerInputsLandmark;
+    [SerializeField] private GameObject optionsInputsLandmark;
+    [SerializeField] private GameObject creditsInputsLandmark;
+
     [Header("DEBUG DISPLAYING")]
     public bool splashScreenIsDisplayed = true;
     public bool mainMenuIsDisplayed = false;
@@ -70,7 +76,7 @@ public class UIManager_MainMenu : MonoBehaviour
         }
         if (!mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
         {
-            StartCoroutine(BackToMainMenu());
+            StartCoroutine(BackToMainMenuFromAnySubMenu());
         }
 
         //if (!splashScreenIsDisplayed && mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
@@ -169,6 +175,7 @@ public class UIManager_MainMenu : MonoBehaviour
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(inputsDisplayerWindow, mainMenuWindow));
         mainMenuIsDisplayed = false;
         inputsDisplayerIsDisplayed = true;
+        HideASubMenuAndDisplayAnotherOne(mainMenuInputsLandmark, inputsDisplayerInputsLandmark);
     }
 
     public void OnClickOptionsButton()
@@ -177,6 +184,7 @@ public class UIManager_MainMenu : MonoBehaviour
         SetEventSystemFirstSelectedGameObject(optionsFirstButton);
         mainMenuIsDisplayed = false;
         optionsAreDisplayed = true;
+        HideASubMenuAndDisplayAnotherOne(mainMenuInputsLandmark, optionsInputsLandmark);
     }
 
     public void OnClickCreditsButton()
@@ -184,6 +192,7 @@ public class UIManager_MainMenu : MonoBehaviour
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(creditsWindow, mainMenuWindow));
         mainMenuIsDisplayed = false;
         creditsAreDisplayed = true;
+        HideASubMenuAndDisplayAnotherOne(mainMenuInputsLandmark, creditsInputsLandmark);
     }
 
     public void OnClickQuitButton()
@@ -211,11 +220,14 @@ public class UIManager_MainMenu : MonoBehaviour
 
     private void HideSplashScreenAndDisplayMainMenu()
     {
+        Debug.Log("Hiding SplashScreen");
         EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(mainMenuWindow ,splashScreenWindow));
         
         splashScreenIsDisplayed = false;
         mainMenuIsDisplayed = true;
+
+        HideASubMenuAndDisplayAnotherOne(null, mainMenuInputsLandmark);
     }
 
     //private void HideMainMenuAndDisplaySplashScreen()
@@ -232,6 +244,15 @@ public class UIManager_MainMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(objToSetAsFirstGameObject);
     }
 
+    void HideASubMenuAndDisplayAnotherOne(GameObject subMenuToHide, GameObject subMenuToDisplay)
+    {
+        if(subMenuToHide != null)
+            subMenuToHide.SetActive(false);
+
+        if(subMenuToDisplay != null)
+            subMenuToDisplay.SetActive(true);
+    }
+
     IEnumerator AlternateTwoFadingsAtTheSameTime(CanvasGroup windowToDisplay, CanvasGroup windowToHide)
     {
         Debug.Log("Access to AlternateTwoFadingsAtTheSameTime, trying to hide.....");
@@ -243,7 +264,7 @@ public class UIManager_MainMenu : MonoBehaviour
         DisplayAWindow(windowToDisplay);
     }
 
-    IEnumerator BackToMainMenu()
+    IEnumerator BackToMainMenuFromAnySubMenu()
     {
         bool canDisplayMainMenu = false;
 
@@ -252,7 +273,7 @@ public class UIManager_MainMenu : MonoBehaviour
             HideAWindow(inputsDisplayerWindow);
             inputsDisplayerIsDisplayed = false;
             canDisplayMainMenu = true;
-            
+            HideASubMenuAndDisplayAnotherOne(inputsDisplayerInputsLandmark, mainMenuInputsLandmark);
         }
         else if (optionsWindow.alpha == 1)
         {
@@ -260,12 +281,14 @@ public class UIManager_MainMenu : MonoBehaviour
             optionsAreDisplayed = false;
             EventSystem.current.SetSelectedGameObject(optionsButton);
             canDisplayMainMenu = true;
+            HideASubMenuAndDisplayAnotherOne(optionsInputsLandmark, mainMenuInputsLandmark);
         }
         else if (creditsWindow.alpha == 1)
         {
             HideAWindow(creditsWindow);
             creditsAreDisplayed = false;
             canDisplayMainMenu = true;
+            HideASubMenuAndDisplayAnotherOne(creditsInputsLandmark, mainMenuInputsLandmark);
         }
 
         yield return new WaitForSeconds(transitionBetweenTwoFades);
