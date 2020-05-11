@@ -31,9 +31,12 @@ public class UIManager_MainMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI inputLayoutDisplayedIdx;
     public int imageToDisplayIdx = 0;
 
-    private bool splashScreenIsDisplayed = true;
-    private bool mainMenuIsDisplayed = false;
-    private bool inputsDisplayerIsDisplayed = false;
+    [Header("DEBUG DISPLAYING")]
+    public bool splashScreenIsDisplayed = true;
+    public bool mainMenuIsDisplayed = false;
+    public bool inputsDisplayerIsDisplayed = false;
+    public bool optionsAreDisplayed = false;
+    public bool creditsAreDisplayed = false;
 
     public static UIManager_MainMenu s_Singleton;
     private void Awake()
@@ -57,7 +60,7 @@ public class UIManager_MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (splashScreenIsDisplayed && !mainMenuIsDisplayed && Input.anyKeyDown && (ConnectedController.s_Singleton.PS4ControllerIsConnected || ConnectedController.s_Singleton.XboxControllerIsConnected))
+        if (splashScreenIsDisplayed && !mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
         {
             HideSplashScreenAndDisplayMainMenu();
         }
@@ -69,15 +72,16 @@ public class UIManager_MainMenu : MonoBehaviour
         {
             StartCoroutine(BackToMainMenu());
         }
-        if (mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
-        {
-            HideMainMenuAndDisplaySplashScreen();
-        }
 
-        SwitchFromInputLayoutDisplayed();
+        //if (!splashScreenIsDisplayed && mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
+        //{
+        //    HideMainMenuAndDisplaySplashScreen();
+        //}
+
+        SwitchInputLayoutDisplayed();
     }
 
-    void SwitchFromInputLayoutDisplayed()
+    void SwitchInputLayoutDisplayed()
     {
         if (inputsDisplayerIsDisplayed)
         {
@@ -172,12 +176,14 @@ public class UIManager_MainMenu : MonoBehaviour
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(optionsWindow, mainMenuWindow));
         SetEventSystemFirstSelectedGameObject(optionsFirstButton);
         mainMenuIsDisplayed = false;
+        optionsAreDisplayed = true;
     }
 
     public void OnClickCreditsButton()
     {
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(creditsWindow, mainMenuWindow));
         mainMenuIsDisplayed = false;
+        creditsAreDisplayed = true;
     }
 
     public void OnClickQuitButton()
@@ -212,13 +218,13 @@ public class UIManager_MainMenu : MonoBehaviour
         mainMenuIsDisplayed = true;
     }
 
-    private void HideMainMenuAndDisplaySplashScreen()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        StartCoroutine(AlternateTwoFadingsAtTheSameTime(splashScreenWindow, mainMenuWindow));
-        splashScreenIsDisplayed = true;
-        mainMenuIsDisplayed = false;
-    }
+    //private void HideMainMenuAndDisplaySplashScreen()
+    //{
+    //    EventSystem.current.SetSelectedGameObject(null);
+    //    StartCoroutine(AlternateTwoFadingsAtTheSameTime(splashScreenWindow, mainMenuWindow));
+    //    splashScreenIsDisplayed = true;
+    //    mainMenuIsDisplayed = false;
+    //}
 
     void SetEventSystemFirstSelectedGameObject(GameObject objToSetAsFirstGameObject)
     {
@@ -239,26 +245,37 @@ public class UIManager_MainMenu : MonoBehaviour
 
     IEnumerator BackToMainMenu()
     {
+        bool canDisplayMainMenu = false;
+
         if (inputsDisplayerWindow.alpha == 1)
         {
             HideAWindow(inputsDisplayerWindow);
             inputsDisplayerIsDisplayed = false;
+            canDisplayMainMenu = true;
+            
         }
         else if (optionsWindow.alpha == 1)
         {
             HideAWindow(optionsWindow);
+            optionsAreDisplayed = false;
             EventSystem.current.SetSelectedGameObject(optionsButton);
+            canDisplayMainMenu = true;
         }
         else if (creditsWindow.alpha == 1)
         {
             HideAWindow(creditsWindow);
+            creditsAreDisplayed = false;
+            canDisplayMainMenu = true;
         }
 
         yield return new WaitForSeconds(transitionBetweenTwoFades);
 
+        if(canDisplayMainMenu)
+        {
+            DisplayAWindow(mainMenuWindow);
+            mainMenuIsDisplayed = true;
+        }
         //SetEventSystemFirstSelectedGameObject(mainMenuFirstButton);
-        DisplayAWindow(mainMenuWindow);
-        mainMenuIsDisplayed = true;
     }
 
     //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.

@@ -18,6 +18,10 @@ public class ProofManager : MonoBehaviour
 
     public float rotationSpeed;
 
+    bool canSwitchMode = true;
+    private bool dpadXIsPressed = false;
+    private float dpadX;
+
     private void Awake()
     {
         if (singleton)
@@ -35,27 +39,30 @@ public class ProofManager : MonoBehaviour
         activeDocProof = 0;
         activeObjProof = 0;
         objectMode = false;
-        UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+        UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetButtonDown("PS4_L1") || Input.GetButtonDown("XBOX_LB"))
+        CheckDpadXValue();
+
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LB"))
         {
             int myUpdateDir = -1;
             PreviousProof(myUpdateDir);
         }
 
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("PS4_R1") || Input.GetButtonDown("XBOX_RB"))
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_R1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_RB"))
         {
             int myUpdateDir = 1;
             NextProof(myUpdateDir);
         }
 
-        if(Input.GetKeyDown(KeyCode.T) || Input.GetAxis("PS4_DPadHorizontal") > 0 || Input.GetAxis("XBOX_DPadHorizontal") > 0)
+        if(canSwitchMode && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_DPadHorizontal") >= 0.75f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_DPadHorizontal") >= 0.75f))
         {
             SwitchMode();
+            canSwitchMode = false;
         }
 
         if(Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
@@ -82,7 +89,7 @@ public class ProofManager : MonoBehaviour
                 ProofObjDisplayUpdate(activeObjProof, updateDirection);
             }
 
-            UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
+            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
         }
         else
         {
@@ -97,7 +104,7 @@ public class ProofManager : MonoBehaviour
                 ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
 
-            UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
         }
     }
 
@@ -118,6 +125,8 @@ public class ProofManager : MonoBehaviour
                 activeObjProof = proofObjsList.Length - 1;
                 ProofObjDisplayUpdate(activeObjProof, updateDirection);
             }
+
+            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof, proofObjsList.Length);
         }
         else
         {
@@ -132,6 +141,8 @@ public class ProofManager : MonoBehaviour
                 activeDocProof = proofDocList.Length - 1;
                 ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
+
+            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof, proofObjsList.Length);
         }
     }
 
@@ -191,14 +202,39 @@ public class ProofManager : MonoBehaviour
         {
             proofDocList[activeDocProof].SetActive(false);
             proofObjsList[activeObjProof].SetActive(true);
-            UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
+            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
         }
         else
         {
             proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
             proofObjsList[activeObjProof].SetActive(false);
             proofDocList[activeDocProof].SetActive(true);
-            UIManagerGlobalAvProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+        }
+    }
+
+    //Summary : Permet de vérifier si la flèche du haut est pressée par le joueur...
+    void CheckDpadXValue()
+    {
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
+            dpadX = Input.GetAxis("PS4_DPadHorizontal");
+
+        else if (ConnectedController.s_Singleton.XboxControllerIsConnected)
+            dpadX = Input.GetAxis("XBOX_DPadHorizontal");
+
+        //Si la valeur de cette input dépasse une certaine valeur alors...
+        if (dpadX >= 0.75f)
+        {
+            //La touche est pressée.
+            dpadXIsPressed = true;
+        }
+        else
+        {
+            //Sinon, elle n'est pas pressée par le joueur...
+            dpadXIsPressed = false;
+
+            //Alors lejoueur peut de nouveau appuyer sur cette input pour moddifier l'état d'affichage de la carte.
+            canSwitchMode = true;
         }
     }
 

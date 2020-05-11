@@ -27,7 +27,7 @@ public class ConnectedController : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("CheckWhatTypeOfControllerIsConnected", 0, 2f);
+        InvokeRepeating("CheckWhatTypeOfControllerIsConnected", 1, 2f);
     }
 
     void CheckWhatTypeOfControllerIsConnected()
@@ -41,12 +41,14 @@ public class ConnectedController : MonoBehaviour
                 print("PS4 CONTROLLER IS CONNECTED");
                 PS4ControllerIsConnected = true;
                 standaloneInputModule.submitButton = PS4ValidationButtonName;
+                return;
             }
             else if(names[x].Length == 33)
             {
                 print("XBOX ONE CONTROLLER IS CONNECTED");
                 XboxControllerIsConnected = true;
                 standaloneInputModule.submitButton = XBOXValidationButtonName;
+                return;
             }
             else
             {

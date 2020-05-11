@@ -17,8 +17,6 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     [SerializeField] private TextMeshProUGUI spellNameText;
 
     [Header("VALIDATION POPUP PARAMETERS")]
-    [SerializeField] private CanvasGroup validationPopupWindow;
-    [SerializeField] private GameObject validationPopupButtonLayout;
     [SerializeField] private GameObject validationPopupPurchaseButton;
 
     [Header("SPELL TOOLTIP PARAMETERS")]
@@ -73,27 +71,13 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     }
 
     //Summary : Affiche la fenêtre de confirmation d'achat lorsque le joueur appuie sur un bouton contenant un sort qu'il peut acheter.
-    public void DisplayValidationPopup()
+    public void DisplayValidationPopupWindow()
     {
         if (isPurchasable)
         {
             Debug.Log("Display Validation Popup");
 
-            //Affichage de la fenêtre de confirmation d'achat en Fade-In
-            StartCoroutine(UIManager.s_Singleton.FadeCanvasGroup(validationPopupWindow, validationPopupWindow.alpha, 1, UIManager.s_Singleton.fadeDuration));
-            validationPopupWindow.blocksRaycasts = true;
-
-            //Réactivation des boutons contenus dans cette fenêtre (prévient les problèmes liés à la navigation de l'Event System)
-            foreach (Button _buttons in validationPopupButtonLayout.GetComponentsInChildren<Button>())
-            {
-                _buttons.enabled = true;
-            }
-
-
-            //Reset du premier objet sélectionné par l'Event System et initialisation du nouveau premier objet sélectionné sur "Non" (prévient l'appuie "SPAM")
-            UIManager.s_Singleton.ResetEventSystemFirstSelectedGameObjet(validationPopupButtonLayout.transform.GetChild(1).gameObject);
-
-            UIManager.s_Singleton.purschaseValidationPopupIsDisplayed = true;
+            UIManager.s_Singleton.DisplayValidationPopup();
         }     
     }
 
@@ -107,7 +91,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     public void OnSubmit(BaseEventData eventData)
     {
         Debug.Log("On Submit click event");
-        DisplayValidationPopup();
+        DisplayValidationPopupWindow();
         validationPopupPurchaseButton.GetComponent<PurchaseASpell>().selectedButton = GetComponent<Button>();
     }
 

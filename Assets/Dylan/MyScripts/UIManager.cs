@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -15,10 +16,11 @@ public class UIManager : MonoBehaviour
     public GameObject spellActivationFeedback;
     private bool spellCompartmentIsActive = false;
 
-    [Header("PURCHASE VALIDATION POPUP")]
-    [SerializeField] private CanvasGroup purchaseValidationPopup;
+    [Header("PURCHASE VALIDATION POPUP PARAMETERS")]
+    [SerializeField] private CanvasGroup validationPopupWindow;
+    [SerializeField] private GameObject validationPopupButtonLayout;
     [HideInInspector]
-    public bool purschaseValidationPopupIsDisplayed = false;
+    public bool validationPopupIsDisplayed = false;
 
     [Header("FADE DURATION")]
     public float fadeDuration = 0.25f;
@@ -62,7 +64,7 @@ public class UIManager : MonoBehaviour
             UseSpell();
         }
 
-        if (purschaseValidationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
+        if (validationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
         {
             Debug.Log("Circle pressed");
             HideValidationPopup();
@@ -88,25 +90,44 @@ public class UIManager : MonoBehaviour
     //Summary : Permet de reset et de déterminer le premier objet sélectionné dans l'Event System (obligatoire à cause de l'utilisation de la manette)
     public void ResetEventSystemFirstSelectedGameObjet(GameObject obj)
     {
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
-        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(obj);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(obj);
+    }
+
+    //Summary : Affiche la fenêtre de confirmation d'achat lorsque le joueur appuie sur un bouton contenant un sort qu'il peut acheter.
+    public void DisplayValidationPopup()
+    {
+        //Affichage de la fenêtre de confirmation d'achat en Fade-In
+        StartCoroutine(FadeCanvasGroup(validationPopupWindow, validationPopupWindow.alpha, 1, fadeDuration));
+        validationPopupWindow.blocksRaycasts = true;
+
+        //Réactivation des boutons contenus dans cette fenêtre (prévient les problèmes liés à la navigation de l'Event System)
+        foreach (Button _buttons in validationPopupButtonLayout.GetComponentsInChildren<Button>())
+        {
+            _buttons.enabled = true;
+        }
+
+        //Reset du premier objet sélectionné par l'Event System et initialisation du nouveau premier objet sélectionné sur "Non" (prévient l'appuie "SPAM")
+        ResetEventSystemFirstSelectedGameObjet(validationPopupButtonLayout.transform.GetChild(1).gameObject);
+
+        validationPopupIsDisplayed = true;
     }
 
     //Summary : Permet de désafficher la fenêtre de confirmation d'achat 
     public void HideValidationPopup()
     {
-        StartCoroutine(FadeCanvasGroup(purchaseValidationPopup, purchaseValidationPopup.alpha, 0, fadeDuration));
-        purchaseValidationPopup.blocksRaycasts = false;
+        StartCoroutine(FadeCanvasGroup(validationPopupWindow, validationPopupWindow.alpha, 0, fadeDuration));
+        validationPopupWindow.blocksRaycasts = false;
 
-        foreach (Button _buttons in purchaseValidationPopup.GetComponentsInChildren<Button>())
+        foreach (Button _buttons in validationPopupWindow.GetComponentsInChildren<Button>())
         {
             _buttons.enabled = false;
         }
 
-        PurchaseASpell purchasedSpell = purchaseValidationPopup.GetComponentInChildren<PurchaseASpell>();
+        PurchaseASpell purchasedSpell = validationPopupWindow.GetComponentInChildren<PurchaseASpell>();
         ResetEventSystemFirstSelectedGameObjet(purchasedSpell.selectedButton.gameObject);
 
-        purschaseValidationPopupIsDisplayed = false;
+        validationPopupIsDisplayed = false;
     }
 
 

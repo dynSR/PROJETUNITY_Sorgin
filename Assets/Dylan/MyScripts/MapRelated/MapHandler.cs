@@ -50,8 +50,12 @@ public class MapHandler : MonoBehaviour
     //Summary : Permet de vérifier si la flèche du haut est pressée par le joueur...
     void CheckDpadYValue()
     {
-        dpadY = Input.GetAxis("PS4_DPadVertical");
-       
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
+            dpadY = Input.GetAxis("PS4_DPadVertical");
+
+        else if (ConnectedController.s_Singleton.XboxControllerIsConnected)
+            dpadY = Input.GetAxis("XBOX_DPadVertical");
+
         //Si la valeur de cette input dépasse une certaine valeur alors...
         if (dpadY >= 0.75f) 
         { 
@@ -66,7 +70,6 @@ public class MapHandler : MonoBehaviour
             //Alors lejoueur peut de nouveau appuyer sur cette input pour moddifier l'état d'affichage de la carte.
             canDisplayOrHideMap = true;
         }
-
     }
 
     //Summary : Permet d'afficher la carte

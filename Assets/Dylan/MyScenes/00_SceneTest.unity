@@ -416,7 +416,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1.75
 --- !u!222 &59954281
 CanvasRenderer:
@@ -1196,8 +1196,6 @@ MonoBehaviour:
   spell: {fileID: 0}
   isPurchasable: 0
   spellNameText: {fileID: 0}
-  validationPopupWindow: {fileID: 1618618056}
-  validationPopupButtonLayout: {fileID: 1156254140}
   validationPopupPurchaseButton: {fileID: 895569651}
   spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
@@ -1702,7 +1700,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1.75
 --- !u!222 &245550757
 CanvasRenderer:
@@ -1851,8 +1849,6 @@ MonoBehaviour:
   spell: {fileID: 0}
   isPurchasable: 0
   spellNameText: {fileID: 0}
-  validationPopupWindow: {fileID: 1618618056}
-  validationPopupButtonLayout: {fileID: 1156254140}
   validationPopupPurchaseButton: {fileID: 895569651}
   spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
@@ -2764,6 +2760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae71abe7fef0b4d4a870315ad081aebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PS4ValidationButtonName: Validation_PS4
+  XBOXValidationButtonName: Validation_XBOX
   PS4ControllerIsConnected: 0
   XboxControllerIsConnected: 0
 --- !u!4 &448624349
@@ -3317,8 +3315,6 @@ MonoBehaviour:
   spell: {fileID: 0}
   isPurchasable: 0
   spellNameText: {fileID: 0}
-  validationPopupWindow: {fileID: 1618618056}
-  validationPopupButtonLayout: {fileID: 1156254140}
   validationPopupPurchaseButton: {fileID: 895569651}
   spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
@@ -4419,7 +4415,8 @@ MonoBehaviour:
   - {fileID: 1191858859}
   - {fileID: 692343939}
   spellActivationFeedback: {fileID: 2117242326}
-  purchaseValidationPopup: {fileID: 1618618056}
+  validationPopupWindow: {fileID: 1618618056}
+  validationPopupButtonLayout: {fileID: 1156254140}
   purschaseValidationPopupIsDisplayed: 0
   fadeDuration: 0.25
 --- !u!114 &811743259
@@ -5421,8 +5418,6 @@ MonoBehaviour:
   spell: {fileID: 0}
   isPurchasable: 0
   spellNameText: {fileID: 0}
-  validationPopupWindow: {fileID: 1618618056}
-  validationPopupButtonLayout: {fileID: 1156254140}
   validationPopupPurchaseButton: {fileID: 895569651}
   spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
@@ -6670,8 +6665,6 @@ MonoBehaviour:
   spell: {fileID: 0}
   isPurchasable: 0
   spellNameText: {fileID: 0}
-  validationPopupWindow: {fileID: 1618618056}
-  validationPopupButtonLayout: {fileID: 1156254140}
   validationPopupPurchaseButton: {fileID: 895569651}
   spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
@@ -6901,8 +6894,6 @@ MonoBehaviour:
   spell: {fileID: 0}
   isPurchasable: 0
   spellNameText: {fileID: 0}
-  validationPopupWindow: {fileID: 1618618056}
-  validationPopupButtonLayout: {fileID: 1156254140}
   validationPopupPurchaseButton: {fileID: 895569651}
   spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
@@ -7631,7 +7622,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
-  m_UseSpriteMesh: 0
+  m_UseSpriteMesh: 1
   m_PixelsPerUnitMultiplier: 1.75
 --- !u!222 &1547775360
 CanvasRenderer:
@@ -8161,8 +8152,6 @@ MonoBehaviour:
   spell: {fileID: 0}
   isPurchasable: 0
   spellNameText: {fileID: 0}
-  validationPopupWindow: {fileID: 1618618056}
-  validationPopupButtonLayout: {fileID: 1156254140}
   validationPopupPurchaseButton: {fileID: 895569651}
   spellTooltipGameObject: {fileID: 799960349}
   spellTooltipImage: {fileID: 1178141197}
