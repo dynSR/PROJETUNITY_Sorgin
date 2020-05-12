@@ -42,7 +42,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
         //DEBUG
         gameObject.name = spell.MySpellName;
             
-        CheckIfPlayerCanPurchaseASpell(UIManager.s_Singleton.playerPointsValue);
+        CheckIfPlayerCanPurchaseASpell(GameManager.s_Singleton.playerPointsValue);
     }
 
     //Summary : Permet de vérifier sur les boutons du magasin, si un des sorts contenus dans ceux-ci peut être acheté

@@ -20,28 +20,39 @@ public class CursorHandler : MonoBehaviour
 
     void Update()
     {
-        CursorMovements();
+        if (GameManager.s_Singleton.gameStates == GameState.PlayMode)
+        {
+            CursorMovements();
 
-        //Press X
-        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A"))
-        {
-            InstantiateAMarker(markers[0], this.transform);
-        }
-        //Press Square
-        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
-        {
-            InstantiateAMarker(markers[1], this.transform);
-        }
-        //Press Triangle
-        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Triangle") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_Y"))
-        {
-            InstantiateAMarker(markers[2], this.transform);
-        }
+            #region Croix/A
+            //Press X
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A"))
+            {
+                InstantiateAMarker(markers[0], this.transform);
+            }
+            #endregion
 
-        //Debug clavier du reset des marqueurs au cas où !
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            StartCoroutine(ResetMarkers());
+            #region Square/X
+            //Press Square
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
+            {
+                InstantiateAMarker(markers[1], this.transform);
+            }
+            #endregion
+
+            #region Triangle/Y
+            //Press Triangle
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Triangle") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_Y"))
+            {
+                InstantiateAMarker(markers[2], this.transform);
+            }
+            #endregion
+
+            //Debug clavier du reset des marqueurs au cas où !
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                StartCoroutine(ResetMarkers());
+            }
         }
     }
 

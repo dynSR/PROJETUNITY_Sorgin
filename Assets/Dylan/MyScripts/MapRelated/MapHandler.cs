@@ -28,22 +28,27 @@ public class MapHandler : MonoBehaviour
     {
         //Debug.Log(Input.GetAxis("PS4_DPadVertical"));
 
-        CheckDpadYValue();
-
-        if (canDisplayOrHideMap && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_DPadVertical") >= 0.75f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_DPadVertical") >= 0.75f))
+        if (GameManager.s_Singleton.gameStates == GameState.PlayMode)
         {
-            if (!mapIsDisplayed)
+            CheckDpadYValue();
+
+            #region Arrow Up Dpad
+            if (canDisplayOrHideMap && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_DPadVertical") >= 0.75f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_DPadVertical") >= 0.75f))
             {
-                //Debug.Log("Display Map");
-                DisplayMap();
-                canDisplayOrHideMap = false;
+                if (!mapIsDisplayed)
+                {
+                    //Debug.Log("Display Map");
+                    DisplayMap();
+                    canDisplayOrHideMap = false;
+                }
+                else if (mapIsDisplayed)
+                {
+                    //Debug.Log("Hide Map");
+                    HideMap();
+                    canDisplayOrHideMap = false;
+                }
             }
-            else if (mapIsDisplayed)
-            {
-                //Debug.Log("Hide Map");
-                HideMap();
-                canDisplayOrHideMap = false;
-            }
+            #endregion
         }
     }
 

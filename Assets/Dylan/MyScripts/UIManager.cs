@@ -5,10 +5,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : DefaultUIManager
 {
-    [Header("PLAYER POINTS PARAMETERS")]
-    public int playerPointsValue;
+    [Header("PLAYER POINTS TEXT")]
     [SerializeField] private TextMeshProUGUI playerPointsValueText;
 
     [Header("SPELL COMPARTMENT PARAMETERS")]
@@ -22,21 +21,21 @@ public class UIManager : MonoBehaviour
     [HideInInspector]
     public bool validationPopupIsDisplayed = false;
 
-    [Header("FADE DURATION")]
-    public float fadeDuration = 0.25f;
-
     public static UIManager s_Singleton;
+
+    #region Singleton
     private void Awake()
     {
         if (s_Singleton != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
             s_Singleton = this;
         }
     }
+    #endregion
 
     private void Start()
     {
@@ -44,54 +43,45 @@ public class UIManager : MonoBehaviour
         SetPlayerPointsCountValue();
     }
 
-    private void Update()
+    public override void Update()
     {
-        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LB"))
+        base.Update();
+
+        if(GameManager.s_Singleton.gameStates == GameState.PlayMode)
         {
-            Debug.Log("L1 pressed");
-            SwitchSpellsInPlayerInventory();
+            #region L1/LB
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LB"))
+            {
+                Debug.Log("L1 pressed");
+                SwitchSpellsInPlayerInventory();
+            }
+            #endregion
+
+            #region L2/LT
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LT"))
+            {
+                Debug.Log("L2 pressed");
+                ToggleSpellActivationFeedback();
+            }
+            #endregion
+
+            #region Square/X
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
+            {
+                Debug.Log("Square pressed");
+                UseSpell();
+            }
+            #endregion
+
+            #region Circle/B
+            if (validationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
+            {
+                Debug.Log("Circle pressed");
+                HideValidationPopup();
+            }
+            #endregion
         }
-
-        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LT"))
-        {
-            Debug.Log("L2 pressed");
-            ToggleSpellActivationFeedback();
-        }
-
-        if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
-        {
-            Debug.Log("Square pressed");
-            UseSpell();
-        }
-
-        if (validationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
-        {
-            Debug.Log("Circle pressed");
-            HideValidationPopup();
-        }
-    }
-
-    //Utilisé dans les button component pour afficher / désafficher un élément d'UI
-    public void UIWindowsDisplayToggle(GameObject obj)
-    {
-        obj.SetActive(!obj.activeSelf);
-    }
-
-    public void UIWindowsDisplay(GameObject obj)
-    {
-        obj.SetActive(true);
-    }
-
-    public void UIWindowsHide(GameObject obj)
-    {
-        obj.SetActive(false);
-    }
-
-    //Summary : Permet de reset et de déterminer le premier objet sélectionné dans l'Event System (obligatoire à cause de l'utilisation de la manette)
-    public void ResetEventSystemFirstSelectedGameObjet(GameObject obj)
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(obj);
+        
     }
 
     //Summary : Affiche la fenêtre de confirmation d'achat lorsque le joueur appuie sur un bouton contenant un sort qu'il peut acheter.
@@ -134,19 +124,19 @@ public class UIManager : MonoBehaviour
     //Summary : Permet d'attribuer un nombre de points au joueur. Dès que le joueur reçoit de nouveaux points, on vérifie si de nouveaux sort sont maintenant achetables.
     public void AddPointsToPlayerScore(int valueToAdd)
     {
-        playerPointsValue += valueToAdd;
+        GameManager.s_Singleton.playerPointsValue += valueToAdd;
         SetPlayerPointsCountValue();
 
         foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
-            obj.GetComponent<ShopButton>().CheckIfPlayerCanPurchaseASpell(playerPointsValue);
+            obj.GetComponent<ShopButton>().CheckIfPlayerCanPurchaseASpell(GameManager.s_Singleton.playerPointsValue);
         }
     }
 
     //Summary : Permet de set up la valeur du sort qui est en train d'être acheté + Opération de soustraction de celle-ci.
     public void SetValueToSubstract(int valueToSubstract)
     {
-        int tempPlayerPointsValue = playerPointsValue;
+        int tempPlayerPointsValue = GameManager.s_Singleton.playerPointsValue;
         tempPlayerPointsValue -= valueToSubstract;
 
         foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
@@ -161,7 +151,7 @@ public class UIManager : MonoBehaviour
     //Summary : Permet de mettre à jour la valeur des points possédés par le joueur.
     void SetPlayerPointsCountValue()
     {
-        playerPointsValueText.text = playerPointsValue.ToString();
+        playerPointsValueText.text = GameManager.s_Singleton.playerPointsValue.ToString();
     }
 
     //Summary : Utiliser pour faire défiler les points lorsque le joueur achète quelque chose (effet de décrémentation dynamique) jusqu'à l'atteinte de la valeur totale à soustraite.
@@ -171,9 +161,13 @@ public class UIManager : MonoBehaviour
         do
         {
             startValue += valueToSubtractPerTicks;
-            playerPointsValue -= valueToSubtractPerTicks;
+            GameManager.s_Singleton.playerPointsValue -= valueToSubtractPerTicks;
             SetPlayerPointsCountValue();
             yield return new WaitForEndOfFrame();
+            if (GameManager.s_Singleton.gameStates == GameState.Pause)
+            {
+                yield return new WaitUntil(() => GameManager.s_Singleton.gameStates == GameState.PlayMode);
+            }
 
         } while (startValue != substractValueToReach);
     }
@@ -376,28 +370,4 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-
-    //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.
-    #region Canvas Fade Coroutine
-    public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
-    {
-        float _timerStartedLerping = Time.time;
-        float timeSinceStarted = Time.time - _timerStartedLerping;
-        float percentageComplete = timeSinceStarted / lerpTime;
-
-        while (true)
-        {
-            timeSinceStarted = Time.time - _timerStartedLerping;
-            percentageComplete = timeSinceStarted / lerpTime;
-
-            float currentValue = Mathf.Lerp(start, end, percentageComplete);
-
-            cg.alpha = currentValue;
-
-            if (percentageComplete >= 1) break;
-
-            yield return new WaitForEndOfFrame();
-        }
-    }
-    #endregion
 }

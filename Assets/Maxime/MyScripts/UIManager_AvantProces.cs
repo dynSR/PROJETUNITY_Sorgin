@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class UIManager_AvantProces : MonoBehaviour
+public class UIManager_AvantProces : DefaultUIManager
 {
     public static UIManager_AvantProces singleton;
 
@@ -22,9 +22,6 @@ public class UIManager_AvantProces : MonoBehaviour
     [HideInInspector]
     public bool validationPopupIsDisplayed = false;
 
-    [Header("FADE DURATION")]
-    public float fadeDuration = 0.25f;
-
     private void Awake()
     {
         if (singleton)
@@ -37,15 +34,15 @@ public class UIManager_AvantProces : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         titreProcesTxt.text = chefAccusation + " - Proces n°" + numeroProces;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Update()
     {
+        base.Update();
+
         if (!validationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
         {
                 DisplayValidationPopup();
@@ -103,27 +100,4 @@ public class UIManager_AvantProces : MonoBehaviour
         SceneManager.LoadScene("SceneProces001");
     }
 
-    //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.
-    #region Canvas Fade Coroutine
-    public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
-    {
-        float _timerStartedLerping = Time.time;
-        float timeSinceStarted = Time.time - _timerStartedLerping;
-        float percentageComplete = timeSinceStarted / lerpTime;
-
-        while (true)
-        {
-            timeSinceStarted = Time.time - _timerStartedLerping;
-            percentageComplete = timeSinceStarted / lerpTime;
-
-            float currentValue = Mathf.Lerp(start, end, percentageComplete);
-
-            cg.alpha = currentValue;
-
-            if (percentageComplete >= 1) break;
-
-            yield return new WaitForEndOfFrame();
-        }
-    }
-    #endregion
 }
