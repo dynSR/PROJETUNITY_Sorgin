@@ -71,13 +71,15 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     }
 
     //Summary : Affiche la fenêtre de confirmation d'achat lorsque le joueur appuie sur un bouton contenant un sort qu'il peut acheter.
-    public void DisplayValidationPopupWindow()
+    public void DisplayPurchaseValidationPopupWindow()
     {
         if (isPurchasable)
         {
             Debug.Log("Display Validation Popup");
 
-            UIManager.s_Singleton.DisplayValidationPopup();
+            UIManager.s_Singleton.DisplayAPopup(UIManager.s_Singleton.purchaseValidationPopupWindow);
+            UIManager.s_Singleton.EnableButtonsInLayout(UIManager.s_Singleton.purchaseValidationPopupButtonLayout);
+            UIManager.s_Singleton.purchaseValidationPopupIsDisplayed = true;
         }     
     }
 
@@ -91,7 +93,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     public void OnSubmit(BaseEventData eventData)
     {
         Debug.Log("On Submit click event");
-        DisplayValidationPopupWindow();
+        DisplayPurchaseValidationPopupWindow();
         validationPopupPurchaseButton.GetComponent<PurchaseASpell>().selectedButton = GetComponent<Button>();
     }
 

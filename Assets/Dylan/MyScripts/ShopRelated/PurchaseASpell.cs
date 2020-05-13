@@ -13,10 +13,10 @@ public class PurchaseASpell : MonoBehaviour
         //Est-que le sort contenu dans la bouton est achetable ? ...
         if (selectedButton.GetComponent<ShopButton>().isPurchasable)
         {
-            for (int i = 0; i < UIManager.s_Singleton.spellsCompartments.Count; i++)
+            for (int i = 0; i < PlayerSpellsInventory.s_Singleton.spellsCompartments.Count; i++)
             {
                 //Si un des compartiments de sort est vide et le joueur n'a pas encore atteint la limite de sort achetable...
-                if (UIManager.s_Singleton.spellsCompartments[i].GetComponent<SpellCompartment>().MyCompartmentSpell == null && ShopManager.s_Singleton.amntOfSpellBought < 3)
+                if (PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<SpellCompartment>().MyCompartmentSpell == null && ShopManager.s_Singleton.amntOfSpellBought < 3)
                 {
                     //Incrémentation du nombre de sort acheté par le joueur
                     ShopManager.s_Singleton.amntOfSpellBought++;
@@ -25,9 +25,9 @@ public class PurchaseASpell : MonoBehaviour
                     UIManager.s_Singleton.SetValueToSubstract(selectedButton.GetComponent<ShopButton>().spell.MySpellValue);
 
                     //Activation du component image + changement de son sprite du compartiment de sort dans lequel le sort acheté a été ajouté
-                    UIManager.s_Singleton.spellsCompartments[i].GetComponent<SpellCompartment>().MyCompartmentSpell = selectedButton.GetComponent<ShopButton>().spell;
-                    UIManager.s_Singleton.spellsCompartments[i].GetComponent<Image>().enabled = true;
-                    UIManager.s_Singleton.spellsCompartments[i].GetComponent<Image>().sprite = selectedButton.GetComponent<ShopButton>().spell.MySpellIcon;
+                    PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<SpellCompartment>().MyCompartmentSpell = selectedButton.GetComponent<ShopButton>().spell;
+                    PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<Image>().enabled = true;
+                    PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<Image>().sprite = selectedButton.GetComponent<ShopButton>().spell.MySpellIcon;
 
                     return;
                 }

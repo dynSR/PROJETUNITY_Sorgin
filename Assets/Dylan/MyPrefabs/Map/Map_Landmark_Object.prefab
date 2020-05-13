@@ -58,7 +58,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 24
+  m_SortingOrder: 50
   m_TargetDisplay: 0
 --- !u!222 &2656267336948244496
 CanvasRenderer:
@@ -109,5 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   erasingAMarkerWwiseEventSoundName: UI_ErasingAMarker
-  valueToDivideBy: 1.75
+  valueToDivideBy: 1.5
   rectTransform: {fileID: 0}

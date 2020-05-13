@@ -7,17 +7,31 @@ public class MapHandler : MonoBehaviour
     [SerializeField] private GameObject mapWindow;
     //DEBUG
     [SerializeField] private GameObject shopWindow;
-    [SerializeField] private GameObject debugButtons;
 
     [SerializeField] private string displayingOrHidingMapWwiseEventSoundName;
     [SerializeField] private RectTransform cursorRectTransform;
     private Vector2 cursorRectTransformPos;
 
-    private bool mapIsDisplayed = false;
+    public bool mapIsDisplayed = false;
     private bool canDisplayOrHideMap = true;
     private bool dpadYIsPressed = false;
     private float dpadY;
 
+    public static MapHandler s_Singleton;
+
+    #region Singleton
+    private void Awake()
+    {
+        if (s_Singleton != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            s_Singleton = this;
+        }
+    }
+    #endregion
 
     private void Start()
     {
@@ -28,7 +42,7 @@ public class MapHandler : MonoBehaviour
     {
         //Debug.Log(Input.GetAxis("PS4_DPadVertical"));
 
-        if (GameManager.s_Singleton.gameStates == GameState.PlayMode)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             CheckDpadYValue();
 
@@ -82,7 +96,6 @@ public class MapHandler : MonoBehaviour
     {
         //Debug.Log("Display Map");
         UIManager.s_Singleton.UIWindowsDisplay(mapWindow);
-        UIManager.s_Singleton.UIWindowsHide(debugButtons);
 
         if(shopWindow.activeInHierarchy)
             UIManager.s_Singleton.UIWindowsHide(shopWindow);
@@ -97,7 +110,6 @@ public class MapHandler : MonoBehaviour
     {
         //Debug.Log("Hide Map");
         UIManager.s_Singleton.UIWindowsHide(mapWindow);
-        UIManager.s_Singleton.UIWindowsDisplay(debugButtons);
         mapIsDisplayed = false;
         AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
     }

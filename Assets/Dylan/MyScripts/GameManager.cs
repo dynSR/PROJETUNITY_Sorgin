@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("PLAYER POINTS")]
     public int playerPointsValue;
 
-    public GameState gameStates;
+    public GameState gameState;
 
     public static GameManager s_Singleton;
 
@@ -25,25 +25,27 @@ public class GameManager : MonoBehaviour
             s_Singleton = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
+        gameState = GameState.PlayMode;
     }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        gameStates = GameState.PlayMode;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (gameStates)
+        switch (gameState)
         {
             case GameState.PlayMode:
                 Time.timeScale = 1f;
                 break;
             case GameState.Pause:
-                Time.timeScale = 0f;
+                //Time.timeScale = 0f;
                 break;
             case GameState.Cinematic:
                 //Faire quelque chose si besoin...

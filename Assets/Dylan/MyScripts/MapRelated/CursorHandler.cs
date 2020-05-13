@@ -11,6 +11,9 @@ public class CursorHandler : MonoBehaviour
     [SerializeField] private GameObject[] markers;
     public List<GameObject> markersPlaced;
 
+    public string velYAxisName;
+    public string velXAxisName;
+
     private RectTransform myRectTransform;
 
     void Start()
@@ -20,7 +23,7 @@ public class CursorHandler : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.s_Singleton.gameStates == GameState.PlayMode)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             CursorMovements();
 
@@ -59,9 +62,20 @@ public class CursorHandler : MonoBehaviour
     //Summary : Gestion des déplacements du curseur à l'intérieur de l'affichage de la carte
     private void CursorMovements()
     {
-        float velY = Input.GetAxis("PS4_LStick_Vertical");
-        float velX = Input.GetAxis("PS4_LStick_Horizontal");
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
+        {
+            velYAxisName = "PS4_LStick_Vertical";
+            velXAxisName = "PS4_LStick_Horizontal";
+        }
+        else if(ConnectedController.s_Singleton.XboxControllerIsConnected)
+        {
+            velYAxisName = "XBOX_LStick_Vertical";
+            velXAxisName = "XBOX_LStick_Horizontal";
+        }
 
+        float velY = Input.GetAxisRaw(velYAxisName);
+        float velX = Input.GetAxisRaw(velXAxisName);
+        
         Vector2 position = myRectTransform.anchoredPosition;
 
         position.y += velY * cursorSensitivity;

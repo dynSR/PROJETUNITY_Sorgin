@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Dylan/MyScenes/00_SceneTest.unity
     guid: 2df818f0bed762a4ab0b84e81fa25ac3
   - enabled: 1
-    path: Assets/Nathan/Scenes/SampleScene.unity
+    path: Assets/Nathan/Scenes/SceneTest.unity
     guid: 8ddca0989a9ce814c96d6e711b386b8b
   m_configObjects: {}

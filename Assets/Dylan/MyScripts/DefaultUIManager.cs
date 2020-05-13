@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DefaultUIManager : MonoBehaviour
 {
@@ -9,13 +10,16 @@ public class DefaultUIManager : MonoBehaviour
     public float fadeDuration = 0.25f;
 
     [Header("PARAMETERS TO SET THE GAME IN PAUSE")]
-    public GameObject pauseMenuWindow;
+    public CanvasGroup pauseMenuWindow;
+    public GameObject pauseMenuButtonLayout;
     public GameObject pauseMenuInputsDisplayerWindow;
     public GameObject pauseMenuOptionsWindow;
     public GameObject firstButtonOfPauseMenu;
     public GameObject optionsFirstSelectedButton;
-    public GameObject lastSelectedButton;
     public GameObject pauseMenuOptionsButton;
+
+    [Header("LAST SELECTED BUTTON")]
+    public GameObject lastSelectedButton;
 
 
     public bool pauseWindowIsDisplayed = false;
@@ -25,10 +29,20 @@ public class DefaultUIManager : MonoBehaviour
 
     public virtual void Update()
     {
-        if(ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Options") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_Start"))
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode || GameManager.s_Singleton.gameState == GameState.Pause)
         {
-            Debug.Log("Pressed Options or Start and trying to set the game in pause....");
-            TogglePause();
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Options") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_Start"))
+            {
+                Debug.Log("Pressed Options or Start and trying to set the game in pause....");
+                if (!pauseWindowIsDisplayed)
+                {
+                    Pause();
+                }
+                else if (pauseWindowIsDisplayed)
+                {
+                    Resume();
+                }
+            }
         }
 
         if (pauseWindowIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
@@ -37,25 +51,26 @@ public class DefaultUIManager : MonoBehaviour
         }
     }
 
-    public void TogglePause()
+    private void Pause()
     {
         Debug.Log("Set Game To Pause Mode");
+        DisplayAPopup(pauseMenuWindow);
+        EnableButtonsInLayout(pauseMenuButtonLayout);
 
-        if (!pauseWindowIsDisplayed) lastSelectedButton = EventSystem.current.currentSelectedGameObject;
+        EventSystem.current.SetSelectedGameObject(firstButtonOfPauseMenu);
+        GameManager.s_Singleton.gameState = GameState.Pause;
 
-        UIWindowsDisplayToggle(pauseMenuWindow);
-        pauseWindowIsDisplayed = !pauseWindowIsDisplayed;
-        
-        if (pauseWindowIsDisplayed)
-        {
-            GameManager.s_Singleton.gameStates = GameState.Pause;
-            ResetEventSystemFirstSelectedGameObjet(firstButtonOfPauseMenu);
-        } 
-        else
-        {
-            GameManager.s_Singleton.gameStates = GameState.PlayMode;
-            ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
-        }  
+        pauseWindowIsDisplayed = true;
+    }
+
+    private void Resume()
+    {
+        HideAPopup(pauseMenuWindow);
+        DisableButtonsInLayout(pauseMenuButtonLayout);
+        pauseWindowIsDisplayed = false;
+        GameManager.s_Singleton.gameState = GameState.PlayMode;
+
+        ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
     }
 
     public void BackInPauseMenu()
@@ -73,20 +88,16 @@ public class DefaultUIManager : MonoBehaviour
         }
         else
         {
-            UIWindowsHide(pauseMenuWindow);
+            HideAPopup(pauseMenuWindow);
             pauseWindowIsDisplayed = false;
             ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
-            GameManager.s_Singleton.gameStates = GameState.PlayMode;
+            GameManager.s_Singleton.gameState = GameState.PlayMode;
         }
     }
 
     public void OnClickResumeButtonInPauseMenu()
     {
-        UIWindowsHide(pauseMenuWindow);
-        pauseWindowIsDisplayed = false;
-        GameManager.s_Singleton.gameStates = GameState.PlayMode;
-
-        ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+        Resume();
     }
 
     public void OnClickDisplayInputsButtonInPauseMenu()
@@ -104,9 +115,9 @@ public class DefaultUIManager : MonoBehaviour
 
     public void OnClickBackToMainMenuButtonInPauseMenu()
     {
-        UIWindowsHide(pauseMenuWindow);
+        HideAPopup(pauseMenuWindow);
         pauseWindowIsDisplayed = false;
-        GameManager.s_Singleton.gameStates = GameState.PlayMode;
+        GameManager.s_Singleton.gameState = GameState.PlayMode;
 
         SceneManager.LoadScene("Scene_MainMenu");
     }
@@ -120,6 +131,22 @@ public class DefaultUIManager : MonoBehaviour
     //
 
     #region Tools For UI
+    //Summary : Affiche une fenêtre popup.
+    public void DisplayAPopup(CanvasGroup popupToDisplay)
+    {
+        //Affichage de la fenêtre de confirmation d'achat en Fade-In
+        StartCoroutine(FadeCanvasGroup(popupToDisplay, popupToDisplay.alpha, 1, fadeDuration));
+        popupToDisplay.blocksRaycasts = true;
+    }
+
+    //Summary : Permet de désafficher une fenêtre popup. 
+    public void HideAPopup(CanvasGroup popupToHide)
+    {
+        StartCoroutine(FadeCanvasGroup(popupToHide, popupToHide.alpha, 0, fadeDuration));
+        popupToHide.blocksRaycasts = false;
+    }
+
+
     //Utilisé dans les button component pour afficher / désafficher un élément d'UI
     public void UIWindowsDisplayToggle(GameObject obj)
     {
@@ -143,6 +170,33 @@ public class DefaultUIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(obj);
     }
     #endregion
+
+    public void EnableButtonsInLayout(GameObject buttonLayout)
+    {
+        //Réactivation des boutons contenus dans cette fenêtre (prévient les problèmes liés à la navigation de l'Event System)
+        foreach (Button _buttons in buttonLayout.GetComponentsInChildren<Button>())
+        {
+            _buttons.enabled = true;
+        }
+
+        //Reset du premier objet sélectionné par l'Event System et initialisation du nouveau premier objet sélectionné sur "Non" (prévient l'appuie "SPAM")
+        ResetEventSystemFirstSelectedGameObjet(buttonLayout.transform.GetChild(1).gameObject);
+    }
+
+    public void DisableButtonsInLayout(GameObject buttonLayout)
+    {
+        foreach (Button _buttons in buttonLayout.GetComponentsInChildren<Button>())
+        {
+            _buttons.enabled = false;
+        }
+
+        PurchaseASpell purchasedSpell = buttonLayout.GetComponentInChildren<PurchaseASpell>();
+
+        if (purchasedSpell != null)
+            ResetEventSystemFirstSelectedGameObjet(purchasedSpell.selectedButton.gameObject);
+        else
+            ResetEventSystemFirstSelectedGameObjet(EventSystem.current.firstSelectedGameObject);
+    }
 
     //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.
     #region Canvas Fade Coroutine
