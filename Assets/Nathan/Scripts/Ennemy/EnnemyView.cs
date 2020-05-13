@@ -16,8 +16,10 @@ public class EnnemyView : MonoBehaviour
 
     public bool OnTrigger;
     public bool IsVisible;
+    public float WaitingTime;
 
     float Timer;
+    float WaypointTimer;
     float LostTimer;
     float SoundTimer;
 
@@ -54,7 +56,7 @@ public class EnnemyView : MonoBehaviour
 
         if (IsVisible)
         {
-            Detection += (Time.deltaTime/Vector3.Distance(Eye.position, PlayerPos.position))*4;
+            Detection += (Time.deltaTime/Vector3.Distance(Eye.position, PlayerPos.position))*6;
             LostTimer = 1;
             Destination = PlayerPos.position;
             if (!Done)
@@ -89,18 +91,20 @@ public class EnnemyView : MonoBehaviour
             LostTimer -= Time.deltaTime;
         }
 
-        if (LostTimer <= 0)
+        if (LostTimer <= 0 && WaypointTimer<=0)
         {
             Nav.destination = Waypoint.position;
+            WaypointTimer = WaitingTime;
+        }
 
-            if (!Nav.pathPending)
+        if (!Nav.pathPending)
+        {
+            if (Nav.remainingDistance <= Nav.stoppingDistance)
             {
-                if (Nav.remainingDistance <= Nav.stoppingDistance)
+                if (!Nav.hasPath || Nav.velocity.sqrMagnitude == 0f)
                 {
-                    if (!Nav.hasPath || Nav.velocity.sqrMagnitude == 0f)
-                    {
-                        Waypoint = Waypoints[Random.Range(0, Waypoints.Count)];
-                    }
+                    Waypoint = Waypoints[Random.Range(0, Waypoints.Count)];
+                    WaypointTimer -= Time.deltaTime;
                 }
             }
         }

@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
-public enum MoveType { TopDown, TPS }
 
 public class MoveScript : MonoBehaviour
 {
-    public MoveType myType;
-
     public GameObject CameraTPS;
     public GameObject CameraTopDown;
     public CharacterController Controller;
@@ -39,6 +37,15 @@ public class MoveScript : MonoBehaviour
 
     void Start()
     {
+
+        CameraTPS = GameObject.Find("Cameras").transform.Find("TPS").gameObject;
+        CameraTopDown = GameObject.Find("Cameras").transform.Find("TopDown").gameObject;
+
+        CameraTPS.GetComponent<CinemachineVirtualCamera>().m_Follow = transform.Find("Body").transform;
+        CameraTPS.GetComponent<CinemachineVirtualCamera>().m_LookAt = transform.Find("Body").transform;
+
+        CameraTopDown.GetComponent<CinemachineVirtualCamera>().m_Follow = transform;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
@@ -49,52 +56,6 @@ public class MoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (myType == MoveType.TPS)
-            {
-                myType = MoveType.TopDown;
-            }
-
-            else if (myType == MoveType.TopDown)
-            {
-                myType = MoveType.TPS;
-            }
-        }
-
-        /*if (myType == MoveType.TPS)
-        {
-            CameraTPS.SetActive(true);
-            CameraTopDown.SetActive(false);
-
-            transform.Rotate(new Vector3(0,Input.GetAxis("Mouse X"), 0) * Time.deltaTime * sensi);
-
-            if (Controller.isGrounded)
-            {
-                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-                moveDirection = transform.TransformDirection(moveDirection);
-                moveDirection *= speedTPS;
-            }
-            //moveDirection.y -= gravity * Time.deltaTime;
-            Controller.SimpleMove(moveDirection);
-
-            if (Input.GetKeyDown(KeyCode.LeftControl))
-            {
-                turning = true;
-            }
-
-            if (turning)
-            {
-                Timer += Time.deltaTime;
-                targetAngles = transform.eulerAngles + 180f * Vector3.up;
-                transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetAngles, smooth * Time.deltaTime);
-                if (Timer > 0.125f)
-                {
-                    Timer = 0;
-                    turning = false;
-                }
-            }
-        }*/
 
         SoundTimer -= Time.deltaTime*(speed);
 
@@ -104,7 +65,7 @@ public class MoveScript : MonoBehaviour
             SoundTimer = 2f;
         }
 
-        if (myType == MoveType.TopDown && !OnWall)
+        if (!OnWall)
         {
 
             vertical = Mathf.Lerp(vertical, Input.GetAxis("Vertical"), 0.05f);

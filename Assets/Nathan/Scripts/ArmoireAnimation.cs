@@ -35,10 +35,18 @@ public class ArmoireAnimation : MonoBehaviour
         if (!Inside)
         {
             Text.SetActive(InTrigger);
+            if(Player != null)
+            {
+                Player.transform.Find("View").gameObject.SetActive(true);
+            }
         }
         else
         {
             Text.SetActive(false);
+            if (Player != null)
+            {
+                Player.transform.Find("View").gameObject.SetActive(false);
+            }
         }
 
         if (InTrigger)

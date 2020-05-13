@@ -10,8 +10,12 @@ public class CameraLock : MonoBehaviour
 
     public bool FollowCamera;
 
-    public Transform Cam;
+    Transform Cam;
 
+    private void Start()
+    {
+        Cam = Camera.main.transform;
+    }
     // Update is called once per frame
     void Update()
     {

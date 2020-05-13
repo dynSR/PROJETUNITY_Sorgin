@@ -12,6 +12,7 @@ public class WallHide : MonoBehaviour
     Vector3 ClosestPt;
 
     public GameObject ball; //DEBUG
+    public GameObject BallPrefab;
 
     public Quaternion wantedRotation;
     int layer_mask;
@@ -29,6 +30,7 @@ public class WallHide : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ball = Instantiate(BallPrefab);
         layer_mask = LayerMask.GetMask("Wall");
     }
 
