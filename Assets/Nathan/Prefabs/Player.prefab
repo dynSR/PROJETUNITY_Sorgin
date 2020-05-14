@@ -1149,9 +1149,11 @@ MonoBehaviour:
   - {fileID: 0}
   spellActivationFeedback: {fileID: 0}
   spellCompartmentIsActive: 0
+  playerAnimator: {fileID: 0}
   spellInSpellCompartment: {fileID: 0}
-  playerIsTranformed: 0
-  playerCharacter: {fileID: 8536155075064234568}
+  playerIsTranformedInMouse: 0
+  playerIsTranformedInCat: 0
+  playerIsInHumanForm: 1
   defaultCharacterModel: {fileID: 8536155073940749648}
   mouseCharacterModel: {fileID: 6236833213108649762, guid: 985322be25bc63c428d873db9f78cf49,
     type: 3}

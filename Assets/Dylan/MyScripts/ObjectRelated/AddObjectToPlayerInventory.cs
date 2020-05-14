@@ -56,6 +56,7 @@ public class AddObjectToPlayerInventory : MonoBehaviour
                 PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().enabled = true;
                 PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().sprite = _object.MyObjectIcon;
 
+                Destroy(this.gameObject);
                 return;
             }
         }

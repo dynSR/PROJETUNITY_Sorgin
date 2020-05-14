@@ -11,11 +11,16 @@ public class PlayerSpellsInventory : MonoBehaviour
     [HideInInspector] public bool spellCompartmentIsActive = false;
 
     [Header("SPELL IN THE COMPARTMENT")]
+    [SerializeField] private Animator playerAnimator;
     public Spell spellInSpellCompartment;
-    public bool playerIsTranformed = false;
+    public bool playerIsTranformedInMouse = false;
+    public bool playerIsTranformedInCat = false;
+    public bool playerIsInHumanForm = true;
+    float _durationOfEffectSinceLaunched = 0;
+    
 
     [Header("PLAYER MODELS")]
-    public Transform playerCharacter;
+    //public Transform playerCharacter;
     public GameObject defaultCharacterModel;
     public GameObject mouseCharacterModel;
     public GameObject catCharacterModel;
@@ -35,6 +40,11 @@ public class PlayerSpellsInventory : MonoBehaviour
         }
     }
     #endregion
+
+    private void Start()
+    {
+        playerAnimator = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -68,6 +78,31 @@ public class PlayerSpellsInventory : MonoBehaviour
                 ActiveSpellInSpellCompartment();
             }
             #endregion
+
+            #region Transformation Duration
+            if (playerIsTranformedInCat || playerIsTranformedInMouse)
+            {
+                _durationOfEffectSinceLaunched -= Time.deltaTime;
+
+                if (_durationOfEffectSinceLaunched <= 1.5f)
+                {
+                    Debug.Log("End of transformation");
+                    playerAnimator.SetBool("EndOfTransformation", true);
+                }
+                if (_durationOfEffectSinceLaunched <= 0)
+                {
+                    Debug.Log("Transformation into human");
+                    if(playerIsTranformedInCat)
+                    {
+                        HumanTransformation(catCharacterModel, defaultCharacterModel);
+                    }
+                    else if (playerIsTranformedInMouse)
+                    {
+                        HumanTransformation(mouseCharacterModel, defaultCharacterModel);
+                    }
+                }  
+            }
+            #endregion
         }
     }
 
@@ -86,12 +121,12 @@ public class PlayerSpellsInventory : MonoBehaviour
             case Spell.SpellType.Clone:
                 break;
             case Spell.SpellType.TransformationEnSouris:
-                PlayerSpellsInventory.s_Singleton.MouseTransformation(playerCharacter, mouseCharacterModel);
-                PlayerSpellsInventory.s_Singleton.playerIsTranformed = true;
+                if (playerIsInHumanForm) MouseTransformation(defaultCharacterModel, mouseCharacterModel);
+                else if (playerIsTranformedInCat) MouseTransformation(catCharacterModel, mouseCharacterModel);
                 break;
             case Spell.SpellType.TransformationEnChat:
-                PlayerSpellsInventory.s_Singleton.CatTransformation(playerCharacter, catCharacterModel);
-                PlayerSpellsInventory.s_Singleton.playerIsTranformed = true;
+                if (playerIsInHumanForm) CatTransformation(defaultCharacterModel, catCharacterModel);
+                else if (playerIsTranformedInCat) CatTransformation(mouseCharacterModel, catCharacterModel);
                 break;
             default:
                 break;
@@ -99,46 +134,62 @@ public class PlayerSpellsInventory : MonoBehaviour
 
     }
 
-    public void CatTransformation(Transform activePlayerCharacter, GameObject newPlayerCharacterModel)
+    public void CatTransformation(GameObject objToDisactive, GameObject objToActive)
     {
         Debug.Log("Trying to transform the player character in a cat...");
 
-        GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
-        Destroy(activeCharacterModel);
+        objToDisactive.SetActive(false);
+        objToActive.SetActive(true);
 
-        GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
-        modelToSwitchTo.transform.SetParent(activePlayerCharacter);
+        // Suppression - Instance
+        //GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
+        //Destroy(activeCharacterModel);
 
-        playerIsTranformed = true;
+        //GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
+        //modelToSwitchTo.transform.SetParent(activePlayerCharacter);
+
+        playerIsTranformedInCat = true;
+        playerIsTranformedInMouse = false;
+        playerIsInHumanForm = false;
     }
 
-    public void MouseTransformation(Transform activePlayerCharacter, GameObject newPlayerCharacterModel)
+    public void MouseTransformation(GameObject objToDisactive, GameObject objToActive)
     {
         Debug.Log("Trying to transform the player character in a mouse...");
-        GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
-        Destroy(activeCharacterModel);
 
-        GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
-        modelToSwitchTo.transform.SetParent(activePlayerCharacter);
+        objToDisactive.SetActive(false);
+        objToActive.SetActive(true);
 
-        playerIsTranformed = true;
+        // Suppression - Instance
+        //GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
+        //Destroy(activeCharacterModel);
+
+        //GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
+        //modelToSwitchTo.transform.SetParent(activePlayerCharacter);
+
+        playerIsTranformedInMouse = true;
+        playerIsTranformedInCat = false;
+        playerIsInHumanForm = false;
     }
 
-    private void HumanTransformation(Transform activePlayerCharacter, GameObject newPlayerCharacterModel)
+    private void HumanTransformation(GameObject objToDisactive, GameObject objToActive)
     {
-        Debug.Log("Trying to transform the player character in a mouse...");
-        GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
-        Destroy(activeCharacterModel);
+        Debug.Log("Trying to transform the player character in a human...");
 
-        GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
-        modelToSwitchTo.transform.SetParent(activePlayerCharacter);
-    }
+        objToDisactive.SetActive(false);
+        objToActive.SetActive(true);
 
-    void TransformationDurationOfEffect()
-    {
-        float _durationOfEffectSinceLaunched = 0;
-        _durationOfEffectSinceLaunched += Time.deltaTime;
-        HumanTransformation(playerCharacter, defaultCharacterModel);
+        // Suppression - Instance
+        //GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
+        //Destroy(activeCharacterModel);
+
+        //GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
+        //modelToSwitchTo.transform.SetParent(activePlayerCharacter);
+
+        playerIsTranformedInMouse = false;
+        playerIsTranformedInCat = false;
+        playerIsInHumanForm = true;
+        playerAnimator.SetBool("EndOfTransformation", false);
     }
 
     //Summary : Permet de gérer le switch des sort équipés
@@ -149,10 +200,11 @@ public class PlayerSpellsInventory : MonoBehaviour
         {
             Debug.Log("Trying To use the spell");
             spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
+            _durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
             UseTheSpellInSpellCompartment();
 
             spellsCompartments[0].MyCompartmentSpell = null;
-            spellInSpellCompartment = null;
+            
 
             DisableImageCompotent(spellsCompartments[0].GetComponent<Image>());
 

@@ -194,6 +194,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9531542}
   m_CullTransparentMesh: 0
+--- !u!1 &21723522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
+    type: 3}
+  m_PrefabInstance: {fileID: 5700492094877955527}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &23067469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,7 +1712,7 @@ MonoBehaviour:
   spellType: 0
   spellName: Etourdissement
   spellIcon: {fileID: 21300000, guid: a13da128f747152498f7372d029ea330, type: 3}
-  durationOfEffect: 0
+  spellDurationOfEffect: 0
   spellValue: 1250
   spellEffectDescription: Entrave la cible pour 2 secondes, elle ne peut plus bouger.
 --- !u!114 &179690195
@@ -2357,6 +2363,7 @@ GameObject:
   - component: {fileID: 223299764}
   - component: {fileID: 223299763}
   - component: {fileID: 223299765}
+  - component: {fileID: 223299766}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -2382,12 +2389,14 @@ MonoBehaviour:
   - {fileID: 692343939}
   spellActivationFeedback: {fileID: 2117242326}
   spellCompartmentIsActive: 0
+  playerAnimator: {fileID: 0}
   spellInSpellCompartment: {fileID: 0}
-  playerIsTranformed: 0
-  playerCharacter: {fileID: 0}
-  defaultCharacterModel: {fileID: 0}
-  mouseCharacterModel: {fileID: 0}
-  catCharacterModel: {fileID: 0}
+  playerIsTranformedInMouse: 0
+  playerIsTranformedInCat: 0
+  playerIsInHumanForm: 1
+  defaultCharacterModel: {fileID: 21723522}
+  mouseCharacterModel: {fileID: 3917465303105461258}
+  catCharacterModel: {fileID: 889827938292239895}
 --- !u!4 &223299764
 Transform:
   m_ObjectHideFlags: 0
@@ -2399,7 +2408,7 @@ Transform:
   m_LocalPosition: {x: -7.15, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1703156997}
+  - {fileID: 416046180}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2422,6 +2431,25 @@ MonoBehaviour:
   objectActivationFeedback: {fileID: 715804765}
   numberOfObjectInInventory: 0
   objectCompartmentIsActive: 0
+--- !u!95 &223299766
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223299762}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 323e3701d50299342a44c45b27af7283, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &225822813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,7 +2840,7 @@ MonoBehaviour:
   spellType: 2
   spellName: Radar
   spellIcon: {fileID: 21300000, guid: 9962fca153bef98488d030e110d96421, type: 3}
-  durationOfEffect: 0
+  spellDurationOfEffect: 0
   spellValue: 1500
   spellEffectDescription: "Dans une zone autour du joueur, permet de d\xE9tecter
     les objets d'int\xE9r\xEAts et les dangers."
@@ -4057,6 +4085,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393842555}
   m_CullTransparentMesh: 0
+--- !u!1 &416046179
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 416046180}
+  m_Layer: 0
+  m_Name: PlayerCharacterModels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &416046180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416046179}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1703156997}
+  - {fileID: 6026359488144736980}
+  - {fileID: 7830675971159547271}
+  m_Father: {fileID: 223299764}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &429429959
 GameObject:
   m_ObjectHideFlags: 0
@@ -5557,7 +5618,7 @@ MonoBehaviour:
   spellType: 5
   spellName: Transformation en souris
   spellIcon: {fileID: 21300000, guid: f4373539beb160e43825dee84f39e787, type: 3}
-  durationOfEffect: 0
+  spellDurationOfEffect: 5
   spellValue: 1500
   spellEffectDescription: "Transforme l'avatar en souris pendant 15 secondes, modifiant
     son rapport \xE0 l'environnement."
@@ -8809,7 +8870,7 @@ MonoBehaviour:
   spellType: 6
   spellName: Transformation en chat
   spellIcon: {fileID: 21300000, guid: be2ee974973afc84f8e155618af6ef8b, type: 3}
-  durationOfEffect: 0
+  spellDurationOfEffect: 10
   spellValue: 1500
   spellEffectDescription: "Transforme l'avatar en chat pendant 15 secondes, modifiant
     son rapport \xE0 l'environnement."
@@ -12318,7 +12379,7 @@ MonoBehaviour:
   spellType: 4
   spellName: Clone
   spellIcon: {fileID: 21300000, guid: 47176aa53b7562348b033b55fee4c9f0, type: 3}
-  durationOfEffect: 0
+  spellDurationOfEffect: 0
   spellValue: 3500
   spellEffectDescription: "Permet de cr\xE9er un clone, qui se d\xE9placera \xE0
     la position indiqu\xE9e par le joueur. Ce clone disparait apr\xE8s avoir \xE9t\xE9
@@ -12548,7 +12609,7 @@ MonoBehaviour:
   spellType: 1
   spellName: Crochetage
   spellIcon: {fileID: 21300000, guid: 6b6bf98b77c865b4a9ff676c7a6fa858, type: 3}
-  durationOfEffect: 0
+  spellDurationOfEffect: 0
   spellValue: 1000
   spellEffectDescription: "Permet de d\xE9verrouiller une porte verrouill\xE9e."
 --- !u!114 &1357363105
@@ -14996,7 +15057,7 @@ MonoBehaviour:
   spellType: 3
   spellName: Duplication
   spellIcon: {fileID: 21300000, guid: 9302fa4e0b2ecb44589f1ab0f796eb72, type: 3}
-  durationOfEffect: 0
+  spellDurationOfEffect: 0
   spellValue: 1500
   spellEffectDescription: "Permet de dupliquer l'objet actif s\xE9lectionn\xE9."
 --- !u!114 &1735808509
@@ -17885,6 +17946,81 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f965b5c0e060e224aad49b6d8847d026, type: 3}
+--- !u!54 &799608414779067124
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917465303105461258}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1 &889827938292239895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6026359488144736980}
+  - component: {fileID: 7392953142234568390}
+  - component: {fileID: 3715874364009977848}
+  - component: {fileID: 7637533426801149238}
+  - component: {fileID: 4795036999044165809}
+  m_Layer: 0
+  m_Name: PlayerCharacter_CatModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!23 &1322397319651296986
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917465303105461258}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -3767110676001795979, guid: a28a8eaff9596184f9f582188b975401, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1001 &1549328437175998981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17959,6 +18095,93 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f3da0cc0b222ef4a95672251ddaaa4b, type: 3}
+--- !u!23 &3715874364009977848
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889827938292239895}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -6672838295555371578, guid: d0b3ed6d32bc2304194b7fe6b8cbf90d, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!1 &3917465303105461258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7830675971159547271}
+  - component: {fileID: 6954179842377356279}
+  - component: {fileID: 1322397319651296986}
+  - component: {fileID: 3964324549384977153}
+  - component: {fileID: 799608414779067124}
+  m_Layer: 0
+  m_Name: PlayerCharacter_MouseModel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!64 &3964324549384977153
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917465303105461258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3740500708424522155, guid: a28a8eaff9596184f9f582188b975401, type: 3}
+--- !u!64 &4795036999044165809
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889827938292239895}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3471805035147313068, guid: d0b3ed6d32bc2304194b7fe6b8cbf90d, type: 3}
 --- !u!1001 &5130008060866077555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18038,7 +18261,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 223299764}
+    m_TransformParent: {fileID: 416046180}
     m_Modifications:
     - target: {fileID: 5700492096580577474, guid: e08eb5977e31af24fb85ea8bb7abeb18,
         type: 3}
@@ -18100,5 +18323,70 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter_DefaultModel
       objectReference: {fileID: 0}
+    - target: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
+--- !u!4 &6026359488144736980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889827938292239895}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 0.025, y: 0.025000002, z: 0.025000002}
+  m_Children: []
+  m_Father: {fileID: 416046180}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &6954179842377356279
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917465303105461258}
+  m_Mesh: {fileID: -3740500708424522155, guid: a28a8eaff9596184f9f582188b975401, type: 3}
+--- !u!33 &7392953142234568390
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889827938292239895}
+  m_Mesh: {fileID: -3471805035147313068, guid: d0b3ed6d32bc2304194b7fe6b8cbf90d, type: 3}
+--- !u!54 &7637533426801149238
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889827938292239895}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!4 &7830675971159547271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3917465303105461258}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.39999998, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.010000001, z: 0.010000001}
+  m_Children: []
+  m_Father: {fileID: 416046180}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

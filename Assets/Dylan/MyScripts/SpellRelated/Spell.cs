@@ -10,13 +10,13 @@ public class Spell : MonoBehaviour
    
     [SerializeField] private string spellName;
     [SerializeField] private Sprite spellIcon;
-    [SerializeField] private float durationOfEffect;
+    [SerializeField] private float spellDurationOfEffect;
     [SerializeField] private int spellValue;
     [TextArea(1, 5)]
     [SerializeField] private string spellEffectDescription;
 
     public string MySpellName { get => spellName; }
-    public float MyDurationOfEffect { get => durationOfEffect; }
+    public float MySpellDurationOfEffect { get => spellDurationOfEffect; }
     public int MySpellValue { get => spellValue; }
     public Sprite MySpellIcon { get => spellIcon; set => spellIcon = value; }
     public string MySpellEffectDescription { get => spellEffectDescription; set => spellEffectDescription = value; }
