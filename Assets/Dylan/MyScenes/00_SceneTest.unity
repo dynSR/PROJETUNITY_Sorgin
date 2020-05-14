@@ -1709,13 +1709,6 @@ MonoBehaviour:
   durationOfEffect: 0
   spellValue: 1250
   spellEffectDescription: Entrave la cible pour 2 secondes, elle ne peut plus bouger.
-  playerCharacter: {fileID: 223299764}
-  defaultCharacterModel: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
-    type: 3}
-  mouseCharacterModel: {fileID: 6236833213108649762, guid: 985322be25bc63c428d873db9f78cf49,
-    type: 3}
-  catCharacterModel: {fileID: 748792316656102072, guid: 0806d1fefaad452489c7a4004ab93432,
-    type: 3}
 --- !u!114 &179690195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2388,6 +2381,13 @@ MonoBehaviour:
   - {fileID: 1191858859}
   - {fileID: 692343939}
   spellActivationFeedback: {fileID: 2117242326}
+  spellCompartmentIsActive: 0
+  spellInSpellCompartment: {fileID: 0}
+  playerIsTranformed: 0
+  playerCharacter: {fileID: 0}
+  defaultCharacterModel: {fileID: 0}
+  mouseCharacterModel: {fileID: 0}
+  catCharacterModel: {fileID: 0}
 --- !u!4 &223299764
 Transform:
   m_ObjectHideFlags: 0
@@ -2421,6 +2421,7 @@ MonoBehaviour:
   - {fileID: 1732051425}
   objectActivationFeedback: {fileID: 715804765}
   numberOfObjectInInventory: 0
+  objectCompartmentIsActive: 0
 --- !u!1 &225822813
 GameObject:
   m_ObjectHideFlags: 0
@@ -2815,13 +2816,6 @@ MonoBehaviour:
   spellValue: 1500
   spellEffectDescription: "Dans une zone autour du joueur, permet de d\xE9tecter
     les objets d'int\xE9r\xEAts et les dangers."
-  playerCharacter: {fileID: 223299764}
-  defaultCharacterModel: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
-    type: 3}
-  mouseCharacterModel: {fileID: 6236833213108649762, guid: 985322be25bc63c428d873db9f78cf49,
-    type: 3}
-  catCharacterModel: {fileID: 748792316656102072, guid: 0806d1fefaad452489c7a4004ab93432,
-    type: 3}
 --- !u!114 &260656300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5567,13 +5561,6 @@ MonoBehaviour:
   spellValue: 1500
   spellEffectDescription: "Transforme l'avatar en souris pendant 15 secondes, modifiant
     son rapport \xE0 l'environnement."
-  playerCharacter: {fileID: 223299764}
-  defaultCharacterModel: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
-    type: 3}
-  mouseCharacterModel: {fileID: 6236833213108649762, guid: 985322be25bc63c428d873db9f78cf49,
-    type: 3}
-  catCharacterModel: {fileID: 748792316656102072, guid: 0806d1fefaad452489c7a4004ab93432,
-    type: 3}
 --- !u!114 &568552393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8826,13 +8813,6 @@ MonoBehaviour:
   spellValue: 1500
   spellEffectDescription: "Transforme l'avatar en chat pendant 15 secondes, modifiant
     son rapport \xE0 l'environnement."
-  playerCharacter: {fileID: 223299764}
-  defaultCharacterModel: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
-    type: 3}
-  mouseCharacterModel: {fileID: 6236833213108649762, guid: 985322be25bc63c428d873db9f78cf49,
-    type: 3}
-  catCharacterModel: {fileID: 748792316656102072, guid: 0806d1fefaad452489c7a4004ab93432,
-    type: 3}
 --- !u!114 &994078403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9213,6 +9193,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999586325}
   m_CullTransparentMesh: 0
+--- !u!1001 &1000720702
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2492673795508225691, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 317157702}
+    - target: {fileID: 6033772162568874535, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_Name
+      value: Stone (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9119628404837419164, guid: 7f3da0cc0b222ef4a95672251ddaaa4b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f3da0cc0b222ef4a95672251ddaaa4b, type: 3}
 --- !u!1 &1005362103
 GameObject:
   m_ObjectHideFlags: 0
@@ -12270,13 +12324,6 @@ MonoBehaviour:
     la position indiqu\xE9e par le joueur. Ce clone disparait apr\xE8s avoir \xE9t\xE9
     rep\xE9r\xE9 ou apr\xE8s 5 secondes, \xE0 compt\xE9 de son arriv\xE9e \xE0 la
     position souhait\xE9e."
-  playerCharacter: {fileID: 223299764}
-  defaultCharacterModel: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
-    type: 3}
-  mouseCharacterModel: {fileID: 6236833213108649762, guid: 985322be25bc63c428d873db9f78cf49,
-    type: 3}
-  catCharacterModel: {fileID: 748792316656102072, guid: 0806d1fefaad452489c7a4004ab93432,
-    type: 3}
 --- !u!114 &1345615477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12504,13 +12551,6 @@ MonoBehaviour:
   durationOfEffect: 0
   spellValue: 1000
   spellEffectDescription: "Permet de d\xE9verrouiller une porte verrouill\xE9e."
-  playerCharacter: {fileID: 223299764}
-  defaultCharacterModel: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
-    type: 3}
-  mouseCharacterModel: {fileID: 6236833213108649762, guid: 985322be25bc63c428d873db9f78cf49,
-    type: 3}
-  catCharacterModel: {fileID: 748792316656102072, guid: 0806d1fefaad452489c7a4004ab93432,
-    type: 3}
 --- !u!114 &1357363105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14959,13 +14999,6 @@ MonoBehaviour:
   durationOfEffect: 0
   spellValue: 1500
   spellEffectDescription: "Permet de dupliquer l'objet actif s\xE9lectionn\xE9."
-  playerCharacter: {fileID: 223299764}
-  defaultCharacterModel: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
-    type: 3}
-  mouseCharacterModel: {fileID: 6236833213108649762, guid: 985322be25bc63c428d873db9f78cf49,
-    type: 3}
-  catCharacterModel: {fileID: 748792316656102072, guid: 0806d1fefaad452489c7a4004ab93432,
-    type: 3}
 --- !u!114 &1735808509
 MonoBehaviour:
   m_ObjectHideFlags: 0
