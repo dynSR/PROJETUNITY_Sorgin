@@ -9,6 +9,7 @@ public class MoveScript : MonoBehaviour
     public GameObject CameraTPS;
     public GameObject CameraTopDown;
     public CharacterController Controller;
+    public Animator Anim;
     public float gravity = 20.0F;
 
     public SoundSpawner Sound;
@@ -58,6 +59,8 @@ public class MoveScript : MonoBehaviour
     {
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
+            Anim.SetFloat("Blend", Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical")));
+
             SoundTimer -= Time.deltaTime * (speed);
 
             if (SoundTimer <= 0)
@@ -73,7 +76,7 @@ public class MoveScript : MonoBehaviour
                 horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"), 0.05f);
 
 
-                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) //Rotation du perso
+                if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.05f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.05f) //Rotation du perso
                 {
                     float heading = Mathf.Atan2(horizontal, vertical);
                     transform.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg, 0);

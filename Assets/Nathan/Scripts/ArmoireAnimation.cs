@@ -13,6 +13,7 @@ public class ArmoireAnimation : MonoBehaviour
     public CinemachineVirtualCamera CamArmoire;
     public float Speed;
 
+    public GameObject Light;
     public GameObject Text;
 
 
@@ -40,6 +41,8 @@ public class ArmoireAnimation : MonoBehaviour
                 if (Player != null)
                 {
                     Player.transform.Find("View").gameObject.SetActive(true);
+                    Light.SetActive(false);
+
                 }
             }
             else
@@ -48,6 +51,7 @@ public class ArmoireAnimation : MonoBehaviour
                 if (Player != null)
                 {
                     Player.transform.Find("View").gameObject.SetActive(false);
+                    Light.SetActive(true);
                 }
             }
 
