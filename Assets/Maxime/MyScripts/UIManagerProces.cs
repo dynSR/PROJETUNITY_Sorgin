@@ -8,18 +8,20 @@ using Fungus;
 
 public class UIManagerProces : MonoBehaviour
 {
+    public static int actualPointsNumber;
+
     private int nbGoodAnswers;
     private int nbMaxGoodAnswers;
-    public TextMeshProUGUI txtGoodAnswers;
-    public TextMeshProUGUI txtPointsEarned;
+
     public Flowchart mainFlowchart;
+
     public GameObject endSection;
 
     // Start is called before the first frame update
     void Start()
     {
-        nbMaxGoodAnswers = mainFlowchart.GetIntegerVariable("MaxAnswers");
-        txtGoodAnswers.text = "0 / " + nbMaxGoodAnswers.ToString();
+        nbMaxGoodAnswers = mainFlowchart.GetIntegerVariable("maxGoodAnswers");
+        actualPointsNumber = 0;
     }
 
     // Update is called once per frame
@@ -28,31 +30,13 @@ public class UIManagerProces : MonoBehaviour
         
     }
 
-    public void GoodAnswersTxtUpdate()
-    {
-        nbGoodAnswers = mainFlowchart.GetIntegerVariable("GoodAnswers");
-        txtGoodAnswers.text = nbGoodAnswers.ToString() + " / " + nbMaxGoodAnswers.ToString();
-    }
-
     public void PointsEarned()
     {
-        endSection.SetActive(true);
-        int pointsEarned = mainFlowchart.GetIntegerVariable("GoodAnswers") * 100;
-        txtPointsEarned.text = "Vous avez obtenu " + pointsEarned + " points de bénédiction.";
+        actualPointsNumber += mainFlowchart.GetIntegerVariable("GoodAnswers") * 125;
     }
 
-    public void GoToEscapeScene()
+    public void GoToEscape()
     {
         SceneManager.LoadScene("SceneBuild");
-    }
-
-    public void ButtonRestart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-
-    public void ButtonMain()
-    {
-        SceneManager.LoadScene("SBLobbyScene");
     }
 }
