@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class PlayerObjectsInventory : MonoBehaviour
 {
-    [Header("SPELL COMPARTMENT PARAMETERS")]
+    [Header("OBJECT COMPARTMENT PARAMETERS")]
     public List<ObjectCompartment> objectsCompartments;
     public GameObject objectActivationFeedback;
     public int numberOfObjectInInventory = 0;
-    private bool objectCompartmentIsActive = false;
+    [HideInInspector] public bool objectCompartmentIsActive = false;
 
     public static PlayerObjectsInventory s_Singleton;
 
@@ -43,6 +43,10 @@ public class PlayerObjectsInventory : MonoBehaviour
             #region R2/RT
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_R2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_RT"))
             {
+                if (PlayerSpellsInventory.s_Singleton.spellCompartmentIsActive)
+                {
+                    PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
+                }
                 Debug.Log("R2 pressed");
                 ToggleObjectActivationFeedback();
             }
@@ -77,14 +81,14 @@ public class PlayerObjectsInventory : MonoBehaviour
     }
 
     //Summary : Permet d'afficher ou désafficher le feedback d'activation des sorts en fonction de l'appui Input.
-    void ToggleObjectActivationFeedback()
+    public void ToggleObjectActivationFeedback()
     {
         objectActivationFeedback.SetActive(!objectActivationFeedback.activeSelf);
         objectCompartmentIsActive = !objectCompartmentIsActive;
     }
 
     //Summary : Désaffiche le feedback d'activation des sorts
-    void DeactivateObjectActivationFeedback()
+    public void DeactivateObjectActivationFeedback()
     {
         objectActivationFeedback.SetActive(false);
         objectCompartmentIsActive = false;

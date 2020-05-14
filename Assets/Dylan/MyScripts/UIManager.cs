@@ -98,6 +98,7 @@ public class UIManager : DefaultUIManager
         if (!shopWindow.transform.gameObject.activeInHierarchy)
             shopWindow.transform.gameObject.SetActive(true);
 
+        playerPointsValueText.gameObject.SetActive(true);
         StartCoroutine(FadeCanvasGroup(shopWindow, shopWindow.alpha, 1, fadeDuration));
         GameManager.s_Singleton.gameState = GameState.ConsultingShop;
         shopWindowIsDisplayed = true;
@@ -109,6 +110,7 @@ public class UIManager : DefaultUIManager
         GameManager.s_Singleton.gameState = GameState.PlayMode;
         shopWindowIsDisplayed = false;
         shopWindow.transform.gameObject.SetActive(false);
+        playerPointsValueText.gameObject.SetActive(false);
     }
 
     public void SetBeginExfiltrationPupopState(bool state)

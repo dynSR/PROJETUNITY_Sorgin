@@ -32,44 +32,47 @@ public class ArmoireAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Inside)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            Text.SetActive(InTrigger);
-            if(Player != null)
+            if (!Inside)
             {
-                Player.transform.Find("View").gameObject.SetActive(true);
+                Text.SetActive(InTrigger);
+                if (Player != null)
+                {
+                    Player.transform.Find("View").gameObject.SetActive(true);
+                }
             }
-        }
-        else
-        {
-            Text.SetActive(false);
-            if (Player != null)
+            else
             {
-                Player.transform.Find("View").gameObject.SetActive(false);
-            }
-        }
-
-        if (InTrigger)
-        {
-            if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA")) && !Animating && !Inside)
-            {
-                Animating = true;
-                LaunchAnim();
-                Player.GetComponent<MoveScript>().OnArmoire = true;
+                Text.SetActive(false);
+                if (Player != null)
+                {
+                    Player.transform.Find("View").gameObject.SetActive(false);
+                }
             }
 
-            if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA")) && !Animating && Inside)
+            if (InTrigger)
             {
-                Animating = true;
-                OutAnim();
-            }
-        }
+                if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && !Animating && !Inside)
+                {
+                    Animating = true;
+                    LaunchAnim();
+                    Player.GetComponent<MoveScript>().OnArmoire = true;
+                }
 
-        if (Lerp)
-        {
-            Player.transform.position = Vector3.MoveTowards(Player.transform.position, PlayerPositionHolder.transform.position, Time.deltaTime * Speed);
-            Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, PlayerPositionHolder.transform.rotation, Speed*Time.deltaTime*100);
-        }
+                if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && !Animating && Inside)
+                {
+                    Animating = true;
+                    OutAnim();
+                }
+            }
+
+            if (Lerp)
+            {
+                Player.transform.position = Vector3.MoveTowards(Player.transform.position, PlayerPositionHolder.transform.position, Time.deltaTime * Speed);
+                Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, PlayerPositionHolder.transform.rotation, Speed * Time.deltaTime * 100);
+            }
+        }  
     }
 
     private void OnTriggerStay(Collider other)

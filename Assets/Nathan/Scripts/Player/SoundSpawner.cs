@@ -16,18 +16,19 @@ public class SoundSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            SoundPlay(5);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            SoundPlay(10);
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            SoundPlay(15);
-        }
+        //Debug
+        //if (Input.GetKeyDown(KeyCode.V))
+        //{
+        //    SoundPlay(5);
+        //}
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    SoundPlay(10);
+        //}
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    SoundPlay(15);
+        //}
     }
 
     public void SoundPlay(float Taille)

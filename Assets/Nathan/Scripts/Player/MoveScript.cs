@@ -56,45 +56,45 @@ public class MoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        SoundTimer -= Time.deltaTime*(speed);
-
-        if(SoundTimer <= 0)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            Sound.SoundPlay(speed * 4);
-            SoundTimer = 2f;
-        }
+            SoundTimer -= Time.deltaTime * (speed);
 
-        if (!OnWall)
-        {
-
-            vertical = Mathf.Lerp(vertical, Input.GetAxis("Vertical"), 0.05f);
-            horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"), 0.05f);
-
-
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) //Rotation du perso
+            if (SoundTimer <= 0)
             {
-                float heading = Mathf.Atan2(horizontal, vertical);
-                transform.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg, 0);
-            } //FIN rotation perso
-
-            moveDirection = new Vector3(horizontal, 0, vertical);
-            moveDirection.Normalize();
-            Controller.SimpleMove(moveDirection * speed);
-
-            if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
-            {
-                speed = Mathf.Abs(horizontal) * 5;
-            }
-            else
-            {
-                speed = Mathf.Abs(vertical) * 5;
+                Sound.SoundPlay(speed * 4);
+                SoundTimer = 2f;
             }
 
-            ChangedCam = false;
+            if (!OnWall)
+            {
 
+                vertical = Mathf.Lerp(vertical, Input.GetAxis("Vertical"), 0.05f);
+                horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"), 0.05f);
+
+
+                if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0) //Rotation du perso
+                {
+                    float heading = Mathf.Atan2(horizontal, vertical);
+                    transform.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg, 0);
+                } //FIN rotation perso
+
+                moveDirection = new Vector3(horizontal, 0, vertical);
+                moveDirection.Normalize();
+                Controller.SimpleMove(moveDirection * speed);
+
+                if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+                {
+                    speed = Mathf.Abs(horizontal) * 5;
+                }
+                else
+                {
+                    speed = Mathf.Abs(vertical) * 5;
+                }
+
+                ChangedCam = false;
+            }
         }
-
     }
 
     public void WallCamera()

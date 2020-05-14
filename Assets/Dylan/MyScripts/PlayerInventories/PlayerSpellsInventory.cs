@@ -8,7 +8,17 @@ public class PlayerSpellsInventory : MonoBehaviour
     [Header("SPELL COMPARTMENT PARAMETERS")]
     public List<SpellCompartment> spellsCompartments;
     public GameObject spellActivationFeedback;
-    private bool spellCompartmentIsActive = false;
+    [HideInInspector] public bool spellCompartmentIsActive = false;
+
+    [Header("SPELL IN THE COMPARTMENT")]
+    public Spell spellInSpellCompartment;
+    public bool playerIsTranformed = false;
+
+    [Header("PLAYER MODELS")]
+    public Transform playerCharacter;
+    public GameObject defaultCharacterModel;
+    public GameObject mouseCharacterModel;
+    public GameObject catCharacterModel;
 
     public static PlayerSpellsInventory s_Singleton;
 
@@ -42,6 +52,10 @@ public class PlayerSpellsInventory : MonoBehaviour
             #region L2/LT
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LT"))
             {
+                if (PlayerObjectsInventory.s_Singleton.objectCompartmentIsActive)
+                {
+                    PlayerObjectsInventory.s_Singleton.DeactivateObjectActivationFeedback();
+                }
                 Debug.Log("L2 pressed");
                 ToggleSpellActivationFeedback();
             }
@@ -51,22 +65,94 @@ public class PlayerSpellsInventory : MonoBehaviour
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
             {
                 Debug.Log("Square pressed");
-                UseSpell();
+                ActiveSpellInSpellCompartment();
             }
             #endregion
         }
     }
 
+    private void UseTheSpellInSpellCompartment()
+    {
+        switch (spellInSpellCompartment.spellType)
+        {
+            case Spell.SpellType.Etourdissement:
+                break;
+            case Spell.SpellType.Crochetage:
+                break;
+            case Spell.SpellType.Radar:
+                break;
+            case Spell.SpellType.Duplication:
+                break;
+            case Spell.SpellType.Clone:
+                break;
+            case Spell.SpellType.TransformationEnSouris:
+                PlayerSpellsInventory.s_Singleton.MouseTransformation(playerCharacter, mouseCharacterModel);
+                PlayerSpellsInventory.s_Singleton.playerIsTranformed = true;
+                break;
+            case Spell.SpellType.TransformationEnChat:
+                PlayerSpellsInventory.s_Singleton.CatTransformation(playerCharacter, catCharacterModel);
+                PlayerSpellsInventory.s_Singleton.playerIsTranformed = true;
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    public void CatTransformation(Transform activePlayerCharacter, GameObject newPlayerCharacterModel)
+    {
+        Debug.Log("Trying to transform the player character in a cat...");
+
+        GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
+        Destroy(activeCharacterModel);
+
+        GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
+        modelToSwitchTo.transform.SetParent(activePlayerCharacter);
+
+        playerIsTranformed = true;
+    }
+
+    public void MouseTransformation(Transform activePlayerCharacter, GameObject newPlayerCharacterModel)
+    {
+        Debug.Log("Trying to transform the player character in a mouse...");
+        GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
+        Destroy(activeCharacterModel);
+
+        GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
+        modelToSwitchTo.transform.SetParent(activePlayerCharacter);
+
+        playerIsTranformed = true;
+    }
+
+    private void HumanTransformation(Transform activePlayerCharacter, GameObject newPlayerCharacterModel)
+    {
+        Debug.Log("Trying to transform the player character in a mouse...");
+        GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
+        Destroy(activeCharacterModel);
+
+        GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
+        modelToSwitchTo.transform.SetParent(activePlayerCharacter);
+    }
+
+    void TransformationDurationOfEffect()
+    {
+        float _durationOfEffectSinceLaunched = 0;
+        _durationOfEffectSinceLaunched += Time.deltaTime;
+        HumanTransformation(playerCharacter, defaultCharacterModel);
+    }
+
     //Summary : Permet de gérer le switch des sort équipés
     #region Spells Management
-    void UseSpell()
+    void ActiveSpellInSpellCompartment()
     {
         if (spellCompartmentIsActive && spellsCompartments[0].MyCompartmentSpell != null)
         {
             Debug.Log("Trying To use the spell");
-            spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
+            spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
+            UseTheSpellInSpellCompartment();
 
             spellsCompartments[0].MyCompartmentSpell = null;
+            spellInSpellCompartment = null;
 
             DisableImageCompotent(spellsCompartments[0].GetComponent<Image>());
 
@@ -76,14 +162,14 @@ public class PlayerSpellsInventory : MonoBehaviour
     }
 
     //Summary : Permet d'afficher ou désafficher le feedback d'activation des sorts en fonction de l'appui Input.
-    void ToggleSpellActivationFeedback()
+    public void ToggleSpellActivationFeedback()
     {
         spellActivationFeedback.SetActive(!spellActivationFeedback.activeSelf);
         spellCompartmentIsActive = !spellCompartmentIsActive;
     }
 
     //Summary : Désaffiche le feedback d'activation des sorts
-    void DeactivateSpellActivationFeedback()
+    public void DeactivateSpellActivationFeedback()
     {
         spellActivationFeedback.SetActive(false);
         spellCompartmentIsActive = false;

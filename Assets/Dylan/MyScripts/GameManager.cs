@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
                 Time.timeScale = 1f;
                 break;
             case GameState.Pause:
-                //Time.timeScale = 0f;
+                Time.timeScale = 0f;
                 break;
             case GameState.Cinematic:
                 //Faire quelque chose si besoin...

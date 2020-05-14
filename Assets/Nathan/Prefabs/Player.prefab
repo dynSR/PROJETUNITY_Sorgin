@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 627007315}
   - component: {fileID: 627007316}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -627,7 +627,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8536155074213927872}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &8536155074213927874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1025,6 +1025,8 @@ GameObject:
   - component: {fileID: 8536155075064234569}
   - component: {fileID: 8536155075064234566}
   - component: {fileID: 8536155075064234571}
+  - component: {fileID: 1829771647}
+  - component: {fileID: 1829771648}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1063,7 +1065,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cf0aa43b03b3a740a27968032876fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myType: 0
   CameraTPS: {fileID: 0}
   CameraTopDown: {fileID: 0}
   Controller: {fileID: 8536155075064234566}
@@ -1072,7 +1073,7 @@ MonoBehaviour:
   moveDirection: {x: 0, y: 0, z: 0}
   speed: 2
   speedTPS: 3
-  sensi: 50
+  sensi: 15
   smooth: 8
   SoundTimer: 0
   horizontal: 0
@@ -1094,7 +1095,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0.01
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &8536155075064234571
 MonoBehaviour:
@@ -1110,4 +1111,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Son: {fileID: 0}
   PrefabSon: {fileID: 8090414997524278219, guid: 2d0c9f63965e7ed40a0693b79f6478ef,
+    type: 3}
+--- !u!114 &1829771647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8536155075064234567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 270569c71df299b4b9671913a971a323, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsCompartments:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  objectActivationFeedback: {fileID: 0}
+  numberOfObjectInInventory: 0
+  objectCompartmentIsActive: 0
+--- !u!114 &1829771648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8536155075064234567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d81978878ffc25345825b203a058a374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellsCompartments:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  spellActivationFeedback: {fileID: 0}
+  spellCompartmentIsActive: 0
+  spellInSpellCompartment: {fileID: 0}
+  playerIsTranformed: 0
+  playerCharacter: {fileID: 8536155075064234568}
+  defaultCharacterModel: {fileID: 8536155073940749648}
+  mouseCharacterModel: {fileID: 6236833213108649762, guid: 985322be25bc63c428d873db9f78cf49,
+    type: 3}
+  catCharacterModel: {fileID: 748792316656102072, guid: 0806d1fefaad452489c7a4004ab93432,
     type: 3}

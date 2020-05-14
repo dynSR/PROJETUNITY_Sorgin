@@ -17,13 +17,16 @@ public class UnhideRoom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Inside)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            Img.color = new Color(Img.color.r, Img.color.g, Img.color.b, Mathf.MoveTowards(Img.color.a, 0, 0.001f));
-        }
-        else
-        {
-            Img.color = new Color(Img.color.r, Img.color.g, Img.color.b, Mathf.MoveTowards(Img.color.a, 1, 0.001f));
+            if (Inside)
+            {
+                Img.color = new Color(Img.color.r, Img.color.g, Img.color.b, Mathf.MoveTowards(Img.color.a, 0, 0.001f));
+            }
+            else
+            {
+                Img.color = new Color(Img.color.r, Img.color.g, Img.color.b, Mathf.MoveTowards(Img.color.a, 1, 0.001f));
+            }
         }
     }
 

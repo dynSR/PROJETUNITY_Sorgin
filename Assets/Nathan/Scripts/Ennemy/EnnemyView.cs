@@ -38,81 +38,82 @@ public class EnnemyView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Timer -= Time.deltaTime;
-        Detection = Mathf.Clamp(Detection, 0, 1.1f);
-
-        if (OnTrigger)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            if (Timer < 0)
+            Timer -= Time.deltaTime;
+            Detection = Mathf.Clamp(Detection, 0, 1.1f);
+
+            if (OnTrigger)
             {
-                Raycast();
-                Timer = 0.05f;
-            }
-        }
-        else
-        {
-            IsVisible = false;
-        }
-
-        if (IsVisible)
-        {
-            Detection += (Time.deltaTime/Vector3.Distance(Eye.position, PlayerPos.position))*6;
-            LostTimer = 1;
-            Destination = PlayerPos.position;
-            if (!Done)
-            {
-                Done = true;
-            }
-        }
-        else
-        {
-            Detection -= Time.deltaTime/3;
-
-            if (Done)
-            {
-                Done = false;
-            }
-        }
-
-
-        if(Detection >= 1)
-        {
-            LostTimer = 1;
-            Follow = true;
-        }
-
-        if (Follow && LostTimer>0)
-        {
-            Nav.destination = Destination;
-        }
-
-        if(Detection <= 0)
-        {
-            LostTimer -= Time.deltaTime;
-        }
-
-        if (LostTimer <= 0 && WaypointTimer<=0)
-        {
-            Nav.destination = Waypoint.position;
-            WaypointTimer = WaitingTime;
-        }
-
-        if (!Nav.pathPending)
-        {
-            if (Nav.remainingDistance <= Nav.stoppingDistance)
-            {
-                if (!Nav.hasPath || Nav.velocity.sqrMagnitude == 0f)
+                if (Timer < 0)
                 {
-                    Waypoint = Waypoints[Random.Range(0, Waypoints.Count)];
-                    WaypointTimer -= Time.deltaTime;
+                    Raycast();
+                    Timer = 0.05f;
                 }
             }
+            else
+            {
+                IsVisible = false;
+            }
+
+            if (IsVisible)
+            {
+                Detection += (Time.deltaTime / Vector3.Distance(Eye.position, PlayerPos.position)) * 6;
+                LostTimer = 1;
+                Destination = PlayerPos.position;
+                if (!Done)
+                {
+                    Done = true;
+                }
+            }
+            else
+            {
+                Detection -= Time.deltaTime / 3;
+
+                if (Done)
+                {
+                    Done = false;
+                }
+            }
+
+
+            if (Detection >= 1)
+            {
+                LostTimer = 1;
+                Follow = true;
+            }
+
+            if (Follow && LostTimer > 0)
+            {
+                Nav.destination = Destination;
+            }
+
+            if (Detection <= 0)
+            {
+                LostTimer -= Time.deltaTime;
+            }
+
+            if (LostTimer <= 0 && WaypointTimer <= 0)
+            {
+                Nav.destination = Waypoint.position;
+                WaypointTimer = WaitingTime;
+            }
+
+            if (!Nav.pathPending)
+            {
+                if (Nav.remainingDistance <= Nav.stoppingDistance)
+                {
+                    if (!Nav.hasPath || Nav.velocity.sqrMagnitude == 0f)
+                    {
+                        Waypoint = Waypoints[Random.Range(0, Waypoints.Count)];
+                        WaypointTimer -= Time.deltaTime;
+                    }
+                }
+            }
+            DetectionLevel.Instance.DetectionAmount = Detection;
         }
-        DetectionLevel.Instance.DetectionAmount = Detection;
+        
     }
-
-
-
 
     private void OnTriggerStay(Collider other)
     {

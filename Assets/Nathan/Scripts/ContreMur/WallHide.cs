@@ -37,76 +37,80 @@ public class WallHide : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Timer -= Time.deltaTime;
-
-        if (Wall != null && !Hided)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            ClosestPt = Wall.GetComponent<Collider>().ClosestPoint(transform.position);
+            Timer -= Time.deltaTime;
 
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, ClosestPt-transform.position, out hit, Mathf.Infinity,layer_mask))
+            if (Wall != null && !Hided)
             {
-                wantedRotation = Quaternion.LookRotation(hit.normal);
+                ClosestPt = Wall.GetComponent<Collider>().ClosestPoint(transform.position);
 
-                if (hit.transform.CompareTag("Wall"))
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, ClosestPt - transform.position, out hit, Mathf.Infinity, layer_mask))
                 {
-                    ball.SetActive(true);
-                    if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA")) && Player.GetComponent<MoveScript>().OnArmoire==false)
-                    {
-                        if (Timer <= 0)
-                        {
-                            Invoke("ChangeHided", 0.05f);
-                            Timer = 1;
-                            Invoke("ChangeWaitforRot", 0.25f);
+                    wantedRotation = Quaternion.LookRotation(hit.normal);
 
+                    if (hit.transform.CompareTag("Wall"))
+                    {
+                        ball.SetActive(true);
+                        if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && Player.GetComponent<MoveScript>().OnArmoire == false)
+                        {
+                            if (Timer <= 0)
+                            {
+                                Invoke("ChangeHided", 0.05f);
+                                Timer = 1;
+                                Invoke("ChangeWaitforRot", 0.25f);
+
+                            }
                         }
                     }
+                    else
+                    {
+                        ball.SetActive(false);
+                    }
                 }
-                else
+            }
+            else
+            {
+                ball.SetActive(false);
+            }
+
+
+            if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && Hided)
+            {
+                if (Timer <= 0)
                 {
-                    ball.SetActive(false);
+                    Player.GetComponent<MoveScript>().TopDownCamera();
+
+                    Invoke("ChangeHided", 0.5f);
+                    Timer = 1;
+                    Waitforrotation = false;
+
                 }
             }
-        }
-        else
-        {
-            ball.SetActive(false);
-        }
 
-
-        if ((Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("ControllerA")) && Hided)
-        {
-            if (Timer <= 0)
+            if (Hided)
             {
-                Player.GetComponent<MoveScript>().TopDownCamera();
+                ball.SetActive(false);
 
-                Invoke("ChangeHided", 0.5f);
-                Timer = 1;
-                Waitforrotation = false;
+                Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, wantedRotation, 500f * Time.deltaTime);
 
+                if (Waitforrotation)
+                {
+                    Hide();
+                }
             }
+
+            //DEBUG
+
+            ball.transform.position = ClosestPt;
+
+            Debug.DrawRay(transform.position, ClosestPt - transform.position, Color.red);
+            //DEBUG
+
+            Player.GetComponent<MoveScript>().OnWall = Hided;
         }
-
-        if (Hided)
-        {
-            ball.SetActive(false);
-
-            Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, wantedRotation, 500f * Time.deltaTime);
-
-            if (Waitforrotation)
-            {
-                Hide();
-            }
-        }
-
-        //DEBUG
-
-        ball.transform.position = ClosestPt;
-
-        Debug.DrawRay(transform.position, ClosestPt-transform.position, Color.red);
-        //DEBUG
-
-        Player.GetComponent<MoveScript>().OnWall = Hided;
+        
 
     }
 

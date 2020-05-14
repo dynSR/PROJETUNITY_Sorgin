@@ -54,7 +54,8 @@ public class DefaultUIManager : MonoBehaviour
     private void Pause()
     {
         Debug.Log("Set Game To Pause Mode");
-        DisplayAPopup(pauseMenuWindow);
+        pauseMenuWindow.alpha = 1;
+        pauseMenuWindow.blocksRaycasts = true;
         EnableButtonsInLayout(pauseMenuButtonLayout);
 
         EventSystem.current.SetSelectedGameObject(firstButtonOfPauseMenu);
@@ -65,7 +66,8 @@ public class DefaultUIManager : MonoBehaviour
 
     private void Resume()
     {
-        HideAPopup(pauseMenuWindow);
+        pauseMenuWindow.alpha = 0;
+        pauseMenuWindow.blocksRaycasts = false;
         DisableButtonsInLayout(pauseMenuButtonLayout);
         pauseWindowIsDisplayed = false;
         GameManager.s_Singleton.gameState = GameState.PlayMode;

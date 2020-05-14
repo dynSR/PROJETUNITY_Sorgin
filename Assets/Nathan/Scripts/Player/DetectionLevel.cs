@@ -33,8 +33,12 @@ public class DetectionLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DetectionAmount = Mathf.Clamp(DetectionAmount, 0, 1);
+        if(GameManager.s_Singleton.gameState == GameState.PlayMode)
+        {
+            DetectionAmount = Mathf.Clamp(DetectionAmount, 0, 1);
 
-        EyeFill.fillAmount = DetectionAmount;
+            EyeFill.fillAmount = DetectionAmount;
+        }
+       
     }
 }
