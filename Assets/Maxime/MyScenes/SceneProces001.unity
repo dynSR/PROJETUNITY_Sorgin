@@ -808,6 +808,7 @@ GameObject:
   - component: {fileID: 1281562840}
   - component: {fileID: 1281562838}
   - component: {fileID: 1281562854}
+  - component: {fileID: 1281562855}
   m_Layer: 0
   m_Name: FlowchartProces001
   m_TagString: Untagged
@@ -828,11 +829,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 485, y: 6}
+  scrollPos: {x: 116.465805, y: 135.74136}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.85000014
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -842,7 +843,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 1281562839}
   selectedCommands:
-  - {fileID: 1281562854}
+  - {fileID: 1281562855}
   variables:
   - {fileID: 1281562835}
   - {fileID: 1281562834}
@@ -974,6 +975,7 @@ MonoBehaviour:
   - {fileID: 1281562840}
   - {fileID: 1281562854}
   - {fileID: 1281562838}
+  - {fileID: 1281562855}
   suppressAllAutoSelections: 0
 --- !u!114 &1281562840
 MonoBehaviour:
@@ -1394,7 +1396,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &1281562854
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1408,6 +1410,25 @@ MonoBehaviour:
   indentLevel: 0
   duration: 1
   targetAlpha: 1
+  waitUntilFinished: 1
+  fadeColor: {r: 0, g: 0, b: 0, a: 1}
+  fadeTexture: {fileID: 0}
+--- !u!114 &1281562855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281562832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 207aecf668a0345388087ccf522f9957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 18
+  indentLevel: 0
+  duration: 0
+  targetAlpha: 0
   waitUntilFinished: 1
   fadeColor: {r: 0, g: 0, b: 0, a: 1}
   fadeTexture: {fileID: 0}

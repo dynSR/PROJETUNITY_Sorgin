@@ -1907,6 +1907,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490a44d5117bc4c49b85ad75fc04500b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  pauseMenuWindow: {fileID: 0}
+  pauseMenuButtonLayout: {fileID: 0}
+  pauseMenuInputsDisplayerWindow: {fileID: 0}
+  pauseMenuOptionsWindow: {fileID: 0}
+  firstButtonOfPauseMenu: {fileID: 0}
+  optionsFirstSelectedButton: {fileID: 0}
+  pauseMenuOptionsButton: {fileID: 0}
+  lastSelectedButton: {fileID: 0}
+  pauseWindowIsDisplayed: 0
+  pauseWindowOptionsAreDisplayed: 0
+  pauseWindowInputsDisplayerIsDisplayed: 0
   titreProcesTxt: {fileID: 862528290}
   numeroProces: 1
   chefAccusation: L'empoisonnement du marchand
@@ -1914,7 +1926,6 @@ MonoBehaviour:
   validationPopupWindow: {fileID: 650889827}
   validationPopupButtonLayout: {fileID: 194970730}
   validationPopupIsDisplayed: 0
-  fadeDuration: 0.25
 --- !u!114 &907913110
 MonoBehaviour:
   m_ObjectHideFlags: 0

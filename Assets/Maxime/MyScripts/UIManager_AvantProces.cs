@@ -45,7 +45,8 @@ public class UIManager_AvantProces : DefaultUIManager
 
         if (!validationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
         {
-                DisplayValidationPopup();
+            Debug.Log("Square pressed");
+            DisplayValidationPopup();
         }
 
         if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B"))
