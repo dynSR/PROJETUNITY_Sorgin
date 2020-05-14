@@ -32,6 +32,8 @@ public class MoveScript : MonoBehaviour
     float vertical;
 
     public bool OnWall;
+    public GameObject WallLight;
+    public GameObject StandardView;
     bool CanGoR;
     bool CanGoL;
 
@@ -61,6 +63,8 @@ public class MoveScript : MonoBehaviour
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             Anim.SetFloat("Blend", Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical")));
+            StandardView.SetActive(true);
+            WallLight.SetActive(false);
 
             SoundTimer -= Time.deltaTime * (speed);
 
@@ -101,6 +105,8 @@ public class MoveScript : MonoBehaviour
             }
             else
             {
+                StandardView.SetActive(false);
+                WallLight.SetActive(true);
                 Anim.SetBool("Lean", true);
 
                 horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("Horizontal"), 0.05f);

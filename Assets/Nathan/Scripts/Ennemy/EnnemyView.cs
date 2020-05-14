@@ -120,7 +120,7 @@ public class EnnemyView : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             OnTrigger = true;
-            PlayerPos = other.transform;
+            PlayerPos = other.transform.Find("Middle");
         }
     }
 
