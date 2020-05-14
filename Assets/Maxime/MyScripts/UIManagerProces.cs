@@ -41,6 +41,11 @@ public class UIManagerProces : MonoBehaviour
         txtPointsEarned.text = "Vous avez obtenu " + pointsEarned + " points de bénédiction.";
     }
 
+    public void GoToEscapeScene()
+    {
+        SceneManager.LoadScene("SceneBuild");
+    }
+
     public void ButtonRestart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

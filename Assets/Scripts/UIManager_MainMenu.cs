@@ -129,12 +129,12 @@ public class UIManager_MainMenu : DefaultUIManager
     #region Debug Buttons
     public void ButtonAvantProces()
     {
-        SceneManager.LoadScene("SBSceneAvProces");
+        SceneManager.LoadScene("SceneAvProces001");
     }
 
     public void ButtonProces()
     {
-        SceneManager.LoadScene("SBSceneProces");
+        SceneManager.LoadScene("SceneProces001");
     }
 
     public void ButtonShop()

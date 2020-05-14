@@ -9,11 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Scene_MainMenu.unity
     guid: dd47fdad12641c747a17c66682e7cfd6
   - enabled: 1
-    path: Assets/Maxime/MyScenes/SBSceneAvProces.unity
-    guid: fea57cc22ea52ae499bb58f1addd2bd4
-  - enabled: 1
-    path: Assets/Maxime/MyScenes/SBSceneProces.unity
-    guid: 0b5c429f0ccba384eb11ff94e4c487f7
+    path: Assets/Maxime/MyScenes/SceneAvProces001.unity
+    guid: a057e5d06ce9a0043b184acf47e61bdd
   - enabled: 1
     path: Assets/Maxime/MyScenes/SceneProces001.unity
     guid: eb233ece6191fc943b2b6ba9b333c49c

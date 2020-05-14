@@ -2684,12 +2684,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeDuration: 0.25
   pauseMenuWindow: {fileID: 0}
-  pauseMenu_InputsDisplayerWindow: {fileID: 0}
-  pauseMenu_OptionsWindow: {fileID: 0}
+  pauseMenuButtonLayout: {fileID: 0}
+  pauseMenuInputsDisplayerWindow: {fileID: 0}
+  pauseMenuOptionsWindow: {fileID: 0}
+  firstButtonOfPauseMenu: {fileID: 0}
+  optionsFirstSelectedButton: {fileID: 0}
+  pauseMenuOptionsButton: {fileID: 0}
+  lastSelectedButton: {fileID: 0}
   pauseWindowIsDisplayed: 0
   pauseWindowOptionsAreDisplayed: 0
   pauseWindowInputsDisplayerIsDisplayed: 0
-  sceneToLoadOnClickPlayButton: SBSceneAvProces
+  sceneToLoadOnClickPlayButton: SceneAvProces001
   mainMenuFirstButton: {fileID: 822134289}
   optionsButton: {fileID: 1204500569}
   optionsFirstButton: {fileID: 140240823}
