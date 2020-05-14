@@ -32,6 +32,9 @@ public class MoveScript : MonoBehaviour
     float vertical;
 
     public bool OnWall;
+    bool CanGoR;
+    bool CanGoL;
+
     public bool OnArmoire;
     bool ChangedCam = false;
 
@@ -42,8 +45,6 @@ public class MoveScript : MonoBehaviour
         CameraTPS = GameObject.Find("Cameras").transform.Find("TPS").gameObject;
         CameraTopDown = GameObject.Find("Cameras").transform.Find("TopDown").gameObject;
 
-        CameraTPS.GetComponent<CinemachineVirtualCamera>().m_Follow = transform.Find("Body").transform;
-        CameraTPS.GetComponent<CinemachineVirtualCamera>().m_LookAt = transform.Find("Body").transform;
 
         CameraTopDown.GetComponent<CinemachineVirtualCamera>().m_Follow = transform;
 
@@ -71,9 +72,10 @@ public class MoveScript : MonoBehaviour
 
             if (!OnWall)
             {
+                Anim.SetBool("Lean", false);
 
-                vertical = Mathf.Lerp(vertical, Input.GetAxis("Vertical"), 0.05f);
-                horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"), 0.05f);
+                vertical = Mathf.MoveTowards(vertical, Input.GetAxis("Vertical"), 0.05f);
+                horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("Horizontal"), 0.05f);
 
 
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.05f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.05f) //Rotation du perso
@@ -97,6 +99,45 @@ public class MoveScript : MonoBehaviour
 
                 ChangedCam = false;
             }
+            else
+            {
+                Anim.SetBool("Lean", true);
+
+                horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("Horizontal"), 0.05f);
+                moveDirection = new Vector3(-horizontal, 0, vertical);
+                moveDirection = transform.TransformDirection(moveDirection);
+
+                if (horizontal <= 0 && !CanGoR)
+                {
+                    horizontal = 0;
+                    Anim.SetBool("L", true);
+                }
+                else
+                {
+                    Anim.SetBool("L", false);
+                }
+
+                if (horizontal >= 0 && !CanGoL)
+                {
+                    horizontal = 0;
+                    Anim.SetBool("R", true);
+                }
+                else
+                {
+                    Anim.SetBool("R", false);
+                }
+
+                if (Input.GetAxis("Horizontal") == 0 && !CanGoR)
+                {
+                    horizontal = 1;
+                }
+
+                if (Input.GetAxis("Horizontal") == 0 && !CanGoL)
+                {
+                    horizontal = -1;
+                }
+                Controller.SimpleMove(moveDirection * 1.5f);
+            }
         }
     }
 
@@ -104,6 +145,8 @@ public class MoveScript : MonoBehaviour
     {
         CameraTopDown.SetActive(false);
         CameraTPS.SetActive(true);
+
+        OnWall = !OnWall;
     }
 
     public void TopDownCamera()
@@ -126,32 +169,7 @@ public class MoveScript : MonoBehaviour
             WallCamera();
             ChangedCam = true;
         }
-
-
-        horizontal = Mathf.Lerp(horizontal, Input.GetAxis("Horizontal"), 0.05f);
-        moveDirection = new Vector3(-horizontal, 0, vertical);
-        moveDirection = transform.TransformDirection(moveDirection);
-
-        if (horizontal <= 0 && !CanGoRight)
-        {
-            horizontal = 0;
-        }
-
-        if (horizontal >= 0 && !CanGoLeft)
-        {
-            horizontal = 0;
-        }
-
-        if (Input.GetAxis("Horizontal")==0 && !CanGoRight)
-        {
-            horizontal = 1;
-        }
-
-        if (Input.GetAxis("Horizontal") == 0 && !CanGoLeft)
-        {
-            horizontal = -1;
-        }
-        Controller.SimpleMove(moveDirection);
-
+        CanGoR = CanGoRight;
+        CanGoL = CanGoLeft;
     }
 }
