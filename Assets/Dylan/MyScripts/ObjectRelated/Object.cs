@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Object : MonoBehaviour
+[CreateAssetMenu(fileName = "Object_", order = 1)]
+public class Object : ScriptableObject
 {
     //Variables des objets contenus dans le jeu
     private enum ObjectType { Stone, Key, Bottle };
@@ -10,6 +11,7 @@ public class Object : MonoBehaviour
 
     [SerializeField] private string objectName;
     [SerializeField] private Sprite objectIcon;
+    [SerializeField] private GameObject objectPrefab;
     [SerializeField] private int durationOfEffect;
 
     public string MyObjectName { get => objectName; }

@@ -10,7 +10,7 @@ public class PlayerObjectsInventory : MonoBehaviour
     public GameObject objectActivationFeedback;
     public int numberOfObjectInInventory = 0;
     [HideInInspector] public bool objectCompartmentIsActive = false;
-
+    
     public static PlayerObjectsInventory s_Singleton;
 
     #region Singleton

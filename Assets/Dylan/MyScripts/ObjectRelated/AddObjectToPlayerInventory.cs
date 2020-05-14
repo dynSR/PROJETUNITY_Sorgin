@@ -5,19 +5,20 @@ using UnityEngine.UI;
 
 public class AddObjectToPlayerInventory : MonoBehaviour
 {
-    public Object _object;
+    public Object objectPickedup;
     public bool canBePickup = false;
+    private Animator myAnimator;
 
     private void Start()
     {
-        _object = this.GetComponent<Object>();
+        myAnimator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (canBePickup && GameManager.s_Singleton.gameState == GameState.PlayMode && !MapHandler.s_Singleton.mapIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
         {
-            AddTheObjectToTheInventory();
+            AddTheObjectToTheInventory(objectPickedup);
         }
     }
 
@@ -26,8 +27,9 @@ public class AddObjectToPlayerInventory : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Can pick the object");
-            transform.GetChild(0).gameObject.SetActive(true);
+            //transform.GetChild(0).gameObject.SetActive(true);
             canBePickup = true;
+            myAnimator.SetBool("PlayerIsInTrigger", true);
         }
     }
 
@@ -36,13 +38,14 @@ public class AddObjectToPlayerInventory : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Cannot pick the object");
-            transform.GetChild(0).gameObject.SetActive(false);
+            //transform.GetChild(0).gameObject.SetActive(false);
             canBePickup = false;
+            myAnimator.SetBool("PlayerIsInTrigger", false);
         }
     }
 
-    //Fonction attachée au clique sur "Oui" de la fenêtre popup de validation d'achat...
-    public void AddTheObjectToTheInventory()
+    //Fonction permettant de ramasser un objet et de le stocker dans l'inventaire d'objets du joueur
+    public void AddTheObjectToTheInventory(Object objToAddToInventory)
     {
         if (PlayerObjectsInventory.s_Singleton.numberOfObjectInInventory == 3)
         {
@@ -53,18 +56,24 @@ public class AddObjectToPlayerInventory : MonoBehaviour
         {
             for (int i = 0; i < PlayerObjectsInventory.s_Singleton.objectsCompartments.Count; i++)
             {
-                //Si un des compartiments de sort est vide et le joueur n'a pas encore atteint la limite de sort achetable...
+                //Si un des compartiments de sort est vide et le joueur n'a pas encore atteint la limite d'objet ramassable...
                 if (PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<ObjectCompartment>().MyCompartmentObject == null)
                 {
-                    PlayerObjectsInventory.s_Singleton.numberOfObjectInInventory++;
+                    for (int x = 0; x < ObjectDataBase.s_Singleton.objectsInTheGame.Count; x++)
+                    {
+                        if (ObjectDataBase.s_Singleton.objectsInTheGame[x] == objectPickedup)
+                        {
+                            PlayerObjectsInventory.s_Singleton.numberOfObjectInInventory++;
 
-                    //Activation du component image + changement de son sprite du compartiment de sort dans lequel le sort acheté a été ajouté
-                    PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<ObjectCompartment>().MyCompartmentObject = _object;
-                    PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().enabled = true;
-                    PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().sprite = _object.MyObjectIcon;
-                    Destroy(gameObject);
+                            //Activation du component image + changement de son sprite du compartiment de sort dans lequel l'objet ramassé a été ajouté
+                            PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<ObjectCompartment>().MyCompartmentObject = ObjectDataBase.s_Singleton.objectsInTheGame[x];
+                            PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().enabled = true;
+                            PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().sprite = ObjectDataBase.s_Singleton.objectsInTheGame[x].MyObjectIcon;
+                            Destroy(this.gameObject);
+                            return;
+                        }
+                    }
 
-                    return;
                 }
             }
         }
