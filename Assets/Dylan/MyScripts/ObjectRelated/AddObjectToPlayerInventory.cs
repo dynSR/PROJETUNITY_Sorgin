@@ -13,7 +13,7 @@ public class AddObjectToPlayerInventory : MonoBehaviour
         _object = this.GetComponent<Object>();
     }
 
-    private void OnTriggerStay(Collider other)
+    private void Update()
     {
         if (canBePickup && GameManager.s_Singleton.gameState == GameState.PlayMode && !MapHandler.s_Singleton.mapIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
         {
@@ -62,10 +62,10 @@ public class AddObjectToPlayerInventory : MonoBehaviour
                     PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<ObjectCompartment>().MyCompartmentObject = _object;
                     PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().enabled = true;
                     PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().sprite = _object.MyObjectIcon;
-
                     return;
                 }
             }
+            Destroy(gameObject);
         }
     }
 }
