@@ -91,6 +91,17 @@
 						</Action>
 					</ChildrenList>
 				</Event>
+				<Event Name="GSFX_OppeningADoor" ID="{48411842-80C9-4FB3-84B8-D208663D421B}">
+					<ChildrenList>
+						<Action Name="" ID="{EB17F0FD-BF7F-44B1-994A-692AAB734426}" ShortID="835703641">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="SFX_OppeningADoor" ID="{6C1E13E7-D4FB-4A8E-8843-BF19AA115239}" WorkUnitID="{1BF8B83F-70A0-4817-8052-5611AAFA4F16}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>

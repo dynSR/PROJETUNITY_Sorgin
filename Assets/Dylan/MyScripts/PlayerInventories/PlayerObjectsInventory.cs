@@ -7,9 +7,18 @@ public class PlayerObjectsInventory : MonoBehaviour
 {
     [Header("OBJECT COMPARTMENT PARAMETERS")]
     public List<ObjectCompartment> objectsCompartments;
-    public GameObject objectActivationFeedback;
-    public int numberOfObjectInInventory = 0;
     [HideInInspector] public bool objectCompartmentIsActive = false;
+    public GameObject objectActivationFeedback;
+    public Object objectInObjectCompartment;
+
+
+    public int numberOfObjectInInventory = 0;
+    [SerializeField] private CanvasGroup cantUseAnObject;
+    
+    public OppeningDoor doorNearPlayerCharacter;
+
+    [Header("WWISE SOUND EVENT NAME")]
+    [SerializeField] private string oppeningADoorSFX;
     
     public static PlayerObjectsInventory s_Singleton;
 
@@ -56,28 +65,88 @@ public class PlayerObjectsInventory : MonoBehaviour
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
             {
                 Debug.Log("Square pressed");
-                UseObject();
+                if (objectCompartmentIsActive && objectsCompartments[0].MyCompartmentObject != null)
+                {
+                    objectInObjectCompartment = objectsCompartments[0].MyCompartmentObject;
+                    TryToUseTheObject();
+                }
+                    
             }
             #endregion
         }
+    }
+
+
+    public void TryToUseTheObject()
+    {
+        switch (objectInObjectCompartment.objectType)
+        {
+            case Object.ObjectType.Stone:
+                break;
+            case Object.ObjectType.Key:
+                if (objectInObjectCompartment.MyObjectID == 1)
+                {
+                    CheckIfPlayerHasTheNecessaryObject(1);
+                }
+                else if (objectInObjectCompartment.MyObjectID == 2)
+                {
+                    CheckIfPlayerHasTheNecessaryObject(2);
+                }
+                else
+                {
+                    PlayerDoesNotHaveTheNecessaryObject();
+                }
+                break;
+            case Object.ObjectType.Bottle:
+                break;
+            default:
+                break;
+        }
+    }
+
+    void CheckIfPlayerHasTheNecessaryObject(int necessaryObjectID)
+    {
+        if(necessaryObjectID == objectInObjectCompartment.MyObjectID)
+        {
+            if (doorNearPlayerCharacter != null)
+            {
+                if (necessaryObjectID == 1 && doorNearPlayerCharacter.doorType == DoorType.CommonDoor && doorNearPlayerCharacter.doorIsLocked)
+                {
+                    UseObject();
+                }
+                else if (necessaryObjectID == 2 && doorNearPlayerCharacter.doorType == DoorType.LastDoor && doorNearPlayerCharacter.doorIsLocked)
+                {
+                    UseObject();
+                }
+                else
+                {
+                    PlayerDoesNotHaveTheNecessaryObject();
+                }
+            }
+        }
+    }
+
+    void PlayerDoesNotHaveTheNecessaryObject()
+    {
+        StartCoroutine(UIManager.s_Singleton.FadeInAndOutObjectFeedBack(cantUseAnObject));
+        DeactivateObjectActivationFeedback();
     }
 
     //Summary : Permet de gérer le switch des sort équipés
     #region Objects Management
     void UseObject()
     {
-        if (objectCompartmentIsActive && objectsCompartments[0].MyCompartmentObject != null)
+        if (objectInObjectCompartment.objectType == Object.ObjectType.Key)
         {
-            Debug.Log("Trying To use the spell");
-            objectsCompartments[0].MyCompartmentObject.UseTheObject();
-
-            objectsCompartments[0].MyCompartmentObject = null;
-
-            DisableImageCompotent(objectsCompartments[0].GetComponent<Image>());
-
-            DeactivateObjectActivationFeedback();
-            numberOfObjectInInventory--;
+            doorNearPlayerCharacter.UnlockDoor();
         }
+
+        objectsCompartments[0].MyCompartmentObject = null;
+
+        DisableImageCompotent(objectsCompartments[0].GetComponent<Image>());
+
+        DeactivateObjectActivationFeedback();
+        numberOfObjectInInventory--;
     }
 
     //Summary : Permet d'afficher ou désafficher le feedback d'activation des sorts en fonction de l'appui Input.

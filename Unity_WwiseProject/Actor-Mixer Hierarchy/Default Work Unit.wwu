@@ -353,6 +353,44 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="GSFX" ID="{1096B1FD-916B-4335-9B94-218ECC7C8C6D}" ShortID="555367075">
+					<ChildrenList>
+						<Sound Name="SFX_OppeningADoor" ID="{6C1E13E7-D4FB-4A8E-8843-BF19AA115239}" ShortID="235555329">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>45</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Pitch" Type="int32">
+									<ValueList>
+										<Value>-290</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="SFX_OppeningADoor" ID="{F980F8C2-C215-4A22-A7AC-719C7207FF26}">
+									<Language>SFX</Language>
+									<AudioFile>SFX_OppeningADoor.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="925588031"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="SFX_OppeningADoor" ID="{F980F8C2-C215-4A22-A7AC-719C7207FF26}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

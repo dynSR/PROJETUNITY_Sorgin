@@ -40,8 +40,17 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 7102da272752824285cc8cea843bd806
     GuidInternal: 
-    m_lastTime: -8586133649526758272
+    m_lastTime: -8586120867338457152
     List:
+    - name: GameSFX
+      guid: acc8e6fc076e964aa3ab11f9177eaec9
+      id: 2062088452
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: GameSFX
+        ObjectType: 7
+      Path: Default Work Unit\GameSFX
     - name: UI_Sounds
       guid: a60f653cd66b6b45a7b0f39ed1310d94
       id: 905868302
@@ -56,8 +65,20 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: f6d22cfe9df30d41a0fe5a80752cf912
     GuidInternal: 
-    m_lastTime: -8586133639695934636
+    m_lastTime: -8586120867438605325
     List:
+    - name: GSFX_OppeningADoor
+      guid: 42184148c980b34f84b8d208663d421b
+      id: 509683723
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: GSFX_OppeningADoor
+        ObjectType: 3
+      Path: Default Work Unit\GSFX_OppeningADoor
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: UI_ErasingAMarker
       guid: 852e9b2f3b31724b89be6322ab4fcc2d
       id: 95358240

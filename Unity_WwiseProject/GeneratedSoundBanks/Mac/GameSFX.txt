@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	509683723	GSFX_OppeningADoor			\Default Work Unit\GSFX_OppeningADoor	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	925588031	SFX_OppeningADoor	D:\Unity_Projects\B2_Unity_Project_Sorgin\Unity_WwiseProject\.cache\Mac\SFX\SFX_OppeningADoor_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\GSFX\SFX_OppeningADoor		206148
+
