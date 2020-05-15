@@ -8,19 +8,18 @@ using Fungus;
 
 public class UIManagerProces : MonoBehaviour
 {
-    public static int actualPointsNumber;
+    private int actualPointsNumber;
 
     private int nbGoodAnswers;
     private int nbMaxGoodAnswers;
 
     public Flowchart mainFlowchart;
 
-    public GameObject endSection;
-
     // Start is called before the first frame update
     void Start()
     {
-        nbMaxGoodAnswers = mainFlowchart.GetIntegerVariable("maxGoodAnswers");
+        nbMaxGoodAnswers = 0;
+        nbGoodAnswers = 0;
         actualPointsNumber = 0;
     }
 
@@ -30,13 +29,11 @@ public class UIManagerProces : MonoBehaviour
         
     }
 
-    public void PointsEarned()
-    {
-        actualPointsNumber += mainFlowchart.GetIntegerVariable("GoodAnswers") * 125;
-    }
 
     public void GoToEscape()
     {
+        actualPointsNumber += mainFlowchart.GetIntegerVariable("GoodAnswers") * 125;
+        GameManager.s_Singleton.playerPointsValue = actualPointsNumber;
         SceneManager.LoadScene("SceneBuild");
     }
 }
