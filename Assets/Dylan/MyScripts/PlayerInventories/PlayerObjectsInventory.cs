@@ -139,6 +139,7 @@ public class PlayerObjectsInventory : MonoBehaviour
         if (objectInObjectCompartment.objectType == Object.ObjectType.Key)
         {
             doorNearPlayerCharacter.UnlockDoor();
+            AkSoundEngine.PostEvent(oppeningADoorSFX, doorNearPlayerCharacter.transform.gameObject);
         }
 
         objectsCompartments[0].MyCompartmentObject = null;

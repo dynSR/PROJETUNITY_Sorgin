@@ -2434,7 +2434,7 @@ MonoBehaviour:
   numberOfObjectInInventory: 0
   cantUseAnObject: {fileID: 569792552}
   doorNearPlayerCharacter: {fileID: 0}
-  oppeningADoorSFX: 
+  oppeningADoorSFX: GSFX_OppeningADoor
 --- !u!95 &223299766
 Animator:
   serializedVersion: 3
@@ -6751,6 +6751,7 @@ GameObject:
   - component: {fileID: 708413506}
   - component: {fileID: 708413505}
   - component: {fileID: 708413507}
+  - component: {fileID: 708413508}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -6817,6 +6818,31 @@ MonoBehaviour:
     idInternal: 0
     valueGuidInternal: 
     WwiseObjectReference: {fileID: 11400000, guid: 42d3b78adcd12c44a8b224669ccce1f7,
+      type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
+--- !u!114 &708413508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708413504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9152348fb14faa40b8b38756884241c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b5c1531f682b5104b95ab21b1f78600f,
       type: 2}
   decodeBank: 0
   loadAsynchronous: 0
@@ -7542,7 +7568,7 @@ MonoBehaviour:
   beginExfiltrationValidationPopupIsDisplayed: 0
   cantUseAnObjectFeedback: {fileID: 569792552}
   cantPickAnObjectFeedback: {fileID: 704306161}
-  timeBetweenFades: 0.5
+  timeBetweenFades: 1.25
 --- !u!114 &811743259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18133,11 +18159,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerCharacter_DefaultModel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}

@@ -126,7 +126,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 4.2222195, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.267727, y: 0.4202807, z: 1.1509104}
+  m_ConnectedAnchor: {x: 4.1, y: 2.9953935, z: 0.18}
   m_UseSpring: 1
   m_Spring:
     spring: 20
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 2800000, guid: a1575b2e822abc04d954471ef048917e, type: 3}
+  m_Texture: {fileID: 2800000, guid: 2b7c9fae4dad685408382fd3b7147339, type: 3}
   m_UVRect:
     serializedVersion: 2
     x: 0
