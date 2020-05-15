@@ -8,7 +8,7 @@ public class EnnemyView : MonoBehaviour
     public Transform Waypoint;
 
     public Vector3 Destination;
-    Transform PlayerPos;
+    public Transform PlayerPos;
 
     public NavMeshAgent Nav;
 
@@ -27,6 +27,8 @@ public class EnnemyView : MonoBehaviour
     bool Done;
     bool Follow;
 
+    int WaypointLevel;
+
     public float Detection;
 
     // Start is called before the first frame update
@@ -41,7 +43,6 @@ public class EnnemyView : MonoBehaviour
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             Timer -= Time.deltaTime;
-            Detection = Mathf.Clamp(Detection, 0, 1.1f);
 
             if (OnTrigger)
             {
@@ -58,7 +59,7 @@ public class EnnemyView : MonoBehaviour
 
             if (IsVisible)
             {
-                Detection += (Time.deltaTime / Vector3.Distance(Eye.position, PlayerPos.position)) * 6;
+                Detection += (Time.deltaTime / Vector3.Distance(Eye.position, PlayerPos.position)) *4.5f;
                 LostTimer = 1;
                 Destination = PlayerPos.position;
                 if (!Done)
@@ -69,6 +70,7 @@ public class EnnemyView : MonoBehaviour
             else
             {
                 Detection -= Time.deltaTime / 3;
+                Detection = Mathf.Clamp(Detection, 0, 1.1f);
 
                 if (Done)
                 {
@@ -95,7 +97,14 @@ public class EnnemyView : MonoBehaviour
 
             if (LostTimer <= 0 && WaypointTimer <= 0)
             {
+
+                Waypoint = Waypoints[WaypointLevel];
                 Nav.destination = Waypoint.position;
+                WaypointLevel++;
+                if (WaypointLevel == Waypoints.Count)
+                {
+                    WaypointLevel = 0;
+                }
                 WaypointTimer = WaitingTime;
             }
 
@@ -105,31 +114,14 @@ public class EnnemyView : MonoBehaviour
                 {
                     if (!Nav.hasPath || Nav.velocity.sqrMagnitude == 0f)
                     {
-                        Waypoint = Waypoints[Random.Range(0, Waypoints.Count)];
+                        transform.rotation = Quaternion.RotateTowards(transform.rotation, Waypoint.transform.rotation,15);
                         WaypointTimer -= Time.deltaTime;
                     }
                 }
             }
-            DetectionLevel.Instance.DetectionAmount = Detection;
+            DetectionLevel.Instance.Detection(gameObject.name, Detection);
         }
         
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            OnTrigger = true;
-            PlayerPos = other.transform.Find("Middle");
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            OnTrigger = false;
-        }
     }
 
     void Raycast()

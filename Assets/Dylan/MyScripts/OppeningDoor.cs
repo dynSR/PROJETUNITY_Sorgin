@@ -19,7 +19,7 @@ public class OppeningDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        parentRigidBody.isKinematic = doorIsLocked;
     }
 
     private void OnTriggerEnter(Collider other)

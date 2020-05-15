@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: 0, y: 0.25, z: -0.72}
+  m_FollowOffset: {x: 0, y: 0, z: -0.1}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -1242,9 +1242,9 @@ MonoBehaviour:
     m_DecelTime: 0.1
     m_InputAxisName: PS4_RStick_Horizontal
     m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -30
-    m_MaxValue: 30
+    m_InvertInput: 0
+    m_MinValue: -60
+    m_MaxValue: 60
     m_Wrap: 0
     m_Recentering:
       m_enabled: 0
@@ -1540,7 +1540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6379035860508967922}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.75, z: -0.325}
+  m_LocalPosition: {x: 0, y: 1.75, z: -0.522}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6379035859645507969}
@@ -1570,8 +1570,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6379035860551110529}
-  m_LocalRotation: {x: -0, y: 0.9860714, z: -0.16632243, w: 0}
-  m_LocalPosition: {x: 0, y: 2, z: 0.39500046}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.75, z: -0.42999983}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6379035859816319551}
@@ -1602,7 +1602,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 70
     OrthographicSize: 10
-    NearClipPlane: 0.3
+    NearClipPlane: 0.01
     FarClipPlane: 5000
     Dutch: 0
     LensShift: {x: 0, y: 0}

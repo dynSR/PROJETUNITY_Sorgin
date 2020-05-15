@@ -25,6 +25,8 @@ public class DetectionLevel : MonoBehaviour
 
     public float DetectionAmount;
 
+    public string Ennemi;
+
     void Start()
     {
         
@@ -33,12 +35,25 @@ public class DetectionLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.s_Singleton.gameState == GameState.PlayMode)
+
+    }
+
+    public void Detection(string EnnemiActuel, float DetectionValue)
+    {
+        
+        if (DetectionAmount < DetectionValue)
         {
-            DetectionAmount = Mathf.Clamp(DetectionAmount, 0, 1);
+            Ennemi = EnnemiActuel;
+            DetectionAmount = DetectionValue;
 
             EyeFill.fillAmount = DetectionAmount;
         }
-       
+
+        if (EnnemiActuel == Ennemi)
+        {
+            DetectionAmount = DetectionValue;
+
+            EyeFill.fillAmount = DetectionAmount;
+        }
     }
 }
