@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectType: 1
   objectName: SilverKey
-  objectIcon: {fileID: 21300000, guid: 9302fa4e0b2ecb44589f1ab0f796eb72, type: 3}
+  objectIcon: {fileID: 21300000, guid: 880298f37329d6144a057d1bd4ea7d90, type: 3}
   objectPrefab: {fileID: 3672585847018374309, guid: 709ba0b2bdccf184c82683181681256e,
     type: 3}
   durationOfEffect: 0

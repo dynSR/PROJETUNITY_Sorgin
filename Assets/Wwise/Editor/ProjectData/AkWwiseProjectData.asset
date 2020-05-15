@@ -205,11 +205,7 @@ MonoBehaviour:
     List: []
   ExpandedItems:
   - /Unity_WwiseProject
-  - /Unity_WwiseProject/Auxiliary Busses
-  - /Unity_WwiseProject/Auxiliary Busses/Default Work Unit
   - /Unity_WwiseProject/Events
   - /Unity_WwiseProject/Events/Default Work Unit
-  - /Unity_WwiseProject/SoundBanks
-  - /Unity_WwiseProject/SoundBanks/Default Work Unit
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

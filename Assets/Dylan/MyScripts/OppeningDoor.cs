@@ -14,12 +14,13 @@ public class OppeningDoor : MonoBehaviour
     {
         parentAnimator = GetComponentInParent<Animator>();
         parentRigidBody = GetComponentInParent<Rigidbody>();
+        parentRigidBody.isKinematic = doorIsLocked;
     }
 
     // Update is called once per frame
     void Update()
     {
-        parentRigidBody.isKinematic = doorIsLocked;
+       
     }
 
     private void OnTriggerEnter(Collider other)

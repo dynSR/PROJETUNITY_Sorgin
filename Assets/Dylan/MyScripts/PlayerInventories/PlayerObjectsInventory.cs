@@ -13,7 +13,6 @@ public class PlayerObjectsInventory : MonoBehaviour
 
 
     public int numberOfObjectInInventory = 0;
-    [SerializeField] private CanvasGroup cantUseAnObject;
     
     public OppeningDoor doorNearPlayerCharacter;
 
@@ -128,7 +127,7 @@ public class PlayerObjectsInventory : MonoBehaviour
 
     void PlayerDoesNotHaveTheNecessaryObject()
     {
-        StartCoroutine(UIManager.s_Singleton.FadeInAndOutObjectFeedBack(cantUseAnObject));
+        StartCoroutine(UIManager.s_Singleton.FadeInAndOutObjectFeedBack(UIManager.s_Singleton.cantUseAnObjectFeedback));
         DeactivateObjectActivationFeedback();
     }
 
