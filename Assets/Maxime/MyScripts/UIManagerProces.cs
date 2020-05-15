@@ -32,7 +32,7 @@ public class UIManagerProces : MonoBehaviour
 
     public void GoToEscape()
     {
-        actualPointsNumber += mainFlowchart.GetIntegerVariable("GoodAnswers") * 125;
+        actualPointsNumber += mainFlowchart.GetIntegerVariable("goodAnswers") * 250;
         GameManager.s_Singleton.playerPointsValue = actualPointsNumber;
         SceneManager.LoadScene("SceneBuild");
     }

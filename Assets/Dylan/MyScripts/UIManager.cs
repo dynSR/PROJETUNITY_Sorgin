@@ -162,7 +162,7 @@ public class UIManager : DefaultUIManager
             obj.GetComponent<ShopButton>().CheckIfPlayerCanPurchaseASpell(tempPlayerPointsValue);
         }
 
-        StartCoroutine(SubstractionCoroutine(valueToSubstract, 50));
+        StartCoroutine(SubstractionCoroutine(valueToSubstract, 10));
         SetPlayerPointsCountValue();
     }
 

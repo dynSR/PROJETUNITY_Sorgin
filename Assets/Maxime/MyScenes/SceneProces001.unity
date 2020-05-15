@@ -4416,7 +4416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bce820582438e42bb8d5c46f609620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainFlowchart: {fileID: 0}
+  mainFlowchart: {fileID: 11510791}
 --- !u!4 &847590990
 Transform:
   m_ObjectHideFlags: 0
