@@ -31,13 +31,13 @@ public class MoveScript : MonoBehaviour
     public float horizontal;
     float vertical;
 
-    public bool OnWall;
+    bool OnWall;
     public GameObject WallLight;
     public GameObject StandardView;
     bool CanGoR;
     bool CanGoL;
 
-    public bool OnArmoire;
+    bool OnArmoire;
     bool ChangedCam = false;
 
 
@@ -62,6 +62,8 @@ public class MoveScript : MonoBehaviour
     {
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
+            OnArmoire = PlayerState.Instance.OnArmoire;
+            OnWall = PlayerState.Instance.OnWall;
             Anim.SetFloat("Blend", Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical")));
             StandardView.SetActive(true);
             WallLight.SetActive(false);

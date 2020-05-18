@@ -61,7 +61,7 @@ public class ArmoireAnimation : MonoBehaviour
                 {
                     Animating = true;
                     LaunchAnim();
-                    Player.GetComponent<MoveScript>().OnArmoire = true;
+                    PlayerState.Instance.OnArmoire = true;
                 }
 
                 if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && !Animating && Inside)
@@ -131,7 +131,7 @@ public class ArmoireAnimation : MonoBehaviour
         Animating = false;
         Inside = false;
         Lerp = false;
-        Player.GetComponent<MoveScript>().OnArmoire = false;
+        PlayerState.Instance.OnArmoire = false;
     }
 
     void CameraOn()
