@@ -6,7 +6,7 @@ using UnityEngine.Playables;
 public class ArmoireAnimation : MonoBehaviour
 {
 
-    GameObject Player;
+    GameObject playerCharacter;
 
     public GameObject PlayerPositionHolder;
     public Animator Anim;
@@ -38,9 +38,9 @@ public class ArmoireAnimation : MonoBehaviour
             if (!Inside)
             {
                 Text.SetActive(InTrigger);
-                if (Player != null)
+                if (playerCharacter != null)
                 {
-                    Player.transform.Find("View").gameObject.SetActive(true);
+                    playerCharacter.transform.Find("View").gameObject.SetActive(true);
                     Light.SetActive(false);
 
                 }
@@ -48,9 +48,9 @@ public class ArmoireAnimation : MonoBehaviour
             else
             {
                 Text.SetActive(false);
-                if (Player != null)
+                if (playerCharacter != null)
                 {
-                    Player.transform.Find("View").gameObject.SetActive(false);
+                    playerCharacter.transform.Find("View").gameObject.SetActive(false);
                     Light.SetActive(true);
                 }
             }
@@ -61,7 +61,7 @@ public class ArmoireAnimation : MonoBehaviour
                 {
                     Animating = true;
                     LaunchAnim();
-                    PlayerState.Instance.OnArmoire = true;
+                    Player.s_Singleton.OnArmoire = true;
                 }
 
                 if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && !Animating && Inside)
@@ -73,8 +73,8 @@ public class ArmoireAnimation : MonoBehaviour
 
             if (Lerp)
             {
-                Player.transform.position = Vector3.MoveTowards(Player.transform.position, PlayerPositionHolder.transform.position, Time.deltaTime * Speed);
-                Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, PlayerPositionHolder.transform.rotation, Speed * Time.deltaTime * 100);
+                playerCharacter.transform.position = Vector3.MoveTowards(playerCharacter.transform.position, PlayerPositionHolder.transform.position, Time.deltaTime * Speed);
+                playerCharacter.transform.rotation = Quaternion.RotateTowards(playerCharacter.transform.rotation, PlayerPositionHolder.transform.rotation, Speed * Time.deltaTime * 100);
             }
         }  
     }
@@ -84,7 +84,7 @@ public class ArmoireAnimation : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             InTrigger = true;
-            Player = other.gameObject;
+            playerCharacter = other.gameObject;
         }
     }
 
@@ -95,7 +95,7 @@ public class ArmoireAnimation : MonoBehaviour
 
     void LaunchAnim()
     {
-        Player.GetComponent<MoveScript>().enabled = false;
+        playerCharacter.GetComponent<MoveScript>().enabled = false;
         Lerp = true;
         Invoke("Animate", 0.2f);
         Invoke("CameraOn", 1.5f);
@@ -113,7 +113,7 @@ public class ArmoireAnimation : MonoBehaviour
 
         //Player.transform.parent = PlayerPositionHolder.transform;
         Anim.SetBool("Enter", true);
-        Player.GetComponentInChildren<Animator>().SetBool("Enter", true);
+        playerCharacter.GetComponentInChildren<Animator>().SetBool("Enter", true);
         //Director.Play();
     }
     void AnimateOut()
@@ -121,17 +121,17 @@ public class ArmoireAnimation : MonoBehaviour
         CamArmoire.Priority = 8;
 
         Anim.SetBool("Enter", false);
-        Player.GetComponentInChildren<Animator>().SetBool("Enter", false);
+        playerCharacter.GetComponentInChildren<Animator>().SetBool("Enter", false);
     }
 
     void CameraOff()
     {
-        Player.transform.parent = null;
-        Player.GetComponent<MoveScript>().enabled = true;
+        playerCharacter.transform.parent = null;
+        playerCharacter.GetComponent<MoveScript>().enabled = true;
         Animating = false;
         Inside = false;
         Lerp = false;
-        PlayerState.Instance.OnArmoire = false;
+        Player.s_Singleton.OnArmoire = false;
     }
 
     void CameraOn()

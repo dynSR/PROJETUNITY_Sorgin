@@ -11,20 +11,8 @@ public class PlayerSpellsInventory : MonoBehaviour
     [HideInInspector] public bool spellCompartmentIsActive = false;
 
     [Header("SPELL IN THE COMPARTMENT")]
-    [SerializeField] private Animator playerAnimator;
     public Spell spellInSpellCompartment;
-    public bool playerIsTranformedInMouse = false;
-    public bool playerIsTranformedInCat = false;
-    public bool playerIsInHumanForm = true;
-    float _durationOfEffectSinceLaunched = 0;
     
-
-    [Header("PLAYER MODELS")]
-    //public Transform playerCharacter;
-    public GameObject defaultCharacterModel;
-    public GameObject mouseCharacterModel;
-    public GameObject catCharacterModel;
-
     public static PlayerSpellsInventory s_Singleton;
 
     #region Singleton
@@ -43,7 +31,7 @@ public class PlayerSpellsInventory : MonoBehaviour
 
     private void Start()
     {
-        playerAnimator = GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -78,118 +66,7 @@ public class PlayerSpellsInventory : MonoBehaviour
                 ActiveSpellInSpellCompartment();
             }
             #endregion
-
-            #region Transformation Duration
-            if (playerIsTranformedInCat || playerIsTranformedInMouse)
-            {
-                _durationOfEffectSinceLaunched -= Time.deltaTime;
-
-                if (_durationOfEffectSinceLaunched <= 1.5f)
-                {
-                    Debug.Log("End of transformation");
-                    playerAnimator.SetBool("EndOfTransformation", true);
-                }
-                if (_durationOfEffectSinceLaunched <= 0)
-                {
-                    Debug.Log("Transformation into human");
-                    if(playerIsTranformedInCat)
-                    {
-                        HumanTransformation(catCharacterModel, defaultCharacterModel);
-                    }
-                    else if (playerIsTranformedInMouse)
-                    {
-                        HumanTransformation(mouseCharacterModel, defaultCharacterModel);
-                    }
-                }  
-            }
-            #endregion
         }
-    }
-
-    private void UseTheSpellInSpellCompartment()
-    {
-        switch (spellInSpellCompartment.spellType)
-        {
-            case Spell.SpellType.Etourdissement:
-                break;
-            case Spell.SpellType.Crochetage:
-                break;
-            case Spell.SpellType.Radar:
-                break;
-            case Spell.SpellType.Duplication:
-                break;
-            case Spell.SpellType.Clone:
-                break;
-            case Spell.SpellType.TransformationEnSouris:
-                if (playerIsInHumanForm) MouseTransformation(defaultCharacterModel, mouseCharacterModel);
-                else if (playerIsTranformedInCat) MouseTransformation(catCharacterModel, mouseCharacterModel);
-                break;
-            case Spell.SpellType.TransformationEnChat:
-                if (playerIsInHumanForm) CatTransformation(defaultCharacterModel, catCharacterModel);
-                else if (playerIsTranformedInCat) CatTransformation(mouseCharacterModel, catCharacterModel);
-                break;
-            default:
-                break;
-        }
-
-    }
-
-    public void CatTransformation(GameObject objToDisactive, GameObject objToActive)
-    {
-        Debug.Log("Trying to transform the player character in a cat...");
-
-        objToDisactive.SetActive(false);
-        objToActive.SetActive(true);
-
-        // Suppression - Instance
-        //GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
-        //Destroy(activeCharacterModel);
-
-        //GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
-        //modelToSwitchTo.transform.SetParent(activePlayerCharacter);
-
-        playerIsTranformedInCat = true;
-        playerIsTranformedInMouse = false;
-        playerIsInHumanForm = false;
-    }
-
-    public void MouseTransformation(GameObject objToDisactive, GameObject objToActive)
-    {
-        Debug.Log("Trying to transform the player character in a mouse...");
-
-        objToDisactive.SetActive(false);
-        objToActive.SetActive(true);
-
-        // Suppression - Instance
-        //GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
-        //Destroy(activeCharacterModel);
-
-        //GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
-        //modelToSwitchTo.transform.SetParent(activePlayerCharacter);
-
-        playerIsTranformedInMouse = true;
-        playerIsTranformedInCat = false;
-        playerIsInHumanForm = false;
-    }
-
-    private void HumanTransformation(GameObject objToDisactive, GameObject objToActive)
-    {
-        Debug.Log("Trying to transform the player character in a human...");
-
-        objToDisactive.SetActive(false);
-        objToActive.SetActive(true);
-
-        // Suppression - Instance
-        //GameObject activeCharacterModel = activePlayerCharacter.GetChild(0).gameObject;
-        //Destroy(activeCharacterModel);
-
-        //GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
-        //modelToSwitchTo.transform.SetParent(activePlayerCharacter);
-
-        playerIsTranformedInMouse = false;
-        playerIsTranformedInCat = false;
-        playerIsInHumanForm = true;
-        playerAnimator.SetBool("EndOfTransformation", false);
     }
 
     //Summary : Permet de gérer le switch des sort équipés
@@ -200,8 +77,8 @@ public class PlayerSpellsInventory : MonoBehaviour
         {
             Debug.Log("Trying To use the spell");
             spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
-            _durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
-            UseTheSpellInSpellCompartment();
+            Player.s_Singleton._durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
+            spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
 
             spellsCompartments[0].MyCompartmentSpell = null;
             

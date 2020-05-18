@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5891e4a9d70bf74b8b50f3d0a9db77e, type: 3}
+  m_Name: Spell_Duplication
+  m_EditorClassIdentifier: 
+  spellType: 3
+  spellName: Duplication d'objets
+  spellIcon: {fileID: 21300000, guid: 9302fa4e0b2ecb44589f1ab0f796eb72, type: 3}
+  spellDurationOfEffect: 0
+  spellValue: 400
+  spellEffectDescription: Permet de duppliquer un des objets de l'inventaire.

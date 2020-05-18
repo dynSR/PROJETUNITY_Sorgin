@@ -28,16 +28,11 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
 
     private void Start()
     {
-        if (spell == null)
-            spell = GetComponent<Spell>();
-
         if (spellNameText == null)
             spellNameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
         if (spell != null)
-        {
             spellNameText.text = spell.MySpellName;
-        }
         
         //DEBUG
         gameObject.name = spell.MySpellName;

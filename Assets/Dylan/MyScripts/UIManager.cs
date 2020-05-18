@@ -13,6 +13,7 @@ public class UIManager : DefaultUIManager
 
     [Header("PLAYER POINTS TEXT")]
     [SerializeField] private TextMeshProUGUI playerPointsValueText;
+    [SerializeField] private int valueToSubstractPerTicks;
 
     [Header("PURCHASE VALIDATION POPUP PARAMETERS")]
     public CanvasGroup purchaseValidationPopupWindow;
@@ -93,6 +94,7 @@ public class UIManager : DefaultUIManager
 
     }
 
+    #region Display/Hide Shop WIndow
     void DisplayShopWindow()
     {
         if (!shopWindow.transform.gameObject.activeInHierarchy)
@@ -112,6 +114,7 @@ public class UIManager : DefaultUIManager
         shopWindow.transform.gameObject.SetActive(false);
         playerPointsValueText.gameObject.SetActive(false);
     }
+    #endregion
 
     public void SetBeginExfiltrationPupopState(bool state)
     {
@@ -162,7 +165,7 @@ public class UIManager : DefaultUIManager
             obj.GetComponent<ShopButton>().CheckIfPlayerCanPurchaseASpell(tempPlayerPointsValue);
         }
 
-        StartCoroutine(SubstractionCoroutine(valueToSubstract, 10));
+        StartCoroutine(SubstractionCoroutine(valueToSubstract, valueToSubstractPerTicks));
         SetPlayerPointsCountValue();
     }
 
@@ -190,4 +193,6 @@ public class UIManager : DefaultUIManager
         } while (startValue != substractValueToReach);
     }
     #endregion
+
+    
 }

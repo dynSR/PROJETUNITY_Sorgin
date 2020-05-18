@@ -20,8 +20,8 @@ public class PlayerState : MonoBehaviour
     }
 
 
-    public bool OnWall;
-    public bool OnArmoire;
-    public bool CanPickObject;
+    //public bool OnWall;
+    //public bool OnArmoire;
+    //public bool CanPickObject;
 
 }

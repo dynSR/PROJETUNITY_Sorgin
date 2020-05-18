@@ -19,7 +19,7 @@ public class DefaultUIManager : MonoBehaviour
     public GameObject pauseMenuOptionsButton;
 
     [Header("LAST SELECTED BUTTON")]
-    public GameObject lastSelectedButton;
+    public static GameObject lastSelectedButton;
 
 
     public bool pauseWindowIsDisplayed = false;
@@ -81,7 +81,8 @@ public class DefaultUIManager : MonoBehaviour
         {
             UIWindowsHide(pauseMenuOptionsWindow);
             pauseWindowOptionsAreDisplayed = false;
-            EventSystem.current.SetSelectedGameObject(pauseMenuOptionsButton);
+            ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+            //EventSystem.current.SetSelectedGameObject(pauseMenuOptionsButton);
         }
         else if(pauseWindowInputsDisplayerIsDisplayed)
         {
@@ -112,7 +113,8 @@ public class DefaultUIManager : MonoBehaviour
     {
         UIWindowsDisplay(pauseMenuOptionsWindow);
         pauseWindowOptionsAreDisplayed = true;
-        EventSystem.current.SetSelectedGameObject(optionsFirstSelectedButton);
+        //EventSystem.current.SetSelectedGameObject(optionsFirstSelectedButton);
+        ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
     }
 
     public void OnClickBackToMainMenuButtonInPauseMenu()
@@ -197,7 +199,7 @@ public class DefaultUIManager : MonoBehaviour
         if (purchasedSpell != null)
             ResetEventSystemFirstSelectedGameObjet(purchasedSpell.selectedButton.gameObject);
         else
-            ResetEventSystemFirstSelectedGameObjet(EventSystem.current.firstSelectedGameObject);
+            ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
     }
 
     //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.

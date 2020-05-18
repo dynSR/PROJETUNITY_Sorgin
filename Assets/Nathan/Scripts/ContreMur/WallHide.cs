@@ -6,7 +6,7 @@ public class WallHide : MonoBehaviour
 {
 
     public GameObject Wall;
-    public GameObject Player;
+    public GameObject playerCharacter;
 
 
     Vector3 ClosestPt;
@@ -53,9 +53,9 @@ public class WallHide : MonoBehaviour
                     if (hit.transform.CompareTag("Wall"))
                     {
                         ball.SetActive(true);
-                        if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && PlayerState.Instance.OnArmoire == false)
+                        if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && Player.s_Singleton.OnArmoire == false)
                         {
-                            if (Timer <= 0 && !PlayerState.Instance.CanPickObject)
+                            if (Timer <= 0 && !Player.s_Singleton.CanPickObject)
                             {
                                 Invoke("ChangeHided", 0.05f);
                                 Timer = 1;
@@ -80,7 +80,7 @@ public class WallHide : MonoBehaviour
             {
                 if (Timer <= 0)
                 {
-                    Player.GetComponent<MoveScript>().TopDownCamera();
+                    playerCharacter.GetComponent<MoveScript>().TopDownCamera();
 
                     Invoke("ChangeHided", 0.5f);
                     Timer = 1;
@@ -93,7 +93,7 @@ public class WallHide : MonoBehaviour
             {
                 ball.SetActive(false);
 
-                Player.transform.rotation = Quaternion.RotateTowards(Player.transform.rotation, wantedRotation, 500f * Time.deltaTime);
+                playerCharacter.transform.rotation = Quaternion.RotateTowards(playerCharacter.transform.rotation, wantedRotation, 500f * Time.deltaTime);
 
                 if (Waitforrotation)
                 {
@@ -108,7 +108,7 @@ public class WallHide : MonoBehaviour
             Debug.DrawRay(transform.position, ClosestPt - transform.position, Color.red);
             //DEBUG
 
-            PlayerState.Instance.OnWall = Hided;
+            Player.s_Singleton.OnWall = Hided;
         }
         
 
@@ -122,15 +122,15 @@ public class WallHide : MonoBehaviour
     void Hide()
     {
 
-        Player.GetComponent<MoveScript>().MoveWall(RightDetector.On, LeftDetector.On, BehindDetector.On);
+        playerCharacter.GetComponent<MoveScript>().MoveWall(RightDetector.On, LeftDetector.On, BehindDetector.On);
 
         if (BehindDetector.On == false)
         {
-            Player.GetComponent<MoveScript>().WallBack(5);
+            playerCharacter.GetComponent<MoveScript>().WallBack(5);
         }
         else
         {
-            Player.GetComponent<MoveScript>().WallBack(0);
+            playerCharacter.GetComponent<MoveScript>().WallBack(0);
         }
 
     }
