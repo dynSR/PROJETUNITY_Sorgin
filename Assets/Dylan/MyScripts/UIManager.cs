@@ -32,6 +32,10 @@ public class UIManager : DefaultUIManager
     public CanvasGroup cantPickAnObjectFeedback;
     [SerializeField] private float timeBetweenFades = 0.25f;
 
+    [Header("DUPPLICATION PARAMETERS")]
+    public CanvasGroup dupplicationWindow;
+    public GameObject dupplicationButtonLayout;
+
     public static UIManager s_Singleton;
 
     #region Singleton

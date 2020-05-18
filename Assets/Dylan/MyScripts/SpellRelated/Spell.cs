@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Spell_", order = 1)]
 
@@ -28,14 +29,19 @@ public class Spell : ScriptableObject
         switch (spellType)
         {
             case SpellType.Etourdissement:
+                Stun();
                 break;
             case SpellType.Crochetage:
+                LockPicking();
                 break;
             case SpellType.Radar:
+                Detection();
                 break;
             case SpellType.Duplication:
+                //Dupplication();
                 break;
             case SpellType.Clone:
+                Clonage(Player.s_Singleton.defaultCharacterModelPrefab, Player.s_Singleton.posToInstantiateTheClone);
                 break;
             case SpellType.TransformationEnSouris:
                 if (Player.s_Singleton.playerIsInHumanForm)
@@ -62,7 +68,7 @@ public class Spell : ScriptableObject
         }
     }
 
-    public void CatTransformation(GameObject objToDisactive, GameObject objToActive)
+    private void CatTransformation(GameObject objToDisactive, GameObject objToActive)
     {
         Debug.Log("Trying to transform the player character in a cat...");
 
@@ -74,7 +80,7 @@ public class Spell : ScriptableObject
         Player.s_Singleton.playerIsInHumanForm = false;
     }
 
-    public void MouseTransformation(GameObject objToDisactive, GameObject objToActive)
+    private void MouseTransformation(GameObject objToDisactive, GameObject objToActive)
     {
         Debug.Log("Trying to transform the player character in a mouse...");
 
@@ -84,6 +90,70 @@ public class Spell : ScriptableObject
         Player.s_Singleton.playerIsTranformedInMouse = true;
         Player.s_Singleton.playerIsTranformedInCat = false;
         Player.s_Singleton.playerIsInHumanForm = false;
+    }
+
+    private void Clonage(GameObject objToClone, Transform posToSpawnClone)
+    {
+        if (!Player.s_Singleton.playerIsInHumanForm)
+            return;
+
+        else
+        {
+            GameObject objToInstantiate = Instantiate(objToClone, posToSpawnClone) as GameObject;
+            objToInstantiate.transform.rotation = posToSpawnClone.rotation;
+        }
+    }
+
+    //private void Dupplication()
+    //{
+    //    List<Object> tempObjects = new List<Object>();
+    //    Debug.Log("Dupplication");
+    //    for (int i = 0; i < PlayerObjectsInventory.s_Singleton.objectsCompartments.Count; i++)
+    //    {
+    //        if (PlayerObjectsInventory.s_Singleton.objectsCompartments[i].MyCompartmentObject == null || PlayerObjectsInventory.s_Singleton.numberOfObjectInInventory == PlayerObjectsInventory.s_Singleton.objectsCompartments.Count)
+    //        {
+    //            //Peut pas 
+    //            Debug.Log("Impossible to dupplicate an object");
+    //        }
+    //        else if(PlayerObjectsInventory.s_Singleton.objectsCompartments[i].MyCompartmentObject != null)
+    //        {
+    //            tempObjects.Add(PlayerObjectsInventory.s_Singleton.objectsCompartments[i].MyCompartmentObject);
+    //            UIManager.s_Singleton.DisplayAPopup(UIManager.s_Singleton.dupplicationWindow);
+
+    //            for (int j = 0; j < PlayerObjectsInventory.s_Singleton.numberOfObjectInInventory; j++)
+    //            {
+    //                //Activer 1, 2 ou 3 boutons - ceux contenant des objets
+    //                UIManager.s_Singleton.dupplicationButtonLayout.transform.GetChild(j).gameObject.SetActive(true);
+    //                UIManager.s_Singleton.dupplicationButtonLayout.transform.GetChild(j).GetComponent<Button>().enabled = true;
+
+
+
+    //                UIManager.s_Singleton.dupplicationButtonLayout.transform.GetChild(j).GetChild(0).GetComponent<Image>().sprite = tempObjects.MyObjectIcon;
+    //            }
+
+    //            foreach (Button buttonEnabled in collection)
+    //            {
+
+    //            }
+    //        }
+
+    //    }
+        
+    //}
+
+    private void Stun()
+    {
+
+    }
+
+    private void LockPicking()
+    {
+
+    }
+
+    private void Detection()
+    {
+
     }
 
 }

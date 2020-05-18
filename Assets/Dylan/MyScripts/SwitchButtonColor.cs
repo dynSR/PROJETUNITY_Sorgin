@@ -31,6 +31,6 @@ public class SwitchButtonColor : MonoBehaviour, IDeselectHandler, ISelectHandler
         if (buttonType == ButtonType.CanBeSetAsLastSelected)
             DefaultUIManager.lastSelectedButton = this.gameObject;
 
-        Debug.Log(DefaultUIManager.lastSelectedButton.name);
+        //Debug.Log(DefaultUIManager.lastSelectedButton.name);
     }
 }

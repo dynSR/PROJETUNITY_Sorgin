@@ -12,7 +12,10 @@ public class Player : MonoBehaviour
     public GameObject defaultCharacterModel;
     public GameObject catCharacterModel;
     public GameObject mouseCharacterModel;
-    
+
+    [Header("CLONE PARAMETERS")]
+    public GameObject defaultCharacterModelPrefab;
+    public Transform posToInstantiateTheClone;
 
     [Header("TRANSFORMATIONS STATES")]
     public bool playerIsTranformedInMouse = false;
@@ -23,6 +26,8 @@ public class Player : MonoBehaviour
     public bool OnWall;
     public bool OnArmoire;
     public bool CanPickObject;
+
+    public OppeningDoor doorNearPlayerCharacter;
 
     public static Player s_Singleton;
 

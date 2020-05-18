@@ -47,7 +47,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
         if (valueToCompare >= spell.MySpellValue)
         {
             //Alors la couleur du bouton change pour signifier au joueur qu'il peut appuyer dessus et acheter ce sort.
-            Debug.Log("Can buy " + spell.MySpellName);
+            //Debug.Log("Can buy " + spell.MySpellName);
             isPurchasable = true;
             SetButtonColor(purchasableButtonColor);
             return true;

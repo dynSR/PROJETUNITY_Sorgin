@@ -27,7 +27,7 @@ public class OppeningDoor : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && doorIsLocked)
         {
-            PlayerObjectsInventory.s_Singleton.doorNearPlayerCharacter = this;
+            Player.s_Singleton.doorNearPlayerCharacter = this;
             parentAnimator.SetBool("PlayerIsInTrigger", true);
         }
         
@@ -38,7 +38,7 @@ public class OppeningDoor : MonoBehaviour
         if (!doorIsLocked && other.gameObject.CompareTag("Player"))
         {
             parentAnimator.SetBool("PlayerIsInTrigger", false);
-            PlayerObjectsInventory.s_Singleton.doorNearPlayerCharacter = null;
+            Player.s_Singleton.doorNearPlayerCharacter = null;
         }
     }
 
@@ -46,7 +46,7 @@ public class OppeningDoor : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            PlayerObjectsInventory.s_Singleton.doorNearPlayerCharacter = null;
+            Player.s_Singleton.doorNearPlayerCharacter = null;
             parentAnimator.SetBool("PlayerIsInTrigger", false);
         }   
     }

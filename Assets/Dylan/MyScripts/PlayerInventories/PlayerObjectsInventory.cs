@@ -11,10 +11,9 @@ public class PlayerObjectsInventory : MonoBehaviour
     public GameObject objectActivationFeedback;
     public Object objectInObjectCompartment;
 
-
     public int numberOfObjectInInventory = 0;
     
-    public OppeningDoor doorNearPlayerCharacter;
+    
 
     [Header("WWISE SOUND EVENT NAME")]
     [SerializeField] private string oppeningADoorSFX;
@@ -105,7 +104,9 @@ public class PlayerObjectsInventory : MonoBehaviour
 
     void CheckIfPlayerHasTheNecessaryObject(int necessaryObjectID)
     {
-        if(necessaryObjectID == objectInObjectCompartment.MyObjectID)
+        OppeningDoor doorNearPlayerCharacter = Player.s_Singleton.doorNearPlayerCharacter;
+
+        if (necessaryObjectID == objectInObjectCompartment.MyObjectID)
         {
             if (doorNearPlayerCharacter != null)
             {
@@ -135,6 +136,8 @@ public class PlayerObjectsInventory : MonoBehaviour
     #region Objects Management
     void UseObject()
     {
+        OppeningDoor doorNearPlayerCharacter = Player.s_Singleton.doorNearPlayerCharacter;
+
         if (objectInObjectCompartment.objectType == Object.ObjectType.Key)
         {
             doorNearPlayerCharacter.UnlockDoor();
