@@ -62,8 +62,8 @@ public class MoveScript : MonoBehaviour
     {
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            OnArmoire = PlayerState.Instance.OnArmoire;
-            OnWall = PlayerState.Instance.OnWall;
+            OnArmoire = Player.s_Singleton.OnArmoire;
+            OnWall = Player.s_Singleton.OnWall;
             Anim.SetFloat("Blend", Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical")));
             StandardView.SetActive(true);
             WallLight.SetActive(false);
