@@ -33,8 +33,9 @@ public class UIManager : DefaultUIManager
     [SerializeField] private float timeBetweenFades = 0.25f;
 
     [Header("DUPPLICATION PARAMETERS")]
-    public CanvasGroup dupplicationWindow;
-    public GameObject dupplicationButtonLayout;
+    public CanvasGroup duplicationWindow;
+    public GameObject duplicationButtonLayout;
+    public bool duplicationValidationPopupIsDisplayed = false;
 
     public static UIManager s_Singleton;
 
@@ -65,7 +66,7 @@ public class UIManager : DefaultUIManager
 
         if(GameManager.s_Singleton.gameState == GameState.ConsultingShop)
         {
-            #region Circle/B
+            #region Circle/B - Purchase Validation Popup
             if (purchaseValidationPopupIsDisplayed && !beginExfiltrationValidationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
             {
                 Debug.Log("Circle/B pressed");
@@ -75,7 +76,7 @@ public class UIManager : DefaultUIManager
             }
             #endregion
 
-            #region Circle/B
+            #region Circle/B 2 - Begin Exfiltration Validation Popup
             if (beginExfiltrationValidationPopupIsDisplayed &&  (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
             {
                 Debug.Log("Circle/B pressed");
@@ -95,7 +96,19 @@ public class UIManager : DefaultUIManager
             }
             #endregion
         }
-
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
+        {
+            #region Circle/B 3 - Duplication Validation Popup
+            if (duplicationValidationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
+            {
+                Debug.Log("Circle/B pressed");
+                HideAPopup(duplicationWindow);
+                //DisableButtonsInLayout(duplicationButtonLayout);
+                duplicationValidationPopupIsDisplayed = false;
+                PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
+            }
+            #endregion
+        }
     }
 
     #region Display/Hide Shop WIndow
@@ -120,15 +133,22 @@ public class UIManager : DefaultUIManager
     }
     #endregion
 
+    #region Popup Bool State
     public void SetBeginExfiltrationPupopState(bool state)
     {
         beginExfiltrationValidationPopupIsDisplayed = state;
+    }
+
+    public void SetDuplicationPupopState(bool state)
+    {
+        duplicationValidationPopupIsDisplayed = state;
     }
 
     public void SetPurchasePupopState(bool state)
     {
         purchaseValidationPopupIsDisplayed = state;
     }
+    #endregion
 
     public IEnumerator FadeInAndOutObjectFeedBack(CanvasGroup _canvas)
     {

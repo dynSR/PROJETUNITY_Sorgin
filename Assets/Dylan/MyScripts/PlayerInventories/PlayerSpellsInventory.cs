@@ -63,26 +63,29 @@ public class PlayerSpellsInventory : MonoBehaviour
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
             {
                 Debug.Log("Square pressed");
-                ActiveSpellInSpellCompartment();
+                ActivateTheSpellInTheSpellCompartment();
             }
             #endregion
         }
     }
 
+    void ActivateTheSpellInTheSpellCompartment()
+    {
+        spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
+        Player.s_Singleton._durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
+        spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
+    }
+
     //Summary : Permet de gérer le switch des sort équipés
     #region Spells Management
-    void ActiveSpellInSpellCompartment()
+    public void UseTheSpellInTheSpellCompartment()
     {
         if (spellCompartmentIsActive && spellsCompartments[0].MyCompartmentSpell != null)
         {
             Debug.Log("Trying To use the spell");
-            spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
-            Player.s_Singleton._durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
-            spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
-
+            
             spellsCompartments[0].MyCompartmentSpell = null;
             
-
             DisableImageCompotent(spellsCompartments[0].GetComponent<Image>());
 
             DeactivateSpellActivationFeedback();

@@ -87,7 +87,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     //Summary : Lorsque le joueur appuie sur "X", "A", la fenêtre de validation s'affiche + référence du sort étant en train d'être acheté.
     public void OnSubmit(BaseEventData eventData)
     {
-        Debug.Log("On Submit click event");
+        //Debug.Log("On Submit click event");
         DisplayPurchaseValidationPopupWindow();
         validationPopupPurchaseButton.GetComponent<PurchaseASpell>().selectedButton = GetComponent<Button>();
     }

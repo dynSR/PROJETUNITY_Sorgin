@@ -290,33 +290,33 @@ public class PlayerObjectsInventory : MonoBehaviour
 
         else if (numberOfObjectInInventory == 3)
         {
-            Object _spellCompartment00 = objectsCompartments[0].MyCompartmentObject;
-            Object _spellCompartment01 = objectsCompartments[1].MyCompartmentObject;
-            Object _spellCompartment02 = objectsCompartments[2].MyCompartmentObject;
+            Object _objCompartment00 = objectsCompartments[0].MyCompartmentObject;
+            Object _objCompartment01 = objectsCompartments[1].MyCompartmentObject;
+            Object _objCompartment02 = objectsCompartments[2].MyCompartmentObject;
 
-            Sprite _spriteSpellCompartment00 = objectsCompartments[0].GetComponent<Image>().sprite;
-            Sprite _spriteSpellCompartment01 = objectsCompartments[1].GetComponent<Image>().sprite;
-            Sprite _spriteSpellCompartment02 = objectsCompartments[2].GetComponent<Image>().sprite;
+            Sprite _spriteObjCompartment00 = objectsCompartments[0].GetComponent<Image>().sprite;
+            Sprite _spriteObjCompartment01 = objectsCompartments[1].GetComponent<Image>().sprite;
+            Sprite _spriteObjCompartment02 = objectsCompartments[2].GetComponent<Image>().sprite;
 
-            objectsCompartments[0].MyCompartmentObject = _spellCompartment01;
-            SwapImageSprite(objectsCompartments[0].GetComponent<Image>(), _spriteSpellCompartment01);
+            objectsCompartments[0].MyCompartmentObject = _objCompartment01;
+            SwapImageSprite(objectsCompartments[0].GetComponent<Image>(), _spriteObjCompartment01);
 
-            objectsCompartments[2].MyCompartmentObject = _spellCompartment00;
-            SwapImageSprite(objectsCompartments[2].GetComponent<Image>(), _spriteSpellCompartment00);
+            objectsCompartments[2].MyCompartmentObject = _objCompartment00;
+            SwapImageSprite(objectsCompartments[2].GetComponent<Image>(), _spriteObjCompartment00);
 
-            objectsCompartments[1].MyCompartmentObject = _spellCompartment02;
-            SwapImageSprite(objectsCompartments[1].GetComponent<Image>(), _spriteSpellCompartment02);
+            objectsCompartments[1].MyCompartmentObject = _objCompartment02;
+            SwapImageSprite(objectsCompartments[1].GetComponent<Image>(), _spriteObjCompartment02);
         }
     }
 
-    void ResetObjectInObjectCompartment(ObjectCompartment spellCompartmentToReset)
+    void ResetObjectInObjectCompartment(ObjectCompartment objectCompartmentToReset)
     {
-        spellCompartmentToReset.MyCompartmentObject = null;
+        objectCompartmentToReset.MyCompartmentObject = null;
     }
 
-    void SwapObjectInObjectCompartment(ObjectCompartment spellToChange, ObjectCompartment wantedSpell)
+    void SwapObjectInObjectCompartment(ObjectCompartment objectToChange, ObjectCompartment wantedObject)
     {
-        spellToChange.MyCompartmentObject = wantedSpell.MyCompartmentObject;
+        objectToChange.MyCompartmentObject = wantedObject.MyCompartmentObject;
     }
 
     void SwapImageSprite(Image imageToChange, Sprite wantedImageSprite)

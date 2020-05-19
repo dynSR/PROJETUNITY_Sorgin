@@ -73,7 +73,6 @@ public class AddObjectToPlayerInventory : MonoBehaviour
                             return;
                         }
                     }
-
                 }
             }
         }
