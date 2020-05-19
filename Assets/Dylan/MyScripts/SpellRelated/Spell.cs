@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Spell_", order = 1)]
@@ -17,6 +18,7 @@ public class Spell : ScriptableObject
     [SerializeField] private int spellValue;
     [TextArea(1, 5)]
     [SerializeField] private string spellEffectDescription;
+
 
     public string MySpellName { get => spellName; }
     public float MySpellDurationOfEffect { get => spellDurationOfEffect; }
@@ -38,7 +40,7 @@ public class Spell : ScriptableObject
                 Detection();
                 break;
             case SpellType.Duplication:
-                //Dupplication();
+                Duplication();
                 break;
             case SpellType.Clone:
                 Clonage(Player.s_Singleton.defaultCharacterModelPrefab, Player.s_Singleton.posToInstantiateTheClone);
@@ -104,42 +106,34 @@ public class Spell : ScriptableObject
         }
     }
 
-    //private void Dupplication()
-    //{
-    //    List<Object> tempObjects = new List<Object>();
-    //    Debug.Log("Dupplication");
-    //    for (int i = 0; i < PlayerObjectsInventory.s_Singleton.objectsCompartments.Count; i++)
-    //    {
-    //        if (PlayerObjectsInventory.s_Singleton.objectsCompartments[i].MyCompartmentObject == null || PlayerObjectsInventory.s_Singleton.numberOfObjectInInventory == PlayerObjectsInventory.s_Singleton.objectsCompartments.Count)
-    //        {
-    //            //Peut pas 
-    //            Debug.Log("Impossible to dupplicate an object");
-    //        }
-    //        else if(PlayerObjectsInventory.s_Singleton.objectsCompartments[i].MyCompartmentObject != null)
-    //        {
-    //            tempObjects.Add(PlayerObjectsInventory.s_Singleton.objectsCompartments[i].MyCompartmentObject);
-    //            UIManager.s_Singleton.DisplayAPopup(UIManager.s_Singleton.dupplicationWindow);
+    private void Duplication()
+    {
+        //Refs
+        UIManager uiManagerReference = UIManager.s_Singleton;
+        PlayerObjectsInventory playerObjInventoryRef = PlayerObjectsInventory.s_Singleton;
 
-    //            for (int j = 0; j < PlayerObjectsInventory.s_Singleton.numberOfObjectInInventory; j++)
-    //            {
-    //                //Activer 1, 2 ou 3 boutons - ceux contenant des objets
-    //                UIManager.s_Singleton.dupplicationButtonLayout.transform.GetChild(j).gameObject.SetActive(true);
-    //                UIManager.s_Singleton.dupplicationButtonLayout.transform.GetChild(j).GetComponent<Button>().enabled = true;
+        Debug.Log("Dupplication");
 
+        for (int i = 0; i < playerObjInventoryRef.objectsCompartments.Count; i++)
+        {
+            if (playerObjInventoryRef.objectsCompartments[i].MyCompartmentObject != null)
+            {
+                //Open the Window
+                uiManagerReference.DisplayAPopup(uiManagerReference.duplicationWindow);
+                uiManagerReference.duplicationValidationPopupIsDisplayed = true;
 
+                //Activation des boutons et attribution du bouton sélectionné par l'Event system
+                uiManagerReference.duplicationButtonLayout.transform.GetChild(i).gameObject.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
 
-    //                UIManager.s_Singleton.dupplicationButtonLayout.transform.GetChild(j).GetChild(0).GetComponent<Image>().sprite = tempObjects.MyObjectIcon;
-    //            }
+                //Attribution de l'objet trouvé 
+                uiManagerReference.duplicationButtonLayout.transform.GetChild(i).GetComponent<DuplicationButtons>().objectFound = playerObjInventoryRef.objectsCompartments[i].MyCompartmentObject;
 
-    //            foreach (Button buttonEnabled in collection)
-    //            {
-
-    //            }
-    //        }
-
-    //    }
-        
-    //}
+                uiManagerReference.duplicationButtonLayout.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().sprite = uiManagerReference.duplicationButtonLayout.transform.GetChild(i).GetComponent<DuplicationButtons>().objectFound.MyObjectIcon;
+                EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
+            }
+        }
+    }
 
     private void Stun()
     {
