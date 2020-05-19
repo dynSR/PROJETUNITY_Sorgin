@@ -24,17 +24,6 @@ public class CollisionHandler : MonoBehaviour
 
     private void Update()
     {
-        CollisionCheck();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, transform.localScale);
-    }
-
-    void CollisionCheck()
-    {
         Vector3 desiredObjPosition = transform.parent.TransformPoint(dollyDir * maxDistance);
         RaycastHit hit;
 
@@ -51,6 +40,18 @@ public class CollisionHandler : MonoBehaviour
 
         transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDir * distance, Time.deltaTime * smooth);
 
+        CollisionCheck();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireCube(transform.position, transform.localScale);
+    }
+
+    void CollisionCheck()
+    {
+        hitColliders = Physics.OverlapBox(transform.position, transform.localScale / 2, Quaternion.identity);
         int i = 0;
 
         if (i < hitColliders.Length)

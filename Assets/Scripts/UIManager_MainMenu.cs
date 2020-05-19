@@ -144,7 +144,7 @@ public class UIManager_MainMenu : DefaultUIManager
 
     public void ButtonExfiltration()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SceneBuild");
     }
 
     public void ButtonReturnMenu()

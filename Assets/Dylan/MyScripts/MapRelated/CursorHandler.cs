@@ -11,8 +11,8 @@ public class CursorHandler : MonoBehaviour
     [SerializeField] private GameObject[] markers;
     public List<GameObject> markersPlaced;
 
-    public string velYAxisName;
-    public string velXAxisName;
+    private string velYAxisName;
+    private string velXAxisName;
 
     private RectTransform myRectTransform;
 
@@ -25,6 +25,8 @@ public class CursorHandler : MonoBehaviour
             PlayerPrefs.SetInt("NumberOfSaved", 0);
             PlayerPrefs.SetInt("FirstMapSave", 1);
         }
+
+       Load();
     }
 
     void Update()
@@ -60,6 +62,7 @@ public class CursorHandler : MonoBehaviour
             //Debug clavier du reset des marqueurs au cas où !
             if (Input.GetKeyDown(KeyCode.R))
             {
+                PlayerPrefs.DeleteAll();
                 StartCoroutine(ResetMarkers());
             }
         }
@@ -95,7 +98,7 @@ public class CursorHandler : MonoBehaviour
     private void InstantiateAMarker(GameObject markerToInstantiate, Vector3 positionToInstantiate)
     {
         //Crée un marqueur à l'endroit du curseur
-        GameObject instantiatedObj = Instantiate(markerToInstantiate, positionToInstantiate,Quaternion.identity) as GameObject;
+        GameObject instantiatedObj = Instantiate(markerToInstantiate, positionToInstantiate, Quaternion.identity, mapWindow.transform) as GameObject;
         SetParent(instantiatedObj, mapWindow.transform);
 
         markersPlaced.Add(instantiatedObj);
@@ -115,11 +118,14 @@ public class CursorHandler : MonoBehaviour
         int SavedNumber = 0;
         for (int i = 0; i < markersPlaced.Count; i++)
         {
-            PlayerPrefs.SetFloat("xPos" + i, markersPlaced[i].transform.position.x);
-            PlayerPrefs.SetFloat("yPos" + i, markersPlaced[i].transform.position.y);
-            PlayerPrefs.SetFloat("zPos" + i, markersPlaced[i].transform.position.z);
+            PlayerPrefs.SetFloat("xPos" + i, markersPlaced[i].transform.GetComponent<RectTransform>().localPosition.x);
+            PlayerPrefs.SetFloat("yPos" + i, markersPlaced[i].transform.GetComponent<RectTransform>().localPosition.y);
 
-            if(markersPlaced[i] == markers[1])
+            if(markersPlaced[i] == markers[0])
+            {
+                PlayerPrefs.SetInt("Marker" + i, 0);
+            }
+            if (markersPlaced[i] == markers[1])
             {
                 PlayerPrefs.SetInt("Marker" + i, 1);
             }
@@ -127,13 +133,10 @@ public class CursorHandler : MonoBehaviour
             {
                 PlayerPrefs.SetInt("Marker" + i, 2);
             }
-            if (markersPlaced[i] == markers[2])
-            {
-                PlayerPrefs.SetInt("Marker" + i, 3);
-            }
             SavedNumber++;
         }
         PlayerPrefs.SetInt("NumberOfSaved", SavedNumber);
+        Debug.Log("Save finished");
     }
 
     public void Load()
@@ -142,7 +145,7 @@ public class CursorHandler : MonoBehaviour
         {
             for (int i = 0; i < PlayerPrefs.GetInt("NumberOfSaved"); i++)
             {
-                InstantiateAMarker(markers[PlayerPrefs.GetInt("Marker" + i)], new Vector3(PlayerPrefs.GetFloat("xPos"), PlayerPrefs.GetFloat("yPos"), PlayerPrefs.GetFloat("zPos")));
+                InstantiateAMarker(markers[PlayerPrefs.GetInt("Marker" + i)], new Vector3(PlayerPrefs.GetFloat("xPos"), PlayerPrefs.GetFloat("yPos"), 0));
             }
         }
     }

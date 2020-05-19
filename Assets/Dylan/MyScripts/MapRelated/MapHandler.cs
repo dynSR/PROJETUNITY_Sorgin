@@ -97,7 +97,6 @@ public class MapHandler : MonoBehaviour
     //Summary : Permet d'afficher la carte
     public void DisplayMap()
     {
-        CursorHandlerScript.Load();
         //Debug.Log("Display Map");
         UIManager.s_Singleton.UIWindowsDisplay(mapWindow);
 
@@ -119,6 +118,5 @@ public class MapHandler : MonoBehaviour
         mapIsDisplayed = false;
         AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
         Player.s_Singleton.LookAtMap = false;
-
     }
 }

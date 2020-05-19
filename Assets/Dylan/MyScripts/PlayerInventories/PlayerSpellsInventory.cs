@@ -71,9 +71,12 @@ public class PlayerSpellsInventory : MonoBehaviour
 
     void ActivateTheSpellInTheSpellCompartment()
     {
-        spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
-        Player.s_Singleton._durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
-        spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
+        if (spellCompartmentIsActive)
+        {
+            spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
+            Player.s_Singleton._durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
+            spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
+        }
     }
 
     //Summary : Permet de gérer le switch des sort équipés

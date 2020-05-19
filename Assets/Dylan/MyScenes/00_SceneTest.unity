@@ -758,8 +758,6 @@ MonoBehaviour:
   - {fileID: 6197468401549040382, guid: 6604fcc0e23a53e4dbf1a4e290d59aab, type: 3}
   - {fileID: 8274509459218856618, guid: ec337fc316544a242803a759448aa707, type: 3}
   markersPlaced: []
-  velYAxisName: 
-  velXAxisName: 
 --- !u!223 &69420780
 Canvas:
   m_ObjectHideFlags: 0
@@ -2418,7 +2416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223299762}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.12, y: 3.95, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 416046180}
@@ -4270,7 +4268,7 @@ MonoBehaviour:
   shopWindow: {fileID: 559818320}
   displayingOrHidingMapWwiseEventSoundName: UI_OpenningWindow
   cursorRectTransform: {fileID: 69420776}
-  CursorHandlerScript: {fileID: 0}
+  CursorHandlerScript: {fileID: 69420779}
   mapIsDisplayed: 0
 --- !u!223 &429429962
 Canvas:
@@ -21107,6 +21105,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 416046180}
     m_Modifications:
+    - target: {fileID: 1214885277, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
+      propertyPath: minDistance
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214885277, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
+      propertyPath: maxDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214885277, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
+      propertyPath: distance
+      value: 1.2047
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214885277, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
+      propertyPath: lerp
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5700492096580577474, guid: e08eb5977e31af24fb85ea8bb7abeb18,
         type: 3}
       propertyPath: m_LocalPosition.x
