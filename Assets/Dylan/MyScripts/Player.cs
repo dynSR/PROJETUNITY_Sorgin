@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     public bool OnWall;
     public bool OnArmoire;
     public bool CanPickObject;
+    public bool Death;
+    public bool LookAtMap;
 
     public OppeningDoor doorNearPlayerCharacter;
 

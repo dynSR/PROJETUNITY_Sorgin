@@ -12,6 +12,9 @@ public class MapHandler : MonoBehaviour
     [SerializeField] private RectTransform cursorRectTransform;
     private Vector2 cursorRectTransformPos;
 
+    public CursorHandler CursorHandlerScript;
+
+
     public bool mapIsDisplayed = false;
     private bool canDisplayOrHideMap = true;
     private bool dpadYIsPressed = false;
@@ -92,8 +95,9 @@ public class MapHandler : MonoBehaviour
     }
 
     //Summary : Permet d'afficher la carte
-    void DisplayMap()
+    public void DisplayMap()
     {
+        CursorHandlerScript.Load();
         //Debug.Log("Display Map");
         UIManager.s_Singleton.UIWindowsDisplay(mapWindow);
 
@@ -103,14 +107,18 @@ public class MapHandler : MonoBehaviour
         AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
 
         cursorRectTransform.localPosition = cursorRectTransformPos;
+        Player.s_Singleton.LookAtMap = true;
     }
 
     //Summary : Permet de cacher la carte
     void HideMap()
     {
+        CursorHandlerScript.Save();
         //Debug.Log("Hide Map");
         UIManager.s_Singleton.UIWindowsHide(mapWindow);
         mapIsDisplayed = false;
         AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
+        Player.s_Singleton.LookAtMap = false;
+
     }
 }

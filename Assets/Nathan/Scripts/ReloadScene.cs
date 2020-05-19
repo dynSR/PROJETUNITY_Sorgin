@@ -21,6 +21,7 @@ public class ReloadScene : MonoBehaviour
             UI.SetActive(true);
             Nav.enabled = false;
             other.transform.root.GetComponent<MoveScript>().enabled = false;
+            Player.s_Singleton.Death = true;
         }
     }
 }

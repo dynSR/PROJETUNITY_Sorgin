@@ -640,6 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &20853511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2202,6 +2203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &161881826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3366,6 +3368,7 @@ GameObject:
   m_Component:
   - component: {fileID: 250946077}
   - component: {fileID: 250946078}
+  - component: {fileID: 250946079}
   m_Layer: 5
   m_Name: DeathUI
   m_TagString: Untagged
@@ -3413,6 +3416,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &250946079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250946076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc0d9d64a6f5f47b7eecef927f263d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MapScript: {fileID: 2079045107}
 --- !u!1001 &252048251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7248,6 +7264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &546101630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9078,6 +9095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &653006383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10379,6 +10397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &687660333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11120,6 +11139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &735642764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11568,6 +11588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &756009084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11877,6 +11898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &773828966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13072,6 +13094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &836523399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13509,6 +13532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &860184951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15893,6 +15917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &984520843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21025,6 +21050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &1247653613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23344,6 +23370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &1365001158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23747,7 +23774,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 16777215
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -24116,13 +24143,13 @@ MonoBehaviour:
   firstButtonOfPauseMenu: {fileID: 836523396}
   optionsFirstSelectedButton: {fileID: 1161708454}
   pauseMenuOptionsButton: {fileID: 653006381}
-  lastSelectedButton: {fileID: 0}
   pauseWindowIsDisplayed: 0
   pauseWindowOptionsAreDisplayed: 0
   pauseWindowInputsDisplayerIsDisplayed: 0
   shopWindow: {fileID: 1449100951}
   shopWindowIsDisplayed: 1
   playerPointsValueText: {fileID: 1257948352}
+  valueToSubstractPerTicks: 0
   purchaseValidationPopupWindow: {fileID: 502842633}
   purchaseValidationPopupButtonLayout: {fileID: 197844724}
   purchaseValidationPopupIsDisplayed: 0
@@ -24132,6 +24159,8 @@ MonoBehaviour:
   cantUseAnObjectFeedback: {fileID: 1876335466}
   cantPickAnObjectFeedback: {fileID: 41648014}
   timeBetweenFades: 1.25
+  dupplicationWindow: {fileID: 0}
+  dupplicationButtonLayout: {fileID: 0}
 --- !u!114 &1418210640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24390,6 +24419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &1423379017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29221,6 +29251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &1711721853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35661,6 +35692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &2065292193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36317,6 +36349,7 @@ MonoBehaviour:
   shopWindow: {fileID: 1449100950}
   displayingOrHidingMapWwiseEventSoundName: UI_OpenningWindow
   cursorRectTransform: {fileID: 771402997}
+  CursorHandlerScript: {fileID: 771402999}
   mapIsDisplayed: 0
 --- !u!1 &2080317651
 GameObject:
@@ -38634,14 +38667,7 @@ MonoBehaviour:
   - {fileID: 923805562}
   spellActivationFeedback: {fileID: 1996804744}
   spellCompartmentIsActive: 0
-  playerAnimator: {fileID: 0}
   spellInSpellCompartment: {fileID: 0}
-  playerIsTranformedInMouse: 0
-  playerIsTranformedInCat: 0
-  playerIsInHumanForm: 1
-  defaultCharacterModel: {fileID: 0}
-  mouseCharacterModel: {fileID: 46741180}
-  catCharacterModel: {fileID: 46741179}
 --- !u!114 &3524429888335958669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38662,7 +38688,6 @@ MonoBehaviour:
   objectActivationFeedback: {fileID: 1754681089}
   objectInObjectCompartment: {fileID: 0}
   numberOfObjectInInventory: 0
-  doorNearPlayerCharacter: {fileID: 0}
   oppeningADoorSFX: GSFX_OppeningADoor
 --- !u!1 &3575861643894323225
 GameObject:
@@ -39441,7 +39466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Wall: {fileID: 0}
-  Player: {fileID: 5089007790631078325}
+  playerCharacter: {fileID: 0}
   ball: {fileID: 0}
   BallPrefab: {fileID: 5547460525338518255, guid: 2880e02314bee43408d8cacd2b666744,
     type: 3}
@@ -39821,12 +39846,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 5089007790631078325}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b88c890f45e2c1247bcfce2beeda74f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 2163e40c170aebd499039fb6b7765804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerAnimator: {fileID: 4664167213103342650}
+  _durationOfEffectSinceLaunched: 0
+  defaultCharacterModel: {fileID: 4664167213103342647}
+  catCharacterModel: {fileID: 46741179}
+  mouseCharacterModel: {fileID: 46741180}
+  defaultCharacterModelPrefab: {fileID: 0}
+  posToInstantiateTheClone: {fileID: 0}
+  playerIsTranformedInMouse: 0
+  playerIsTranformedInCat: 0
+  playerIsInHumanForm: 1
   OnWall: 0
   OnArmoire: 0
   CanPickObject: 0
+  Death: 0
+  LookAtMap: 0
+  doorNearPlayerCharacter: {fileID: 0}
 --- !u!114 &5089007790631078329
 MonoBehaviour:
   m_ObjectHideFlags: 0

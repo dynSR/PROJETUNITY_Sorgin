@@ -60,7 +60,7 @@ public class MoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode && !Player.s_Singleton.LookAtMap)
         {
             OnArmoire = Player.s_Singleton.OnArmoire;
             OnWall = Player.s_Singleton.OnWall;

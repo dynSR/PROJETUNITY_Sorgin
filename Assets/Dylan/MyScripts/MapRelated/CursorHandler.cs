@@ -19,6 +19,12 @@ public class CursorHandler : MonoBehaviour
     void Start()
     {
         myRectTransform = GetComponent<RectTransform>();
+
+        if (PlayerPrefs.GetInt("FirstMapSave") ==0)
+        {
+            PlayerPrefs.SetInt("NumberOfSaved", 0);
+            PlayerPrefs.SetInt("FirstMapSave", 1);
+        }
     }
 
     void Update()
@@ -31,7 +37,7 @@ public class CursorHandler : MonoBehaviour
             //Press X
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A"))
             {
-                InstantiateAMarker(markers[0], this.transform);
+                InstantiateAMarker(markers[0], this.transform.position);
             }
             #endregion
 
@@ -39,7 +45,7 @@ public class CursorHandler : MonoBehaviour
             //Press Square
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
             {
-                InstantiateAMarker(markers[1], this.transform);
+                InstantiateAMarker(markers[1], this.transform.position);
             }
             #endregion
 
@@ -47,7 +53,7 @@ public class CursorHandler : MonoBehaviour
             //Press Triangle
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Triangle") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_Y"))
             {
-                InstantiateAMarker(markers[2], this.transform);
+                InstantiateAMarker(markers[2], this.transform.position);
             }
             #endregion
 
@@ -86,10 +92,10 @@ public class CursorHandler : MonoBehaviour
     }
 
     //Summary : Permet d'instancier un marqueur (jalon de repère) à une position donnée
-    private void InstantiateAMarker(GameObject markerToInstantiate, Transform positionToInstantiate)
+    private void InstantiateAMarker(GameObject markerToInstantiate, Vector3 positionToInstantiate)
     {
         //Crée un marqueur à l'endroit du curseur
-        GameObject instantiatedObj = Instantiate(markerToInstantiate, positionToInstantiate) as GameObject;
+        GameObject instantiatedObj = Instantiate(markerToInstantiate, positionToInstantiate,Quaternion.identity) as GameObject;
         SetParent(instantiatedObj, mapWindow.transform);
 
         markersPlaced.Add(instantiatedObj);
@@ -102,6 +108,43 @@ public class CursorHandler : MonoBehaviour
     {
         //Debug.Log("Setting the Parent of the instantiated object");
         objToSet.transform.SetParent(parent);
+    }
+
+    public void Save()
+    {
+        int SavedNumber = 0;
+        for (int i = 0; i < markersPlaced.Count; i++)
+        {
+            PlayerPrefs.SetFloat("xPos" + i, markersPlaced[i].transform.position.x);
+            PlayerPrefs.SetFloat("yPos" + i, markersPlaced[i].transform.position.y);
+            PlayerPrefs.SetFloat("zPos" + i, markersPlaced[i].transform.position.z);
+
+            if(markersPlaced[i] == markers[1])
+            {
+                PlayerPrefs.SetInt("Marker" + i, 1);
+            }
+            if (markersPlaced[i] == markers[2])
+            {
+                PlayerPrefs.SetInt("Marker" + i, 2);
+            }
+            if (markersPlaced[i] == markers[2])
+            {
+                PlayerPrefs.SetInt("Marker" + i, 3);
+            }
+            SavedNumber++;
+        }
+        PlayerPrefs.SetInt("NumberOfSaved", SavedNumber);
+    }
+
+    public void Load()
+    {
+        if(PlayerPrefs.GetInt("NumberOfSaved") > 0)
+        {
+            for (int i = 0; i < PlayerPrefs.GetInt("NumberOfSaved"); i++)
+            {
+                InstantiateAMarker(markers[PlayerPrefs.GetInt("Marker" + i)], new Vector3(PlayerPrefs.GetFloat("xPos"), PlayerPrefs.GetFloat("yPos"), PlayerPrefs.GetFloat("zPos")));
+            }
+        }
     }
 
 
