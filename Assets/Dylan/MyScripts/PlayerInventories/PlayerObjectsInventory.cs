@@ -13,11 +13,6 @@ public class PlayerObjectsInventory : MonoBehaviour
 
     public int numberOfObjectInInventory = 0;
     
-    
-
-    [Header("WWISE SOUND EVENT NAME")]
-    [SerializeField] private string oppeningADoorSFX;
-    
     public static PlayerObjectsInventory s_Singleton;
 
     #region Singleton
@@ -60,9 +55,14 @@ public class PlayerObjectsInventory : MonoBehaviour
             #endregion
 
             #region Square/X
-            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
+            if (objectCompartmentIsActive && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
             {
                 Debug.Log("Square pressed");
+                if (!Player.s_Singleton.playerIsInHumanForm)
+                {
+                    CantUseTheObject();
+                    return;
+                }
                 if (objectCompartmentIsActive && objectsCompartments[0].MyCompartmentObject != null)
                 {
                     objectInObjectCompartment = objectsCompartments[0].MyCompartmentObject;
@@ -73,7 +73,6 @@ public class PlayerObjectsInventory : MonoBehaviour
             #endregion
         }
     }
-
 
     public void TryToUseTheObject()
     {
@@ -112,16 +111,22 @@ public class PlayerObjectsInventory : MonoBehaviour
             {
                 if (necessaryObjectID == 1 && doorNearPlayerCharacter.doorType == DoorType.CommonDoor && doorNearPlayerCharacter.doorIsLocked)
                 {
-                    UseObject();
+                    objectInObjectCompartment.UseObject();
+                    UseObjectInObjectCompartment();
                 }
                 else if (necessaryObjectID == 2 && doorNearPlayerCharacter.doorType == DoorType.LastDoor && doorNearPlayerCharacter.doorIsLocked)
                 {
-                    UseObject();
+                    objectInObjectCompartment.UseObject();
+                    UseObjectInObjectCompartment();
                 }
                 else
                 {
                     PlayerDoesNotHaveTheNecessaryObject();
                 }
+            }
+            else
+            {
+                CantUseTheObject();
             }
         }
     }
@@ -132,17 +137,17 @@ public class PlayerObjectsInventory : MonoBehaviour
         DeactivateObjectActivationFeedback();
     }
 
+    public void CantUseTheObject()
+    {
+        StartCoroutine(UIManager.s_Singleton.FadeInAndOutObjectFeedBack(UIManager.s_Singleton.cantUseAnObjectFeedback));
+        DeactivateObjectActivationFeedback();
+    }
+
     //Summary : Permet de gérer le switch des sort équipés
     #region Objects Management
-    void UseObject()
+    void UseObjectInObjectCompartment()
     {
         OppeningDoor doorNearPlayerCharacter = Player.s_Singleton.doorNearPlayerCharacter;
-
-        if (objectInObjectCompartment.objectType == Object.ObjectType.Key)
-        {
-            doorNearPlayerCharacter.UnlockDoor();
-            AkSoundEngine.PostEvent(oppeningADoorSFX, doorNearPlayerCharacter.transform.gameObject);
-        }
 
         objectsCompartments[0].MyCompartmentObject = null;
 

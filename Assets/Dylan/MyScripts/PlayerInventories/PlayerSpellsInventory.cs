@@ -48,7 +48,7 @@ public class PlayerSpellsInventory : MonoBehaviour
             #endregion
 
             #region L2/LT
-            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LT"))
+            if (!Player.s_Singleton.isUsingASpell /*|| !MapHandler.s_Singleton.mapIsDisplayed*/ && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LT")))
             {
                 if (PlayerObjectsInventory.s_Singleton.objectCompartmentIsActive)
                 {
@@ -63,7 +63,8 @@ public class PlayerSpellsInventory : MonoBehaviour
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
             {
                 Debug.Log("Square pressed");
-                ActivateTheSpellInTheSpellCompartment();
+                if (spellCompartmentIsActive && spellsCompartments[0].MyCompartmentSpell != null)
+                    ActivateTheSpellInTheSpellCompartment();
             }
             #endregion
         }
@@ -71,29 +72,36 @@ public class PlayerSpellsInventory : MonoBehaviour
 
     void ActivateTheSpellInTheSpellCompartment()
     {
-        if (spellCompartmentIsActive)
-        {
-            spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
-            Player.s_Singleton._durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
-            spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
-        }
+        Player.s_Singleton.isUsingASpell = true;
+        spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
+        Player.s_Singleton._durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
+        spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
     }
 
     //Summary : Permet de gérer le switch des sort équipés
     #region Spells Management
     public void UseTheSpellInTheSpellCompartment()
     {
-        if (spellCompartmentIsActive && spellsCompartments[0].MyCompartmentSpell != null)
+        if (spellsCompartments[0].MyCompartmentSpell != null)
         {
             Debug.Log("Trying To use the spell");
-            
+
+            Player.s_Singleton.SetSpellDuration(spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect);
+
             spellsCompartments[0].MyCompartmentSpell = null;
-            
+
             DisableImageCompotent(spellsCompartments[0].GetComponent<Image>());
 
             DeactivateSpellActivationFeedback();
             ShopManager.s_Singleton.amntOfSpellBought--;
+            Player.s_Singleton.isUsingASpell = false;
         }
+    }
+
+    public void CantUseASpell()
+    {
+        StartCoroutine(UIManager.s_Singleton.FadeInAndOutObjectFeedBack(UIManager.s_Singleton.cantUseASpellFeedback));
+        Player.s_Singleton.isUsingASpell = false;
     }
 
     //Summary : Permet d'afficher ou désafficher le feedback d'activation des sorts en fonction de l'appui Input.

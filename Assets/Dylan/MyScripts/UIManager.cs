@@ -27,9 +27,10 @@ public class UIManager : DefaultUIManager
     //[HideInInspector]
     public bool beginExfiltrationValidationPopupIsDisplayed = false;
 
-    [Header("CANT USE AN OBJECT FEEDBACK")]
+    [Header("ACTION IS IMPOSSIBLE FEEDBACK")]
     public CanvasGroup cantUseAnObjectFeedback;
     public CanvasGroup cantPickAnObjectFeedback;
+    public CanvasGroup cantUseASpellFeedback;
     [SerializeField] private float timeBetweenFades = 0.25f;
 
     [Header("DUPPLICATION PARAMETERS")]

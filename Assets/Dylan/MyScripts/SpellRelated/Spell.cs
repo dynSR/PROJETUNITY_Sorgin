@@ -43,7 +43,7 @@ public class Spell : ScriptableObject
                 Duplication();
                 break;
             case SpellType.Clone:
-                Clonage(Player.s_Singleton.defaultCharacterModelPrefab, Player.s_Singleton.posToInstantiateTheClone);
+                PreviewClonage(Player.s_Singleton.posToInstantiateTheClone);
                 break;
             case SpellType.TransformationEnSouris:
                 if (Player.s_Singleton.playerIsInHumanForm)
@@ -80,6 +80,8 @@ public class Spell : ScriptableObject
         Player.s_Singleton.playerIsTranformedInCat = true;
         Player.s_Singleton.playerIsTranformedInMouse = false;
         Player.s_Singleton.playerIsInHumanForm = false;
+
+        PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
     }
 
     private void MouseTransformation(GameObject objToDisactive, GameObject objToActive)
@@ -92,18 +94,32 @@ public class Spell : ScriptableObject
         Player.s_Singleton.playerIsTranformedInMouse = true;
         Player.s_Singleton.playerIsTranformedInCat = false;
         Player.s_Singleton.playerIsInHumanForm = false;
+
+        PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
     }
 
-    private void Clonage(GameObject objToClone, Transform posToSpawnClone)
+    private void PreviewClonage(Transform posToSpawnClone)
     {
         if (!Player.s_Singleton.playerIsInHumanForm)
+        {
+            Debug.Log("Impossible de cloner");
+            PlayerSpellsInventory.s_Singleton.CantUseASpell();
             return;
-
+        }
         else
         {
-            GameObject objToInstantiate = Instantiate(objToClone, posToSpawnClone) as GameObject;
-            objToInstantiate.transform.rotation = posToSpawnClone.rotation;
+            //Previsualisation
+            posToSpawnClone.GetChild(0).gameObject.SetActive(true);
+            //PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
         }
+    }
+
+    public void Clonage(GameObject objToClone, Transform posToSpawnClone)
+    {
+        GameObject objToInstantiate = Instantiate(objToClone, posToSpawnClone.position, Quaternion.identity) as GameObject;
+        objToInstantiate.transform.rotation = posToSpawnClone.rotation;
+
+        PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
     }
 
     private void Duplication()
@@ -113,41 +129,91 @@ public class Spell : ScriptableObject
         PlayerObjectsInventory playerObjInventoryRef = PlayerObjectsInventory.s_Singleton;
 
         Debug.Log("Dupplication");
-
-        for (int i = 0; i < playerObjInventoryRef.objectsCompartments.Count; i++)
+        if (!Player.s_Singleton.playerIsInHumanForm)
         {
-            if (playerObjInventoryRef.objectsCompartments[i].MyCompartmentObject != null)
+
+            Debug.Log("Impossible de cloner");
+            PlayerSpellsInventory.s_Singleton.CantUseASpell();
+            return;
+        }
+        else
+        {
+            for (int i = 0; i < playerObjInventoryRef.objectsCompartments.Count; i++)
             {
-                //Open the Window
-                uiManagerReference.DisplayAPopup(uiManagerReference.duplicationWindow);
-                uiManagerReference.duplicationValidationPopupIsDisplayed = true;
+                if (playerObjInventoryRef.objectsCompartments[i].MyCompartmentObject != null)
+                {
+                    //Open the Window
+                    uiManagerReference.DisplayAPopup(uiManagerReference.duplicationWindow);
+                    uiManagerReference.duplicationValidationPopupIsDisplayed = true;
 
-                //Activation des boutons et attribution du bouton sélectionné par l'Event system
-                uiManagerReference.duplicationButtonLayout.transform.GetChild(i).gameObject.SetActive(true);
-                EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
+                    //Activation des boutons et attribution du bouton sélectionné par l'Event system
+                    uiManagerReference.duplicationButtonLayout.transform.GetChild(i).gameObject.SetActive(true);
+                    EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
 
-                //Attribution de l'objet trouvé 
-                uiManagerReference.duplicationButtonLayout.transform.GetChild(i).GetComponent<DuplicationButtons>().objectFound = playerObjInventoryRef.objectsCompartments[i].MyCompartmentObject;
+                    //Attribution de l'objet trouvé 
+                    uiManagerReference.duplicationButtonLayout.transform.GetChild(i).GetComponent<DuplicationButtons>().objectFound = playerObjInventoryRef.objectsCompartments[i].MyCompartmentObject;
 
-                uiManagerReference.duplicationButtonLayout.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().sprite = uiManagerReference.duplicationButtonLayout.transform.GetChild(i).GetComponent<DuplicationButtons>().objectFound.MyObjectIcon;
-                EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
+                    uiManagerReference.duplicationButtonLayout.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().sprite = uiManagerReference.duplicationButtonLayout.transform.GetChild(i).GetComponent<DuplicationButtons>().objectFound.MyObjectIcon;
+
+                    EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
+                }
+                else if (playerObjInventoryRef.numberOfObjectInInventory == 0)
+                {
+                    Debug.Log("No object found, duplication is impossible");
+                    PlayerSpellsInventory.s_Singleton.CantUseASpell();
+                    PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
+                }
             }
         }
     }
 
     private void Stun()
     {
-
+        /*A une cible ?*/
+        if (/* Oui */true)
+        {
+            PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
+        }
+        //Non
+        else
+        {
+            PlayerSpellsInventory.s_Singleton.CantUseASpell();
+        }
     }
 
     private void LockPicking()
     {
+        /*   Joueur près d'une porte fermée ?   */
+        if (Player.s_Singleton.doorNearPlayerCharacter != null && Player.s_Singleton.playerIsInHumanForm)
+        {
+            Player.s_Singleton.doorNearPlayerCharacter.UnlockDoor();
+            PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
+        }
+        else
+        {
+            PlayerSpellsInventory.s_Singleton.CantUseASpell();
+            PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
+        }
+        //Oui
 
+        //Non
     }
 
     private void Detection()
     {
+        //activer un trigger
 
+        //le faire grossir autour du joueur
+
+        //ajouter tous les objets trouvés dans une liste temporaire
+
+        //Activer le script outline de tous ces objets trouvés pendant x secondes
+
+        //Les afficher sur la carte
+
+        //Désactiver l'outline de tous ces objets à la fin du timer
+
+        //Clear la liste au cas où ? 
     }
 
 }

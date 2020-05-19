@@ -15,7 +15,8 @@ MonoBehaviour:
   objectType: 1
   objectName: GoldenKey
   objectIcon: {fileID: 21300000, guid: af9514c058cb1c846984b88aed2c6911, type: 3}
-  objectPrefab: {fileID: 3672585847018374309, guid: 709ba0b2bdccf184c82683181681256e,
+  objectPrefab: {fileID: 7612145458084303189, guid: b561d10987cb1de43ac313e87c27043b,
     type: 3}
   durationOfEffect: 0
   objectID: 2
+  oppeningADoorSFX: GSFX_OppeningADoor

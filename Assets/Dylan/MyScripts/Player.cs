@@ -6,10 +6,12 @@ public class Player : MonoBehaviour
 {
     public Animator playerAnimator;
     [HideInInspector] public float _durationOfEffectSinceLaunched = 0;
+    //En public pour debug
+    public float spellDurationOfEffect;
 
     [Header("PLAYER MODELS")]
-    //public Transform playerCharacter;
     public GameObject defaultCharacterModel;
+    public GameObject defaultCharacterModelClone;
     public GameObject catCharacterModel;
     public GameObject mouseCharacterModel;
 
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
     public bool CanPickObject;
     public bool Death;
     public bool LookAtMap;
+    public bool isUsingASpell = false;
 
     public OppeningDoor doorNearPlayerCharacter;
 
@@ -59,22 +62,24 @@ public class Player : MonoBehaviour
         #region Transformation Duration
         if (playerIsTranformedInCat || playerIsTranformedInMouse)
         {
-            _durationOfEffectSinceLaunched -= Time.deltaTime;
+            if (_durationOfEffectSinceLaunched == 0)
+                _durationOfEffectSinceLaunched = spellDurationOfEffect;
+            else          
+                _durationOfEffectSinceLaunched -= Time.deltaTime;
+           
+            Debug.Log(_durationOfEffectSinceLaunched);
 
-            if (_durationOfEffectSinceLaunched <= 1.5f)
-            {
-                Debug.Log("End of transformation");
-                playerAnimator.SetBool("EndOfTransformation", true);
-            }
             if (_durationOfEffectSinceLaunched <= 0)
             {
                 Debug.Log("Transformation into human");
                 if (playerIsTranformedInCat)
                 {
+                    Debug.Log("FROM CAT TO HUMAN");
                     HumanTransformation(catCharacterModel, defaultCharacterModel);
                 }
                 else if (playerIsTranformedInMouse)
                 {
+                    Debug.Log("FROM MOUSE TO HUMAN");
                     HumanTransformation(mouseCharacterModel, defaultCharacterModel);
                 }
             }
@@ -82,6 +87,12 @@ public class Player : MonoBehaviour
         #endregion
     }
 
+    public float SetSpellDuration(float value)
+    {
+        spellDurationOfEffect = value;
+        Debug.Log("Spell duration of effect equals :  " + spellDurationOfEffect);
+        return spellDurationOfEffect;
+    }
 
     private void HumanTransformation(GameObject objToDisactive, GameObject objToActive)
     {
