@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3054553059372701503}
   m_Layer: 5
   m_Name: Map_Landmark_Enemy
-  m_TagString: Untagged
+  m_TagString: EnnemyMap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

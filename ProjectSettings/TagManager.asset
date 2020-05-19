@@ -7,6 +7,9 @@ TagManager:
   - Wall
   - PlayerBody
   - Ennemy
+  - EnnemyMap
+  - ObjectMap
+  - WayMap
   layers:
   - Default
   - TransparentFX
