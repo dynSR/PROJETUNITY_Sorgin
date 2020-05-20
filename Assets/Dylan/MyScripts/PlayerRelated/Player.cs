@@ -25,14 +25,15 @@ public class Player : MonoBehaviour
     public bool playerIsInHumanForm = true;
 
     [Header("PLAYER STATES")]
-    public bool OnWall;
-    public bool OnArmoire;
-    public bool CanPickObject;
-    public bool Death;
-    public bool LookAtMap;
+    public bool onWall;
+    public bool inWardrobe;
+    public bool canPickObject;
+    public bool isDead;
+    //public bool LookAtMap;
     public bool isUsingASpell = false;
 
     public OppeningDoor doorNearPlayerCharacter;
+    public Transform playerTarget = null;
 
     public static Player s_Singleton;
 

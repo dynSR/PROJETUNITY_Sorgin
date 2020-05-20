@@ -102,11 +102,12 @@ public class MapHandler : MonoBehaviour
 
         if(shopWindow.activeInHierarchy)
             UIManager.s_Singleton.UIWindowsHide(shopWindow);
+
         mapIsDisplayed = true;
         AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
 
         cursorRectTransform.localPosition = cursorRectTransformPos;
-        Player.s_Singleton.LookAtMap = true;
+        //Player.s_Singleton.LookAtMap = true;
     }
 
     //Summary : Permet de cacher la carte
@@ -117,6 +118,6 @@ public class MapHandler : MonoBehaviour
         UIManager.s_Singleton.UIWindowsHide(mapWindow);
         mapIsDisplayed = false;
         AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
-        Player.s_Singleton.LookAtMap = false;
+        //Player.s_Singleton.LookAtMap = false;
     }
 }

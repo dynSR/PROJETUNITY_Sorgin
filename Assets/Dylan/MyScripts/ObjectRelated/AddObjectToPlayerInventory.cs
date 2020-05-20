@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AddObjectToPlayerInventory : MonoBehaviour
 {
     public Object objectPickedup;
-    public bool canBePickup = false;
+    public bool canBePickuped = false;
     private Animator myAnimator;
 
     private void Start()
@@ -16,7 +16,7 @@ public class AddObjectToPlayerInventory : MonoBehaviour
 
     private void Update()
     {
-        if (canBePickup && GameManager.s_Singleton.gameState == GameState.PlayMode && !MapHandler.s_Singleton.mapIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
+        if (canBePickuped && GameManager.s_Singleton.gameState == GameState.PlayMode && !MapHandler.s_Singleton.mapIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
         {
             AddTheObjectToTheInventory(objectPickedup);
         }
@@ -28,7 +28,8 @@ public class AddObjectToPlayerInventory : MonoBehaviour
         {
             Debug.Log("Can pick the object");
             //transform.GetChild(0).gameObject.SetActive(true);
-            canBePickup = true;
+            canBePickuped = true;
+            Player.s_Singleton.canPickObject = true;
             myAnimator.SetBool("PlayerIsInTrigger", true);
         }
     }
@@ -39,7 +40,8 @@ public class AddObjectToPlayerInventory : MonoBehaviour
         {
             Debug.Log("Cannot pick the object");
             //transform.GetChild(0).gameObject.SetActive(false);
-            canBePickup = false;
+            canBePickuped = false;
+            Player.s_Singleton.canPickObject = false;
             myAnimator.SetBool("PlayerIsInTrigger", false);
         }
     }
@@ -69,6 +71,7 @@ public class AddObjectToPlayerInventory : MonoBehaviour
                             PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<ObjectCompartment>().MyCompartmentObject = ObjectDataBase.s_Singleton.objectsInTheGame[x];
                             PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().enabled = true;
                             PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().sprite = ObjectDataBase.s_Singleton.objectsInTheGame[x].MyObjectIcon;
+                            Player.s_Singleton.canPickObject = false;
                             Destroy(this.gameObject);
                             return;
                         }

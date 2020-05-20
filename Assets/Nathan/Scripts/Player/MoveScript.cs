@@ -60,10 +60,10 @@ public class MoveScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.s_Singleton.gameState == GameState.PlayMode && !Player.s_Singleton.LookAtMap)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode && !MapHandler.s_Singleton.mapIsDisplayed)
         {
-            OnArmoire = Player.s_Singleton.OnArmoire;
-            OnWall = Player.s_Singleton.OnWall;
+            OnArmoire = Player.s_Singleton.inWardrobe;
+            OnWall = Player.s_Singleton.onWall;
             Anim.SetFloat("Blend", Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical")));
             StandardView.SetActive(true);
             WallLight.SetActive(false);

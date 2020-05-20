@@ -170,8 +170,9 @@ public class Spell : ScriptableObject
     private void Stun()
     {
         /*A une cible ?*/
-        if (/* Oui */true)
+        if (Player.s_Singleton.playerTarget != null)
         {
+            Player.s_Singleton.playerTarget.GetComponent<Animator>().SetBool("IsStun", true);
             PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
         }
         //Non

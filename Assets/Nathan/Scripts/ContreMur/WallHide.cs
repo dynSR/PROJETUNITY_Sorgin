@@ -53,9 +53,9 @@ public class WallHide : MonoBehaviour
                     if (hit.transform.CompareTag("Wall"))
                     {
                         ball.SetActive(true);
-                        if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && Player.s_Singleton.OnArmoire == false)
+                        if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && Player.s_Singleton.inWardrobe == false)
                         {
-                            if (Timer <= 0 && !Player.s_Singleton.CanPickObject)
+                            if (Timer <= 0 && !Player.s_Singleton.canPickObject)
                             {
                                 Invoke("ChangeHided", 0.05f);
                                 Timer = 1;
@@ -108,7 +108,7 @@ public class WallHide : MonoBehaviour
             Debug.DrawRay(transform.position, ClosestPt - transform.position, Color.red);
             //DEBUG
 
-            Player.s_Singleton.OnWall = Hided;
+            Player.s_Singleton.onWall = Hided;
         }
         
 

@@ -61,7 +61,7 @@ public class ArmoireAnimation : MonoBehaviour
                 {
                     Animating = true;
                     LaunchAnim();
-                    Player.s_Singleton.OnArmoire = true;
+                    Player.s_Singleton.inWardrobe = true;
                 }
 
                 if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && !Animating && Inside)
@@ -131,7 +131,7 @@ public class ArmoireAnimation : MonoBehaviour
         Animating = false;
         Inside = false;
         Lerp = false;
-        Player.s_Singleton.OnArmoire = false;
+        Player.s_Singleton.inWardrobe = false;
     }
 
     void CameraOn()
