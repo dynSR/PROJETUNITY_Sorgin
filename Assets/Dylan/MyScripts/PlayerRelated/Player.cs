@@ -31,9 +31,16 @@ public class Player : MonoBehaviour
     public bool isDead;
     //public bool LookAtMap;
     public bool isUsingASpell = false;
+    public bool isAiming = false;
+    public bool hasATarget = false;
 
     public OppeningDoor doorNearPlayerCharacter;
-    public Transform playerTarget = null;
+    //[HideInInspector]
+    public List<Transform> playerTargets = new List<Transform>();
+    public Transform actualPlayerTarget;
+    public GameObject detectionRadar;
+    public List<Transform> objectsFound = new List<Transform>();
+    CollisionHandlerForClonage collisionChecker;
 
     public static Player s_Singleton;
 
@@ -55,37 +62,61 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
+        collisionChecker = GetComponentInChildren<CollisionHandlerForClonage>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        #region Transformation Duration
-        if (playerIsTranformedInCat || playerIsTranformedInMouse)
-        {
-            if (_durationOfEffectSinceLaunched == 0)
-                _durationOfEffectSinceLaunched = spellDurationOfEffect;
-            else          
-                _durationOfEffectSinceLaunched -= Time.deltaTime;
-           
-            Debug.Log(_durationOfEffectSinceLaunched);
 
-            if (_durationOfEffectSinceLaunched <= 0)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
+        {
+            #region Square/X
+            if (isUsingASpell && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
             {
-                Debug.Log("Transformation into human");
-                if (playerIsTranformedInCat)
+                Debug.Log("Square pressed");
+                switch (PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.spellType)
                 {
-                    Debug.Log("FROM CAT TO HUMAN");
-                    HumanTransformation(catCharacterModel, defaultCharacterModel);
-                }
-                else if (playerIsTranformedInMouse)
-                {
-                    Debug.Log("FROM MOUSE TO HUMAN");
-                    HumanTransformation(mouseCharacterModel, defaultCharacterModel);
+                    case Spell.SpellType.Etourdissement:
+                        if (isAiming)
+                            StunPlayerTarget();
+                        break;
+                    case Spell.SpellType.Clone:
+                        ClonePlayerCharacter();
+                        break;
+                    default:
+                        break;
                 }
             }
+            #endregion
+
+            #region Transformation Duration
+            if (playerIsTranformedInCat || playerIsTranformedInMouse)
+            {
+                if (_durationOfEffectSinceLaunched == 0)
+                    _durationOfEffectSinceLaunched = spellDurationOfEffect;
+                else
+                    _durationOfEffectSinceLaunched -= Time.deltaTime;
+
+                Debug.Log(_durationOfEffectSinceLaunched);
+
+                if (_durationOfEffectSinceLaunched <= 0)
+                {
+                    Debug.Log("Transformation into human");
+                    if (playerIsTranformedInCat)
+                    {
+                        Debug.Log("FROM CAT TO HUMAN");
+                        HumanTransformation(catCharacterModel, defaultCharacterModel);
+                    }
+                    else if (playerIsTranformedInMouse)
+                    {
+                        Debug.Log("FROM MOUSE TO HUMAN");
+                        HumanTransformation(mouseCharacterModel, defaultCharacterModel);
+                    }
+                }
+            }
+            #endregion
         }
-        #endregion
     }
 
     public float SetSpellDuration(float value)
@@ -113,5 +144,23 @@ public class Player : MonoBehaviour
         Player.s_Singleton.playerIsTranformedInCat = false;
         Player.s_Singleton.playerIsInHumanForm = true;
         Player.s_Singleton.playerAnimator.SetBool("EndOfTransformation", false);
+    }
+
+    void ClonePlayerCharacter()
+    {
+        if (/*PlayerSpellsInventory.s_Singleton.spellCompartmentIsActive &&*/ !collisionChecker.isColliding)
+        {
+            PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.Clonage(defaultCharacterModelClone, posToInstantiateTheClone);
+            transform.GetChild(0).gameObject.SetActive(false);
+            return;
+        }
+        else
+            PlayerSpellsInventory.s_Singleton.CantUseASpell();
+    }
+
+    void StunPlayerTarget()
+    {
+        PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.Stun(actualPlayerTarget);
+        Debug.Log("Cible disponible, possibiilité de lancer le sort");
     }
 }

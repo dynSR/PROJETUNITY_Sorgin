@@ -18,6 +18,7 @@ public class AddObjectToPlayerInventory : MonoBehaviour
     {
         if (canBePickuped && GameManager.s_Singleton.gameState == GameState.PlayMode && !MapHandler.s_Singleton.mapIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
         {
+            Player.s_Singleton.objectsFound.Remove(this.gameObject.transform);
             AddTheObjectToTheInventory(objectPickedup);
         }
     }

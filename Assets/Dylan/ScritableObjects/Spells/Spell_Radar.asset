@@ -15,7 +15,7 @@ MonoBehaviour:
   spellType: 2
   spellName: Radar
   spellIcon: {fileID: 21300000, guid: 9962fca153bef98488d030e110d96421, type: 3}
-  spellDurationOfEffect: 0
+  spellDurationOfEffect: 1
   spellValue: 300
   spellEffectDescription: "Permet de d\xE9tecter les objets et les dangers autour
     de Marie."

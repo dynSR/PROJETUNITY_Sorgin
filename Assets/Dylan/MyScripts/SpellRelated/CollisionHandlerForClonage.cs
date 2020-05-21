@@ -26,21 +26,6 @@ public class CollisionHandlerForClonage : MonoBehaviour
     {
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            #region Square/X
-            if (Player.s_Singleton.isUsingASpell && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
-            {
-                Debug.Log("Square pressed");
-                if (/*PlayerSpellsInventory.s_Singleton.spellCompartmentIsActive &&*/ !isColliding)
-                {
-                    ClonePlayerCharacter();
-                    return;
-                }
-                else
-                    PlayerSpellsInventory.s_Singleton.CantUseASpell();
-
-            }
-            #endregion
-
             //Ajustement de la position de la position d'instance - Pas obligatoire donc commenté
             //Vector3 desiredObjPosition = transform.parent.TransformPoint(dollyDir * maxDistance);
             //RaycastHit hit;
@@ -89,12 +74,5 @@ public class CollisionHandlerForClonage : MonoBehaviour
             if (transform.GetChild(0).gameObject.activeInHierarchy)
                 playerCharacterRenderer.material.color = new Color(255, 255, 255, 100);
         }
-    }
-
-    void ClonePlayerCharacter()
-    {
-        PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.Clonage(Player.s_Singleton.defaultCharacterModelClone, Player.s_Singleton.posToInstantiateTheClone);
-        transform.GetChild(0).gameObject.SetActive(false);
-        PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
     }
 }

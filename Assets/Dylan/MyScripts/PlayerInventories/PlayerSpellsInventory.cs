@@ -100,6 +100,7 @@ public class PlayerSpellsInventory : MonoBehaviour
 
     public void CantUseASpell()
     {
+        Debug.Log("Impossible d'utiliser le sort");
         StartCoroutine(UIManager.s_Singleton.FadeInAndOutObjectFeedBack(UIManager.s_Singleton.cantUseASpellFeedback));
         Player.s_Singleton.isUsingASpell = false;
     }

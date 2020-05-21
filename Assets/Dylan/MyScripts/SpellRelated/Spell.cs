@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -31,7 +32,7 @@ public class Spell : ScriptableObject
         switch (spellType)
         {
             case SpellType.Etourdissement:
-                Stun();
+                ActivateAimMode();
                 break;
             case SpellType.Crochetage:
                 LockPicking();
@@ -70,6 +71,7 @@ public class Spell : ScriptableObject
         }
     }
 
+    #region Transformations
     private void CatTransformation(GameObject objToDisactive, GameObject objToActive)
     {
         Debug.Log("Trying to transform the player character in a cat...");
@@ -97,7 +99,9 @@ public class Spell : ScriptableObject
 
         PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
     }
+    #endregion
 
+    #region Clonage
     private void PreviewClonage(Transform posToSpawnClone)
     {
         if (!Player.s_Singleton.playerIsInHumanForm)
@@ -121,7 +125,9 @@ public class Spell : ScriptableObject
 
         PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
     }
+    #endregion
 
+    #region Duplication
     private void Duplication()
     {
         //Refs
@@ -166,22 +172,35 @@ public class Spell : ScriptableObject
             }
         }
     }
+    #endregion
 
-    private void Stun()
+    #region Stun
+    private void ActivateAimMode()
     {
-        /*A une cible ?*/
-        if (Player.s_Singleton.playerTarget != null)
-        {
-            Player.s_Singleton.playerTarget.GetComponent<Animator>().SetBool("IsStun", true);
-            PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
-        }
-        //Non
-        else
-        {
-            PlayerSpellsInventory.s_Singleton.CantUseASpell();
-        }
+        Player player = Player.s_Singleton;
+        player.GetComponent<FieldOfView>().enabled = true;
+        player.isAiming = true;
     }
 
+    private void DeactivateAimMode()
+    {
+        Player player = Player.s_Singleton;
+        player.GetComponent<FieldOfView>().enabled = false;
+        player.isAiming = false;
+    }
+
+
+    public void Stun(Transform target)
+    {
+        //target.GetComponent<Animator>().SetBool("IsStun", true);
+        target.GetComponent<NavMeshAgent>().enabled = false;
+        DeactivateAimMode();
+        PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
+        
+    }
+    #endregion
+
+    #region LockPicking
     private void LockPicking()
     {
         /*   Joueur près d'une porte fermée ?   */
@@ -199,22 +218,28 @@ public class Spell : ScriptableObject
 
         //Non
     }
+    #endregion
 
+    #region Detection
     private void Detection()
     {
-        //activer un trigger
+        Player player = Player.s_Singleton;
 
-        //le faire grossir autour du joueur
+        //Activer le gameObject contenant le trigger permettant de détecter les objets
+        player.detectionRadar.SetActive(true);
 
-        //ajouter tous les objets trouvés dans une liste temporaire
+        // ! -- Done on enable sur le script "ObjectDetection" -- !
+        // - Le faire grossir autour du joueur
+        // - Ajouter tous les objets trouvés dans une liste
+        // - Activer le script outline de tous ces objets trouvés pendant x secondes
 
-        //Activer le script outline de tous ces objets trouvés pendant x secondes
+        // - Désactiver l'outline de tous ces objets à la fin du timer
+        // - Clear la liste au cas où ? 
 
-        //Les afficher sur la carte
 
-        //Désactiver l'outline de tous ces objets à la fin du timer
-
-        //Clear la liste au cas où ? 
+        // ! -- Pas encore fait -- !
+        // - Les afficher sur la carte
     }
+    #endregion
 
 }

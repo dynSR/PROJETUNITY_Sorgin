@@ -10,6 +10,7 @@ TagManager:
   - EnnemyMap
   - ObjectMap
   - WayMap
+  - Object
   layers:
   - Default
   - TransparentFX

@@ -30,11 +30,6 @@ public class Object : ScriptableObject
             {
                 Player.s_Singleton.doorNearPlayerCharacter.UnlockDoor();
             }
-            //else
-            //{
-            //    PlayerObjectsInventory.s_Singleton.CantUseTheObject();
-            //}
-            
         }
     }
 }
