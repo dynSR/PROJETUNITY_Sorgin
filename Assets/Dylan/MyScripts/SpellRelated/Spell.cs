@@ -114,6 +114,7 @@ public class Spell : ScriptableObject
         {
             //Previsualisation
             posToSpawnClone.GetChild(0).gameObject.SetActive(true);
+            Player.s_Singleton.isTryingToClone = true;
             //PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
         }
     }
@@ -227,6 +228,7 @@ public class Spell : ScriptableObject
 
         //Activer le gameObject contenant le trigger permettant de détecter les objets
         player.detectionRadar.SetActive(true);
+        PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
 
         // ! -- Done on enable sur le script "ObjectDetection" -- !
         // - Le faire grossir autour du joueur

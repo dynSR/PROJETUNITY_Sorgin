@@ -60,11 +60,14 @@ public class PlayerSpellsInventory : MonoBehaviour
             #endregion
 
             #region Square/X
-            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
+            if (!Player.s_Singleton.isUsingASpell && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
             {
-                Debug.Log("Square pressed");
+                Debug.Log("Square pressed in PlayerSpellsInventory");
                 if (spellCompartmentIsActive && spellsCompartments[0].MyCompartmentSpell != null)
+                {
+                    Player.s_Singleton.isUsingASpell = true;
                     ActivateTheSpellInTheSpellCompartment();
+                }    
             }
             #endregion
         }
@@ -72,7 +75,6 @@ public class PlayerSpellsInventory : MonoBehaviour
 
     void ActivateTheSpellInTheSpellCompartment()
     {
-        Player.s_Singleton.isUsingASpell = true;
         spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
         Player.s_Singleton._durationOfEffectSinceLaunched = spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect;
         spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
@@ -84,7 +86,7 @@ public class PlayerSpellsInventory : MonoBehaviour
     {
         if (spellsCompartments[0].MyCompartmentSpell != null)
         {
-            Debug.Log("Trying To use the spell");
+            Debug.Log("Use the spell");
 
             Player.s_Singleton.SetSpellDuration(spellsCompartments[0].MyCompartmentSpell.MySpellDurationOfEffect);
 

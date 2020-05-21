@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     //public bool LookAtMap;
     public bool isUsingASpell = false;
     public bool isAiming = false;
+    public bool isTryingToClone = false;
     public bool hasATarget = false;
 
     public OppeningDoor doorNearPlayerCharacter;
@@ -74,18 +75,16 @@ public class Player : MonoBehaviour
             #region Square/X
             if (isUsingASpell && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
             {
-                Debug.Log("Square pressed");
-                switch (PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.spellType)
+                Debug.Log("Player Script");
+                if(PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.spellType == Spell.SpellType.Etourdissement && isAiming)
                 {
-                    case Spell.SpellType.Etourdissement:
-                        if (isAiming)
-                            StunPlayerTarget();
-                        break;
-                    case Spell.SpellType.Clone:
-                        ClonePlayerCharacter();
-                        break;
-                    default:
-                        break;
+                    StunPlayerTarget();
+                    Debug.Log("Stun");
+                }
+                else if (PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.spellType == Spell.SpellType.Clone && isTryingToClone)
+                {
+                    ClonePlayerCharacter();
+                    Debug.Log("Clone");
                 }
             }
             #endregion
@@ -151,7 +150,8 @@ public class Player : MonoBehaviour
         if (/*PlayerSpellsInventory.s_Singleton.spellCompartmentIsActive &&*/ !collisionChecker.isColliding)
         {
             PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.Clonage(defaultCharacterModelClone, posToInstantiateTheClone);
-            transform.GetChild(0).gameObject.SetActive(false);
+            posToInstantiateTheClone.GetChild(0).gameObject.SetActive(false);
+            Debug.Log(posToInstantiateTheClone.GetChild(0).gameObject.name);
             return;
         }
         else

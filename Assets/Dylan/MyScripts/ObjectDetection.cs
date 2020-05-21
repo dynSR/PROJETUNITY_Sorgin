@@ -33,7 +33,7 @@ public class ObjectDetection : MonoBehaviour
                 if (player._durationOfEffectSinceLaunched <= 0)
                 {
                     spellDurationOfEffectIsOver = true;
-                    EndOfDetection();
+                    //EndOfDetection();
                     StartCoroutine(ScaleOverSeconds(gameObject, new Vector3(0,0,0), scaleDuration));
                     
                 }
@@ -97,7 +97,11 @@ public class ObjectDetection : MonoBehaviour
         if(!spellDurationOfEffectIsOver)
             isEnabled = true;
         else
+        {
+            EndOfDetection();
             gameObject.SetActive(false);
+        }
+            
 
         objectToScale.transform.localScale = scaleTo;
     }
