@@ -8,10 +8,14 @@ public class ReloadScene : MonoBehaviour
 {
     public GameObject UI;
     NavMeshAgent Nav;
+    EnnemyView EnnemiScript;
+
+    public Animator Anim;
 
     private void Start()
     {
         Nav = transform.parent.GetComponent<NavMeshAgent>();
+        EnnemiScript = transform.parent.GetComponent<EnnemyView>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -22,6 +26,9 @@ public class ReloadScene : MonoBehaviour
             Nav.enabled = false;
             other.transform.root.GetComponent<MoveScript>().enabled = false;
             Player.s_Singleton.isDead = true;
+            EnnemiScript.enabled = false;
+            Anim.SetBool("run", false);
+            Anim.SetBool("walk", false);
         }
     }
 }

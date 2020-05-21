@@ -11,7 +11,7 @@ public class EnnemyView : MonoBehaviour
     public Transform PlayerPos;
 
     public NavMeshAgent Nav;
-
+    public Animator Anim;
     public Transform Eye;
 
     public bool OnTrigger;
@@ -88,6 +88,8 @@ public class EnnemyView : MonoBehaviour
             if (Follow && LostTimer > 0)
             {
                 Nav.destination = Destination;
+                Nav.speed = 4.5f;
+                Anim.SetBool("run", true);
             }
 
             if (Detection <= 0)
@@ -97,7 +99,9 @@ public class EnnemyView : MonoBehaviour
 
             if (LostTimer <= 0 && WaypointTimer <= 0)
             {
-
+                Anim.SetBool("run", false);
+                Anim.SetBool("walk", true);
+                Nav.speed = 2.5f;
                 Waypoint = Waypoints[WaypointLevel];
                 Nav.destination = Waypoint.position;
                 WaypointLevel++;
@@ -108,17 +112,22 @@ public class EnnemyView : MonoBehaviour
                 WaypointTimer = WaitingTime;
             }
 
-            if (!Nav.pathPending)
+            if (Nav.enabled == true)
             {
-                if (Nav.remainingDistance <= Nav.stoppingDistance)
+                if (!Nav.pathPending)
                 {
-                    if (!Nav.hasPath || Nav.velocity.sqrMagnitude == 0f)
+                    if (Nav.remainingDistance <= Nav.stoppingDistance)
                     {
-                        transform.rotation = Quaternion.RotateTowards(transform.rotation, Waypoint.transform.rotation,15);
-                        WaypointTimer -= Time.deltaTime;
+                        if (!Nav.hasPath || Nav.velocity.sqrMagnitude == 0f)
+                        {
+                            transform.rotation = Quaternion.RotateTowards(transform.rotation, Waypoint.transform.rotation, 15);
+                            WaypointTimer -= Time.deltaTime;
+                            Anim.SetBool("walk", false);
+                        }
                     }
                 }
             }
+
             DetectionLevel.Instance.Detection(gameObject.name, Detection);
         }
         
