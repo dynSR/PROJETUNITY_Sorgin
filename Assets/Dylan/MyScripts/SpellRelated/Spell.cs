@@ -113,8 +113,7 @@ public class Spell : ScriptableObject
         else
         {
             //Previsualisation
-            posToSpawnClone.GetChild(0).gameObject.SetActive(true);
-            Player.s_Singleton.isTryingToClone = true;
+            posToSpawnClone.gameObject.SetActive(true);
             //PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
         }
     }

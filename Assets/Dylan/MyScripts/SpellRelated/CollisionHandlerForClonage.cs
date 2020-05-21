@@ -26,24 +26,28 @@ public class CollisionHandlerForClonage : MonoBehaviour
     {
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            //Ajustement de la position de la position d'instance - Pas obligatoire donc commenté
-            //Vector3 desiredObjPosition = transform.parent.TransformPoint(dollyDir * maxDistance);
-            //RaycastHit hit;
+            if (Player.s_Singleton.isUsingASpell && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
+            {
+                ClonePlayerCharacter();
+            }
+                //Ajustement de la position de la position d'instance - Pas obligatoire donc commenté
+                //Vector3 desiredObjPosition = transform.parent.TransformPoint(dollyDir * maxDistance);
+                //RaycastHit hit;
 
-            //if (Physics.Linecast(transform.parent.position, /*Player.s_Singleton.posToInstantiateTheClone.position*/desiredObjPosition, out hit))
-            //{
-            //    //transform.position = Vector3.Lerp(transform.parent.GetComponent<Collider>().ClosestPointOnBounds(transform.parent.localPosition), hit.collider.ClosestPointOnBounds(hit.collider.transform.localPosition), Time.deltaTime* smooth);
-            //    distance = Mathf.Clamp((hit.distance * lerp), minDistance, maxDistance);
-            //}
-            //else
-            //{
-            //    distance = maxDistance;
-            //    //transform.position = Player.s_Singleton.posToInstantiateTheClone.position;
-            //}
+                //if (Physics.Linecast(transform.parent.position, /*Player.s_Singleton.posToInstantiateTheClone.position*/desiredObjPosition, out hit))
+                //{
+                //    //transform.position = Vector3.Lerp(transform.parent.GetComponent<Collider>().ClosestPointOnBounds(transform.parent.localPosition), hit.collider.ClosestPointOnBounds(hit.collider.transform.localPosition), Time.deltaTime* smooth);
+                //    distance = Mathf.Clamp((hit.distance * lerp), minDistance, maxDistance);
+                //}
+                //else
+                //{
+                //    distance = maxDistance;
+                //    //transform.position = Player.s_Singleton.posToInstantiateTheClone.position;
+                //}
 
-            //transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDir * distance, Time.deltaTime * smooth);
+                //transform.localPosition = Vector3.Lerp(transform.localPosition, dollyDir * distance, Time.deltaTime * smooth);
 
-            CollisionCheck();
+                CollisionCheck();
         }
     }
 
@@ -51,6 +55,20 @@ public class CollisionHandlerForClonage : MonoBehaviour
     {
         //Gizmos.color = Color.black;
         //Gizmos.DrawWireCube(transform.position, transform.localScale);
+    }
+
+    void ClonePlayerCharacter()
+    {
+        if (/*PlayerSpellsInventory.s_Singleton.spellCompartmentIsActive &&*/ !isColliding)
+        {
+            PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.Clonage(Player.s_Singleton.defaultCharacterModelClone, Player.s_Singleton.posToInstantiateTheClone);
+            Player.s_Singleton.posToInstantiateTheClone.GetChild(0).gameObject.SetActive(false);
+
+            Debug.Log(Player.s_Singleton.posToInstantiateTheClone.GetChild(0).gameObject.name);
+            return;
+        }
+        else
+            PlayerSpellsInventory.s_Singleton.CantUseASpell();
     }
 
     void CollisionCheck()

@@ -32,7 +32,6 @@ public class Player : MonoBehaviour
     //public bool LookAtMap;
     public bool isUsingASpell = false;
     public bool isAiming = false;
-    public bool isTryingToClone = false;
     public bool hasATarget = false;
 
     public OppeningDoor doorNearPlayerCharacter;
@@ -41,7 +40,6 @@ public class Player : MonoBehaviour
     public Transform actualPlayerTarget;
     public GameObject detectionRadar;
     public List<Transform> objectsFound = new List<Transform>();
-    CollisionHandlerForClonage collisionChecker;
 
     public static Player s_Singleton;
 
@@ -63,7 +61,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
-        collisionChecker = GetComponentInChildren<CollisionHandlerForClonage>();
     }
 
     // Update is called once per frame
@@ -73,18 +70,13 @@ public class Player : MonoBehaviour
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             #region Square/X
-            if (isUsingASpell && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
             {
                 Debug.Log("Player Script");
                 if(PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.spellType == Spell.SpellType.Etourdissement && isAiming)
                 {
                     StunPlayerTarget();
                     Debug.Log("Stun");
-                }
-                else if (PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.spellType == Spell.SpellType.Clone && isTryingToClone)
-                {
-                    ClonePlayerCharacter();
-                    Debug.Log("Clone");
                 }
             }
             #endregion
@@ -145,18 +137,6 @@ public class Player : MonoBehaviour
         Player.s_Singleton.playerAnimator.SetBool("EndOfTransformation", false);
     }
 
-    void ClonePlayerCharacter()
-    {
-        if (/*PlayerSpellsInventory.s_Singleton.spellCompartmentIsActive &&*/ !collisionChecker.isColliding)
-        {
-            PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.Clonage(defaultCharacterModelClone, posToInstantiateTheClone);
-            posToInstantiateTheClone.GetChild(0).gameObject.SetActive(false);
-            Debug.Log(posToInstantiateTheClone.GetChild(0).gameObject.name);
-            return;
-        }
-        else
-            PlayerSpellsInventory.s_Singleton.CantUseASpell();
-    }
 
     void StunPlayerTarget()
     {

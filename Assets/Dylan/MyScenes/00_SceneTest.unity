@@ -2570,7 +2570,6 @@ MonoBehaviour:
   isDead: 0
   isUsingASpell: 0
   isAiming: 0
-  isTryingToClone: 0
   hasATarget: 0
   doorNearPlayerCharacter: {fileID: 0}
   playerTargets: []
@@ -21361,7 +21360,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1214885275, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1214885276, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21390,6 +21389,10 @@ PrefabInstance:
     - target: {fileID: 1214885276, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1214885277, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1283325035, guid: e08eb5977e31af24fb85ea8bb7abeb18, type: 3}
       propertyPath: m_Camera
@@ -21428,7 +21431,7 @@ PrefabInstance:
     - target: {fileID: 5092194612109160653, guid: e08eb5977e31af24fb85ea8bb7abeb18,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5092194612109160656, guid: e08eb5977e31af24fb85ea8bb7abeb18,
         type: 3}
