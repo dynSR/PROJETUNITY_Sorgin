@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     public bool isDead;
     //public bool LookAtMap;
     public bool isUsingASpell = false;
+    public bool isTryingToClone = false;
     public bool isAiming = false;
     public bool hasATarget = false;
 

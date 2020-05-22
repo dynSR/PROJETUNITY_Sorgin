@@ -26,7 +26,7 @@ public class CollisionHandlerForClonage : MonoBehaviour
     {
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            if (Player.s_Singleton.isUsingASpell && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
+            if (Player.s_Singleton.isUsingASpell && Player.s_Singleton.isTryingToClone && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
             {
                 ClonePlayerCharacter();
             }
@@ -63,6 +63,7 @@ public class CollisionHandlerForClonage : MonoBehaviour
         {
             PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.Clonage(Player.s_Singleton.defaultCharacterModelClone, Player.s_Singleton.posToInstantiateTheClone);
             Player.s_Singleton.posToInstantiateTheClone.GetChild(0).gameObject.SetActive(false);
+            Player.s_Singleton.isTryingToClone = false;
 
             Debug.Log(Player.s_Singleton.posToInstantiateTheClone.GetChild(0).gameObject.name);
             return;
