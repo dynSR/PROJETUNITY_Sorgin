@@ -1,30 +1,12 @@
 fileFormatVersion: 2
-guid: 895f19b195d1c3e4bb507cb468a67cd2
+guid: c4a4fb132b2970f4185ecd511dae67d3
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
-      74: 1827226128182048838
-    second: Take 001
-  - first:
       74: -203655887218126122
     second: mixamo.com
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Paladin_diffuse
-    second: {fileID: 2800000, guid: 43f13d07aef4b104b98c9a6ceb476c57, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Paladin_normal
-    second: {fileID: 2800000, guid: ba11487ee8b5aa342a1886db56ddec5d, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: Paladin_specular
-    second: {fileID: 2800000, guid: 2742b9a37caaac44997fc3ecd602ff58, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -88,11 +70,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - 866c7a864a8c90c42913c5ce14be6022
-  - 4c8bec724a9083e48a7d9c92e1b2bea5
-  - c4a4fb132b2970f4185ecd511dae67d3
-  - 03e01642cbe696643991ecc08d71c1c1
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
