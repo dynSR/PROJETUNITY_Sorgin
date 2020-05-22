@@ -66,10 +66,10 @@ public class UIManager_MainMenu : DefaultUIManager
         {
             HideSplashScreenAndDisplayMainMenu();
         }
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            ButtonReturnMenu();
-        }
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    ButtonReturnMenu();
+        //}
         if (!mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
         {
             StartCoroutine(BackToMainMenuFromAnySubMenu());

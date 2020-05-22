@@ -51,7 +51,7 @@ public class ObjectDetection : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Object"))
         {
-            other.gameObject.GetComponentInParent<Outline>().OutlineColor = new Color(255, 255, 255, 255);
+            other.gameObject.GetComponentInParent<Outliner>().OutlineColor = new Color(255, 255, 255, 255);
             player.objectsFound.Add(other.gameObject.transform);
 
             Debug.Log(other.transform.name);
@@ -64,7 +64,7 @@ public class ObjectDetection : MonoBehaviour
 
         if (other.gameObject.CompareTag("Object"))
         {
-            other.gameObject.GetComponentInParent<Outline>().OutlineColor = new Color(255, 255, 255, 0);
+            other.gameObject.GetComponentInParent<Outliner>().OutlineColor = new Color(255, 255, 255, 0);
             player.objectsFound.Remove(other.gameObject.transform);
 
             Debug.Log(other.transform.name);
@@ -75,7 +75,7 @@ public class ObjectDetection : MonoBehaviour
     {
         for (int i = 0; i < player.objectsFound.Count; i++)
         {
-            player.objectsFound[i].GetComponentInParent<Outline>().OutlineColor = new Color(255, 255, 255, 0);
+            player.objectsFound[i].GetComponentInParent<Outliner>().OutlineColor = new Color(255, 255, 255, 0);
         }
 
         isEnabled = false;

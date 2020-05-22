@@ -109,5 +109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   erasingAMarkerWwiseEventSoundName: UI_ErasingAMarker
-  valueToDivideBy: 1.5
+  valueToDivideBy: 1.825
+  sprites:
+  - {fileID: 21300000, guid: 42c3fcbc2379daa4f8960751aaec564c, type: 3}
+  - {fileID: 21300000, guid: e502e8422e06c52468110c9b83e2fbf6, type: 3}
   rectTransform: {fileID: 0}

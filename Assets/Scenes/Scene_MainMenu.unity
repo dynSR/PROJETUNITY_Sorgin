@@ -7953,7 +7953,7 @@ MonoBehaviour:
   m_VerticalAxis: Vertical
   m_SubmitButton: Validation_PS4
   m_CancelButton: Cancel
-  m_InputActionsPerSecond: 12.5
+  m_InputActionsPerSecond: 8.5
   m_RepeatDelay: 0.25
   m_ForceModuleActive: 0
 --- !u!114 &1621020447

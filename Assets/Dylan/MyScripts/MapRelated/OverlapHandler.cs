@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OverlapHandler : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class OverlapHandler : MonoBehaviour
 
     CursorHandler _cursor;
 
+    public Sprite[] sprites;
+
     [HideInInspector]
     public RectTransform rectTransform;
 
@@ -16,24 +19,30 @@ public class OverlapHandler : MonoBehaviour
     {
         _cursor = GameObject.Find("MapCursor").GetComponent<CursorHandler>();
         rectTransform = GetComponent<RectTransform>();
+        GetComponent<Image>().sprite = sprites[0];
     }
 
     void Update()
     {
-        if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
+        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
-            if (Input.GetButtonDown("PS4_O"))
+            HighlightOverlappedObject();
+
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
             {
-                Debug.Log("O pressed");
-                EraseAMarker();
+                if (Input.GetButtonDown("PS4_O"))
+                {
+                    Debug.Log("O pressed");
+                    EraseAMarker();
+                }
             }
-        }
-        else if(ConnectedController.s_Singleton.XboxControllerIsConnected)
-        {
-            if(Input.GetButtonDown("XBOX_B"))
+            else if (ConnectedController.s_Singleton.XboxControllerIsConnected)
             {
-                Debug.Log("B pressed");
-                EraseAMarker();
+                if (Input.GetButtonDown("XBOX_B"))
+                {
+                    Debug.Log("B pressed");
+                    EraseAMarker();
+                }
             }
         }
     }
@@ -45,6 +54,19 @@ public class OverlapHandler : MonoBehaviour
         Rect rect2 = new Rect(rectTransform02.localPosition.x, rectTransform02.localPosition.y, rectTransform02.rect.width / valueToDivideBy, rectTransform02.rect.height / valueToDivideBy);
 
         return rect1.Overlaps(rect2);
+    }
+
+    private void HighlightOverlappedObject()
+    {
+        if (CheckIfTwoRectsOverlap(_cursor.GetComponent<RectTransform>(), rectTransform))
+        {
+            GetComponent<Image>().sprite = sprites[1];
+        }
+        else if(!CheckIfTwoRectsOverlap(_cursor.GetComponent<RectTransform>(), rectTransform) || !MapHandler.s_Singleton.mapIsDisplayed)
+        {
+            GetComponent<Image>().sprite = sprites[0];
+        }
+
     }
 
     //Summary : Permet d'effacer un marqueur (jalon de repère) à la position du curseur
