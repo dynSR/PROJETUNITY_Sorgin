@@ -3042,7 +3042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76aa4cf0fee7117458e925fe5cda2010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPointsValue: 1000
+  playerPointsValue: 50000
   gameState: 0
 --- !u!4 &597831354
 Transform:
