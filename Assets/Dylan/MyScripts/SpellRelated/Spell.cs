@@ -155,6 +155,7 @@ public class Spell : ScriptableObject
 
                     //Activation des boutons et attribution du bouton sélectionné par l'Event system
                     uiManagerReference.duplicationButtonLayout.transform.GetChild(i).gameObject.SetActive(true);
+                    uiManagerReference.EnableButtonsInLayout(uiManagerReference.duplicationButtonLayout);
                     EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
 
                     //Attribution de l'objet trouvé 
@@ -205,7 +206,7 @@ public class Spell : ScriptableObject
     private void LockPicking()
     {
         /*   Joueur près d'une porte fermée ?   */
-        if (Player.s_Singleton.doorNearPlayerCharacter != null && Player.s_Singleton.playerIsInHumanForm)
+        if (Player.s_Singleton.playerIsInHumanForm && Player.s_Singleton.doorNearPlayerCharacter != null && Player.s_Singleton.doorNearPlayerCharacter.doorType == DoorType.CommonDoor)
         {
             Player.s_Singleton.doorNearPlayerCharacter.UnlockDoor();
             PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();

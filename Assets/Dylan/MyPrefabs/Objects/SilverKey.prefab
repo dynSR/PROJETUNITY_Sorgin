@@ -432,7 +432,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.85
   m_Center: {x: 0, y: 0.1, z: 0}
 --- !u!95 &1574373065233593722
 Animator:
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 1, b: 1, a: 0}
-  outlineWidth: 1.5
+  outlineWidth: 4
   precomputeOutline: 1
   bakeKeys:
   - {fileID: 4300000, guid: 1b73a1dd76adf8c47b44e5557a53568f, type: 3}

@@ -188,7 +188,7 @@ Transform:
   m_GameObject: {fileID: 652627380}
   m_LocalRotation: {x: 0.70710576, y: -0, z: -0, w: 0.7071079}
   m_LocalPosition: {x: 0, y: 0.01, z: 0}
-  m_LocalScale: {x: 11.5, y: 11.5, z: 0}
+  m_LocalScale: {x: 12.3234, y: 12.3234, z: 0}
   m_Children: []
   m_Father: {fileID: 509710820}
   m_RootOrder: 0
@@ -3838,7 +3838,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2541457280464432744, guid: 3707a08b4a16daa4f93fd8f43d2cfec6, type: 3}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4617,7 +4617,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 7129148444810377532}
   m_Material: {fileID: 13400000, guid: e5a9fae70f829a1468f18854e082fa26, type: 2}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.35
   m_Height: 1.5
   m_Direction: 1
@@ -6109,12 +6109,9 @@ MonoBehaviour:
   _durationOfEffectSinceLaunched: 0
   spellDurationOfEffect: 0
   defaultCharacterModel: {fileID: 5089007789564690456}
-  defaultCharacterModelClone: {fileID: 2595152852756100300, guid: d953334f975fd0342a2b86d4875fbe47,
-    type: 3}
+  defaultCharacterModelClone: {fileID: 7129148444810377532}
   catCharacterModel: {fileID: 3524429886654643529}
   mouseCharacterModel: {fileID: 3524429886654643534}
-  defaultCharacterModelPrefab: {fileID: 5700492096580577475, guid: e08eb5977e31af24fb85ea8bb7abeb18,
-    type: 3}
   posToInstantiateTheClone: {fileID: 5700492095823206491}
   playerIsTranformedInMouse: 0
   playerIsTranformedInCat: 0
@@ -6151,9 +6148,9 @@ MonoBehaviour:
   gravity: 20
   Sound: {fileID: 8536155075064234571}
   moveDirection: {x: 0, y: 0, z: 0}
-  speed: 2
-  speedTPS: 3
-  sensi: 15
+  speed: 1
+  speedTPS: 1
+  sensi: 7
   smooth: 8
   SoundTimer: 0
   horizontal: 0
@@ -6175,7 +6172,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.01
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &8536155075064234571
 MonoBehaviour:

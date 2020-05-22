@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public GameObject mouseCharacterModel;
 
     [Header("CLONE PARAMETERS")]
-    public GameObject defaultCharacterModelPrefab;
     public Transform posToInstantiateTheClone;
 
     [Header("TRANSFORMATIONS STATES")]
@@ -71,7 +70,7 @@ public class Player : MonoBehaviour
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             #region Square/X
-            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
+            if (isUsingASpell && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
             {
                 Debug.Log("Player Script");
                 if(PlayerSpellsInventory.s_Singleton.spellsCompartments[0].MyCompartmentSpell.spellType == Spell.SpellType.Etourdissement && isAiming)

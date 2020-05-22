@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CollisionHandlerForClonage : MonoBehaviour
@@ -77,6 +78,7 @@ public class CollisionHandlerForClonage : MonoBehaviour
         hitColliders = Physics.OverlapBox(transform.position, transform.localScale / 2, Quaternion.identity);
         int i = 0;
         Renderer playerCharacterRenderer = transform.GetChild(0).GetComponent<Renderer>();
+        SkinnedMeshRenderer[] meshRenderers = transform.GetComponentsInChildren<SkinnedMeshRenderer>();
 
         if (i < hitColliders.Length)
         {
@@ -84,14 +86,39 @@ public class CollisionHandlerForClonage : MonoBehaviour
             isColliding = true;
 
             if (transform.GetChild(0).gameObject.activeInHierarchy)
-                playerCharacterRenderer.material.color = new Color(255, 0, 0, 100);
+            {
+                if (playerCharacterRenderer != null)
+                {
+                    playerCharacterRenderer.material.color = new Color(255, 0, 0, 100);
+                }
+                //else if (meshRenderers.Length > 0 && playerCharacterRenderer == null)
+                //{
+                //    for (int j = 0; j < meshRenderers.Length; j++)
+                //    {
+                //        meshRenderers[j].material.color = new Color(255, 0, 0, 100);
+                //    }
+                //}
+            }  
         }
         else
         {
             isColliding = false;
 
-            if (transform.GetChild(0).gameObject.activeInHierarchy)
-                playerCharacterRenderer.material.color = new Color(255, 255, 255, 100);
+            if (transform.GetChild(0).gameObject.activeInHierarchy )
+            {
+                if (playerCharacterRenderer != null)
+                {
+                    playerCharacterRenderer.material.color = new Color(255, 255, 255, 100);
+
+                }
+                //else if (meshRenderers.Length > 0 && playerCharacterRenderer == null)
+                //{
+                //    for (int j = 0; j < meshRenderers.Length; j++)
+                //    {
+                //        meshRenderers[j].material.color = new Color(255, 255, 255, 100);
+                //    }
+                //}
+            }
         }
     }
 }

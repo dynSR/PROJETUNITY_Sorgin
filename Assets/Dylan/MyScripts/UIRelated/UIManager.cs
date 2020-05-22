@@ -104,8 +104,9 @@ public class UIManager : DefaultUIManager
             {
                 Debug.Log("Circle/B pressed");
                 HideAPopup(duplicationWindow);
-                //DisableButtonsInLayout(duplicationButtonLayout);
+                DisableButtonsInLayout(duplicationButtonLayout);
                 duplicationValidationPopupIsDisplayed = false;
+                Player.s_Singleton.isUsingASpell = false;
                 PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
             }
             #endregion
