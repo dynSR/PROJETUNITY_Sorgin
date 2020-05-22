@@ -179,14 +179,14 @@ public class Spell : ScriptableObject
     private void ActivateAimMode()
     {
         Player player = Player.s_Singleton;
-        player.GetComponent<FieldOfView>().enabled = true;
+        //player.GetComponent<FieldOfView>().enabled = true;
         player.isAiming = true;
     }
 
     private void DeactivateAimMode()
     {
         Player player = Player.s_Singleton;
-        player.GetComponent<FieldOfView>().enabled = false;
+        //player.GetComponent<FieldOfView>().enabled = false;
         player.isAiming = false;
     }
 
