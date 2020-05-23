@@ -25,7 +25,15 @@ public class DefaultUIManager : MonoBehaviour
     public bool pauseWindowIsDisplayed = false;
     [HideInInspector] public bool pauseWindowOptionsAreDisplayed = false;
     [HideInInspector] public bool pauseWindowInputsDisplayerIsDisplayed = false;
+    public static bool playerIsBackToMainMenu = false;
 
+    //private void Start()
+    //{
+    //    if (PlayerPrefs.HasKey("playerIsBackToMainMenu"))
+    //    {
+    //        playerIsBackToMainMenu = PlayerPrefs.GetInt("playerIsBackToMainMenu")
+    //    }
+    //}
 
     public virtual void Update()
     {
@@ -121,7 +129,9 @@ public class DefaultUIManager : MonoBehaviour
     {
         HideAPopup(pauseMenuWindow);
         pauseWindowIsDisplayed = false;
-        GameManager.s_Singleton.gameState = GameState.PlayMode;
+        GameManager.s_Singleton.gameState = GameState.InMainMenu;
+        playerIsBackToMainMenu = true;
+        Debug.Log("Player is back to main menu " + playerIsBackToMainMenu);
 
         SceneManager.LoadScene("Scene_MainMenu");
     }
@@ -139,15 +149,21 @@ public class DefaultUIManager : MonoBehaviour
     public void DisplayAPopup(CanvasGroup popupToDisplay)
     {
         //Affichage de la fenêtre de confirmation d'achat en Fade-In
-        StartCoroutine(FadeCanvasGroup(popupToDisplay, popupToDisplay.alpha, 1, fadeDuration));
-        popupToDisplay.blocksRaycasts = true;
+        if (popupToDisplay.alpha == 0)
+        {
+            StartCoroutine(FadeCanvasGroup(popupToDisplay, popupToDisplay.alpha, 1, fadeDuration));
+            popupToDisplay.blocksRaycasts = true;
+        }
     }
 
     //Summary : Permet de désafficher une fenêtre popup. 
     public void HideAPopup(CanvasGroup popupToHide)
     {
-        StartCoroutine(FadeCanvasGroup(popupToHide, popupToHide.alpha, 0, fadeDuration));
-        popupToHide.blocksRaycasts = false;
+        if (popupToHide.alpha == 1)
+        {
+            StartCoroutine(FadeCanvasGroup(popupToHide, popupToHide.alpha, 0, fadeDuration));
+            popupToHide.blocksRaycasts = false;
+        }
     }
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { PlayMode, Pause, Cinematic, ConsultingShop }
+public enum GameState { PlayMode, Pause, Cinematic, ConsultingShop, InMainMenu }
 
 public class GameManager : MonoBehaviour
 {
@@ -26,7 +26,10 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
 
-        gameState = GameState.PlayMode;
+        //Pour les tests, à commenter pour les builds etc
+        //gameState = GameState.PlayMode;
+
+        //gameState = GameState.InMainMenu;
     }
     #endregion
 
@@ -52,6 +55,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.ConsultingShop:
                 //Faire quelque chose si besoin...
+                break;
+            case GameState.InMainMenu:
+                Time.timeScale = 1f;
                 break;
             default:
                 break;

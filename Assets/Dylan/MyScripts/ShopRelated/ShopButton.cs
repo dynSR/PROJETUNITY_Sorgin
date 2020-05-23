@@ -10,6 +10,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     [Header("BUTTON COLORS")]
     [SerializeField] private Color purchasableButtonColor = Color.white;
     [SerializeField] private Color unpurchasableButtonColor = Color.red;
+    public Color inventoryIsFullColor = Color.grey;
 
     [Header("SPELL ATTACHED TO THE BUTTON - DEBUG")]
     public Spell spell;
@@ -29,7 +30,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     private void Start()
     {
         if (spellNameText == null)
-            spellNameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            spellNameText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
         if (spell != null)
             spellNameText.text = spell.MySpellName;
@@ -52,8 +53,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
             SetButtonColor(purchasableButtonColor);
             return true;
         }
-
-        ////Si la valeur comparée (ex : valeur des points du joueur) < à la valeur du sort...
+        //Si la valeur comparée (ex : valeur des points du joueur) < à la valeur du sort...
         else if (valueToCompare < spell.MySpellValue)
         {
             //Alors la couleur du bouton change pour signifier au joueur qu'il ne peut pas appuyer dessus et ne peut pas acheter ce sort.
@@ -61,7 +61,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
             SetButtonColor(unpurchasableButtonColor);
             return false;
         }
-
+        
         return CheckIfPlayerCanPurchaseASpell(valueToCompare);
     }
 
@@ -79,7 +79,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     }
 
     //Summary : Permet d'attribuer une couleur définie à un bouton.
-    void SetButtonColor(Color _color)
+    public void SetButtonColor(Color _color)
     {
         gameObject.GetComponent<Button>().image.color = _color;
     }
@@ -87,9 +87,11 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     //Summary : Lorsque le joueur appuie sur "X", "A", la fenêtre de validation s'affiche + référence du sort étant en train d'être acheté.
     public void OnSubmit(BaseEventData eventData)
     {
-        //Debug.Log("On Submit click event");
-        DisplayPurchaseValidationPopupWindow();
-        validationPopupPurchaseButton.GetComponent<PurchaseASpell>().selectedButton = GetComponent<Button>();
+        if (ShopManager.s_Singleton.amntOfSpellBought < 3)
+        {
+            DisplayPurchaseValidationPopupWindow();
+            validationPopupPurchaseButton.GetComponent<PurchaseASpell>().selectedButton = GetComponent<Button>();
+        }
     }
 
     //Summary : Permet de mettre à jour les informations contenues dans le tooltip des sorts.

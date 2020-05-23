@@ -49,6 +49,9 @@ public class UIManager_MainMenu : DefaultUIManager
     #region Singleton
     private void Awake()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
         if (s_Singleton != null)
         {
             Destroy(this.gameObject);
@@ -56,9 +59,26 @@ public class UIManager_MainMenu : DefaultUIManager
         else
         {
             s_Singleton = this;
+            GameManager.s_Singleton.gameState = GameState.InMainMenu;
+
+            if (playerIsBackToMainMenu)
+            {
+                HideSplashScreenAndDisplayMainMenu();
+                playerIsBackToMainMenu = false;
+
+                Debug.Log("Player is back to main menu " + playerIsBackToMainMenu);
+            }
         }
+
+       
     }
     #endregion
+
+    private void Start()
+    {
+
+        
+    }
 
     new void Update()
     {
@@ -66,10 +86,6 @@ public class UIManager_MainMenu : DefaultUIManager
         {
             HideSplashScreenAndDisplayMainMenu();
         }
-        //if (Input.GetKeyDown(KeyCode.M))
-        //{
-        //    ButtonReturnMenu();
-        //}
         if (!mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
         {
             StartCoroutine(BackToMainMenuFromAnySubMenu());
@@ -158,6 +174,7 @@ public class UIManager_MainMenu : DefaultUIManager
     #region Main menu buttons
     public void OnClickPlayButton()
     {
+        GameManager.s_Singleton.gameState = GameState.PlayMode;
         SceneManager.LoadScene(sceneToLoadOnClickPlayButton);
     }
 
@@ -213,6 +230,7 @@ public class UIManager_MainMenu : DefaultUIManager
     {
         Debug.Log("Hiding SplashScreen");
         EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
+        Debug.Log(EventSystem.current.currentSelectedGameObject.name);
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(mainMenuWindow ,splashScreenWindow));
         
         splashScreenIsDisplayed = false;

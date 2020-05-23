@@ -6,19 +6,21 @@ using UnityEngine.EventSystems;
 
 public class SwitchButtonColor : MonoBehaviour, IDeselectHandler, ISelectHandler
 {
-    public enum ButtonType { CannotBeSetAsLastSelected, CanBeSetAsLastSelected}
+    public enum ButtonType { CannotBeSetAsLastSelected, CanBeSetAsLastSelected, MainMenuButton }
     public ButtonType buttonType;
     private TextMeshProUGUI buttonText;
 
     private void Start()
     {
         buttonText = GetComponentInChildren<TextMeshProUGUI>();
-        buttonText.faceColor = new Color32(255, 255, 255, 150);
+
+        if(buttonType != ButtonType.MainMenuButton)
+            buttonText.faceColor = new Color32(255, 255, 255, 50);
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        buttonText.faceColor = new Color32(255, 255, 255, 150);
+        buttonText.faceColor = new Color32(255, 255, 255, 50);
 
         //if (buttonType == ButtonType.CanBeSetAsLastSelected)
         //    DefaultUIManager.lastSelectedButton = null;

@@ -31,6 +31,7 @@ public class UIManager : DefaultUIManager
     public CanvasGroup cantUseAnObjectFeedback;
     public CanvasGroup cantPickAnObjectFeedback;
     public CanvasGroup cantUseASpellFeedback;
+    public CanvasGroup inventoryIsFullFeedBack;
     [SerializeField] private float timeBetweenFades = 0.25f;
 
     [Header("DUPPLICATION PARAMETERS")]
@@ -50,6 +51,7 @@ public class UIManager : DefaultUIManager
         else
         {
             s_Singleton = this;
+            GameManager.s_Singleton.gameState = GameState.PlayMode;
         }
     }
     #endregion
@@ -189,6 +191,16 @@ public class UIManager : DefaultUIManager
         foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
             obj.GetComponent<ShopButton>().CheckIfPlayerCanPurchaseASpell(tempPlayerPointsValue);
+
+            if (ShopManager.s_Singleton.amntOfSpellBought == 3)
+            {
+                obj.GetComponent<ShopButton>().SetButtonColor(obj.GetComponent<ShopButton>().inventoryIsFullColor);
+                obj.transform.GetChild(0).gameObject.SetActive(true);
+            }
+            else if (ShopManager.s_Singleton.amntOfSpellBought < 3)
+            {
+                obj.transform.GetChild(0).gameObject.SetActive(false);
+            }
         }
 
         StartCoroutine(SubstractionCoroutine(valueToSubstract, valueToSubstractPerTicks));
