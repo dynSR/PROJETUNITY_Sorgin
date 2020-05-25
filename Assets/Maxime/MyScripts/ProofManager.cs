@@ -195,19 +195,22 @@ public class ProofManager : MonoBehaviour
     //switch entre l'affichage des docs et des objets
     private void SwitchMode()
     {
-        objectMode = !objectMode;
-        if (objectMode)
+        if(proofObjsList.Length != 0)
         {
-            proofDocList[activeDocProof].SetActive(false);
-            proofObjsList[activeObjProof].SetActive(true);
-            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
-        }
-        else
-        {
-            proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
-            proofObjsList[activeObjProof].SetActive(false);
-            proofDocList[activeDocProof].SetActive(true);
-            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+            objectMode = !objectMode;
+            if (objectMode)
+            {
+                proofDocList[activeDocProof].SetActive(false);
+                proofObjsList[activeObjProof].SetActive(true);
+                UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
+            }
+            else
+            {
+                proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
+                proofObjsList[activeObjProof].SetActive(false);
+                proofDocList[activeDocProof].SetActive(true);
+                UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+            }
         }
     }
 

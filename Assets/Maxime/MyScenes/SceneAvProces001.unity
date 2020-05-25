@@ -1912,7 +1912,6 @@ MonoBehaviour:
   firstButtonOfPauseMenu: {fileID: 0}
   optionsFirstSelectedButton: {fileID: 0}
   pauseMenuOptionsButton: {fileID: 0}
-  lastSelectedButton: {fileID: 0}
   pauseWindowIsDisplayed: 0
   pauseWindowOptionsAreDisplayed: 0
   pauseWindowInputsDisplayerIsDisplayed: 0
@@ -2141,6 +2140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &977590906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3861,6 +3861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ec6fcac05205594da1f27210d57eaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonType: 0
 --- !u!114 &1790385425
 MonoBehaviour:
   m_ObjectHideFlags: 0
