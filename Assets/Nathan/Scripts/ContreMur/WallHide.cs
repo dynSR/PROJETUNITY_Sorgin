@@ -11,8 +11,8 @@ public class WallHide : MonoBehaviour
 
     Vector3 ClosestPt;
 
-    public GameObject ball; //DEBUG
-    public GameObject BallPrefab;
+    public GameObject TextOnWall; //DEBUG
+    public GameObject TextOnWallPrefab;
 
     public Quaternion wantedRotation;
     int layer_mask;
@@ -30,7 +30,7 @@ public class WallHide : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ball = Instantiate(BallPrefab);
+        TextOnWall = Instantiate(TextOnWallPrefab);
         layer_mask = LayerMask.GetMask("Wall");
     }
 
@@ -52,7 +52,7 @@ public class WallHide : MonoBehaviour
 
                     if (hit.transform.CompareTag("Wall"))
                     {
-                        ball.SetActive(true);
+                        TextOnWall.SetActive(true);
                         if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && Player.s_Singleton.inWardrobe == false)
                         {
                             if (Timer <= 0 && !Player.s_Singleton.canPickObject)
@@ -66,13 +66,13 @@ public class WallHide : MonoBehaviour
                     }
                     else
                     {
-                        ball.SetActive(false);
+                        TextOnWall.SetActive(false);
                     }
                 }
             }
             else
             {
-                ball.SetActive(false);
+                TextOnWall.SetActive(false);
             }
 
 
@@ -91,7 +91,7 @@ public class WallHide : MonoBehaviour
 
             if (Hided)
             {
-                ball.SetActive(false);
+                TextOnWall.SetActive(false);
 
                 playerCharacter.transform.rotation = Quaternion.RotateTowards(playerCharacter.transform.rotation, wantedRotation, 500f * Time.deltaTime);
 
@@ -103,7 +103,7 @@ public class WallHide : MonoBehaviour
 
             //DEBUG
 
-            ball.transform.position = ClosestPt;
+            TextOnWall.transform.position = ClosestPt;
 
             Debug.DrawRay(transform.position, ClosestPt - transform.position, Color.red);
             //DEBUG
