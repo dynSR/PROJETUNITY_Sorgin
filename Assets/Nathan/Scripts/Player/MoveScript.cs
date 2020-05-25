@@ -6,8 +6,8 @@ using Cinemachine;
 
 public class MoveScript : MonoBehaviour
 {
-    public GameObject CameraTPS;
-    public GameObject CameraTopDown;
+    GameObject CameraTPS;
+    GameObject CameraTopDown;
     public CharacterController Controller;
     public Animator Anim;
     public float gravity = 20.0F;
@@ -80,11 +80,11 @@ public class MoveScript : MonoBehaviour
             {
                 Anim.SetBool("Lean", false);
 
-                vertical = Mathf.MoveTowards(vertical, Input.GetAxis("Vertical"), 0.05f);
-                horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("Horizontal"), 0.05f);
+                vertical = Mathf.MoveTowards(vertical, Input.GetAxis("Vertical"), 0.1f);
+                horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("Horizontal"), 0.1f);
 
 
-                if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.05f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.05f) //Rotation du perso
+                if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.1f) //Rotation du perso
                 {
                     float heading = Mathf.Atan2(horizontal, vertical);
                     transform.rotation = Quaternion.Euler(0f, heading * Mathf.Rad2Deg, 0);
