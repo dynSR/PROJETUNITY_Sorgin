@@ -7,13 +7,7 @@ public class AddObjectToPlayerInventory : MonoBehaviour
 {
     public Object objectPickedup;
     public bool canBePickuped = false;
-    private Animator myAnimator;
-
-    private void Start()
-    {
-        myAnimator = GetComponent<Animator>();
-    }
-
+    
     private void Update()
     {
         if (canBePickuped && GameManager.s_Singleton.gameState == GameState.PlayMode && !MapHandler.s_Singleton.mapIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
@@ -31,7 +25,6 @@ public class AddObjectToPlayerInventory : MonoBehaviour
             //transform.GetChild(0).gameObject.SetActive(true);
             canBePickuped = true;
             Player.s_Singleton.canPickObject = true;
-            myAnimator.SetBool("PlayerIsInTrigger", true);
         }
     }
 
@@ -43,7 +36,6 @@ public class AddObjectToPlayerInventory : MonoBehaviour
             //transform.GetChild(0).gameObject.SetActive(false);
             canBePickuped = false;
             Player.s_Singleton.canPickObject = false;
-            myAnimator.SetBool("PlayerIsInTrigger", false);
         }
     }
 

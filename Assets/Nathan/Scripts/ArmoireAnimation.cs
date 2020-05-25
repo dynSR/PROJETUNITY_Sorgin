@@ -16,6 +16,8 @@ public class ArmoireAnimation : MonoBehaviour
     public GameObject Light;
     public GameObject Text;
 
+    [SerializeField] private GameObject interactionPopup;
+
 
 
     bool Lerp;
@@ -62,6 +64,7 @@ public class ArmoireAnimation : MonoBehaviour
                     Animating = true;
                     LaunchAnim();
                     Player.s_Singleton.inWardrobe = true;
+                    interactionPopup.SetActive(false);
                 }
 
                 if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && !Animating && Inside)
@@ -132,6 +135,8 @@ public class ArmoireAnimation : MonoBehaviour
         Inside = false;
         Lerp = false;
         Player.s_Singleton.inWardrobe = false;
+        interactionPopup.SetActive(true);
+
     }
 
     void CameraOn()
