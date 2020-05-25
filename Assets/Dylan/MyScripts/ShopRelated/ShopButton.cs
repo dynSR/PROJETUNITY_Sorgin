@@ -30,7 +30,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     private void Start()
     {
         if (spellNameText == null)
-            spellNameText = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+            spellNameText = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
 
         if (spell != null)
             spellNameText.text = spell.MySpellName;

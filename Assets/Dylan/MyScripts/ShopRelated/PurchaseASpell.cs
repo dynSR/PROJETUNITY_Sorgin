@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PurchaseASpell : MonoBehaviour
 {
     public Button selectedButton;
+    [SerializeField] private BuyPopup buyPopup;
+    public bool canShowUpInInventory = false;
 
     //Fonction attachée au clique sur "Oui" de la fenêtre popup de validation d'achat...
     public void PurchaseSelectedSpell()
@@ -24,11 +26,17 @@ public class PurchaseASpell : MonoBehaviour
                     //Définition de la valeur à soustraire aux points totaux du joueur
                     UIManager.s_Singleton.SetValueToSubstract(selectedButton.GetComponent<ShopButton>().spell.MySpellValue);
 
+                    buyPopup.SetBuyPopupImage(selectedButton.GetComponent<ShopButton>().spell.MySpellIcon);
+                    DisplayPurchasePopup();
+
                     //Activation du component image + changement de son sprite du compartiment de sort dans lequel le sort acheté a été ajouté
                     PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<SpellCompartment>().MyCompartmentSpell = selectedButton.GetComponent<ShopButton>().spell;
-                    PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<Image>().enabled = true;
-                    PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<Image>().sprite = selectedButton.GetComponent<ShopButton>().spell.MySpellIcon;
 
+                    StartCoroutine(ShowPurchasedSpellInInventory(PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<Image>(), selectedButton.GetComponent<ShopButton>().spell.MySpellIcon));
+
+                    //PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<Image>().enabled = true;
+                    //PlayerSpellsInventory.s_Singleton.spellsCompartments[i].GetComponent<Image>().sprite = selectedButton.GetComponent<ShopButton>().spell.MySpellIcon;
+                    
                     return;
                 }
             }
@@ -40,5 +48,20 @@ public class PurchaseASpell : MonoBehaviour
     public void SetSelectedButton(Button _selectedButton)
     {
         selectedButton = _selectedButton;
+    }
+
+    void DisplayPurchasePopup()
+    {
+        buyPopup.gameObject.SetActive(true);
+        buyPopup.SetAnimatorBoolValueToTrue();
+    }
+
+    public IEnumerator ShowPurchasedSpellInInventory(Image imageToDisplay, Sprite newImage)
+    {
+        yield return new WaitUntil(() => canShowUpInInventory);
+        imageToDisplay.enabled = true;
+        imageToDisplay.sprite = newImage;
+
+        canShowUpInInventory = false;
     }
 }

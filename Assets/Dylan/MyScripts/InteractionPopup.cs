@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class InteractionPopup : MonoBehaviour
 {
     private Animator myAnimator;

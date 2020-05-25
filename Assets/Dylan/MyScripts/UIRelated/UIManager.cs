@@ -195,11 +195,11 @@ public class UIManager : DefaultUIManager
             if (ShopManager.s_Singleton.amntOfSpellBought == 3)
             {
                 obj.GetComponent<ShopButton>().SetButtonColor(obj.GetComponent<ShopButton>().inventoryIsFullColor);
-                obj.transform.GetChild(0).gameObject.SetActive(true);
+                obj.transform.GetChild(1).gameObject.SetActive(true);
             }
             else if (ShopManager.s_Singleton.amntOfSpellBought < 3)
             {
-                obj.transform.GetChild(0).gameObject.SetActive(false);
+                obj.transform.GetChild(1).gameObject.SetActive(false);
             }
         }
 
