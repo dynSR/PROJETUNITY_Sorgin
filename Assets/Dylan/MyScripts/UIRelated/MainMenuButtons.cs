@@ -15,16 +15,26 @@ public class MainMenuButtons : MonoBehaviour, ISelectHandler, IDeselectHandler
 
     public void OnDeselect(BaseEventData eventData)
     {
-        buttonsTooltipText.text = null;
-        buttonsTooltipText.transform.gameObject.SetActive(false);
-        GetComponent<Button>().image.sprite = deselectedImage;
+        if (buttonsTooltipText != null)
+        {
+            buttonsTooltipText.text = null;
+            buttonsTooltipText.transform.gameObject.SetActive(false);
+        }
+
+        if (deselectedImage != null)
+            GetComponent<Button>().image.sprite = deselectedImage;
     }
 
     public void OnSelect(BaseEventData eventData)
     {
-        buttonsTooltipText.text = buttonTooltipText;
-        buttonsTooltipText.transform.gameObject.SetActive(true);
-        GetComponent<Button>().image.sprite = selectedImage;
+        if (buttonsTooltipText != null)
+        {
+            buttonsTooltipText.text = buttonTooltipText;
+            buttonsTooltipText.transform.gameObject.SetActive(true);
+        }
+
+        if (selectedImage != null)
+            GetComponent<Button>().image.sprite = selectedImage;
     }
 
 }
