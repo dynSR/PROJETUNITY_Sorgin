@@ -17,10 +17,10 @@ public class SwitchButtonColor : MonoBehaviour, IDeselectHandler, ISelectHandler
         buttonTextMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
         _buttonText = GetComponentInChildren<Text>();
 
-        if (buttonType != ButtonType.MainMenuButton && buttonTextMeshProUGUI != null)
+        if (buttonTextMeshProUGUI != null && buttonType != ButtonType.MainMenuButton )
             buttonTextMeshProUGUI.faceColor = new Color32(255, 255, 255, 50);
 
-        if (buttonType != ButtonType.MainMenuButton && buttonTextMeshProUGUI != null)
+        if (_buttonText != null && buttonType != ButtonType.MainMenuButton )
             _buttonText.color = new Color(255, 255, 255, 50);
     }
 
