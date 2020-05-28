@@ -3133,6 +3133,11 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5939663440081060175, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Name
+      value: PauseMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 5939663440676775176, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_PreserveAspect

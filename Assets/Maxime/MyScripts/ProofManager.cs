@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class ProofManager : MonoBehaviour
 {
-    public static ProofManager singleton;
-
     private bool objectMode;
 
     public GameObject[] proofDocList;
@@ -22,24 +20,34 @@ public class ProofManager : MonoBehaviour
     private bool dpadXIsPressed = false;
     private float dpadX;
 
+    #region Singleton
+    public static ProofManager singleton;
+
     private void Awake()
     {
-        if (singleton)
+        if (singleton != null)
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
         else
         {
             singleton = this;
         }
     }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
         activeDocProof = 0;
         activeObjProof = 0;
         objectMode = false;
-        UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+        UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+
+        if (proofObjsList.Length == 0)
+            UIManager_BeforeTrial.singleton.changeDocumentTypeLandmark.SetActive(false);
+        else
+            UIManager_BeforeTrial.singleton.changeDocumentTypeLandmark.SetActive(true);
     }
 
     // Update is called once per frame
@@ -89,7 +97,7 @@ public class ProofManager : MonoBehaviour
                 ProofObjDisplayUpdate(activeObjProof, updateDirection);
             }
 
-            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
+            UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
         }
         else
         {
@@ -104,7 +112,7 @@ public class ProofManager : MonoBehaviour
                 ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
 
-            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+            UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
         }
     }
 
@@ -125,7 +133,7 @@ public class ProofManager : MonoBehaviour
                 ProofObjDisplayUpdate(activeObjProof, updateDirection);
             }
 
-            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
+            UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
         }
         else
         {
@@ -140,7 +148,7 @@ public class ProofManager : MonoBehaviour
                 ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
 
-            UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+            UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
         }
     }
 
@@ -202,14 +210,14 @@ public class ProofManager : MonoBehaviour
             {
                 proofDocList[activeDocProof].SetActive(false);
                 proofObjsList[activeObjProof].SetActive(true);
-                UIManager_AvantProces.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
+                UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
             }
             else
             {
                 proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
                 proofObjsList[activeObjProof].SetActive(false);
                 proofDocList[activeDocProof].SetActive(true);
-                UIManager_AvantProces.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+                UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
             }
         }
     }

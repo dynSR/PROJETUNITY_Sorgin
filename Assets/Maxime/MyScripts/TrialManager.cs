@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Fungus;
 
-public class UIManagerProces : MonoBehaviour
+public class TrialManager : MonoBehaviour
 {
     private int actualPointsNumber;
 
@@ -22,13 +22,6 @@ public class UIManagerProces : MonoBehaviour
         nbGoodAnswers = 0;
         actualPointsNumber = 0;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     public void GoToEscape()
     {

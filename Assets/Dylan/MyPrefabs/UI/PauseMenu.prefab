@@ -1815,7 +1815,7 @@ GameObject:
   - component: {fileID: 6650338694297343278}
   - component: {fileID: 6650338694297343277}
   m_Layer: 5
-  m_Name: Scrollbar
+  m_Name: Scrollbar_FirstOptionsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4981,7 +4981,7 @@ GameObject:
   - component: {fileID: 6650338695489706821}
   - component: {fileID: 6650338695489706822}
   m_Layer: 5
-  m_Name: PauseMenuWindow
+  m_Name: PauseMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

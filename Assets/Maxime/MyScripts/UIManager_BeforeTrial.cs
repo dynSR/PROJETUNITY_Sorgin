@@ -6,21 +6,24 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class UIManager_AvantProces : DefaultUIManager
+public class UIManager_BeforeTrial : DefaultUIManager
 {
-    public static UIManager_AvantProces singleton;
-
     public TextMeshProUGUI titreProcesTxt;
     public int numeroProces;
     public string chefAccusation;
 
     public TextMeshProUGUI docActuelTxt;
 
+    public GameObject changeDocumentTypeLandmark;
+
     [Header("PURCHASE VALIDATION POPUP PARAMETERS")]
     [SerializeField] private CanvasGroup validationPopupWindow;
     [SerializeField] private GameObject validationPopupButtonLayout;
     [HideInInspector]
     public bool validationPopupIsDisplayed = false;
+
+    #region Singleton
+    public static UIManager_BeforeTrial singleton;
 
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class UIManager_AvantProces : DefaultUIManager
             singleton = this;
         }
     }
+    #endregion
 
     void Start()
     {
@@ -61,6 +65,7 @@ public class UIManager_AvantProces : DefaultUIManager
         docActuelTxt.text = "Preuve " + actualDoc + " sur " + maxDoc;
     }
 
+    #region Validation Popup
     //Summary : Affiche la fenêtre de confirmation d'achat lorsque le joueur appuie sur un bouton contenant un sort qu'il peut acheter.
     public void DisplayValidationPopup()
     {
@@ -95,6 +100,7 @@ public class UIManager_AvantProces : DefaultUIManager
         EventSystem.current.SetSelectedGameObject(null);
         validationPopupIsDisplayed = false;
     }
+    #endregion
 
     public void GoToTrial()
     {
