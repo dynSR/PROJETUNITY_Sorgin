@@ -2548,6 +2548,21 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5939663439003281976, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439003281976, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439003281976, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5939663439003281980, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2653,6 +2668,21 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5939663439158331830, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439158331830, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439158331830, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5939663439163787354, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_PreserveAspect
@@ -2662,6 +2692,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439163787354, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439163787354, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439163787354, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5939663439163787356, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
@@ -2943,6 +2988,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5939663439758963050, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439758963050, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439758963050, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_CellSize.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439758963050, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439758963050, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439758963050, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_CellSize.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439758963050, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Spacing.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5939663439776280883, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3007,6 +3087,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439874773250, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439874773250, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439874773250, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5939663439874773254, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
@@ -3132,6 +3227,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439986119692, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439986119692, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663439986119692, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5939663440081060175, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
@@ -3148,6 +3258,21 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5939663440676775176, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663440676775176, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663440676775176, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5939663440676775178, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3217,6 +3342,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663440759321455, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663440759321455, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 22.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939663440759321455, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f90dae90ea4d1046ab88ba52468b672, type: 3}
