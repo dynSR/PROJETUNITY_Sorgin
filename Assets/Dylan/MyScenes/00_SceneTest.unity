@@ -2578,6 +2578,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5939663439125942040, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Name
+      value: Scrollbar_FirstOptionsButton
+      objectReference: {fileID: 0}
     - target: {fileID: 5939663439129564877, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_AnchorMin.y
