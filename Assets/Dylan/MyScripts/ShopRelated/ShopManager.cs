@@ -6,6 +6,7 @@ public class ShopManager : MonoBehaviour
 {
     public GameObject[] spellsAvailableInShop;
     public int amntOfSpellBought = 0;
+    public static bool isBuying = false;
 
     public static ShopManager s_Singleton;
     private void Awake()

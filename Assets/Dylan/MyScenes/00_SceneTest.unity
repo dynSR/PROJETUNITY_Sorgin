@@ -2503,11 +2503,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5939663438885558543, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_Alpha
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5939663438938234708, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -2536,16 +2531,6 @@ PrefabInstance:
     - target: {fileID: 5939663438938234708, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663439003281976, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663439003281976, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5939663439003281980, guid: 9f90dae90ea4d1046ab88ba52468b672,
@@ -2636,26 +2621,6 @@ PrefabInstance:
     - target: {fileID: 5939663439158331816, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663439158331830, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663439158331830, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663439163787354, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663439163787354, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5939663439163787356, guid: 9f90dae90ea4d1046ab88ba52468b672,
@@ -2993,16 +2958,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5939663439874773250, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663439874773250, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5939663439874773254, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3118,26 +3073,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5939663439986119692, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663439986119692, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663440676775176, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663440676775176, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5939663440676775178, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3196,16 +3131,6 @@ PrefabInstance:
     - target: {fileID: 5939663440759321441, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663440759321455, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_PreserveAspect
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5939663440759321455, guid: 9f90dae90ea4d1046ab88ba52468b672,
-        type: 3}
-      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

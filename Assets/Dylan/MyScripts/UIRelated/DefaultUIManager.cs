@@ -37,7 +37,7 @@ public class DefaultUIManager : MonoBehaviour
 
     public virtual void Update()
     {
-        if ((GameManager.s_Singleton.gameState == GameState.PlayMode || GameManager.s_Singleton.gameState == GameState.Pause) && pauseMenuWindow != null)
+        if (GameManager.s_Singleton.gameState != GameState.InMainMenu && pauseMenuWindow != null)
         {
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Options") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_Start"))
             {
