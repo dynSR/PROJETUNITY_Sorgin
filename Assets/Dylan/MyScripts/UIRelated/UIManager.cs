@@ -90,7 +90,7 @@ public class UIManager : DefaultUIManager
             #endregion
 
             #region Square/X
-            if (!beginExfiltrationValidationPopupIsDisplayed && !purchaseValidationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
+            if (!ShopManager.isBuying && !beginExfiltrationValidationPopupIsDisplayed && !purchaseValidationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
             {
                 Debug.Log("Square/X pressed");
                 DisplayAPopup(beginExfiltrationValidationPopupWindow);

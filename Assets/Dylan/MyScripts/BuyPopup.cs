@@ -39,4 +39,14 @@ public class BuyPopup : MonoBehaviour
     {
         purchaseASpellMethod.canShowUpInInventory = true;
     }
+
+    public void SetPlayerIsBuyingToTrue()
+    {
+        ShopManager.isBuying = true;
+    }
+
+    public void SetPlayerIsBuyingToFalse()
+    {
+        ShopManager.isBuying = false;
+    }
 }

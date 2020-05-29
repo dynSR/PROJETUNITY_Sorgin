@@ -9,7 +9,18 @@ public class ButtonSoundEffects : MonoBehaviour, ISelectHandler, ISubmitHandler,
     [SerializeField] private string selectionWwiseEventSoundName;
     [SerializeField] private string submitWwiseEventSoundName;
 
+    private ShopButton shopButton;
+    public bool isAShopButton = false;
+
     public bool isSelected = true;
+
+    private void Start()
+    {
+        if (GetComponent<ShopButton>() != null)
+            isAShopButton = true;
+        else
+            isAShopButton = false;
+    }
 
     public void OnDeselect(BaseEventData eventData)
     {
@@ -18,7 +29,8 @@ public class ButtonSoundEffects : MonoBehaviour, ISelectHandler, ISubmitHandler,
 
     public void OnSelect(BaseEventData eventData)
     {
-        if (isSelected) return;
+        if (isSelected)
+            return;
 
         else if (!string.IsNullOrEmpty(selectionWwiseEventSoundName))
         {
@@ -30,6 +42,9 @@ public class ButtonSoundEffects : MonoBehaviour, ISelectHandler, ISubmitHandler,
     public void OnSubmit(BaseEventData eventData)
     {
         isSelected = true;
+
+        if (isAShopButton && ShopManager.isBuying)
+            return;
 
         if (!string.IsNullOrEmpty(submitWwiseEventSoundName))
         {
