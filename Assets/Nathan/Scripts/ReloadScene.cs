@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
-    public GameObject UI;
     NavMeshAgent Nav;
     EnnemyView EnnemiScript;
 
@@ -21,8 +20,7 @@ public class ReloadScene : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            UI.SetActive(true);
+            SceneManager.LoadScene("Scene_MainMenu");
             Nav.enabled = false;
             other.transform.root.GetComponent<MoveScript>().enabled = false;
             Player.s_Singleton.isDead = true;

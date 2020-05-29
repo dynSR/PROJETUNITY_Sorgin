@@ -128,7 +128,7 @@ public class EnnemyView : MonoBehaviour
                 }
             }
 
-            DetectionLevel.Instance.Detection(gameObject.name, Detection);
+            //DetectionLevel.Instance.Detection(gameObject.name, Detection);
         }
         
     }
