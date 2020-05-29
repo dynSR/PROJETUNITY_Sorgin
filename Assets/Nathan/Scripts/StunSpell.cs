@@ -50,7 +50,6 @@ public class StunSpell : MonoBehaviour
         }
 
 
-
         if (Input.GetKeyDown(KeyCode.L))
         {
             if (TargetIndex == 0)
