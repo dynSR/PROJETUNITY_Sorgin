@@ -34,6 +34,20 @@ public class UIManager : DefaultUIManager
     public CanvasGroup inventoryIsFullFeedBack;
     [SerializeField] private float timeBetweenFades = 0.25f;
 
+    [Header("INPUT LANDMARK OBJECT COMPARTMENT 00")]
+    public TextMeshProUGUI objectCompartmentInputActionText;
+    public Image objectCompartmentInputIcon;
+    public Sprite[] objectCompartmentInputSprites;
+    public string objectCompartmentIsActive;
+    public string objectCompartmentIsNotActive;
+
+    [Header("INPUT LANDMARK SPELL COMPARTMENT 00")]
+    public TextMeshProUGUI spellCompartmentInputActionText;
+    public Image spellCompartmentInputIcon;
+    public Sprite[] spellCompartmentInputSprites;
+    public string spellCompartmentIsActive;
+    public string spellCompartmentIsNotActive;
+
     [Header("DUPPLICATION PARAMETERS")]
     public CanvasGroup duplicationWindow;
     public GameObject duplicationButtonLayout;

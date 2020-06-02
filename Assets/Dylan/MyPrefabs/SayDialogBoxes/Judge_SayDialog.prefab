@@ -393,7 +393,7 @@ MonoBehaviour:
   storyTextGO: {fileID: 0}
   characterImage: {fileID: 3441583464575499751}
   fitTextWithImage: 1
-  closeOtherDialogs: 1
+  closeOtherDialogs: 0
 --- !u!114 &3441583464458057053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,9 +449,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickMode: 0
-  nextClickDelay: 0.75
+  nextClickDelay: 1
   cancelEnabled: 0
-  ignoreMenuClicks: 0
+  ignoreMenuClicks: 1
 --- !u!82 &3441583464458057050
 AudioSource:
   m_ObjectHideFlags: 0

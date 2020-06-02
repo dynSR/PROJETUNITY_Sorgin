@@ -29,11 +29,6 @@ public class PlayerSpellsInventory : MonoBehaviour
     }
     #endregion
 
-    private void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -73,6 +68,8 @@ public class PlayerSpellsInventory : MonoBehaviour
         }
     }
 
+    //Summary : Permet de gérer le switch des sort équipés
+    #region Spells Management
     void ActivateTheSpellInTheSpellCompartment()
     {
         spellInSpellCompartment = spellsCompartments[0].MyCompartmentSpell;
@@ -80,8 +77,6 @@ public class PlayerSpellsInventory : MonoBehaviour
         spellsCompartments[0].MyCompartmentSpell.UseTheSpell();
     }
 
-    //Summary : Permet de gérer le switch des sort équipés
-    #region Spells Management
     public void UseTheSpellInTheSpellCompartment()
     {
         if (spellsCompartments[0].MyCompartmentSpell != null)
@@ -107,11 +102,29 @@ public class PlayerSpellsInventory : MonoBehaviour
         Player.s_Singleton.isUsingASpell = false;
     }
 
+    private void ChangeSpellCompartmentInputLandmark()
+    {
+        UIManager.s_Singleton.spellCompartmentInputActionText.text = UIManager.s_Singleton.spellCompartmentIsActive;
+        UIManager.s_Singleton.spellCompartmentInputIcon.sprite = UIManager.s_Singleton.spellCompartmentInputSprites[1];
+    }
+
+    private void ResetSpellCompartmentInputLandmark()
+    {
+        UIManager.s_Singleton.spellCompartmentInputActionText.text = UIManager.s_Singleton.spellCompartmentIsNotActive;
+        UIManager.s_Singleton.spellCompartmentInputIcon.sprite = UIManager.s_Singleton.spellCompartmentInputSprites[0];
+    }
+
     //Summary : Permet d'afficher ou désafficher le feedback d'activation des sorts en fonction de l'appui Input.
     public void ToggleSpellActivationFeedback()
     {
         spellActivationFeedback.SetActive(!spellActivationFeedback.activeSelf);
         spellCompartmentIsActive = !spellCompartmentIsActive;
+
+        if (spellActivationFeedback.activeInHierarchy)
+            ChangeSpellCompartmentInputLandmark();
+        else
+            ResetSpellCompartmentInputLandmark();
+       
     }
 
     //Summary : Désaffiche le feedback d'activation des sorts
@@ -119,6 +132,8 @@ public class PlayerSpellsInventory : MonoBehaviour
     {
         spellActivationFeedback.SetActive(false);
         spellCompartmentIsActive = false;
+
+        ResetSpellCompartmentInputLandmark();
     }
 
     void SwitchSpellsInPlayerInventory()

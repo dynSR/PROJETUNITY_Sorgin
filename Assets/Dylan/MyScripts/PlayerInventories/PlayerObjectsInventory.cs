@@ -157,11 +157,28 @@ public class PlayerObjectsInventory : MonoBehaviour
         numberOfObjectInInventory--;
     }
 
+    private void ChangeObjectCompartmentInputLandmark()
+    {
+        UIManager.s_Singleton.objectCompartmentInputActionText.text = UIManager.s_Singleton.objectCompartmentIsActive;
+        UIManager.s_Singleton.objectCompartmentInputIcon.sprite = UIManager.s_Singleton.objectCompartmentInputSprites[1];
+    }
+
+    private void ResetObjectCompartmentInputLandmark()
+    {
+        UIManager.s_Singleton.objectCompartmentInputActionText.text = UIManager.s_Singleton.objectCompartmentIsNotActive;
+        UIManager.s_Singleton.objectCompartmentInputIcon.sprite = UIManager.s_Singleton.objectCompartmentInputSprites[0];
+    }
+
     //Summary : Permet d'afficher ou désafficher le feedback d'activation des sorts en fonction de l'appui Input.
     public void ToggleObjectActivationFeedback()
     {
         objectActivationFeedback.SetActive(!objectActivationFeedback.activeSelf);
         objectCompartmentIsActive = !objectCompartmentIsActive;
+
+        if(objectActivationFeedback.activeInHierarchy)
+            ChangeObjectCompartmentInputLandmark();
+        else
+            ResetObjectCompartmentInputLandmark();
     }
 
     //Summary : Désaffiche le feedback d'activation des sorts
@@ -169,6 +186,8 @@ public class PlayerObjectsInventory : MonoBehaviour
     {
         objectActivationFeedback.SetActive(false);
         objectCompartmentIsActive = false;
+
+        ResetObjectCompartmentInputLandmark();
     }
 
     void SwitchObjectsInPlayerInventory()

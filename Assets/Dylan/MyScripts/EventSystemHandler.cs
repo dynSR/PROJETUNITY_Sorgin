@@ -8,6 +8,7 @@ public class EventSystemHandler : MonoBehaviour
 {
     [SerializeField] private GameObject buttonGroup;
     [SerializeField] private Sprite newButtonImage;
+    [SerializeField] private GameObject buttonLayout;
 
     public void SetFirstObjectOfEventSystem()
     {
@@ -18,5 +19,21 @@ public class EventSystemHandler : MonoBehaviour
 
 
         buttonGroup.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = newButtonImage;
+    }
+
+    public void EnableButtonsJustBeforeTimerBegin()
+    {
+        foreach (Button _buttons in buttonLayout.GetComponentsInChildren<Button>())
+        {
+            _buttons.enabled = true;
+        }
+    }
+
+    public void DisableButtonsJustBeforeAQuestion()
+    {
+        foreach (Button _buttons in buttonLayout.GetComponentsInChildren<Button>())
+        {
+            _buttons.enabled = false;
+        }
     }
 }
