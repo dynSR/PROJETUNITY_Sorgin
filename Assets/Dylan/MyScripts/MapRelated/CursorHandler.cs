@@ -39,7 +39,7 @@ public class CursorHandler : MonoBehaviour
 
             #region Croix/A
             //Press X
-            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A"))
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B"))
             {
                 InstantiateAMarker(markers[0], this.transform.position);
             }
@@ -54,7 +54,7 @@ public class CursorHandler : MonoBehaviour
             //Press Square
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X"))
             {
-                InstantiateAMarker(markers[1], this.transform.position);
+                InstantiateAMarker(markers[2], this.transform.position);
             }
             #endregion
 
@@ -62,7 +62,7 @@ public class CursorHandler : MonoBehaviour
             //Press Triangle
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Triangle") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_Y"))
             {
-                InstantiateAMarker(markers[2], this.transform.position);
+                InstantiateAMarker(markers[1], this.transform.position);
             }
             #endregion
 

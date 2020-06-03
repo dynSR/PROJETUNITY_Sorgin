@@ -30,17 +30,17 @@ public class OverlapHandler : MonoBehaviour
 
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
             {
-                if (Input.GetButtonDown("PS4_O"))
+                if (Input.GetButtonDown("PS4_X"))
                 {
-                    Debug.Log("O pressed");
+                    Debug.Log("Cross pressed");
                     EraseAMarker();
                 }
             }
             else if (ConnectedController.s_Singleton.XboxControllerIsConnected)
             {
-                if (Input.GetButtonDown("XBOX_B"))
+                if (Input.GetButtonDown("XBOX_A"))
                 {
-                    Debug.Log("B pressed");
+                    Debug.Log("A pressed");
                     EraseAMarker();
                 }
             }
