@@ -8,8 +8,13 @@ public class ProofManager : MonoBehaviour
 {
     private bool objectMode;
 
-    public GameObject[] proofDocList;
-    public GameObject[] proofObjsList;
+    [Header("PROOF DOCUMENTS")]
+    [SerializeField] private Transform proofDocumentGroup;
+    public List<Transform> proofDocList;
+
+    [Header("PROOF OBJECTS")]
+    [SerializeField] private GameObject proofObjectGroup;
+    private GameObject[] proofObjsList;
 
     private int activeDocProof;
     private int activeObjProof;
@@ -42,7 +47,10 @@ public class ProofManager : MonoBehaviour
         activeDocProof = 0;
         activeObjProof = 0;
         objectMode = false;
-        UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+
+        PopulateProofsArray(proofDocumentGroup, proofDocList);
+
+        UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Count);
 
         if (proofObjsList.Length == 0)
             UIManager_BeforeTrial.singleton.changeDocumentTypeLandmark.SetActive(false);
@@ -79,6 +87,15 @@ public class ProofManager : MonoBehaviour
         }
     }
 
+    void PopulateProofsArray(Transform groupObject, List<Transform> arrayToPopulate)
+    {
+        for (int i = 0; i < groupObject.transform.childCount; i++)
+        {
+            Transform objectFound = groupObject.transform.GetChild(i);
+            arrayToPopulate.Add(objectFound);
+        }
+    }
+
 
     //Passe a la preuve suivante
     private void NextProof(int updateDirection)
@@ -101,7 +118,7 @@ public class ProofManager : MonoBehaviour
         }
         else
         {
-            if (activeDocProof != proofDocList.Length - 1)
+            if (activeDocProof != proofDocList.Count - 1)
             {
                 activeDocProof += 1;
                 ProofDocDisplayUpdate(activeDocProof, updateDirection);
@@ -112,7 +129,7 @@ public class ProofManager : MonoBehaviour
                 ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
 
-            UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+            UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Count);
         }
     }
 
@@ -144,11 +161,11 @@ public class ProofManager : MonoBehaviour
             }
             else
             {
-                activeDocProof = proofDocList.Length - 1;
+                activeDocProof = proofDocList.Count - 1;
                 ProofDocDisplayUpdate(activeDocProof, updateDirection);
             }
 
-            UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+            UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Count);
         }
     }
 
@@ -157,22 +174,22 @@ public class ProofManager : MonoBehaviour
     //updateDirection 1 = bouton R1 (suivant), -1 = bouton L1 (precedent)
     private void ProofDocDisplayUpdate(int newActiveProofIndex, int newUpdateDirection)
     {
-        proofDocList[newActiveProofIndex].SetActive(true);
+        proofDocList[newActiveProofIndex].gameObject.SetActive(true);
         Debug.Log("Active : " + newActiveProofIndex);
 
         if (newActiveProofIndex == 0 && newUpdateDirection == 1)
         {
-            proofDocList[proofDocList.Length - 1].SetActive(false);
+            proofDocList[proofDocList.Count - 1].gameObject.SetActive(false);
             return;
         }
-        else if (newActiveProofIndex == proofDocList.Length - 1 && newUpdateDirection == -1)
+        else if (newActiveProofIndex == proofDocList.Count - 1 && newUpdateDirection == -1)
         {
-            proofDocList[0].SetActive(false);
+            proofDocList[0].gameObject.SetActive(false);
             return;
         }
         else
         {
-            proofDocList[newActiveProofIndex - newUpdateDirection].SetActive(false);
+            proofDocList[newActiveProofIndex - newUpdateDirection].gameObject.SetActive(false);
         }
     }
 
@@ -208,7 +225,7 @@ public class ProofManager : MonoBehaviour
             objectMode = !objectMode;
             if (objectMode)
             {
-                proofDocList[activeDocProof].SetActive(false);
+                proofDocList[activeDocProof].gameObject.SetActive(false);
                 proofObjsList[activeObjProof].SetActive(true);
                 UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeObjProof + 1, proofObjsList.Length);
             }
@@ -216,8 +233,8 @@ public class ProofManager : MonoBehaviour
             {
                 proofObjsList[activeObjProof].gameObject.transform.rotation = Quaternion.identity;
                 proofObjsList[activeObjProof].SetActive(false);
-                proofDocList[activeDocProof].SetActive(true);
-                UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Length);
+                proofDocList[activeDocProof].gameObject.SetActive(true);
+                UIManager_BeforeTrial.singleton.UIUpdateActualDoc(activeDocProof + 1, proofDocList.Count);
             }
         }
     }

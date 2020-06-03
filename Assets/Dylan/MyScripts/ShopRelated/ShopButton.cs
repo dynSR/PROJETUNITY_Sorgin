@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDeselectHandler
+public class ShopButton : MonoBehaviour, ISubmitHandler/*, ISelectHandler, IDeselectHandler*/
 {
     [Header("BUTTON COLORS")]
     [SerializeField] private Color purchasableButtonColor = Color.white;
@@ -27,6 +27,12 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
     [SerializeField] private TextMeshProUGUI spellTooltipValueText;
     [SerializeField] private TextMeshProUGUI spellTooltipEffectDescriptionText;
 
+    [Header("SPELL TOOLTIP PARAMETERS")]
+    [SerializeField] private Image spellShopButtonImage;
+    [SerializeField] private TextMeshProUGUI spellShopButtonNameText;
+    [SerializeField] private TextMeshProUGUI spellShopButtonValueText;
+    [SerializeField] private TextMeshProUGUI spellShopButtonEffectDescriptionText;
+
     private void Start()
     {
         if (spellNameText == null)
@@ -39,6 +45,8 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
         gameObject.name = spell.MySpellName;
             
         CheckIfPlayerCanPurchaseASpell(GameManager.s_Singleton.playerPointsValue);
+
+        SetShopButtonButtonInformations();
     }
 
     //Summary : Permet de vérifier sur les boutons du magasin, si un des sorts contenus dans ceux-ci peut être acheté
@@ -94,25 +102,34 @@ public class ShopButton : MonoBehaviour, ISubmitHandler, ISelectHandler, IDesele
         }
     }
 
-    //Summary : Permet de mettre à jour les informations contenues dans le tooltip des sorts.
-    void SetTooltipInformations()
+    ////Summary : Permet de mettre à jour les informations contenues dans le tooltip des sorts.
+    //void SetTooltipInformations()
+    //{
+    //    spellTooltipNameText.text = spell.MySpellName;
+    //    spellTooltipValueText.text = spell.MySpellValue.ToString();
+    //    spellTooltipEffectDescriptionText.text = spell.MySpellEffectDescription;
+    //    spellTooltipImage.sprite = spell.MySpellIcon;
+    //}
+
+    void SetShopButtonButtonInformations()
     {
-        spellTooltipNameText.text = spell.MySpellName;
-        spellTooltipValueText.text = spell.MySpellValue.ToString();
-        spellTooltipEffectDescriptionText.text = spell.MySpellEffectDescription;
-        spellTooltipImage.sprite = spell.MySpellIcon;
+        spellShopButtonNameText.text = spell.MySpellName;
+        spellShopButtonValueText.text = spell.MySpellValue.ToString();
+        spellShopButtonEffectDescriptionText.text = spell.MySpellEffectDescription;
+        spellShopButtonImage.sprite = spell.MySpellIcon;
+       
     }
 
-    //Summary : À la sélection du bouton --> affiche et set le tooltip.
-    public void OnSelect(BaseEventData eventData)
-    {
-        SetTooltipInformations();
-        spellTooltipGameObject.SetActive(true);
-    }
+    ////Summary : À la sélection du bouton --> affiche et set le tooltip.
+    //public void OnSelect(BaseEventData eventData)
+    //{
+    //    SetTooltipInformations();
+    //    spellTooltipGameObject.SetActive(true);
+    //}
 
-    //Summary : À la désélection du bouton --> désaffiche le tooltip.
-    public void OnDeselect(BaseEventData eventData)
-    {
-        spellTooltipGameObject.SetActive(false);
-    }
+    ////Summary : À la désélection du bouton --> désaffiche le tooltip.
+    //public void OnDeselect(BaseEventData eventData)
+    //{
+    //    spellTooltipGameObject.SetActive(false);
+    //}
 }

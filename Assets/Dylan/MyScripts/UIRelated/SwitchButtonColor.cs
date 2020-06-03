@@ -9,31 +9,41 @@ public class SwitchButtonColor : MonoBehaviour, IDeselectHandler, ISelectHandler
 {
     public enum ButtonType { CannotBeSetAsLastSelected, CanBeSetAsLastSelected, MainMenuButton }
     public ButtonType buttonType;
-    private TextMeshProUGUI buttonTextMeshProUGUI;
-    private Text _buttonText;
+    private TextMeshProUGUI[] childrenButtonTextMeshProUGUI;
+    private Text _childrenButtonText;
 
     private void Start()
     {
-        buttonTextMeshProUGUI = GetComponentInChildren<TextMeshProUGUI>();
-        _buttonText = GetComponentInChildren<Text>();
+        childrenButtonTextMeshProUGUI = GetComponentsInChildren<TextMeshProUGUI>();
+        _childrenButtonText = GetComponentInChildren<Text>();
 
-        if (buttonTextMeshProUGUI != null && buttonType != ButtonType.MainMenuButton )
-            buttonTextMeshProUGUI.faceColor = new Color32(255, 255, 255, 50);
+        if (childrenButtonTextMeshProUGUI != null && buttonType != ButtonType.MainMenuButton )
+        {
+            foreach (TextMeshProUGUI childrenText in childrenButtonTextMeshProUGUI)
+            {
+                childrenText.faceColor = new Color32(255, 255, 255, 50);
+            }
+        }
 
-        if (_buttonText != null && buttonType != ButtonType.MainMenuButton )
-            _buttonText.color = new Color(255, 255, 255, 50);
+        if (_childrenButtonText != null && buttonType != ButtonType.MainMenuButton )
+            _childrenButtonText.color = new Color(255, 255, 255, 50);
     }
 
     public void OnDeselect(BaseEventData eventData)
     {
-        if (buttonTextMeshProUGUI != null)
-            buttonTextMeshProUGUI.faceColor = new Color32(255, 255, 255, 50);
+        if (childrenButtonTextMeshProUGUI != null)
+        {
+            foreach (TextMeshProUGUI childrenText in childrenButtonTextMeshProUGUI)
+            {
+                childrenText.faceColor = new Color32(255, 255, 255, 50);
+            }
+        }
 
-        if (_buttonText != null)
-            _buttonText.color = new Color(255, 255, 255, 50);
+        if (_childrenButtonText != null)
+            _childrenButtonText.color = new Color(255, 255, 255, 50);
 
-        if (_buttonText != null)
-            _buttonText.color = new Color(255, 255, 255, 255);
+        if (_childrenButtonText != null)
+            _childrenButtonText.color = new Color(255, 255, 255, 255);
 
         //if (buttonType == ButtonType.CanBeSetAsLastSelected)
         //    DefaultUIManager.lastSelectedButton = null;
@@ -41,11 +51,16 @@ public class SwitchButtonColor : MonoBehaviour, IDeselectHandler, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
-        if(buttonTextMeshProUGUI != null)
-            buttonTextMeshProUGUI.faceColor = new Color32(255, 255, 255, 255);
-
-        if (_buttonText != null)
-            _buttonText.color = new Color(255, 255, 255, 255);
+        if(childrenButtonTextMeshProUGUI != null)
+        {
+            foreach (TextMeshProUGUI childrenText in childrenButtonTextMeshProUGUI)
+            {
+                childrenText.faceColor = new Color32(255, 255, 255, 255);
+            }
+        }
+        
+        if (_childrenButtonText != null)
+            _childrenButtonText.color = new Color(255, 255, 255, 255);
 
         if (buttonType == ButtonType.CanBeSetAsLastSelected)
             DefaultUIManager.lastSelectedButton = this.gameObject;

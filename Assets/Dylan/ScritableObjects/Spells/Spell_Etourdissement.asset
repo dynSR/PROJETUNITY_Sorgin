@@ -17,5 +17,5 @@ MonoBehaviour:
   spellIcon: {fileID: 21300000, guid: a13da128f747152498f7372d029ea330, type: 3}
   spellDurationOfEffect: 0
   spellValue: 300
-  spellEffectDescription: Permet de neutraliser un garde pendant un certain temps.
-    Utile pour se frayer un passage.
+  spellEffectDescription: "Permet de neutraliser un garde pendant un certain temps.
+    \nUtile pour se frayer un passage."

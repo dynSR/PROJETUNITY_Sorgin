@@ -9,6 +9,7 @@ public class UIManager : DefaultUIManager
 {
     [Header("SHOP WINDOW")]
     [SerializeField] private CanvasGroup shopWindow;
+    [SerializeField] private CanvasGroup elementsToDisplayOnShopClosure;
     public bool shopWindowIsDisplayed = true;
 
     [Header("PLAYER POINTS TEXT")]
@@ -67,6 +68,9 @@ public class UIManager : DefaultUIManager
             s_Singleton = this;
             GameManager.s_Singleton.gameState = GameState.PlayMode;
         }
+
+        if (elementsToDisplayOnShopClosure.alpha == 1)
+            elementsToDisplayOnShopClosure.alpha = 0;
     }
     #endregion
 
@@ -148,6 +152,7 @@ public class UIManager : DefaultUIManager
         shopWindowIsDisplayed = false;
         shopWindow.transform.gameObject.SetActive(false);
         playerPointsValueText.gameObject.SetActive(false);
+        StartCoroutine(FadeCanvasGroup(elementsToDisplayOnShopClosure, elementsToDisplayOnShopClosure.alpha, 1, fadeDuration));
     }
     #endregion
 
@@ -190,7 +195,7 @@ public class UIManager : DefaultUIManager
         GameManager.s_Singleton.playerPointsValue += valueToAdd;
         SetPlayerPointsCountValue();
 
-        foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
+        foreach (Transform obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
             obj.GetComponent<ShopButton>().CheckIfPlayerCanPurchaseASpell(GameManager.s_Singleton.playerPointsValue);
         }
@@ -202,18 +207,18 @@ public class UIManager : DefaultUIManager
         int tempPlayerPointsValue = GameManager.s_Singleton.playerPointsValue;
         tempPlayerPointsValue -= valueToSubstract;
 
-        foreach (GameObject obj in ShopManager.s_Singleton.spellsAvailableInShop)
+        foreach (Transform obj in ShopManager.s_Singleton.spellsAvailableInShop)
         {
             obj.GetComponent<ShopButton>().CheckIfPlayerCanPurchaseASpell(tempPlayerPointsValue);
 
             if (ShopManager.s_Singleton.amntOfSpellBought == 3)
             {
                 obj.GetComponent<ShopButton>().SetButtonColor(obj.GetComponent<ShopButton>().inventoryIsFullColor);
-                obj.transform.GetChild(1).gameObject.SetActive(true);
+                obj.transform.GetChild(2).gameObject.SetActive(true);
             }
             else if (ShopManager.s_Singleton.amntOfSpellBought < 3)
             {
-                obj.transform.GetChild(1).gameObject.SetActive(false);
+                obj.transform.GetChild(2).gameObject.SetActive(false);
             }
         }
 

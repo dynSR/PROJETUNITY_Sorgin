@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
-    public GameObject[] spellsAvailableInShop;
+    public List<Transform> spellsAvailableInShop = new List<Transform>();
     public int amntOfSpellBought = 0;
     public static bool isBuying = false;
+    [SerializeField] private Transform spellButtonGroup;
 
     public static ShopManager s_Singleton;
     private void Awake()
@@ -19,8 +20,17 @@ public class ShopManager : MonoBehaviour
         {
             s_Singleton = this;
 
-            if (spellsAvailableInShop.Length == 0)
-                Debug.LogError("Please populate the spell avalaible in shop list !!!!!!!!!!");
+        }
+
+        PopulateShopArray();
+    }
+
+    void PopulateShopArray()
+    {
+        for (int i = 0; i < spellButtonGroup.transform.childCount; i++)
+        {
+            Transform objectFound = spellButtonGroup.transform.GetChild(i);
+            spellsAvailableInShop.Add(objectFound);
         }
     }
 }
