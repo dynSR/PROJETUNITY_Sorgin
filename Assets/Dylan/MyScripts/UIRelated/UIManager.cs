@@ -10,9 +10,11 @@ public class UIManager : DefaultUIManager
     [Header("SHOP WINDOW")]
     [SerializeField] private CanvasGroup shopWindow;
     [SerializeField] private CanvasGroup elementsToDisplayOnShopClosure;
+    [SerializeField] private GameObject shopButtonsGroup;
     public bool shopWindowIsDisplayed = true;
 
     [Header("PLAYER POINTS TEXT")]
+    [SerializeField] private GameObject playerPoints;
     [SerializeField] private TextMeshProUGUI playerPointsValueText;
     [SerializeField] private int valueToSubstractPerTicks;
 
@@ -66,7 +68,6 @@ public class UIManager : DefaultUIManager
         else
         {
             s_Singleton = this;
-            GameManager.s_Singleton.gameState = GameState.PlayMode;
         }
 
         if (elementsToDisplayOnShopClosure.alpha == 1)
@@ -91,9 +92,7 @@ public class UIManager : DefaultUIManager
             if (purchaseValidationPopupIsDisplayed && !beginExfiltrationValidationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
             {
                 Debug.Log("Circle/B pressed");
-                HideAPopup(purchaseValidationPopupWindow);
-                DisableButtonsInLayout(purchaseValidationPopupButtonLayout);
-                purchaseValidationPopupIsDisplayed = false;
+                CancelPurchase();
             }
             #endregion
 
@@ -101,9 +100,7 @@ public class UIManager : DefaultUIManager
             if (beginExfiltrationValidationPopupIsDisplayed &&  (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
             {
                 Debug.Log("Circle/B pressed");
-                HideAPopup(beginExfiltrationValidationPopupWindow);
-                DisableButtonsInLayout(beginExfiltrationValidationPopupButtonLayout);
-                beginExfiltrationValidationPopupIsDisplayed = false;
+                HideBeginExfiltrationPopup();
             }
             #endregion
 
@@ -111,21 +108,18 @@ public class UIManager : DefaultUIManager
             if (!ShopManager.isBuying && !beginExfiltrationValidationPopupIsDisplayed && !purchaseValidationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
             {
                 Debug.Log("Square/X pressed");
-                DisplayAPopup(beginExfiltrationValidationPopupWindow);
-                EnableButtonsInLayout(beginExfiltrationValidationPopupButtonLayout);
-                beginExfiltrationValidationPopupIsDisplayed = true;
-            }
+                DisplayBeginExfiltrationPopup();
+            } 
             #endregion
         }
+
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             #region Circle/B 3 - Duplication Validation Popup
-            if (duplicationValidationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
+            if (duplicationValidationPopupIsDisplayed && !pauseWindowHasBeenClosed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_O") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_B")))
             {
                 Debug.Log("Circle/B pressed");
-                HideAPopup(duplicationWindow);
-                DisableButtonsInLayout(duplicationButtonLayout);
-                duplicationValidationPopupIsDisplayed = false;
+                HideDuplicationPopup();
                 Player.s_Singleton.isUsingASpell = false;
                 PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
             }
@@ -133,43 +127,78 @@ public class UIManager : DefaultUIManager
         }
     }
 
-    #region Display/Hide Shop WIndow
+    #region Display/Hide Shop Window
     void DisplayShopWindow()
     {
+        GameManager.s_Singleton.gameState = GameState.ConsultingShop;
+
         if (!shopWindow.transform.gameObject.activeInHierarchy)
             shopWindow.transform.gameObject.SetActive(true);
 
-        playerPointsValueText.gameObject.SetActive(true);
         StartCoroutine(FadeCanvasGroup(shopWindow, shopWindow.alpha, 1, fadeDuration));
-        GameManager.s_Singleton.gameState = GameState.ConsultingShop;
         shopWindowIsDisplayed = true;
+        EnableButtonsInLayout(shopButtonsGroup, null);
+
+        EventSystem.current.sendNavigationEvents = true;
+
+        playerPoints.SetActive(true);
     }
 
     public void HideShopWindow()
     {
         StartCoroutine(FadeCanvasGroup(shopWindow, shopWindow.alpha, 0, fadeDuration));
-        GameManager.s_Singleton.gameState = GameState.PlayMode;
-        shopWindowIsDisplayed = false;
         shopWindow.transform.gameObject.SetActive(false);
-        playerPointsValueText.gameObject.SetActive(false);
+        shopWindowIsDisplayed = false;
+        DisableButtonsInLayout(shopButtonsGroup);
+
+        playerPoints.SetActive(false);
         StartCoroutine(FadeCanvasGroup(elementsToDisplayOnShopClosure, elementsToDisplayOnShopClosure.alpha, 1, fadeDuration));
+
+        GameManager.s_Singleton.gameState = GameState.PlayMode;
     }
     #endregion
 
-    #region Popup Bool State
-    public void SetBeginExfiltrationPupopState(bool state)
+    #region Display/Hide Begin Exfiltration Popup
+    void DisplayBeginExfiltrationPopup()
     {
-        beginExfiltrationValidationPopupIsDisplayed = state;
+        DisplayAPopup(beginExfiltrationValidationPopupWindow);
+        beginExfiltrationValidationPopupIsDisplayed = true;
+
+        EnableButtonsInLayout(beginExfiltrationValidationPopupButtonLayout, beginExfiltrationValidationPopupButtonLayout.transform.GetChild(1).gameObject);
     }
 
-    public void SetDuplicationPupopState(bool state)
+    public void HideBeginExfiltrationPopup()
     {
-        duplicationValidationPopupIsDisplayed = state;
+        HideAPopup(beginExfiltrationValidationPopupWindow);
+        beginExfiltrationValidationPopupIsDisplayed = false;
+
+        DisableButtonsInLayout(beginExfiltrationValidationPopupButtonLayout);
+
+        lastSelectedButton.GetComponent<ButtonSoundEffects>().isSelected = true;
+        ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+    }
+    #endregion
+
+    #region Display/Hide Duplication Popup
+    public void DisplayDuplicationPopup()
+    {
+        DisplayAPopup(duplicationWindow);
+        duplicationValidationPopupIsDisplayed = true;
+
+        //Activation des boutons et attribution du bouton sélectionné par l'Event system
+        for (int i = 0; i < duplicationButtonLayout.transform.childCount; i++)
+        {
+            duplicationButtonLayout.transform.GetChild(i).gameObject.SetActive(true);
+        }
+        
+        EnableButtonsInLayout(duplicationButtonLayout, duplicationButtonLayout.transform.GetChild(0).gameObject);
     }
 
-    public void SetPurchasePupopState(bool state)
+    public void HideDuplicationPopup()
     {
-        purchaseValidationPopupIsDisplayed = state;
+        HideAPopup(duplicationWindow);
+        duplicationValidationPopupIsDisplayed = false;
+        DisableButtonsInLayout(duplicationButtonLayout);
     }
     #endregion
 
@@ -230,6 +259,19 @@ public class UIManager : DefaultUIManager
     void SetPlayerPointsCountValue()
     {
         playerPointsValueText.text = GameManager.s_Singleton.playerPointsValue.ToString();
+    }
+
+    public void HideValidationPopupWindow()
+    {
+        HideAPopup(purchaseValidationPopupWindow);
+        DisableButtonsInLayout(purchaseValidationPopupButtonLayout);
+        purchaseValidationPopupIsDisplayed = false;
+        ResetEventSystemFirstSelectedGameObjet(purchaseValidationPopupButtonLayout.transform.GetChild(0).GetComponent<PurchaseASpell>().selectedButton.gameObject);
+    }
+
+   public void CancelPurchase()
+    {
+        HideValidationPopupWindow();
     }
 
     //Summary : Utiliser pour faire défiler les points lorsque le joueur achète quelque chose (effet de décrémentation dynamique) jusqu'à l'atteinte de la valeur totale à soustraite.

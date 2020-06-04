@@ -29,14 +29,12 @@ public class ButtonSoundEffects : MonoBehaviour, ISelectHandler, ISubmitHandler,
 
     public void OnSelect(BaseEventData eventData)
     {
-        if (isSelected)
-            return;
-
-        else if (!string.IsNullOrEmpty(selectionWwiseEventSoundName))
+        if (!isSelected && !string.IsNullOrEmpty(selectionWwiseEventSoundName))
         {
             AkSoundEngine.PostEvent(selectionWwiseEventSoundName, this.gameObject);
-            isSelected = true;
         }
+
+        isSelected = true;
     }
 
     public void OnSubmit(BaseEventData eventData)
@@ -49,6 +47,7 @@ public class ButtonSoundEffects : MonoBehaviour, ISelectHandler, ISubmitHandler,
         if (!string.IsNullOrEmpty(submitWwiseEventSoundName))
         {
             AkSoundEngine.PostEvent(submitWwiseEventSoundName, this.gameObject);
+            Debug.Log(gameObject.name);
         }
     }
 }

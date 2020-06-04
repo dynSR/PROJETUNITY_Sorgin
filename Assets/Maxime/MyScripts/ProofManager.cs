@@ -14,7 +14,7 @@ public class ProofManager : MonoBehaviour
 
     [Header("PROOF OBJECTS")]
     [SerializeField] private GameObject proofObjectGroup;
-    private GameObject[] proofObjsList;
+    public GameObject[] proofObjsList;
 
     private int activeDocProof;
     private int activeObjProof;

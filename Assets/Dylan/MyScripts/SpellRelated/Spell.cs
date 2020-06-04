@@ -150,14 +150,8 @@ public class Spell : ScriptableObject
                 if (playerObjInventoryRef.objectsCompartments[i].MyCompartmentObject != null)
                 {
                     //Open the Window
-                    uiManagerReference.DisplayAPopup(uiManagerReference.duplicationWindow);
-                    uiManagerReference.duplicationValidationPopupIsDisplayed = true;
-
-                    //Activation des boutons et attribution du bouton sélectionné par l'Event system
-                    uiManagerReference.duplicationButtonLayout.transform.GetChild(i).gameObject.SetActive(true);
-                    uiManagerReference.EnableButtonsInLayout(uiManagerReference.duplicationButtonLayout);
-                    EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
-
+                    uiManagerReference.DisplayDuplicationPopup();
+                    
                     //Attribution de l'objet trouvé 
                     uiManagerReference.duplicationButtonLayout.transform.GetChild(i).GetComponent<DuplicationButtons>().objectFound = playerObjInventoryRef.objectsCompartments[i].MyCompartmentObject;
 

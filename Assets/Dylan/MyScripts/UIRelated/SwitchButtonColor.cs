@@ -12,11 +12,14 @@ public class SwitchButtonColor : MonoBehaviour, IDeselectHandler, ISelectHandler
     private TextMeshProUGUI[] childrenButtonTextMeshProUGUI;
     private Text _childrenButtonText;
 
-    private void Start()
+    void Awake()
     {
         childrenButtonTextMeshProUGUI = GetComponentsInChildren<TextMeshProUGUI>();
         _childrenButtonText = GetComponentInChildren<Text>();
+    }
 
+    private void Start()
+    {
         if (childrenButtonTextMeshProUGUI != null && buttonType != ButtonType.MainMenuButton )
         {
             foreach (TextMeshProUGUI childrenText in childrenButtonTextMeshProUGUI)
@@ -55,6 +58,7 @@ public class SwitchButtonColor : MonoBehaviour, IDeselectHandler, ISelectHandler
         {
             foreach (TextMeshProUGUI childrenText in childrenButtonTextMeshProUGUI)
             {
+                Debug.Log("Has Been Selected and texts has been put in white");
                 childrenText.faceColor = new Color32(255, 255, 255, 255);
             }
         }

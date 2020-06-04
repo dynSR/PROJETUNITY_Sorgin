@@ -7,7 +7,7 @@ public class ShopManager : MonoBehaviour
     public List<Transform> spellsAvailableInShop = new List<Transform>();
     public int amntOfSpellBought = 0;
     public static bool isBuying = false;
-    [SerializeField] private Transform spellButtonGroup;
+    [SerializeField] private Transform shopButtonGroup;
 
     public static ShopManager s_Singleton;
     private void Awake()
@@ -27,9 +27,9 @@ public class ShopManager : MonoBehaviour
 
     void PopulateShopArray()
     {
-        for (int i = 0; i < spellButtonGroup.transform.childCount; i++)
+        for (int i = 0; i < shopButtonGroup.transform.childCount; i++)
         {
-            Transform objectFound = spellButtonGroup.transform.GetChild(i);
+            Transform objectFound = shopButtonGroup.transform.GetChild(i);
             spellsAvailableInShop.Add(objectFound);
         }
     }

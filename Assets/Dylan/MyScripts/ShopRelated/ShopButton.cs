@@ -81,7 +81,7 @@ public class ShopButton : MonoBehaviour, ISubmitHandler/*, ISelectHandler, IDese
             Debug.Log("Display Validation Popup");
 
             UIManager.s_Singleton.DisplayAPopup(UIManager.s_Singleton.purchaseValidationPopupWindow);
-            UIManager.s_Singleton.EnableButtonsInLayout(UIManager.s_Singleton.purchaseValidationPopupButtonLayout);
+            UIManager.s_Singleton.EnableButtonsInLayout(UIManager.s_Singleton.purchaseValidationPopupButtonLayout, UIManager.s_Singleton.purchaseValidationPopupButtonLayout.transform.GetChild(1).gameObject);
             UIManager.s_Singleton.purchaseValidationPopupIsDisplayed = true;
         }     
     }

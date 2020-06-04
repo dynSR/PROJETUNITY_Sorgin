@@ -11,19 +11,22 @@ public class DefaultUIManager : MonoBehaviour
     public float fadeDuration = 0.25f;
 
     [Header("PARAMETERS TO SET THE GAME IN PAUSE")]
-    public CanvasGroup pauseMenuWindow;
+    public GameObject pauseMenuWindow;
     public GameObject pauseMenuButtonLayout;
-    public GameObject pauseMenuInputsDisplayerWindow;
-    public GameObject pauseMenuOptionsWindow;
     public GameObject firstButtonOfPauseMenu;
-    public GameObject optionsFirstSelectedButton;
+    public GameObject pauseMenuInputsDisplayerWindow;
+    public GameObject pauseMenuInputsDisplayerButton;
     public GameObject pauseMenuOptionsButton;
+    public GameObject pauseMenuOptionsWindow;
+    public GameObject optionsFirstSelectedButton;
+    
 
     [Header("LAST SELECTED BUTTON")]
     public static GameObject lastSelectedButton;
 
 
     public bool pauseWindowIsDisplayed = false;
+    public bool pauseWindowHasBeenClosed = false;
     [HideInInspector] public bool pauseWindowOptionsAreDisplayed = false;
     [HideInInspector] public bool pauseWindowInputsDisplayerIsDisplayed = false;
     public static bool playerIsBackToMainMenu = false;
@@ -38,7 +41,7 @@ public class DefaultUIManager : MonoBehaviour
 
     public virtual void Update()
     {
-        if (GameManager.s_Singleton.gameState != GameState.InMainMenu && pauseMenuWindow != null)
+        if ((GameManager.s_Singleton.gameState == GameState.PlayMode || GameManager.s_Singleton.gameState == GameState.Pause) && pauseMenuWindow != null)
         {
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Options") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_Start"))
             {
@@ -47,7 +50,7 @@ public class DefaultUIManager : MonoBehaviour
                 {
                     Pause();
                 }
-                else if (pauseWindowIsDisplayed)
+                else
                 {
                     Resume();
                 }
@@ -63,25 +66,35 @@ public class DefaultUIManager : MonoBehaviour
     private void Pause()
     {
         Debug.Log("Set Game To Pause Mode");
-        pauseMenuWindow.alpha = 1;
-        pauseMenuWindow.blocksRaycasts = true;
-        EnableButtonsInLayout(pauseMenuButtonLayout);
+        StartCoroutine(DisplayPauseWindowAndSetFirstButton());
+    }
 
-        EventSystem.current.SetSelectedGameObject(firstButtonOfPauseMenu);
-        GameManager.s_Singleton.gameState = GameState.Pause;
-
+    IEnumerator DisplayPauseWindowAndSetFirstButton()
+    {
+        pauseMenuWindow.SetActive(true);
         pauseWindowIsDisplayed = true;
+        pauseWindowHasBeenClosed = false;
+
+        yield return new WaitForEndOfFrame();
+
+        EnableButtonsInLayout(pauseMenuButtonLayout, firstButtonOfPauseMenu);
+        GameManager.s_Singleton.gameState = GameState.Pause;
     }
 
     private void Resume()
     {
-        pauseMenuWindow.alpha = 0;
-        pauseMenuWindow.blocksRaycasts = false;
+        pauseMenuWindow.gameObject.SetActive(false);
+
         DisableButtonsInLayout(pauseMenuButtonLayout);
+
         pauseWindowIsDisplayed = false;
+        pauseWindowHasBeenClosed = true;
+
         GameManager.s_Singleton.gameState = GameState.PlayMode;
 
-        ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+        //if(lastSelectedButton != null)
+        //    ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+        //EventSystem.current.firstSelectedGameObject = lastSelectedButton;
     }
 
     public void BackInPauseMenu()
@@ -90,45 +103,45 @@ public class DefaultUIManager : MonoBehaviour
         {
             UIWindowsHide(pauseMenuOptionsWindow);
             pauseWindowOptionsAreDisplayed = false;
-            ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+            EnableButtonsInLayout(pauseMenuButtonLayout, pauseMenuOptionsButton);
             //EventSystem.current.SetSelectedGameObject(pauseMenuOptionsButton);
         }
         else if(pauseWindowInputsDisplayerIsDisplayed)
         {
             UIWindowsHide(pauseMenuInputsDisplayerWindow);
             pauseWindowInputsDisplayerIsDisplayed = false;
+            EnableButtonsInLayout(pauseMenuButtonLayout, pauseMenuInputsDisplayerButton);
+            //ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
         }
         else
         {
-            HideAPopup(pauseMenuWindow);
-            pauseWindowIsDisplayed = false;
-            ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
-            GameManager.s_Singleton.gameState = GameState.PlayMode;
+            Resume();
         }
     }
 
-    public void OnClickResumeButtonInPauseMenu()
+    public void OnClickResumeButton()
     {
         Resume();
     }
 
-    public void OnClickDisplayInputsButtonInPauseMenu()
+    public void OnClickDisplayInputsButton()
     {
         UIWindowsDisplay(pauseMenuInputsDisplayerWindow);
         pauseWindowInputsDisplayerIsDisplayed = true;
+        DisableButtonsInLayout(pauseMenuButtonLayout);
     }
 
-    public void OnClickDisplayOptionsButtonInPauseMenu()
+    public void OnClickDisplayOptionsButton()
     {
         UIWindowsDisplay(pauseMenuOptionsWindow);
         pauseWindowOptionsAreDisplayed = true;
-        //EventSystem.current.SetSelectedGameObject(optionsFirstSelectedButton);
-        ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+        DisableButtonsInLayout(pauseMenuButtonLayout);
+        EventSystem.current.SetSelectedGameObject(optionsFirstSelectedButton);
     }
 
-    public void OnClickBackToMainMenuButtonInPauseMenu()
+    public void OnClickBackToMainMenuButton()
     {
-        HideAPopup(pauseMenuWindow);
+        pauseMenuWindow.SetActive(false);
         pauseWindowIsDisplayed = false;
         GameManager.s_Singleton.gameState = GameState.InMainMenu;
         playerIsBackToMainMenu = true;
@@ -137,7 +150,7 @@ public class DefaultUIManager : MonoBehaviour
         SceneManager.LoadScene("Scene_MainMenu");
     }
 
-    public void OnClickQuitButtonInPauseMenu()
+    public void OnClickQuitButton()
     {
         Debug.Log("Quitte le jeu...");
         Application.Quit();
@@ -190,11 +203,11 @@ public class DefaultUIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(obj);
 
-        Debug.Log(lastSelectedButton.name);
+        Debug.Log(obj.name);
     }
     #endregion
 
-    public void EnableButtonsInLayout(GameObject buttonLayout)
+    public void EnableButtonsInLayout(GameObject buttonLayout, GameObject firstSelectedObject)
     {
         //Réactivation des boutons contenus dans cette fenêtre (prévient les problèmes liés à la navigation de l'Event System)
         foreach (Button _buttons in buttonLayout.GetComponentsInChildren<Button>())
@@ -203,7 +216,8 @@ public class DefaultUIManager : MonoBehaviour
         }
 
         //Reset du premier objet sélectionné par l'Event System et initialisation du nouveau premier objet sélectionné sur "Non" (prévient l'appuie "SPAM")
-        ResetEventSystemFirstSelectedGameObjet(buttonLayout.transform.GetChild(1).gameObject);
+        if(firstSelectedObject != null)
+            ResetEventSystemFirstSelectedGameObjet(firstSelectedObject);
     }
 
     public void DisableButtonsInLayout(GameObject buttonLayout)
@@ -215,10 +229,10 @@ public class DefaultUIManager : MonoBehaviour
 
         PurchaseASpell purchasedSpell = buttonLayout.GetComponentInChildren<PurchaseASpell>();
 
-        if (purchasedSpell != null)
-            ResetEventSystemFirstSelectedGameObjet(purchasedSpell.selectedButton.gameObject);
-        else
-            ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+        //if (purchasedSpell != null && purchasedSpell.gameObject.activeInHierarchy)
+        //    ResetEventSystemFirstSelectedGameObjet(purchasedSpell.selectedButton.gameObject);
+        //else
+        //    ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
     }
 
     //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.
