@@ -279,7 +279,6 @@ GameObject:
   - component: {fileID: 11510933}
   - component: {fileID: 11510939}
   - component: {fileID: 11510940}
-  - component: {fileID: 11510941}
   - component: {fileID: 11510942}
   - component: {fileID: 11510943}
   - component: {fileID: 11510944}
@@ -378,7 +377,7 @@ MonoBehaviour:
   scrollPos: {x: -141.00705, y: 192.80794}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
-  blockViewHeight: 400
+  blockViewHeight: 563
   zoom: 0.84999967
   scrollViewRect:
     serializedVersion: 2
@@ -386,8 +385,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 11510837}
+  selectedCommands:
+  - {fileID: 11510940}
   variables:
   - {fileID: 11510801}
   - {fileID: 11510800}
@@ -915,7 +916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 221
   indentLevel: 0
-  targetObject: {fileID: 11510788}
+  targetObject: {fileID: 1398507011}
   methodName: DisableButtonsJustBeforeAQuestion
   delay: 0
 --- !u!114 &11510813
@@ -1514,7 +1515,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 222
   indentLevel: 0
-  targetObject: {fileID: 11510788}
+  targetObject: {fileID: 1398507011}
   methodName: EnableButtonsJustBeforeTimerBegin
   delay: 0
 --- !u!114 &11510837
@@ -4085,24 +4086,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 217
   indentLevel: 0
-  targetObject: {fileID: 11510788}
+  targetObject: {fileID: 1398507011}
   methodName: SetFirstObjectOfEventSystem
   delay: 0
---- !u!114 &11510941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 11510788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7257d2f192002974a88f7edb1d3ab3be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonGroup: {fileID: 1860532521}
-  newButtonImage: {fileID: 21300000, guid: 91107150b3b1194409bbdf5e263996e9, type: 3}
-  buttonLayout: {fileID: 1860532521}
 --- !u!114 &11510942
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -5231,12 +5217,14 @@ MonoBehaviour:
   fadeDuration: 0.25
   pauseMenuWindow: {fileID: 5210801000260675837}
   pauseMenuButtonLayout: {fileID: 5210800999707405221}
-  pauseMenuInputsDisplayerWindow: {fileID: 5210800999576739333}
-  pauseMenuOptionsWindow: {fileID: 5210801000091456616}
   firstButtonOfPauseMenu: {fileID: 5210800999331980130}
-  optionsFirstSelectedButton: {fileID: 5210800998818411557}
+  pauseMenuInputsDisplayerWindow: {fileID: 5210800999576739333}
+  pauseMenuInputsDisplayerButton: {fileID: 0}
   pauseMenuOptionsButton: {fileID: 5210801000218508201}
+  pauseMenuOptionsWindow: {fileID: 5210801000091456616}
+  optionsFirstSelectedButton: {fileID: 5210800998818411557}
   pauseWindowIsDisplayed: 0
+  pauseWindowHasBeenClosed: 0
   pauseWindowOptionsAreDisplayed: 0
   pauseWindowInputsDisplayerIsDisplayed: 0
 --- !u!114 &681310370 stripped
@@ -5429,7 +5417,7 @@ PrefabInstance:
     - target: {fileID: 3441583463987204933, guid: d1b30b8a0cd481e49913af35e07a4b0a,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 30
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 3441583463987204933, guid: d1b30b8a0cd481e49913af35e07a4b0a,
         type: 3}
@@ -5741,7 +5729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61dddfdc5e0e44ca298d8f46f7f5a915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedFlowchart: {fileID: 1491580417}
+  selectedFlowchart: {fileID: 11510791}
 --- !u!4 &973135291
 Transform:
   m_ObjectHideFlags: 1
@@ -6573,7 +6561,7 @@ PrefabInstance:
     - target: {fileID: 7218234872485043666, guid: ee137382068ac8946b1152ae4e9ec6be,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 30
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 7218234872485043666, guid: ee137382068ac8946b1152ae4e9ec6be,
         type: 3}
@@ -6582,6 +6570,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee137382068ac8946b1152ae4e9ec6be, type: 3}
+--- !u!1 &1398507011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1398507013}
+  - component: {fileID: 1398507012}
+  m_Layer: 0
+  m_Name: FlowchartHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1398507012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398507011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7257d2f192002974a88f7edb1d3ab3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonGroup: {fileID: 1860532521}
+  newButtonImage: {fileID: 21300000, guid: 91107150b3b1194409bbdf5e263996e9, type: 3}
+  buttonLayout: {fileID: 1860532521}
+--- !u!4 &1398507013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398507011}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 210.94205, y: 710.0213, z: -288.8496}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419409529
 GameObject:
   m_ObjectHideFlags: 0
@@ -7946,7 +7980,7 @@ PrefabInstance:
     - target: {fileID: 5793883609871893469, guid: 5127243b0b638ed43befcb2bf47082f1,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 30
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 5793883609871893469, guid: 5127243b0b638ed43befcb2bf47082f1,
         type: 3}
