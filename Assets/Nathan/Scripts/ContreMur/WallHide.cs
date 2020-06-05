@@ -53,7 +53,7 @@ public class WallHide : MonoBehaviour
                     if (hit.transform.CompareTag("Wall"))
                     {
                         TextOnWall.SetActive(true);
-                        if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")) && Player.s_Singleton.inWardrobe == false)
+                        if ((ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A") || Input.GetKeyDown(KeyCode.M)) && Player.s_Singleton.inWardrobe == false)
                         {
                             if (Timer <= 0 && !Player.s_Singleton.canPickObject)
                             {
