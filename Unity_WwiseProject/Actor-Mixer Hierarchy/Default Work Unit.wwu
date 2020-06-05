@@ -391,6 +391,326 @@
 						</Sound>
 					</ChildrenList>
 				</Folder>
+				<Folder Name="OST" ID="{30A921DD-FF62-43F6-BA4A-411AD12160FB}" ShortID="767388666">
+					<ChildrenList>
+						<SwitchContainer Name="OSTs_SwitchStates" ID="{6466AEA4-7DFC-47DA-BB4E-74BA8744A1F7}" ShortID="487676678">
+							<PropertyList>
+								<Property Name="BelowThresholdBehavior" Type="int16" Value="3"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="SwitchBehavior" Type="int16" Value="1"/>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+								</Reference>
+								<Reference Name="DefaultSwitchOrState">
+									<ObjectRef Name="state_MainMenu" ID="{344B44BE-170A-4DE9-B301-90856FA6F9BA}" WorkUnitID="{19FE0484-CCC2-4ED8-90AB-52AC9E0010DD}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+								</Reference>
+								<Reference Name="SwitchGroupOrStateGroup">
+									<ObjectRef Name="inGamePhases" ID="{403ED9FB-C622-46CB-B83A-26A8D55B8FCA}" WorkUnitID="{19FE0484-CCC2-4ED8-90AB-52AC9E0010DD}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="OST_Sorgin_Trial" ID="{F1725D1E-095B-4C0E-8ED4-3D4BD1663110}" ShortID="76622433">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="OutputBusVolume" Type="Real64">
+											<ValueList>
+												<Value>-10</Value>
+											</ValueList>
+										</Property>
+										<Property Name="ReflectionsVolume" Type="Real64">
+											<ValueList>
+												<Value>-10</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Sorgin_Trial" ID="{A6109216-9E1F-4CD9-84A8-27742AEF05B2}">
+											<Language>SFX</Language>
+											<AudioFile>Sorgin_Trial.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1055719807"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<StateInfo>
+										<StatePropertyList>
+											<Property Name="Highpass"/>
+											<Property Name="Lowpass"/>
+											<Property Name="Pitch"/>
+											<Property Name="Volume"/>
+										</StatePropertyList>
+									</StateInfo>
+									<ActiveSourceList>
+										<ActiveSource Name="Sorgin_Trial" ID="{A6109216-9E1F-4CD9-84A8-27742AEF05B2}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="OST_Sorgin_BeforeTrial" ID="{0C765673-3467-42CC-8C64-EDAE34FD753F}" ShortID="381508841">
+									<PropertyList>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="OutputBusVolume" Type="Real64">
+											<ValueList>
+												<Value>-10</Value>
+											</ValueList>
+										</Property>
+										<Property Name="ReflectionsVolume" Type="Real64">
+											<ValueList>
+												<Value>-10</Value>
+											</ValueList>
+										</Property>
+										<Property Name="SpeakerPanning" Type="int16" Value="1"/>
+										<Property Name="UseGameAuxSends" Type="bool" Value="True"/>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Sorgin_BeforeTrial" ID="{D13B657E-F0FA-4EC2-98BA-1E537BA02235}">
+											<Language>SFX</Language>
+											<AudioFile>Sorgin_BeforeTrial.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="954759605"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<PositioningInfo>
+										<Panner Name="" ID="{03FE3C90-5BFD-4759-AAE9-90DCE786683B}"/>
+									</PositioningInfo>
+									<ActiveSourceList>
+										<ActiveSource Name="Sorgin_BeforeTrial" ID="{D13B657E-F0FA-4EC2-98BA-1E537BA02235}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="OST_Sorgin_Exfiltration" ID="{8BB585B0-5443-4BBA-93AA-C0835421F8DB}" ShortID="413764925">
+									<PropertyList>
+										<Property Name="BelowThresholdBehavior" Type="int16" Value="3"/>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-100</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Sorgin_Trial" ID="{DC379556-A7E8-44A8-A437-0209BA0C80CB}">
+											<Language>SFX</Language>
+											<AudioFile>Sorgin_Trial.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="1055719807"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<StateInfo>
+										<StatePropertyList>
+											<Property Name="Highpass"/>
+											<Property Name="Lowpass"/>
+											<Property Name="Pitch"/>
+											<Property Name="Volume"/>
+										</StatePropertyList>
+									</StateInfo>
+									<ActiveSourceList>
+										<ActiveSource Name="Sorgin_Trial" ID="{DC379556-A7E8-44A8-A437-0209BA0C80CB}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="OST_Sorgin_MainMenu" ID="{2FD8B628-A538-468B-8EDD-0479BE2642AD}" ShortID="345647122">
+									<PropertyList>
+										<Property Name="BelowThresholdBehavior" Type="int16" Value="3"/>
+										<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+										<Property Name="Pitch" Type="int32">
+											<ValueList>
+												<Value>-80</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{6843E925-586F-4241-A276-C297CE358ED0}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{C9FB0CF0-6297-4661-8879-E2C4D9599673}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="Sorgin_BeforeTrial" ID="{73BD2D5D-5D27-40EC-8535-CCD227493799}">
+											<Language>SFX</Language>
+											<AudioFile>Sorgin_BeforeTrial.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="954759605"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="Sorgin_BeforeTrial" ID="{73BD2D5D-5D27-40EC-8535-CCD227493799}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<StateInfo>
+								<StatePropertyList>
+									<Property Name="Highpass"/>
+									<Property Name="Lowpass"/>
+									<Property Name="MakeUpGain"/>
+									<Property Name="OutputBusVolume"/>
+									<Property Name="Pitch"/>
+									<Property Name="Volume"/>
+								</StatePropertyList>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="inGamePhases" ID="{403ED9FB-C622-46CB-B83A-26A8D55B8FCA}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="state_Trial" ID="{3D2A89B2-98B9-4338-B671-86CBFDD95914}"/>
+										<CustomState Name="" ID="{89536597-FB72-454D-B898-5DF95C1F8A4F}" ShortID="438807794"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="state_BeforeTrial" ID="{6F3522DE-7331-469C-A7D8-D55D2A0E2891}"/>
+										<CustomState Name="" ID="{AD9796E6-0D1D-4526-B31A-86B85E526E47}" ShortID="635474714"/>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="state_Exfiltration" ID="{AFD70A34-EFBD-4925-A847-C978E19FC019}"/>
+										<CustomState Name="" ID="{30C702D2-8BCA-444E-BE5A-01F1C9C10C6E}" ShortID="414819220">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64" Value="-5"/>
+											</PropertyList>
+										</CustomState>
+									</CustomState>
+									<CustomState>
+										<StateRef Name="state_MainMenu" ID="{344B44BE-170A-4DE9-B301-90856FA6F9BA}"/>
+										<CustomState Name="" ID="{82EF97C6-E496-4CEB-8F19-6C906171B9F6}" ShortID="62368829"/>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
+							<GroupingInfo>
+								<GroupingBehaviorList>
+									<GroupingBehavior>
+										<ItemRef Name="OST_Sorgin_Trial" ID="{F1725D1E-095B-4C0E-8ED4-3D4BD1663110}"/>
+										<PropertyList>
+											<Property Name="ContinuePlay" Type="bool" Value="True"/>
+											<Property Name="FadeInTime" Type="Real64">
+												<ValueList>
+													<Value>0.1</Value>
+												</ValueList>
+											</Property>
+											<Property Name="FadeOutTime" Type="Real64">
+												<ValueList>
+													<Value>2</Value>
+												</ValueList>
+											</Property>
+										</PropertyList>
+									</GroupingBehavior>
+									<GroupingBehavior>
+										<ItemRef Name="OST_Sorgin_MainMenu" ID="{2FD8B628-A538-468B-8EDD-0479BE2642AD}"/>
+										<PropertyList>
+											<Property Name="ContinuePlay" Type="bool" Value="True"/>
+											<Property Name="FadeInTime" Type="Real64">
+												<ValueList>
+													<Value>0.1</Value>
+												</ValueList>
+											</Property>
+											<Property Name="FadeOutTime" Type="Real64">
+												<ValueList>
+													<Value>2</Value>
+												</ValueList>
+											</Property>
+										</PropertyList>
+									</GroupingBehavior>
+									<GroupingBehavior>
+										<ItemRef Name="OST_Sorgin_BeforeTrial" ID="{0C765673-3467-42CC-8C64-EDAE34FD753F}"/>
+										<PropertyList>
+											<Property Name="ContinuePlay" Type="bool" Value="True"/>
+											<Property Name="FadeInTime" Type="Real64">
+												<ValueList>
+													<Value>0.1</Value>
+												</ValueList>
+											</Property>
+											<Property Name="FadeOutTime" Type="Real64">
+												<ValueList>
+													<Value>2</Value>
+												</ValueList>
+											</Property>
+										</PropertyList>
+									</GroupingBehavior>
+									<GroupingBehavior>
+										<ItemRef Name="OST_Sorgin_Exfiltration" ID="{8BB585B0-5443-4BBA-93AA-C0835421F8DB}"/>
+										<PropertyList>
+											<Property Name="ContinuePlay" Type="bool" Value="True"/>
+											<Property Name="FadeInTime" Type="Real64">
+												<ValueList>
+													<Value>0.1</Value>
+												</ValueList>
+											</Property>
+											<Property Name="FadeOutTime" Type="Real64">
+												<ValueList>
+													<Value>2</Value>
+												</ValueList>
+											</Property>
+										</PropertyList>
+									</GroupingBehavior>
+								</GroupingBehaviorList>
+								<GroupingList>
+									<Grouping>
+										<SwitchRef Name="state_Exfiltration" ID="{AFD70A34-EFBD-4925-A847-C978E19FC019}"/>
+										<ItemList>
+											<ItemRef Name="OST_Sorgin_Exfiltration" ID="{8BB585B0-5443-4BBA-93AA-C0835421F8DB}"/>
+										</ItemList>
+									</Grouping>
+									<Grouping>
+										<SwitchRef Name="state_Trial" ID="{3D2A89B2-98B9-4338-B671-86CBFDD95914}"/>
+										<ItemList>
+											<ItemRef Name="OST_Sorgin_Trial" ID="{F1725D1E-095B-4C0E-8ED4-3D4BD1663110}"/>
+										</ItemList>
+									</Grouping>
+									<Grouping>
+										<SwitchRef Name="state_MainMenu" ID="{344B44BE-170A-4DE9-B301-90856FA6F9BA}"/>
+										<ItemList>
+											<ItemRef Name="OST_Sorgin_MainMenu" ID="{2FD8B628-A538-468B-8EDD-0479BE2642AD}"/>
+										</ItemList>
+									</Grouping>
+									<Grouping>
+										<SwitchRef Name="state_BeforeTrial" ID="{6F3522DE-7331-469C-A7D8-D55D2A0E2891}"/>
+										<ItemList>
+											<ItemRef Name="OST_Sorgin_BeforeTrial" ID="{0C765673-3467-42CC-8C64-EDAE34FD753F}"/>
+										</ItemList>
+									</Grouping>
+								</GroupingList>
+							</GroupingInfo>
+						</SwitchContainer>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</AudioObjects>

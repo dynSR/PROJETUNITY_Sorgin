@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{19FE0484-CCC2-4ED8-90AB-52AC9E0010DD}" SchemaVersion="97">
 	<States>
-		<WorkUnit Name="Default Work Unit" ID="{19FE0484-CCC2-4ED8-90AB-52AC9E0010DD}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{19FE0484-CCC2-4ED8-90AB-52AC9E0010DD}" PersistMode="Standalone">
+			<ChildrenList>
+				<StateGroup Name="inGamePhases" ID="{403ED9FB-C622-46CB-B83A-26A8D55B8FCA}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="0.5"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="state_Exfiltration" ID="{AFD70A34-EFBD-4925-A847-C978E19FC019}"/>
+						<State Name="state_MainMenu" ID="{344B44BE-170A-4DE9-B301-90856FA6F9BA}"/>
+						<State Name="state_BeforeTrial" ID="{6F3522DE-7331-469C-A7D8-D55D2A0E2891}"/>
+						<State Name="state_Trial" ID="{3D2A89B2-98B9-4338-B671-86CBFDD95914}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="state_MainMenu" ID="{344B44BE-170A-4DE9-B301-90856FA6F9BA}"/>
+							<EndState Name="state_BeforeTrial" ID="{6F3522DE-7331-469C-A7D8-D55D2A0E2891}"/>
+							<Time>0.5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="state_BeforeTrial" ID="{6F3522DE-7331-469C-A7D8-D55D2A0E2891}"/>
+							<EndState Name="state_Trial" ID="{3D2A89B2-98B9-4338-B671-86CBFDD95914}"/>
+							<Time>0.5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="state_Trial" ID="{3D2A89B2-98B9-4338-B671-86CBFDD95914}"/>
+							<EndState Name="state_Exfiltration" ID="{AFD70A34-EFBD-4925-A847-C978E19FC019}"/>
+							<Time>0.5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
+			</ChildrenList>
+		</WorkUnit>
 	</States>
 </WwiseDocument>

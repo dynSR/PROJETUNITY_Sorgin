@@ -24,6 +24,13 @@
 					<ObjectExclusionList/>
 					<GameSyncExclusionList/>
 				</SoundBank>
+				<SoundBank Name="OST" ID="{86A5B0E3-D29C-4CD4-B62D-3CF17B7DB758}">
+					<ObjectInclusionList>
+						<ObjectRef Name="OSTs_SwitchStates" ID="{7D5C0439-EA52-4A44-ACF9-8E173259E106}" WorkUnitID="{FE2CD2F6-F39D-410D-A0FE-5A80752CF912}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
 			</ChildrenList>
 		</WorkUnit>
 	</SoundBanks>
