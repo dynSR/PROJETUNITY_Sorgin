@@ -64,7 +64,8 @@ public class MoveScript : MonoBehaviour
         {
             OnArmoire = Player.s_Singleton.inWardrobe;
             OnWall = Player.s_Singleton.onWall;
-            Anim.SetFloat("Blend", Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical")));
+
+            Anim.SetFloat("Blend", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
             StandardView.SetActive(true);
             WallLight.SetActive(false);
 
@@ -80,8 +81,16 @@ public class MoveScript : MonoBehaviour
             {
                 Anim.SetBool("Lean", false);
 
-                vertical = Mathf.MoveTowards(vertical, Input.GetAxis("Vertical"), 0.1f);
-                horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("Horizontal"), 0.1f);
+                if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
+                {
+                    vertical = Mathf.MoveTowards(vertical, Input.GetAxis("PS4_LStick_Vertical"), 0.1f);
+                    horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("PS4_LStick_Horizontal"), 0.1f);
+                }
+                if (ConnectedController.s_Singleton.XboxControllerIsConnected)
+                {
+                    vertical = Mathf.MoveTowards(vertical, Input.GetAxis("XBOX_LStick_Vertical"), 0.1f);
+                    horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("XBOX_LStick_Horizontal"), 0.1f);                
+                }
 
 
                 if (Mathf.Abs(Input.GetAxis("Horizontal")) >= 0.1f || Mathf.Abs(Input.GetAxis("Vertical")) >= 0.1f) //Rotation du perso
