@@ -15,6 +15,11 @@ public class TrialManager : MonoBehaviour
 
     public Flowchart mainFlowchart;
 
+    private void Awake()
+    {
+       
+    }
+
     // Start is called before the first frame update
     void Start()
     {

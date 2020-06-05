@@ -20,24 +20,18 @@ public class DefaultUIManager : MonoBehaviour
     public GameObject pauseMenuOptionsWindow;
     public GameObject optionsFirstSelectedButton;
     
-
     [Header("LAST SELECTED BUTTON")]
     public static GameObject lastSelectedButton;
 
+    [Header("WWISE EVENT ")]
+    public AK.Wwise.Event ostSwitchWwiseEvent;
 
     public bool pauseWindowIsDisplayed = false;
     public bool pauseWindowHasBeenClosed = false;
     [HideInInspector] public bool pauseWindowOptionsAreDisplayed = false;
     [HideInInspector] public bool pauseWindowInputsDisplayerIsDisplayed = false;
     public static bool playerIsBackToMainMenu = false;
-
-    //private void Start()
-    //{
-    //    if (PlayerPrefs.HasKey("playerIsBackToMainMenu"))
-    //    {
-    //        playerIsBackToMainMenu = PlayerPrefs.GetInt("playerIsBackToMainMenu")
-    //    }
-    //}
+   
 
     public virtual void Update()
     {
@@ -258,4 +252,13 @@ public class DefaultUIManager : MonoBehaviour
         }
     }
     #endregion
+
+    public void SetOSTStateAndPostEvent(string state)
+    {
+        if (AkSoundEngineController.Instance.IsSoundEngineLoaded)
+        {
+            AkSoundEngine.SetState("inGamePhases", state);
+            //ostSwitchWwiseEvent.Post(this.gameObject);
+        }
+    }
 }

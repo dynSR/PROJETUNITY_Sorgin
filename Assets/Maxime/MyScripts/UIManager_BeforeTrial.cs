@@ -35,11 +35,15 @@ public class UIManager_BeforeTrial : DefaultUIManager
         {
             singleton = this;
         }
+
+       
     }
     #endregion
 
     void Start()
     {
+        SetOSTStateAndPostEvent("state_BeforeTrial");
+
         titreProcesTxt.text = chefAccusation + " - Proces n°" + numeroProces;
     }
 

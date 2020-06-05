@@ -33,12 +33,6 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -52,9 +46,11 @@ public class GameManager : MonoBehaviour
                 //Time.timeScale = 0f;
                 break;
             case GameState.Cinematic:
+                Time.timeScale = 1f;
                 //Faire quelque chose si besoin...
                 break;
             case GameState.ConsultingShop:
+                Time.timeScale = 1f;
                 //Faire quelque chose si besoin...
                 break;
             case GameState.InMainMenu:

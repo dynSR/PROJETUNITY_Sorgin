@@ -1817,6 +1817,8 @@ GameObject:
   - component: {fileID: 347010759}
   - component: {fileID: 347010758}
   - component: {fileID: 347010757}
+  - component: {fileID: 347010761}
+  - component: {fileID: 347010760}
   m_Layer: 0
   m_Name: WwiseGlobal
   m_TagString: Untagged
@@ -1890,6 +1892,56 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &347010760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347010756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9152348fb14faa40b8b38756884241c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: ae8d9d44
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: cf7772e51fcc6d1429d3ce08c23bf557,
+      type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
+--- !u!114 &347010761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347010756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9152348fb14faa40b8b38756884241c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: f7e1664c
+  useOtherObject: 0
+  data:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: b5c1531f682b5104b95ab21b1f78600f,
+      type: 2}
+  decodeBank: 0
+  loadAsynchronous: 0
+  saveDecodedBank: 0
+  unloadTriggerList: 958ca0ea
+  bankNameInternal: 
+  valueGuidInternal: 
 --- !u!1 &351007371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2539,6 +2591,11 @@ MonoBehaviour:
   pauseMenuOptionsButton: {fileID: 0}
   pauseMenuOptionsWindow: {fileID: 0}
   optionsFirstSelectedButton: {fileID: 0}
+  ostSwitchWwiseEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e6e955de9c029194d9c7cedf4dcf8603,
+      type: 2}
   pauseWindowIsDisplayed: 0
   pauseWindowHasBeenClosed: 0
   pauseWindowOptionsAreDisplayed: 0
@@ -3046,7 +3103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76aa4cf0fee7117458e925fe5cda2010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPointsValue: 50000
+  playerPointsValue: 0
   gameState: 0
 --- !u!4 &597831354
 Transform:
@@ -3056,7 +3113,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597831352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.96, y: -0.027466, z: -4.4495897}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7823,7 +7880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 822134289}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &1621020448

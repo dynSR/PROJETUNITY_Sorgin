@@ -40,7 +40,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 7102da272752824285cc8cea843bd806
     GuidInternal: 
-    m_lastTime: -8586120867338457152
+    m_lastTime: -8586102568587738280
     List:
     - name: GameSFX
       guid: acc8e6fc076e964aa3ab11f9177eaec9
@@ -51,6 +51,15 @@ MonoBehaviour:
       - ElementName: GameSFX
         ObjectType: 7
       Path: Default Work Unit\GameSFX
+    - name: OST
+      guid: e3b0a5869cd2d44cb62d3cf17b7db758
+      id: 611937389
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: OST
+        ObjectType: 7
+      Path: Default Work Unit\OST
     - name: UI_Sounds
       guid: a60f653cd66b6b45a7b0f39ed1310d94
       id: 905868302
@@ -65,7 +74,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: f6d22cfe9df30d41a0fe5a80752cf912
     GuidInternal: 
-    m_lastTime: -8586120867438605325
+    m_lastTime: -8586102430227105825
     List:
     - name: GSFX_OppeningADoor
       guid: 42184148c980b34f84b8d208663d421b
@@ -76,6 +85,18 @@ MonoBehaviour:
       - ElementName: GSFX_OppeningADoor
         ObjectType: 3
       Path: Default Work Unit\GSFX_OppeningADoor
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: OSTs_SwitchStates
+      guid: 39045c7d52ea444aacf98e173259e106
+      id: 654607125
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: OSTs_SwitchStates
+        ObjectType: 3
+      Path: Default Work Unit\OSTs_SwitchStates
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
@@ -187,14 +208,51 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 8404fe19c2ccd84e90ab52ac9e0010dd
     GuidInternal: 
-    m_lastTime: -8586138905368925362
-    List: []
+    m_lastTime: -8586102423097752435
+    List:
+    - name: inGamePhases
+      guid: fbd93e4022c6cb46b83a26a8d55b8fca
+      id: 3428108678
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: inGamePhases
+        ObjectType: 9
+      Path: Default Work Unit\inGamePhases
+      values:
+      - name: state_BeforeTrial
+        guid: de22356f31739c46a7d8d55d2a0e2891
+        id: 2979606294
+        PathAndIcons:
+        - ElementName: state_BeforeTrial
+          ObjectType: 8
+      - name: state_Exfiltration
+        guid: 340ad7afbdef2549a847c978e19fc019
+        id: 4015477454
+        PathAndIcons:
+        - ElementName: state_Exfiltration
+          ObjectType: 8
+      - name: state_MainMenu
+        guid: be444b340a17e94db30190856fa6f9ba
+        id: 2870617997
+        PathAndIcons:
+        - ElementName: state_MainMenu
+          ObjectType: 8
+      - name: state_Trial
+        guid: b2892a3db9983843b67186cbfdd95914
+        id: 506322585
+        PathAndIcons:
+        - ElementName: state_Trial
+          ObjectType: 8
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPath: Default Work Unit
     guid: fd25147becc124469da84314e0694384
     GuidInternal: 
-    m_lastTime: -8586138905368915392
+    m_lastTime: -8586102534057971481
     List: []
   TriggerWwu:
   - PhysicalPath: Triggers\Default Work Unit.wwu

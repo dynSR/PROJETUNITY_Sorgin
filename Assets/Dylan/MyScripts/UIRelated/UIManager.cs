@@ -77,6 +77,8 @@ public class UIManager : DefaultUIManager
 
     private void Start()
     {
+        SetOSTStateAndPostEvent("state_Exfiltration");
+
         //Initialisation des points du joueur au start
         SetPlayerPointsCountValue();
         DisplayShopWindow();

@@ -60,6 +60,7 @@ public class UIManager_MainMenu : DefaultUIManager
         {
             s_Singleton = this;
             GameManager.s_Singleton.gameState = GameState.InMainMenu;
+            
 
             if (playerIsBackToMainMenu)
             {
@@ -69,15 +70,14 @@ public class UIManager_MainMenu : DefaultUIManager
                 Debug.Log("Player is back to main menu " + playerIsBackToMainMenu);
             }
         }
-
-       
     }
     #endregion
 
     private void Start()
     {
-
-        
+        SetOSTStateAndPostEvent("state_MainMenu");
+        AkSoundEngine.ResetListenersToDefault(this.gameObject);
+        ostSwitchWwiseEvent.Post(this.gameObject);
     }
 
     new void Update()
@@ -178,7 +178,7 @@ public class UIManager_MainMenu : DefaultUIManager
         SceneManager.LoadScene(sceneToLoadOnClickPlayButton);
     }
 
-    public void OnClickDisplayInputsButton()
+    public new void OnClickDisplayInputsButton()
     {
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(inputsDisplayerWindow, mainMenuWindow));
         mainMenuIsDisplayed = false;
@@ -203,7 +203,7 @@ public class UIManager_MainMenu : DefaultUIManager
         //HideASubMenuAndDisplayAnotherOne(mainMenuInputsLandmark, creditsInputsLandmark);
     }
 
-    public void OnClickQuitButton()
+    public new void OnClickQuitButton()
     {
         Debug.Log("Quitte le jeu");
         Application.Quit();

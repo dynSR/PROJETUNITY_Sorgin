@@ -12178,6 +12178,11 @@ MonoBehaviour:
   pauseMenuOptionsButton: {fileID: 5939663439871754388}
   pauseMenuOptionsWindow: {fileID: 5939663439992188757}
   optionsFirstSelectedButton: {fileID: 5939663439125942040}
+  ostSwitchWwiseEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e6e955de9c029194d9c7cedf4dcf8603,
+      type: 2}
   pauseWindowIsDisplayed: 0
   pauseWindowHasBeenClosed: 0
   pauseWindowOptionsAreDisplayed: 0

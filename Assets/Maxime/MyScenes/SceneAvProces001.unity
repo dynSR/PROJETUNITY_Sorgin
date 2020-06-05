@@ -628,7 +628,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 81.2, y: 9.3}
+  m_AnchoredPosition: {x: 81.2, y: 9.299999}
   m_SizeDelta: {x: 118, y: 24}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &376201217
@@ -984,6 +984,7 @@ MonoBehaviour:
   proofDocumentGroup: {fileID: 2012386119}
   proofDocList: []
   proofObjectGroup: {fileID: 0}
+  proofObjsList: []
   rotationSpeed: 3
 --- !u!4 &461833236
 Transform:
@@ -997,7 +998,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519944710
 GameObject:
@@ -1143,7 +1144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -77.7, y: 9.3}
+  m_AnchoredPosition: {x: -77.7, y: 9.299999}
   m_SizeDelta: {x: 118, y: 24}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &650889824
@@ -2296,12 +2297,19 @@ MonoBehaviour:
   fadeDuration: 0.25
   pauseMenuWindow: {fileID: 1744220800}
   pauseMenuButtonLayout: {fileID: 1744220799}
-  pauseMenuInputsDisplayerWindow: {fileID: 1744220797}
-  pauseMenuOptionsWindow: {fileID: 1744220796}
   firstButtonOfPauseMenu: {fileID: 1744220798}
-  optionsFirstSelectedButton: {fileID: 1744220801}
+  pauseMenuInputsDisplayerWindow: {fileID: 1744220797}
+  pauseMenuInputsDisplayerButton: {fileID: 1744220803}
   pauseMenuOptionsButton: {fileID: 1744220802}
+  pauseMenuOptionsWindow: {fileID: 1744220796}
+  optionsFirstSelectedButton: {fileID: 1744220801}
+  ostSwitchWwiseEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e6e955de9c029194d9c7cedf4dcf8603,
+      type: 2}
   pauseWindowIsDisplayed: 0
+  pauseWindowHasBeenClosed: 0
   pauseWindowOptionsAreDisplayed: 0
   pauseWindowInputsDisplayerIsDisplayed: 0
   titreProcesTxt: {fileID: 862528290}
@@ -2394,7 +2402,7 @@ RectTransform:
   - {fileID: 1744220795}
   - {fileID: 650889825}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3581,7 +3589,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1338370476
 GameObject:
@@ -3754,7 +3762,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1582734984
 GameObject:
@@ -4429,9 +4437,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1744220794}
   m_PrefabAsset: {fileID: 0}
---- !u!225 &1744220800 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 6650338695070812619, guid: aecbdf9542175f64d8af9dcc36a5f383,
+--- !u!1 &1744220800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6650338695070812617, guid: aecbdf9542175f64d8af9dcc36a5f383,
     type: 3}
   m_PrefabInstance: {fileID: 1744220794}
   m_PrefabAsset: {fileID: 0}
@@ -4447,90 +4455,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1744220794}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1744684933
+--- !u!1 &1744220803 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6650338694346769758, guid: aecbdf9542175f64d8af9dcc36a5f383,
+    type: 3}
+  m_PrefabInstance: {fileID: 1744220794}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1744684935}
-  - component: {fileID: 1744684934}
-  - component: {fileID: 1744684936}
-  m_Layer: 0
-  m_Name: WwiseGlobal
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1744684934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744684933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e58a4c9d5f5393d449d62962f18f2301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: d5f6c73766d8cd44ca5e99b690701e01,
-    type: 2}
-  basePath: 
-  language: 
-  defaultPoolSize: 0
-  lowerPoolSize: 0
-  streamingPoolSize: 0
-  memoryCutoffThreshold: 0
-  monitorPoolSize: 0
-  monitorQueuePoolSize: 0
-  callbackManagerBufferSize: 0
-  spatialAudioPoolSize: 0
-  maxSoundPropagationDepth: 0
-  diffractionFlags: 11
-  engineLogging: 0
---- !u!4 &1744684935
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744684933}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1744684936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1744684933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9152348fb14faa40b8b38756884241c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: f7e1664c
-  useOtherObject: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 42d3b78adcd12c44a8b224669ccce1f7,
-      type: 2}
-  decodeBank: 0
-  loadAsynchronous: 0
-  saveDecodedBank: 0
-  unloadTriggerList: 958ca0ea
-  bankNameInternal: 
-  valueGuidInternal: 
 --- !u!1 &1766538727
 GameObject:
   m_ObjectHideFlags: 0
@@ -5118,7 +5048,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1868660581
 GameObject:

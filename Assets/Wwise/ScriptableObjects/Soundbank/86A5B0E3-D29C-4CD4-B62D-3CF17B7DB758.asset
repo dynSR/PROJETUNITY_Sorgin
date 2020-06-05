@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab86c3cea9c4bd0438fa9c3d2a6a46c0, type: 3}
+  m_Name: 86A5B0E3-D29C-4CD4-B62D-3CF17B7DB758
+  m_EditorClassIdentifier: 
+  objectName: OST
+  id: 611937389
+  guid: 86A5B0E3-D29C-4CD4-B62D-3CF17B7DB758

@@ -5113,6 +5113,7 @@ GameObject:
   - component: {fileID: 667225444}
   - component: {fileID: 667225443}
   - component: {fileID: 667225442}
+  - component: {fileID: 667225447}
   - component: {fileID: 667225446}
   m_Layer: 5
   m_Name: UIManager_Trial
@@ -5223,6 +5224,40 @@ MonoBehaviour:
   pauseMenuOptionsButton: {fileID: 5210801000218508201}
   pauseMenuOptionsWindow: {fileID: 5210801000091456616}
   optionsFirstSelectedButton: {fileID: 5210800998818411557}
+  ostSwitchWwiseEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 0}
+  pauseWindowIsDisplayed: 0
+  pauseWindowHasBeenClosed: 0
+  pauseWindowOptionsAreDisplayed: 0
+  pauseWindowInputsDisplayerIsDisplayed: 0
+--- !u!114 &667225447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667225441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ac7fc5f34386949a595647630dfa7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 0.25
+  pauseMenuWindow: {fileID: 5210801000260675839}
+  pauseMenuButtonLayout: {fileID: 5210800999707405221}
+  firstButtonOfPauseMenu: {fileID: 5210800999331980130}
+  pauseMenuInputsDisplayerWindow: {fileID: 5210800999576739333}
+  pauseMenuInputsDisplayerButton: {fileID: 5210800999003956328}
+  pauseMenuOptionsButton: {fileID: 5210801000218508201}
+  pauseMenuOptionsWindow: {fileID: 5210801000091456616}
+  optionsFirstSelectedButton: {fileID: 5210800998818411557}
+  ostSwitchWwiseEvent:
+    idInternal: 0
+    valueGuidInternal: 
+    WwiseObjectReference: {fileID: 11400000, guid: e6e955de9c029194d9c7cedf4dcf8603,
+      type: 2}
   pauseWindowIsDisplayed: 0
   pauseWindowHasBeenClosed: 0
   pauseWindowOptionsAreDisplayed: 0
@@ -5462,7 +5497,7 @@ PrefabInstance:
     - target: {fileID: 3441583464458057027, guid: d1b30b8a0cd481e49913af35e07a4b0a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3441583464458057027, guid: d1b30b8a0cd481e49913af35e07a4b0a,
         type: 3}
@@ -5653,7 +5688,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &959203661
 GameObject:
@@ -5698,7 +5733,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &973135289
 GameObject:
@@ -6461,7 +6496,7 @@ PrefabInstance:
     - target: {fileID: 7218234872144501519, guid: ee137382068ac8946b1152ae4e9ec6be,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7218234872144501519, guid: ee137382068ac8946b1152ae4e9ec6be,
         type: 3}
@@ -6614,7 +6649,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1419409529
 GameObject:
@@ -7569,7 +7604,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1779427048
 GameObject:
@@ -7880,7 +7915,7 @@ PrefabInstance:
     - target: {fileID: 5793883609704038217, guid: 5127243b0b638ed43befcb2bf47082f1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5793883609704038217, guid: 5127243b0b638ed43befcb2bf47082f1,
         type: 3}
@@ -8413,90 +8448,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedImage: {fileID: 21300000, guid: 91107150b3b1194409bbdf5e263996e9, type: 3}
   notSelectedImage: {fileID: 21300000, guid: 835ed4192f32c6844801e7265d22b367, type: 3}
---- !u!1 &1966670462
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1966670464}
-  - component: {fileID: 1966670463}
-  - component: {fileID: 1966670465}
-  m_Layer: 0
-  m_Name: WwiseGlobal
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1966670463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966670462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e58a4c9d5f5393d449d62962f18f2301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitializationSettings: {fileID: 11400000, guid: d5f6c73766d8cd44ca5e99b690701e01,
-    type: 2}
-  basePath: 
-  language: 
-  defaultPoolSize: 0
-  lowerPoolSize: 0
-  streamingPoolSize: 0
-  memoryCutoffThreshold: 0
-  monitorPoolSize: 0
-  monitorQueuePoolSize: 0
-  callbackManagerBufferSize: 0
-  spatialAudioPoolSize: 0
-  maxSoundPropagationDepth: 0
-  diffractionFlags: 11
-  engineLogging: 0
---- !u!4 &1966670464
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966670462}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1966670465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1966670462}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9152348fb14faa40b8b38756884241c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: f7e1664c
-  useOtherObject: 0
-  data:
-    idInternal: 0
-    valueGuidInternal: 
-    WwiseObjectReference: {fileID: 11400000, guid: 42d3b78adcd12c44a8b224669ccce1f7,
-      type: 2}
-  decodeBank: 0
-  loadAsynchronous: 0
-  saveDecodedBank: 0
-  unloadTriggerList: 958ca0ea
-  bankNameInternal: 
-  valueGuidInternal: 
 --- !u!1 &2055565262
 GameObject:
   m_ObjectHideFlags: 0
@@ -8676,7 +8627,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2067350982
 GameObject:
@@ -8756,6 +8707,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1198674737}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2088593836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088593838}
+  - component: {fileID: 2088593837}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2088593837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088593836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e58a4c9d5f5393d449d62962f18f2301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: d5f6c73766d8cd44ca5e99b690701e01,
+    type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  diffractionFlags: 11
+  engineLogging: 0
+--- !u!4 &2088593838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088593836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2146651325
 GameObject:
@@ -9378,7 +9387,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 667225446}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickDisplayInputsButtonInPauseMenu
         m_Mode: 1
         m_Arguments:
@@ -9845,7 +9854,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 667225446}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickResumeButtonInPauseMenu
         m_Mode: 1
         m_Arguments:
@@ -10151,7 +10160,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 667225446}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickBackToMainMenuButtonInPauseMenu
         m_Mode: 1
         m_Arguments:
@@ -12109,7 +12118,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 667225446}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickQuitButtonInPauseMenu
         m_Mode: 1
         m_Arguments:
@@ -12338,7 +12347,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 667225446}
+      - m_Target: {fileID: 0}
         m_MethodName: OnClickDisplayOptionsButtonInPauseMenu
         m_Mode: 1
         m_Arguments:
