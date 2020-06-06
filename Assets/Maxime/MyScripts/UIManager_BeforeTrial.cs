@@ -8,15 +8,21 @@ using UnityEngine.EventSystems;
 
 public class UIManager_BeforeTrial : DefaultUIManager
 {
+    [Header("FADE OUT PARTAMETERS")]
+    [SerializeField] private TextMeshProUGUI dayNumber;
+    [SerializeField] private TextMeshProUGUI trialSubject;
+    public bool inspectionHasBegun = false;
+
     public TextMeshProUGUI titreProcesTxt;
-    public int numeroProces;
+    //public int numeroProces;
     public string chefAccusation;
 
     public TextMeshProUGUI docActuelTxt;
 
     public GameObject changeDocumentTypeLandmark;
+    [SerializeField] private GameObject firstDayIndications;
 
-    [Header("PURCHASE VALIDATION POPUP PARAMETERS")]
+    [Header("VALIDATION POPUP PARAMETERS")]
     [SerializeField] private CanvasGroup validationPopupWindow;
     [SerializeField] private GameObject validationPopupButtonLayout;
     [HideInInspector]
@@ -36,22 +42,31 @@ public class UIManager_BeforeTrial : DefaultUIManager
             singleton = this;
         }
 
-       
+        titreProcesTxt.text = chefAccusation;
+        SetFadeOutTextsIndicator();
+        LevelChanger.s_Singleton.FadeOutOnLevelLoaded("FadeOut");
     }
     #endregion
 
     void Start()
     {
-        SetOSTStateAndPostEvent("state_BeforeTrial");
+        if (GameManager.s_Singleton.trialDayNumber == 1)
+            firstDayIndications.SetActive(true);
 
-        titreProcesTxt.text = chefAccusation + " - Proces n°" + numeroProces;
+        SetOSTStateAndPostEvent("state_BeforeTrial");
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (!validationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
+        if (firstDayIndications.activeInHierarchy && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
+        {
+            Debug.Log("Croix ou A presed");
+            firstDayIndications.SetActive(false);
+        }
+
+        if (inspectionHasBegun && !firstDayIndications.activeInHierarchy && !validationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
         {
             Debug.Log("Square pressed");
             DisplayValidationPopup();
@@ -111,4 +126,9 @@ public class UIManager_BeforeTrial : DefaultUIManager
         SceneManager.LoadScene("SceneProces001");
     }
 
+    void SetFadeOutTextsIndicator()
+    {
+        dayNumber.text = "Jour " + GameManager.s_Singleton.trialDayNumber.ToString();
+        trialSubject.text = titreProcesTxt.text;
+    }
 }

@@ -175,7 +175,7 @@ public class UIManager_MainMenu : DefaultUIManager
     public void OnClickPlayButton()
     {
         GameManager.s_Singleton.gameState = GameState.PlayMode;
-        SceneManager.LoadScene(sceneToLoadOnClickPlayButton);
+        LevelChanger.s_Singleton.LevelToLoad(1);
     }
 
     public new void OnClickDisplayInputsButton()

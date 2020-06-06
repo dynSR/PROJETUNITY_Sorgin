@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public GameState gameState;
 
+    public int trialDayNumber = 1;
+
     public static GameManager s_Singleton;
 
     #region Singleton
@@ -25,6 +27,12 @@ public class GameManager : MonoBehaviour
             s_Singleton = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
+        if(GetTheIntVariable("TrialDayNumber") != 0)
+            trialDayNumber = GetTheIntVariable("TrialDayNumber");
+
+        playerPointsValue = GetTheIntVariable("PlayerPoints");
+        Debug.Log(trialDayNumber);
 
         //Pour les tests, à commenter pour les builds etc
         //gameState = GameState.PlayMode;
@@ -59,5 +67,41 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            trialDayNumber++;
+            SaveTheIntVariable("TrialDayNumber", trialDayNumber);
+            Debug.Log(trialDayNumber);
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            playerPointsValue += 50;
+            SaveTheIntVariable("PlayerPoints", playerPointsValue);
+            Debug.Log(trialDayNumber);
+        }
     }
+
+    private void OnApplicationQuit()
+    {
+        SaveTheIntVariable("TrialDayNumber", trialDayNumber);
+        SaveTheIntVariable("PlayerPoints", playerPointsValue);
+
+        //A decommenter à la fin pour la build finale 
+        PlayerPrefs.DeleteAll();
+    }
+
+
+    #region Save Methods
+    public int GetTheIntVariable(string keyName)
+    {
+        return PlayerPrefs.GetInt(keyName);
+    }
+
+    public void SaveTheIntVariable(string keyName, int keyValue)
+    {
+        PlayerPrefs.SetInt(keyName, keyValue);
+    }
+    #endregion
 }
