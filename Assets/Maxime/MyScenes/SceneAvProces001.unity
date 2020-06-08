@@ -3680,7 +3680,6 @@ MonoBehaviour:
   trialSubject: {fileID: 322854140}
   inspectionHasBegun: 0
   titreProcesTxt: {fileID: 862528290}
-  numeroProces: 1
   chefAccusation: Fabrication de potions
   docActuelTxt: {fileID: 849933817}
   changeDocumentTypeLandmark: {fileID: 535338359}
@@ -4224,8 +4223,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Une maison familiale a br\xFBl\xE9 le 20 juillet 1588.\n\n2 morts : \n-
-    Joseph, p\xE8re de famille\n- Anne, m\xE8re de la famille\n\n3 survivants : \n
-    - Julie, m\xE8re de Joseph\n - Tom, fils de Joseph et Anne\n - Marie, fille de
+    Joseph, p\xE8re de famille\n- Anne, m\xE8re de la famille\n\n3 survivants : \n-
+    Julie, m\xE8re de Joseph\n - Tom, fils de Joseph et Anne\n - Marie, fille de
     Joseph et Anne\n\nLa maison est compl\xE8tement d\xE9truite."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 33a5376243bdbc54dac675e2d3b23d4d, type: 2}
@@ -4870,7 +4869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c5de31018c164564c865df7b033b7c0e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a9f4c758f8848204eb4ad63023fed56f, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6790,6 +6789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPointsValue: 0
   gameState: 0
+  trialDayNumber: 1
 --- !u!4 &1861770550
 Transform:
   m_ObjectHideFlags: 0

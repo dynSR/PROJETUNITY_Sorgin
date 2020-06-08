@@ -255,10 +255,7 @@ public class DefaultUIManager : MonoBehaviour
 
     public void SetOSTStateAndPostEvent(string state)
     {
-        if (AkSoundEngineController.Instance.IsSoundEngineLoaded)
-        {
-            AkSoundEngine.SetState("inGamePhases", state);
-            //ostSwitchWwiseEvent.Post(this.gameObject);
-        }
+        AkSoundEngine.SetState("inGamePhases", state);
+        //ostSwitchWwiseEvent.Post(this.gameObject);
     }
 }

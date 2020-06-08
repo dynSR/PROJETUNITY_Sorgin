@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: f00cfbc9976261468879e2c4d9599673
     GuidInternal: 
-    m_lastTime: -8586138905369055030
+    m_lastTime: -8586101504807283695
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -35,12 +35,21 @@ MonoBehaviour:
       - ElementName: Master Audio Bus
         ObjectType: 2
       Path: Default Work Unit\Master Audio Bus
+    - name: MusicVolume
+      guid: 50285efe7f92e8408070b5d9b954a3ac
+      id: 2346531308
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MusicVolume
+        ObjectType: 2
+      Path: Default Work Unit\MusicVolume
   BankWwu:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPath: Default Work Unit
     guid: 7102da272752824285cc8cea843bd806
     GuidInternal: 
-    m_lastTime: -8586102568587738280
+    m_lastTime: -8586102353310117080
     List:
     - name: GameSFX
       guid: acc8e6fc076e964aa3ab11f9177eaec9
@@ -201,14 +210,23 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 2b55c9509d0fc74bbee674a894c197c4
     GuidInternal: 
-    m_lastTime: -8586138905369074978
-    List: []
+    m_lastTime: -8586101533684156256
+    List:
+    - name: OST_Volume
+      guid: 7a21acb3101b344583f2e5f3037d586f
+      id: 2231087678
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: OST_Volume
+        ObjectType: 13
+      Path: Default Work Unit\OST_Volume
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPath: Default Work Unit
     guid: 8404fe19c2ccd84e90ab52ac9e0010dd
     GuidInternal: 
-    m_lastTime: -8586102423097752435
+    m_lastTime: -8586101533684156256
     List:
     - name: inGamePhases
       guid: fbd93e4022c6cb46b83a26a8d55b8fca
@@ -220,6 +238,12 @@ MonoBehaviour:
         ObjectType: 9
       Path: Default Work Unit\inGamePhases
       values:
+      - name: None
+        guid: debce1e04933b040992bbba820d57e77
+        id: 748895195
+        PathAndIcons:
+        - ElementName: None
+          ObjectType: 8
       - name: state_BeforeTrial
         guid: de22356f31739c46a7d8d55d2a0e2891
         id: 2979606294
