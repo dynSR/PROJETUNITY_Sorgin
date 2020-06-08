@@ -15,6 +15,7 @@ public class UIManager_MainMenu : DefaultUIManager
     [SerializeField] private GameObject mainMenuFirstButton;
     [SerializeField] private GameObject optionsButton;
     [SerializeField] private GameObject optionsFirstButton;
+    [SerializeField] private GameObject menuButtonsGroup;
 
     [Header("FADING PARAMETERS")]
     [SerializeField] private CanvasGroup splashScreenWindow;
@@ -59,8 +60,8 @@ public class UIManager_MainMenu : DefaultUIManager
         else
         {
             s_Singleton = this;
+
             GameManager.s_Singleton.gameState = GameState.InMainMenu;
-            
 
             if (playerIsBackToMainMenu)
             {
@@ -175,6 +176,7 @@ public class UIManager_MainMenu : DefaultUIManager
     public void OnClickPlayButton()
     {
         GameManager.s_Singleton.gameState = GameState.PlayMode;
+        DisableButtonsInLayout(menuButtonsGroup);
         LevelChanger.s_Singleton.LevelToLoad(1);
     }
 
@@ -229,6 +231,7 @@ public class UIManager_MainMenu : DefaultUIManager
     private void HideSplashScreenAndDisplayMainMenu()
     {
         Debug.Log("Hiding SplashScreen");
+        EnableButtonsInLayout(menuButtonsGroup, null);
         EventSystem.current.SetSelectedGameObject(mainMenuFirstButton);
         Debug.Log(EventSystem.current.currentSelectedGameObject.name);
         StartCoroutine(AlternateTwoFadingsAtTheSameTime(mainMenuWindow ,splashScreenWindow));

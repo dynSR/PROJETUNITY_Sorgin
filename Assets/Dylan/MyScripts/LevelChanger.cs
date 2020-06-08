@@ -7,12 +7,9 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 public class LevelChanger : MonoBehaviour
 {
-    //[SerializeField] private Image fadeImage;
-    //[Range(0,255)]
-    //[SerializeField] private float alphaValue;
     private int levelToLoadId;
 
-    private Animator animator;
+    public Animator animator;
 
     public static LevelChanger s_Singleton;
 
@@ -27,18 +24,16 @@ public class LevelChanger : MonoBehaviour
             s_Singleton = this;
         }
 
-        //fadeImage.color.a.Equals(alphaValue);
-
         animator = GetComponent<Animator>();
     }
 
     public void LevelToLoad(int levelId)
     {
         levelToLoadId = levelId;
-        animator.SetTrigger("FadeIn");
+        SetAnimatorTrigger("FadeIn");
     }
 
-    public void FadeOutOnLevelLoaded(string triggerToSet)
+    public void SetAnimatorTrigger(string triggerToSet)
     {
         animator.SetTrigger(triggerToSet);
     }
@@ -48,15 +43,46 @@ public class LevelChanger : MonoBehaviour
         SceneManager.LoadScene(levelToLoadId);
     }
 
+    #region BeforeTrialPhase
     //Pour la phase d'avant-procès uniquement
     public void SetInspectionStateToTrue()
     {
-        UIManager_BeforeTrial.singleton.inspectionHasBegun = true;
+        UIManager_BeforeTrial.singleton.beforeTrialPhaseHasBegun = true;
     }
 
     public void SetInspectionStateToFalse()
     {
-        UIManager_BeforeTrial.singleton.inspectionHasBegun = false;
+        UIManager_BeforeTrial.singleton.beforeTrialPhaseHasBegun = false;
 
+    }
+    #endregion
+
+    #region TrialPhase
+    //Pour la phase d'avant-procès uniquement
+    public void ActiveFlowCharts()
+    {
+        foreach (GameObject obj in UIManagerTrial.s_Singleton.flowchartsGameObjects)
+        {
+            obj.SetActive(true);
+        }
+    }
+
+    public void DeactivateFlowCharts()
+    {
+        foreach (GameObject obj in UIManagerTrial.s_Singleton.flowchartsGameObjects)
+        {
+            obj.SetActive(false);
+        }
+    }
+    #endregion
+
+    public void SetStateOfGameManagerToCinematicOrTransition()
+    {
+        GameManager.s_Singleton.gameState = GameState.CinematicOrTransition;
+    }
+
+    public void SetStateOfGameManagerToPlayMode()
+    {
+        GameManager.s_Singleton.gameState = GameState.PlayMode;
     }
 }

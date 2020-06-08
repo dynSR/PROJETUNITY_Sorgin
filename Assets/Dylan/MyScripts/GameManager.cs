@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameState { PlayMode, Pause, Cinematic, ConsultingShop, InMainMenu }
+public enum GameState { PlayMode, Pause, CinematicOrTransition, ConsultingShop, InMainMenu }
 
 public class GameManager : MonoBehaviour
 {
+    [Header("GLOBAL GAME VARIABLES")]
+    public int trialDayNumber = 1;
+    public GameState gameState;
+
     [Header("PLAYER POINTS")]
     public int playerPointsValue;
 
-    public GameState gameState;
-
-    public int trialDayNumber = 1;
+    [Header("EXFILTRATION")]
+    public bool exfiltrationHasBegun = false;
+    public float timerUntilEndOfPhase = 0;
+    public float maxTimerValueToReach;
 
     public static GameManager s_Singleton;
 
@@ -31,7 +36,7 @@ public class GameManager : MonoBehaviour
         if(GetTheIntVariable("TrialDayNumber") != 0)
             trialDayNumber = GetTheIntVariable("TrialDayNumber");
 
-        playerPointsValue = GetTheIntVariable("PlayerPoints");
+        //playerPointsValue = GetTheIntVariable("PlayerPoints");
         Debug.Log(trialDayNumber);
 
         //Pour les tests, à commenter pour les builds etc
@@ -51,9 +56,9 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Pause:
                 //For Test
-                //Time.timeScale = 0f;
+                Time.timeScale = 0f;
                 break;
-            case GameState.Cinematic:
+            case GameState.CinematicOrTransition:
                 Time.timeScale = 1f;
                 //Faire quelque chose si besoin...
                 break;
@@ -68,6 +73,19 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        if (exfiltrationHasBegun)
+        {
+            timerUntilEndOfPhase += Time.deltaTime;
+
+            if (timerUntilEndOfPhase >= maxTimerValueToReach)
+            {
+                LevelChanger.s_Singleton.LevelToLoad(1);
+                trialDayNumber++;
+                timerUntilEndOfPhase = 0;
+                exfiltrationHasBegun = false;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.H))
         {
             trialDayNumber++;
@@ -75,12 +93,12 @@ public class GameManager : MonoBehaviour
             Debug.Log(trialDayNumber);
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            playerPointsValue += 50;
-            SaveTheIntVariable("PlayerPoints", playerPointsValue);
-            Debug.Log(trialDayNumber);
-        }
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    playerPointsValue += 50;
+        //    SaveTheIntVariable("PlayerPoints", playerPointsValue);
+        //    Debug.Log(trialDayNumber);
+        //}
     }
 
     private void OnApplicationQuit()

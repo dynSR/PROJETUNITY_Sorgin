@@ -141,8 +141,6 @@ public class UIManager : DefaultUIManager
         shopWindowIsDisplayed = true;
         EnableButtonsInLayout(shopButtonsGroup, null);
 
-        EventSystem.current.sendNavigationEvents = true;
-
         playerPoints.SetActive(true);
     }
 
@@ -157,6 +155,7 @@ public class UIManager : DefaultUIManager
         StartCoroutine(FadeCanvasGroup(elementsToDisplayOnShopClosure, elementsToDisplayOnShopClosure.alpha, 1, fadeDuration));
 
         GameManager.s_Singleton.gameState = GameState.PlayMode;
+        GameManager.s_Singleton.exfiltrationHasBegun = true;
     }
     #endregion
 

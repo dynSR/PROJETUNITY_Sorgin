@@ -287,7 +287,5 @@ MonoBehaviour:
     List: []
   ExpandedItems:
   - /Unity_WwiseProject
-  - /Unity_WwiseProject/Events
-  - /Unity_WwiseProject/Events/Default Work Unit
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

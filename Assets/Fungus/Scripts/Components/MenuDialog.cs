@@ -16,7 +16,7 @@ namespace Fungus
     public class MenuDialog : MonoBehaviour
     {
         [Tooltip("Automatically select the first interactable button when the menu is shown.")]
-        [SerializeField] protected bool autoSelectFirstButton = false;
+        public bool autoSelectFirstButton = false;
 
         protected Button[] cachedButtons;
 

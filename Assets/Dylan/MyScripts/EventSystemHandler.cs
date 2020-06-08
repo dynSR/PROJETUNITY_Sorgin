@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Fungus;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,19 +7,21 @@ using UnityEngine.UI;
 
 public class EventSystemHandler : MonoBehaviour
 {
-    [SerializeField] private GameObject buttonGroup;
     [SerializeField] private Sprite newButtonImage;
     [SerializeField] private GameObject buttonLayout;
+    [SerializeField] private GameObject menuDialog;
+
+    public void ForceToDeactivate()
+    {
+        menuDialog.SetActive(false);
+        buttonLayout.transform.GetChild(0).GetComponent<ButtonSoundEffects>().isSelected = true;
+    }
 
     public void SetFirstObjectOfEventSystem()
     {
-        if (buttonGroup.activeInHierarchy)
-            EventSystem.current.SetSelectedGameObject(buttonGroup.transform.GetChild(0).gameObject);
-        else
-            EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(buttonLayout.transform.GetChild(0).gameObject);
 
-
-        buttonGroup.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = newButtonImage;
+        buttonLayout.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = newButtonImage;
     }
 
     public void EnableButtonsJustBeforeTimerBegin()

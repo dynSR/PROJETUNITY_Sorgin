@@ -13,6 +13,8 @@ public class FungusButtonHandler : MonoBehaviour, ISelectHandler, IDeselectHandl
     {
         if(gameObject != EventSystem.current.currentSelectedGameObject)
             GetComponent<Button>().image.sprite = notSelectedImage;
+        else
+            GetComponent<Button>().image.sprite = selectedImage;
     }
 
     public void OnDeselect(BaseEventData eventData)

@@ -32,6 +32,8 @@ public class TrialManager : MonoBehaviour
     {
         actualPointsNumber += mainFlowchart.GetIntegerVariable("goodAnswers") * 250;
         GameManager.s_Singleton.playerPointsValue = actualPointsNumber;
-        SceneManager.LoadScene("SceneBuild");
+        GameManager.s_Singleton.SaveTheIntVariable("PlayerPoints", GameManager.s_Singleton.playerPointsValue);
+        LevelChanger.s_Singleton.LevelToLoad(4);
+        LevelChanger.s_Singleton.SetAnimatorTrigger("FadeIn");
     }
 }

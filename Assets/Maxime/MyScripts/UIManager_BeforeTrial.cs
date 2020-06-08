@@ -11,11 +11,11 @@ public class UIManager_BeforeTrial : DefaultUIManager
     [Header("FADE OUT PARTAMETERS")]
     [SerializeField] private TextMeshProUGUI dayNumber;
     [SerializeField] private TextMeshProUGUI trialSubject;
-    public bool inspectionHasBegun = false;
+    public bool beforeTrialPhaseHasBegun = false;
 
     public TextMeshProUGUI titreProcesTxt;
     //public int numeroProces;
-    public string chefAccusation;
+    public string[] chefAccusation;
 
     public TextMeshProUGUI docActuelTxt;
 
@@ -42,9 +42,9 @@ public class UIManager_BeforeTrial : DefaultUIManager
             singleton = this;
         }
 
-        titreProcesTxt.text = chefAccusation;
+        titreProcesTxt.text = chefAccusation[GameManager.s_Singleton.trialDayNumber - 1];
         SetFadeOutTextsIndicator();
-        LevelChanger.s_Singleton.FadeOutOnLevelLoaded("FadeOut");
+        LevelChanger.s_Singleton.SetAnimatorTrigger("FadeOut");
     }
     #endregion
 
@@ -66,7 +66,7 @@ public class UIManager_BeforeTrial : DefaultUIManager
             firstDayIndications.SetActive(false);
         }
 
-        if (inspectionHasBegun && !firstDayIndications.activeInHierarchy && !validationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
+        if (beforeTrialPhaseHasBegun && !firstDayIndications.activeInHierarchy && !validationPopupIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
         {
             Debug.Log("Square pressed");
             DisplayValidationPopup();
@@ -123,7 +123,8 @@ public class UIManager_BeforeTrial : DefaultUIManager
 
     public void GoToTrial()
     {
-        SceneManager.LoadScene("SceneProces001");
+        LevelChanger.s_Singleton.LevelToLoad(2);
+        LevelChanger.s_Singleton.SetAnimatorTrigger("FadeIn");
     }
 
     void SetFadeOutTextsIndicator()

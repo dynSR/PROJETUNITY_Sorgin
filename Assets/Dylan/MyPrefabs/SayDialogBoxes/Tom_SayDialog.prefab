@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 7218234872144501525}
   - component: {fileID: 7218234872144501526}
   - component: {fileID: 7218234872144501527}
+  - component: {fileID: 2305732074066699697}
   - component: {fileID: 7218234872144501528}
   m_Layer: 5
   m_Name: Tom_SayDialog
@@ -621,6 +622,18 @@ MonoBehaviour:
   nextClickDelay: 1.25
   cancelEnabled: 0
   ignoreMenuClicks: 1
+--- !u!114 &2305732074066699697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218234872144501529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c468590787e305641aef29bafd3c6334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &7218234872144501528
 AudioSource:
   m_ObjectHideFlags: 0
