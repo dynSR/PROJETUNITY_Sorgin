@@ -120,7 +120,16 @@ public class MoveScript : MonoBehaviour
                 WallLight.SetActive(true);
                 Anim.SetBool("Lean", true);
 
-                horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("Horizontal"), 0.05f);
+
+                if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
+                {
+                    horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("PS4_LStick_Horizontal"), 0.05f);
+                }
+                if (ConnectedController.s_Singleton.XboxControllerIsConnected)
+                {
+                    horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("XBOX_LStick_Horizontal"), 0.05f);
+                }
+
                 moveDirection = new Vector3(-horizontal, 0, vertical);
                 moveDirection = transform.TransformDirection(moveDirection);
 
@@ -134,6 +143,15 @@ public class MoveScript : MonoBehaviour
                     Anim.SetBool("L", false);
                 }
 
+                if (horizontal <= 0)
+                {
+                    Anim.SetBool("CrouchL", true);
+                }
+                else
+                {
+                    Anim.SetBool("CrouchL", false);
+                }
+
                 if (horizontal >= 0 && !CanGoL)
                 {
                     horizontal = 0;
@@ -144,12 +162,12 @@ public class MoveScript : MonoBehaviour
                     Anim.SetBool("R", false);
                 }
 
-                if (Input.GetAxis("Horizontal") == 0 && !CanGoR)
+                if ((Input.GetAxis("PS4_LStick_Horizontal") == 0 || Input.GetAxis("XBOX_LStick_Horizontal") ==0) && !CanGoR)
                 {
                     horizontal = 1;
                 }
 
-                if (Input.GetAxis("Horizontal") == 0 && !CanGoL)
+                if ((Input.GetAxis("PS4_LStick_Horizontal") == 0 || Input.GetAxis("XBOX_LStick_Horizontal") == 0) & !CanGoL)
                 {
                     horizontal = -1;
                 }

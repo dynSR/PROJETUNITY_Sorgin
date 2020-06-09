@@ -43,8 +43,8 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.5
-  m_Range: 100
+  m_Intensity: 0.7
+  m_Range: 200
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -54,8 +54,8 @@ Light:
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0
-    m_NormalBias: 0.56
-    m_NearPlane: 0.31
+    m_NormalBias: 0.43
+    m_NearPlane: 0.15
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -1125,6 +1125,7 @@ MonoBehaviour:
   Speed: 20
   Light: {fileID: 2055548354}
   Text: {fileID: 1756660525945558928}
+  interactionPopup: {fileID: 0}
 --- !u!135 &6379035859645507971
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1235,7 +1236,7 @@ MonoBehaviour:
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
-    Value: 5.211021e-11
+    Value: 0
     m_SpeedMode: 0
     m_MaxSpeed: 300
     m_AccelTime: 0.1
@@ -1570,8 +1571,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6379035860551110529}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: -0.00000041723254}
-  m_LocalPosition: {x: 0.00000029802325, y: 1.75, z: -0.1700003}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.75, z: -0.17000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6379035859816319551}

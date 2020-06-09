@@ -35,6 +35,16 @@ public class ArmoireAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
+        {
+            CamArmoire.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.m_InputAxisName = "PS4_LStick_Horizontal";
+        }
+        if (ConnectedController.s_Singleton.XboxControllerIsConnected)
+        {
+            CamArmoire.GetCinemachineComponent<CinemachineOrbitalTransposer>().m_XAxis.m_InputAxisName = "XBOX_LStick_Horizontal";
+        }
+
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             if (!Inside)
