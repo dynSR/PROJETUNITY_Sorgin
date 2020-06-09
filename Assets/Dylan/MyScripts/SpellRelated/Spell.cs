@@ -173,15 +173,16 @@ public class Spell : ScriptableObject
     #region Stun
     private void ActivateAimMode()
     {
+        Debug.Log("Input a mettre et stun a lancer selon les input et normalement c'est bon");
         Player player = Player.s_Singleton;
-        //player.GetComponent<FieldOfView>().enabled = true;
+        player.FieldOfView.SetActive(true);
         player.isAiming = true;
     }
 
     private void DeactivateAimMode()
     {
         Player player = Player.s_Singleton;
-        //player.GetComponent<FieldOfView>().enabled = false;
+        player.FieldOfView.SetActive(false);
         player.isAiming = false;
     }
 
@@ -192,7 +193,7 @@ public class Spell : ScriptableObject
         target.GetComponent<NavMeshAgent>().enabled = false;
         DeactivateAimMode();
         PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
-        
+
     }
     #endregion
 

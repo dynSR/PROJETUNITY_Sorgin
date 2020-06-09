@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     [Header("CLONE PARAMETERS")]
     public Transform posToInstantiateTheClone;
 
+    [Header("STUN PARAMETERS")]
+    public GameObject FieldOfView;
+
     [Header("TRANSFORMATIONS STATES")]
     public bool playerIsTranformedInMouse = false;
     public bool playerIsTranformedInCat = false;
