@@ -520,6 +520,7 @@ MonoBehaviour:
   catCharacterModel: {fileID: 0}
   mouseCharacterModel: {fileID: 0}
   posToInstantiateTheClone: {fileID: 0}
+  FieldOfView: {fileID: 0}
   playerIsTranformedInMouse: 0
   playerIsTranformedInCat: 0
   playerIsInHumanForm: 1
@@ -1661,7 +1662,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b5b7ff5472cb645b0ad86c9ded3084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoadId: 0
   animator: {fileID: 0}
   mainMenuSceneId: 0
   trialSceneId: 2
@@ -2937,6 +2937,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4962925266361002829, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5939663439129564877, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3187,6 +3192,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5939663439973718419, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5939663440676775178, guid: 9f90dae90ea4d1046ab88ba52468b672,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -3216,6 +3226,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476192561683401195, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476192561683401195, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8476192561683401195, guid: 9f90dae90ea4d1046ab88ba52468b672,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f90dae90ea4d1046ab88ba52468b672, type: 3}
@@ -3266,6 +3291,11 @@ PrefabInstance:
       propertyPath: objectActivationFeedback
       value: 
       objectReference: {fileID: 715804765}
+    - target: {fileID: 2881762232486565490, guid: 4f47deb4e1b0c614e89cd5f41cf6e3bd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5875104778434119125, guid: 4f47deb4e1b0c614e89cd5f41cf6e3bd,
         type: 3}
       propertyPath: m_Name

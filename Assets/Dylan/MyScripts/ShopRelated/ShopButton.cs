@@ -27,7 +27,9 @@ public class ShopButton : MonoBehaviour, ISubmitHandler/*, ISelectHandler, IDese
     [SerializeField] private TextMeshProUGUI spellTooltipValueText;
     [SerializeField] private TextMeshProUGUI spellTooltipEffectDescriptionText;
 
-    [Header("SPELL TOOLTIP PARAMETERS")]
+    [Header("SPELLSHOP BUTTON PARAMETERS")]
+    [SerializeField] private GameObject avalaibleSpellShopButtonIcon;
+    [SerializeField] private GameObject avalaibleSpellShopButtonBackground;
     [SerializeField] private Image spellShopButtonImage;
     [SerializeField] private TextMeshProUGUI spellShopButtonNameText;
     [SerializeField] private TextMeshProUGUI spellShopButtonValueText;
@@ -90,6 +92,11 @@ public class ShopButton : MonoBehaviour, ISubmitHandler/*, ISelectHandler, IDese
     public void SetButtonColor(Color _color)
     {
         gameObject.GetComponent<Button>().image.color = _color;
+
+        for (int i = 0; i < avalaibleSpellShopButtonIcon.transform.childCount; i++)
+        {
+            avalaibleSpellShopButtonIcon.transform.GetChild(i).GetComponent<Image>().color = _color;
+        }
     }
 
     //Summary : Lorsque le joueur appuie sur "X", "A", la fenêtre de validation s'affiche + référence du sort étant en train d'être acheté.
