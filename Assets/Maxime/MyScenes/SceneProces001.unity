@@ -6386,7 +6386,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b5b7ff5472cb645b0ad86c9ded3084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelToLoadId: 0
   animator: {fileID: 0}
+  mainMenuSceneId: 0
+  trialSceneId: 2
+  exfiltrationSceneId: 4
 --- !u!95 &1124635008
 Animator:
   serializedVersion: 3

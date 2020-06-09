@@ -1513,6 +1513,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9ae8a91444d814eb0f7ac49801baa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1320336071
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5021866551627841513, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_Name
+      value: EnnemiTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5021866551627841517, guid: e472f29ac6a347a49abc7828ddcfb278,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e472f29ac6a347a49abc7828ddcfb278, type: 3}
 --- !u!1 &1438228473
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,7 +1616,7 @@ MonoBehaviour:
   playerPointsValue: 5000
   exfiltrationHasBegun: 0
   timerUntilEndOfPhase: 0
-  maxTimerValueToReach: 2.5
+  maxTimerValueToReach: 500
 --- !u!4 &1438228475
 Transform:
   m_ObjectHideFlags: 0
@@ -1592,6 +1661,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3b5b7ff5472cb645b0ad86c9ded3084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelToLoadId: 0
+  animator: {fileID: 0}
+  mainMenuSceneId: 0
+  trialSceneId: 2
+  exfiltrationSceneId: 4
 --- !u!95 &1488667955
 Animator:
   serializedVersion: 3

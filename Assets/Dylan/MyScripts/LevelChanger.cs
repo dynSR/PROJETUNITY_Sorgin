@@ -7,9 +7,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Animator))]
 public class LevelChanger : MonoBehaviour
 {
+    //public pour DEBUG 
     private int levelToLoadId;
 
-    public Animator animator;
+    [HideInInspector] public Animator animator;
+
+    [SerializeField] private int mainMenuSceneId;
+    [SerializeField] private int trialSceneId;
+    [SerializeField] private int exfiltrationSceneId;
+
 
     public static LevelChanger s_Singleton;
 
@@ -27,7 +33,7 @@ public class LevelChanger : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void LevelToLoad(int levelId)
+    private void LevelToLoad(int levelId)
     {
         levelToLoadId = levelId;
         SetAnimatorTrigger("FadeIn");
@@ -43,6 +49,27 @@ public class LevelChanger : MonoBehaviour
         SceneManager.LoadScene(levelToLoadId);
     }
 
+    #region MainMenu
+    public void LoadBeforeTrialScene()
+    {
+        LevelToLoad(1);
+
+        //Utile lorsqu'il y aura plusieurs scènes pour l'avant-procès
+        //if (GameManager.s_Singleton.trialDayNumber == 0)
+        //{
+        //    LevelToLoad(GameManager.s_Singleton.trialDayNumber);
+        //}
+        //else if (GameManager.s_Singleton.trialDayNumber == 1)
+        //{
+        //    LevelToLoad(GameManager.s_Singleton.trialDayNumber);
+        //}
+        //else if (GameManager.s_Singleton.trialDayNumber == 2)
+        //{
+        //    LevelToLoad(GameManager.s_Singleton.trialDayNumber);
+        //}
+    }
+    #endregion
+
     #region BeforeTrialPhase
     //Pour la phase d'avant-procès uniquement
     public void SetInspectionStateToTrue()
@@ -54,6 +81,11 @@ public class LevelChanger : MonoBehaviour
     {
         UIManager_BeforeTrial.singleton.beforeTrialPhaseHasBegun = false;
 
+    }
+
+    public void LoadTrialScene()
+    {
+        LevelToLoad(trialSceneId);
     }
     #endregion
 
@@ -74,8 +106,22 @@ public class LevelChanger : MonoBehaviour
             obj.SetActive(false);
         }
     }
+
+    public void LoadExfiltrationScene()
+    {
+        LevelToLoad(exfiltrationSceneId);
+    }
     #endregion
 
+    #region Exfiltration
+    public void DisplayShopWindow()
+    {
+        UIManager.s_Singleton.DisplayShopWindow();
+    }
+
+    #endregion
+
+    #region Game State
     public void SetStateOfGameManagerToCinematicOrTransition()
     {
         GameManager.s_Singleton.gameState = GameState.CinematicOrTransition;
@@ -85,4 +131,5 @@ public class LevelChanger : MonoBehaviour
     {
         GameManager.s_Singleton.gameState = GameState.PlayMode;
     }
+    #endregion
 }

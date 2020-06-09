@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MapHandler : MonoBehaviour
@@ -7,6 +8,9 @@ public class MapHandler : MonoBehaviour
     [SerializeField] private GameObject mapWindow;
     //DEBUG
     [SerializeField] private GameObject shopWindow;
+
+    [SerializeField] private TextMeshProUGUI textToModifyOnExfiltrationEnd;
+    [SerializeField] private GameObject objectToDisplayOnExfiltrationEnd;
 
     [SerializeField] private string displayingOrHidingMapWwiseEventSoundName;
     [SerializeField] private RectTransform cursorRectTransform;
@@ -38,6 +42,7 @@ public class MapHandler : MonoBehaviour
 
     private void Start()
     {
+        HideMap();
         cursorRectTransformPos = cursorRectTransform.localPosition;
     }
 
@@ -45,7 +50,7 @@ public class MapHandler : MonoBehaviour
     {
         //Debug.Log(Input.GetAxis("PS4_DPadVertical"));
 
-        if (GameManager.s_Singleton.gameState == GameState.PlayMode)
+        if (GameManager.s_Singleton.exfiltrationHasBegun && GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             CheckDpadYValue();
 
@@ -64,6 +69,19 @@ public class MapHandler : MonoBehaviour
                     HideMap();
                     canDisplayOrHideMap = false;
                 }
+            }
+            #endregion
+        }
+        else if(!GameManager.s_Singleton.exfiltrationHasBegun && GameManager.s_Singleton.gameState == GameState.PlayMode)
+        {
+            CheckDpadYValue();
+
+            #region Arrow Up Dpad
+            if (canDisplayOrHideMap && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_DPadVertical") >= 0.75f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_DPadVertical") >= 0.75f))
+            {
+                //HideMap();
+                canDisplayOrHideMap = false;
+                LevelChanger.s_Singleton.LoadBeforeTrialScene();
             }
             #endregion
         }
@@ -100,13 +118,29 @@ public class MapHandler : MonoBehaviour
         //Debug.Log("Display Map");
         UIManager.s_Singleton.UIWindowsDisplay(mapWindow);
 
-        if(shopWindow.activeInHierarchy)
-            UIManager.s_Singleton.UIWindowsHide(shopWindow);
+        //if(shopWindow.activeInHierarchy)
+        //    UIManager.s_Singleton.UIWindowsHide(shopWindow);
 
         mapIsDisplayed = true;
         AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
 
         cursorRectTransform.localPosition = cursorRectTransformPos;
+
+        if (GameManager.s_Singleton.exfiltrationHasBegun)
+        {
+            textToModifyOnExfiltrationEnd.text = "Désafficher la carte";
+
+            if(objectToDisplayOnExfiltrationEnd.activeInHierarchy)
+                objectToDisplayOnExfiltrationEnd.SetActive(false);
+        }
+        else
+        {
+            textToModifyOnExfiltrationEnd.text = "Continuer";
+
+            if (!objectToDisplayOnExfiltrationEnd.activeInHierarchy)
+                objectToDisplayOnExfiltrationEnd.SetActive(true);
+        }
+
         //Player.s_Singleton.LookAtMap = true;
     }
 
@@ -117,7 +151,9 @@ public class MapHandler : MonoBehaviour
         //Debug.Log("Hide Map");
         UIManager.s_Singleton.UIWindowsHide(mapWindow);
         mapIsDisplayed = false;
-        AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
+
+        if(GameManager.s_Singleton.exfiltrationHasBegun)
+            AkSoundEngine.PostEvent(displayingOrHidingMapWwiseEventSoundName, this.gameObject);
         //Player.s_Singleton.LookAtMap = false;
     }
 }

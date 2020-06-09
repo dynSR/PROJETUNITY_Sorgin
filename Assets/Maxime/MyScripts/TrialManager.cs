@@ -31,9 +31,10 @@ public class TrialManager : MonoBehaviour
     public void GoToEscape()
     {
         actualPointsNumber += mainFlowchart.GetIntegerVariable("goodAnswers") * 250;
+
         GameManager.s_Singleton.playerPointsValue = actualPointsNumber;
         GameManager.s_Singleton.SaveTheIntVariable("PlayerPoints", GameManager.s_Singleton.playerPointsValue);
-        LevelChanger.s_Singleton.LevelToLoad(4);
-        LevelChanger.s_Singleton.SetAnimatorTrigger("FadeIn");
+
+        LevelChanger.s_Singleton.LoadExfiltrationScene();
     }
 }

@@ -79,10 +79,7 @@ public class GameManager : MonoBehaviour
 
             if (timerUntilEndOfPhase >= maxTimerValueToReach)
             {
-                LevelChanger.s_Singleton.LevelToLoad(1);
-                trialDayNumber++;
-                timerUntilEndOfPhase = 0;
-                exfiltrationHasBegun = false;
+                EndExfiltration();
             }
         }
 
@@ -110,6 +107,18 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.DeleteAll();
     }
 
+    public void EndExfiltration()
+    {
+        exfiltrationHasBegun = false;
+
+        MapHandler map = GameObject.FindObjectOfType<MapHandler>();
+
+        if (map != null)
+            map.DisplayMap();
+
+        trialDayNumber++;
+        timerUntilEndOfPhase = 0;
+    }
 
     #region Save Methods
     public int GetTheIntVariable(string keyName)

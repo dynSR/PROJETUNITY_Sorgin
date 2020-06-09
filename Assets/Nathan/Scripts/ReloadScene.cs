@@ -20,7 +20,7 @@ public class ReloadScene : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Scene_MainMenu");
+            GameManager.s_Singleton.EndExfiltration();
             Nav.enabled = false;
             other.transform.root.GetComponent<MoveScript>().enabled = false;
             Player.s_Singleton.isDead = true;

@@ -123,8 +123,7 @@ public class UIManager_BeforeTrial : DefaultUIManager
 
     public void GoToTrial()
     {
-        LevelChanger.s_Singleton.LevelToLoad(2);
-        LevelChanger.s_Singleton.SetAnimatorTrigger("FadeIn");
+        LevelChanger.s_Singleton.LoadTrialScene();
     }
 
     void SetFadeOutTextsIndicator()

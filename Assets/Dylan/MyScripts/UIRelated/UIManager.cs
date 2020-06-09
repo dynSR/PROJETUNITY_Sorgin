@@ -77,11 +77,11 @@ public class UIManager : DefaultUIManager
 
     private void Start()
     {
-        SetOSTStateAndPostEvent("state_Exfiltration");
+        LevelChanger.s_Singleton.SetAnimatorTrigger("FadeOut");
 
+        SetOSTStateAndPostEvent("state_Exfiltration");
         //Initialisation des points du joueur au start
         SetPlayerPointsCountValue();
-        DisplayShopWindow();
     }
 
     public override void Update()
@@ -130,7 +130,7 @@ public class UIManager : DefaultUIManager
     }
 
     #region Display/Hide Shop Window
-    void DisplayShopWindow()
+    public void DisplayShopWindow()
     {
         GameManager.s_Singleton.gameState = GameState.ConsultingShop;
 

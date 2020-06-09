@@ -177,7 +177,7 @@ public class UIManager_MainMenu : DefaultUIManager
     {
         GameManager.s_Singleton.gameState = GameState.PlayMode;
         DisableButtonsInLayout(menuButtonsGroup);
-        LevelChanger.s_Singleton.LevelToLoad(1);
+        LevelChanger.s_Singleton.LoadBeforeTrialScene();
     }
 
     public new void OnClickDisplayInputsButton()
