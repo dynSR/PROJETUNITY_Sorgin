@@ -26,12 +26,6 @@ public class UIManager_MainMenu : DefaultUIManager
     [SerializeField] private float lerpTime = 0.75f;
     [SerializeField] private float transitionBetweenTwoFades = 1.25f;
 
-    [Header("INPUTS LAYOUT PARAMETERS")]
-    [SerializeField] private Image inputsLayoutImage;
-    [SerializeField] private Sprite[] inputsLayoutImageArray;
-    [SerializeField] private TextMeshProUGUI inputLayoutDisplayedIdx;
-    public int imageToDisplayIdx = 0;
-
     //[Header("SUB-MENUS INPUTS LANDMARK")]
     //[SerializeField] private GameObject mainMenuInputsLandmark;
     //[SerializeField] private GameObject inputsDisplayerInputsLandmark;
@@ -41,7 +35,6 @@ public class UIManager_MainMenu : DefaultUIManager
     [Header("DEBUG DISPLAYING")]
     public bool splashScreenIsDisplayed = true;
     public bool mainMenuIsDisplayed = false;
-    public bool inputsDisplayerIsDisplayed = false;
     public bool optionsAreDisplayed = false;
     public bool creditsAreDisplayed = false;
 
@@ -91,56 +84,6 @@ public class UIManager_MainMenu : DefaultUIManager
         {
             StartCoroutine(BackToMainMenuFromAnySubMenu());
         }
-
-        SwitchInputLayoutDisplayed();
-    }
-
-    void SwitchInputLayoutDisplayed()
-    {
-        if (inputsDisplayerIsDisplayed)
-        {
-            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LB"))
-            {
-                if (imageToDisplayIdx == 0)
-                {
-                    imageToDisplayIdx = inputsLayoutImageArray.Length-1;
-                }
-                else
-                {
-                    imageToDisplayIdx--;
-                }
-            }
-            else if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_R1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_RB"))
-            {
-                if (imageToDisplayIdx == inputsLayoutImageArray.Length-1)
-                {
-                    imageToDisplayIdx = 0;
-                }
-                else
-                {
-                    imageToDisplayIdx++;
-                }
-            }
-
-            if (inputsLayoutImage.sprite == inputsLayoutImageArray[0])
-            {
-                Debug.Log("Inputs Avant-Procès");
-                inputLayoutDisplayedIdx.text = "1 / 3";
-            }
-            else if (inputsLayoutImage.sprite == inputsLayoutImageArray[1])
-            {
-                Debug.Log("Inputs Procès");
-                inputLayoutDisplayedIdx.text = "2 / 3";
-            }
-            else if (inputsLayoutImage.sprite == inputsLayoutImageArray[2])
-            {
-                Debug.Log("Inputs Exfiltration");
-                inputLayoutDisplayedIdx.text = "3 / 3";
-            }
-        }
-
-        inputsLayoutImage.sprite = inputsLayoutImageArray[imageToDisplayIdx];
-
     }
 
     #region Debug Buttons

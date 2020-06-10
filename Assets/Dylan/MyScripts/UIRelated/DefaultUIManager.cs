@@ -1,5 +1,6 @@
 ﻿using Fungus;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -22,6 +23,13 @@ public class DefaultUIManager : MonoBehaviour
     
     [Header("LAST SELECTED BUTTON")]
     public static GameObject lastSelectedButton;
+
+    [Header("INPUTS LAYOUT PARAMETERS")]
+    [SerializeField] private Image inputsLayoutImage;
+    [SerializeField] private Sprite[] inputsLayoutImageArray;
+    [SerializeField] private TextMeshProUGUI inputLayoutDisplayedIdx;
+    public bool inputsDisplayerIsDisplayed = false;
+    private int imageToDisplayIdx = 0;
 
     [Header("WWISE EVENT ")]
     public AK.Wwise.Event ostSwitchWwiseEvent;
@@ -55,6 +63,8 @@ public class DefaultUIManager : MonoBehaviour
         {
             BackInPauseMenu();
         }
+
+        SwitchInputLayoutDisplayed();
     }
 
     private void Pause()
@@ -113,6 +123,7 @@ public class DefaultUIManager : MonoBehaviour
         }
     }
 
+    #region Buttons Behaviour
     public void OnClickResumeButton()
     {
         Resume();
@@ -148,6 +159,55 @@ public class DefaultUIManager : MonoBehaviour
     {
         Debug.Log("Quitte le jeu...");
         Application.Quit();
+    }
+    #endregion
+
+    public void SwitchInputLayoutDisplayed()
+    {
+        if (inputsDisplayerIsDisplayed || pauseWindowInputsDisplayerIsDisplayed)
+        {
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LB"))
+            {
+                if (imageToDisplayIdx == 0)
+                {
+                    imageToDisplayIdx = inputsLayoutImageArray.Length - 1;
+                }
+                else
+                {
+                    imageToDisplayIdx--;
+                }
+            }
+            else if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_R1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_RB"))
+            {
+                if (imageToDisplayIdx == inputsLayoutImageArray.Length - 1)
+                {
+                    imageToDisplayIdx = 0;
+                }
+                else
+                {
+                    imageToDisplayIdx++;
+                }
+            }
+
+            if (inputsLayoutImage.sprite == inputsLayoutImageArray[0])
+            {
+                Debug.Log("Inputs Avant-Procès");
+                inputLayoutDisplayedIdx.text = "1 / 3";
+            }
+            else if (inputsLayoutImage.sprite == inputsLayoutImageArray[1])
+            {
+                Debug.Log("Inputs Procès");
+                inputLayoutDisplayedIdx.text = "2 / 3";
+            }
+            else if (inputsLayoutImage.sprite == inputsLayoutImageArray[2])
+            {
+                Debug.Log("Inputs Exfiltration");
+                inputLayoutDisplayedIdx.text = "3 / 3";
+            }
+        }
+
+        inputsLayoutImage.sprite = inputsLayoutImageArray[imageToDisplayIdx];
+
     }
 
     //
@@ -201,6 +261,7 @@ public class DefaultUIManager : MonoBehaviour
     }
     #endregion
 
+    #region Enable or Disable Buttons in a Layout
     public void EnableButtonsInLayout(GameObject buttonLayout, GameObject firstSelectedObject)
     {
         //Réactivation des boutons contenus dans cette fenêtre (prévient les problèmes liés à la navigation de l'Event System)
@@ -228,6 +289,7 @@ public class DefaultUIManager : MonoBehaviour
         //else
         //    ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
     }
+    #endregion
 
     //Summary : Utiliser pour réaliser des effets de Fade-In / Fade-Out. Utilisé notamment pour faire apparaître ou disparaître des fenêtres d'UI.
     #region Canvas Fade Coroutine
