@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
-  unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
+  unpurchasableButtonColor: {r: 0.6981132, g: 0.10866857, b: 0.10866857, a: 1}
   inventoryIsFullColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   spell: {fileID: 11400000, guid: 7326e0508f7d0a74d90db88ec7ed3f79, type: 2}
   isPurchasable: 0
@@ -768,6 +768,7 @@ MonoBehaviour:
   spellTooltipValueText: {fileID: 5939663440227550295}
   spellTooltipEffectDescriptionText: {fileID: 5939663440642571519}
   avalaibleSpellShopButtonIcon: {fileID: 998252114}
+  avalaibleSpellShopButtonBackground: {fileID: 0}
   spellShopButtonImage: {fileID: 468412297}
   spellShopButtonNameText: {fileID: 1510724452}
   spellShopButtonValueText: {fileID: 2066684565}
@@ -1543,7 +1544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
-  unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
+  unpurchasableButtonColor: {r: 0.6981132, g: 0.10866857, b: 0.10866857, a: 1}
   inventoryIsFullColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   spell: {fileID: 11400000, guid: 6ee7c2c5b7840c24eb0b4195e41c72e1, type: 2}
   isPurchasable: 0
@@ -1555,6 +1556,7 @@ MonoBehaviour:
   spellTooltipValueText: {fileID: 5939663440227550295}
   spellTooltipEffectDescriptionText: {fileID: 5939663440642571519}
   avalaibleSpellShopButtonIcon: {fileID: 1695630770}
+  avalaibleSpellShopButtonBackground: {fileID: 0}
   spellShopButtonImage: {fileID: 911254157}
   spellShopButtonNameText: {fileID: 1921925029}
   spellShopButtonValueText: {fileID: 746784053}
@@ -2030,7 +2032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
-  unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
+  unpurchasableButtonColor: {r: 0.6981132, g: 0.10866857, b: 0.10866857, a: 1}
   inventoryIsFullColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   spell: {fileID: 11400000, guid: aa3f7a34662e31c4d821efb0af01158a, type: 2}
   isPurchasable: 0
@@ -2042,6 +2044,7 @@ MonoBehaviour:
   spellTooltipValueText: {fileID: 5939663440227550295}
   spellTooltipEffectDescriptionText: {fileID: 5939663440642571519}
   avalaibleSpellShopButtonIcon: {fileID: 926537942}
+  avalaibleSpellShopButtonBackground: {fileID: 0}
   spellShopButtonImage: {fileID: 1997775337}
   spellShopButtonNameText: {fileID: 760249231}
   spellShopButtonValueText: {fileID: 240644972}
@@ -3011,7 +3014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
-  unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
+  unpurchasableButtonColor: {r: 0.6981132, g: 0.10866857, b: 0.10866857, a: 1}
   inventoryIsFullColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   spell: {fileID: 11400000, guid: 56cdd45cf57ca364dba8b203baf67536, type: 2}
   isPurchasable: 0
@@ -3023,6 +3026,7 @@ MonoBehaviour:
   spellTooltipValueText: {fileID: 5939663440227550295}
   spellTooltipEffectDescriptionText: {fileID: 5939663440642571519}
   avalaibleSpellShopButtonIcon: {fileID: 1192025236}
+  avalaibleSpellShopButtonBackground: {fileID: 0}
   spellShopButtonImage: {fileID: 2076564371}
   spellShopButtonNameText: {fileID: 689400735}
   spellShopButtonValueText: {fileID: 2109683809}
@@ -3570,7 +3574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
-  unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
+  unpurchasableButtonColor: {r: 0.6981132, g: 0.10866857, b: 0.10866857, a: 1}
   inventoryIsFullColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   spell: {fileID: 11400000, guid: 900e9aef7c3058042ad9c0b606f8c02d, type: 2}
   isPurchasable: 0
@@ -3582,6 +3586,7 @@ MonoBehaviour:
   spellTooltipValueText: {fileID: 5939663440227550295}
   spellTooltipEffectDescriptionText: {fileID: 5939663440642571519}
   avalaibleSpellShopButtonIcon: {fileID: 61795196}
+  avalaibleSpellShopButtonBackground: {fileID: 0}
   spellShopButtonImage: {fileID: 1791273689}
   spellShopButtonNameText: {fileID: 2076778791}
   spellShopButtonValueText: {fileID: 136927291}
@@ -12518,11 +12523,18 @@ MonoBehaviour:
   pauseMenuWindow: {fileID: 5939663439828997058}
   pauseMenuButtonLayout: {fileID: 5939663439309246616}
   firstButtonOfPauseMenu: {fileID: 5939663439684606047}
-  pauseMenuInputsDisplayerWindow: {fileID: 5939663439431329080}
+  pauseMenuInputsDisplayerWindow: {fileID: 6228176057208591823}
   pauseMenuInputsDisplayerButton: {fileID: 5939663438938234709}
   pauseMenuOptionsButton: {fileID: 5939663439871754388}
-  pauseMenuOptionsWindow: {fileID: 5939663439992188757}
-  optionsFirstSelectedButton: {fileID: 5939663439125942040}
+  pauseMenuOptionsWindow: {fileID: 0}
+  optionsFirstSelectedButton: {fileID: 0}
+  inputsLayoutImage: {fileID: 1249595093514498651}
+  inputsLayoutImageArray:
+  - {fileID: 21300000, guid: 305d284191addc44bb88ee623228dcc8, type: 3}
+  - {fileID: 21300000, guid: 9aced64797725e946b6c657ffc40530f, type: 3}
+  - {fileID: 21300000, guid: eeb3385cd21d9f84fb30b59d026d93fe, type: 3}
+  inputLayoutDisplayedIdx: {fileID: 2243085433340476538}
+  inputsDisplayerIsDisplayed: 0
   ostSwitchWwiseEvent:
     idInternal: 0
     valueGuidInternal: 
@@ -14573,7 +14585,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5939663439973718423}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -18253,7 +18265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   purchasableButtonColor: {r: 1, g: 1, b: 1, a: 1}
-  unpurchasableButtonColor: {r: 1, g: 0, b: 0, a: 1}
+  unpurchasableButtonColor: {r: 0.6981132, g: 0.10866857, b: 0.10866857, a: 1}
   inventoryIsFullColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   spell: {fileID: 11400000, guid: 13edcd1e7d5c15e45a494ddb2e0bdf17, type: 2}
   isPurchasable: 0
@@ -18265,6 +18277,7 @@ MonoBehaviour:
   spellTooltipValueText: {fileID: 5939663440227550295}
   spellTooltipEffectDescriptionText: {fileID: 5939663440642571519}
   avalaibleSpellShopButtonIcon: {fileID: 4123275543702528481}
+  avalaibleSpellShopButtonBackground: {fileID: 0}
   spellShopButtonImage: {fileID: 2177145511197897570}
   spellShopButtonNameText: {fileID: 5939663439183567822}
   spellShopButtonValueText: {fileID: 1509471828}
@@ -19268,6 +19281,121 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5939663439692433369}
     m_Modifications:
+    - target: {fileID: 1226766844904760945, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226766844904760945, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226766844904760945, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226766844904760945, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226766844904760945, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095895810884762141, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095895810884762141, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095895810884762141, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095895810884762141, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3095895810884762141, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4506803035603081491, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321610110064509482, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321610110064509482, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321610110064509482, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321610110064509482, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321610110064509482, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5321610110064509482, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960368145456337153, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960368145456337153, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960368145456337153, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960368145456337153, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960368145456337153, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5960368145456337153, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6650338693443603117, guid: aecbdf9542175f64d8af9dcc36a5f383,
         type: 3}
       propertyPath: m_Padding.m_Left
@@ -19829,6 +19957,56 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1500
       objectReference: {fileID: 0}
+    - target: {fileID: 7083441944860738416, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083441944860738416, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083441944860738416, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083441944860738416, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083441944860738416, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611269095914123071, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611269095914123071, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611269095914123071, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611269095914123071, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7611269095914123071, guid: aecbdf9542175f64d8af9dcc36a5f383,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6650338695070812619, guid: aecbdf9542175f64d8af9dcc36a5f383, type: 3}
     - {fileID: 6650338695140611445, guid: aecbdf9542175f64d8af9dcc36a5f383, type: 3}
@@ -19873,21 +20051,33 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1019875800903244299}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5939663439992188757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6650338695440315742, guid: aecbdf9542175f64d8af9dcc36a5f383,
+--- !u!114 &1249595093514498651 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2265354312884054096, guid: aecbdf9542175f64d8af9dcc36a5f383,
     type: 3}
   m_PrefabInstance: {fileID: 1019875800903244299}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5939663439431329080 stripped
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6228176057208591823 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6650338693858410291, guid: aecbdf9542175f64d8af9dcc36a5f383,
+  m_CorrespondingSourceObject: {fileID: 6361825418946285508, guid: aecbdf9542175f64d8af9dcc36a5f383,
     type: 3}
   m_PrefabInstance: {fileID: 1019875800903244299}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5939663439125942040 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6650338694297343251, guid: aecbdf9542175f64d8af9dcc36a5f383,
+--- !u!114 &2243085433340476538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1226766844904760945, guid: aecbdf9542175f64d8af9dcc36a5f383,
     type: 3}
   m_PrefabInstance: {fileID: 1019875800903244299}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -206,8 +206,8 @@ public class DefaultUIManager : MonoBehaviour
             }
         }
 
-        inputsLayoutImage.sprite = inputsLayoutImageArray[imageToDisplayIdx];
-
+        if(inputsLayoutImage != null)
+            inputsLayoutImage.sprite = inputsLayoutImageArray[imageToDisplayIdx];
     }
 
     //
