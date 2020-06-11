@@ -164,7 +164,7 @@ public class DefaultUIManager : MonoBehaviour
 
     public void SwitchInputLayoutDisplayed()
     {
-        if (inputsDisplayerIsDisplayed || pauseWindowInputsDisplayerIsDisplayed)
+        if (inputsLayoutImage != null && (inputsDisplayerIsDisplayed || pauseWindowInputsDisplayerIsDisplayed))
         {
             if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L1") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LB"))
             {

@@ -24,7 +24,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: f00cfbc9976261468879e2c4d9599673
     GuidInternal: 
-    m_lastTime: -8586101504807283695
+    m_lastTime: -8586097340311579095
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -35,6 +35,15 @@ MonoBehaviour:
       - ElementName: Master Audio Bus
         ObjectType: 2
       Path: Default Work Unit\Master Audio Bus
+    - name: MusicEffects
+      guid: e07f97c993865847bbd8610c06aa89b9
+      id: 1840516092
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MusicEffects
+        ObjectType: 2
+      Path: Default Work Unit\MusicEffects
     - name: MusicVolume
       guid: 50285efe7f92e8408070b5d9b954a3ac
       id: 2346531308
@@ -83,7 +92,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: f6d22cfe9df30d41a0fe5a80752cf912
     GuidInternal: 
-    m_lastTime: -8586102430227105825
+    m_lastTime: -8586099014211409080
     List:
     - name: GSFX_OppeningADoor
       guid: 42184148c980b34f84b8d208663d421b
@@ -210,23 +219,41 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 2b55c9509d0fc74bbee674a894c197c4
     GuidInternal: 
-    m_lastTime: -8586101533684156256
+    m_lastTime: -8586097340311678853
     List:
-    - name: OST_Volume
-      guid: 7a21acb3101b344583f2e5f3037d586f
-      id: 2231087678
+    - name: GlobalMusicVolume
+      guid: d434291f30006e43b630d590bf046f42
+      id: 947761699
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
-      - ElementName: OST_Volume
+      - ElementName: GlobalMusicVolume
         ObjectType: 13
-      Path: Default Work Unit\OST_Volume
+      Path: Default Work Unit\GlobalMusicVolume
+    - name: MusicEffects
+      guid: a9b20845ddc44f489ccb567092f56568
+      id: 1840516092
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MusicEffects
+        ObjectType: 13
+      Path: Default Work Unit\MusicEffects
+    - name: MusicVolume
+      guid: 7a21acb3101b344583f2e5f3037d586f
+      id: 2346531308
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: MusicVolume
+        ObjectType: 13
+      Path: Default Work Unit\MusicVolume
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPath: Default Work Unit
     guid: 8404fe19c2ccd84e90ab52ac9e0010dd
     GuidInternal: 
-    m_lastTime: -8586101533684156256
+    m_lastTime: -8586099029719759042
     List:
     - name: inGamePhases
       guid: fbd93e4022c6cb46b83a26a8d55b8fca
