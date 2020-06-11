@@ -143,13 +143,20 @@ public class MoveScript : MonoBehaviour
                     Anim.SetBool("L", false);
                 }
 
-                if (horizontal <= 0)
+                if (horizontal < 0)
                 {
                     Anim.SetBool("CrouchL", true);
+                    Anim.SetBool("CrouchR", false);
                 }
-                else
+                if (horizontal > 0)
                 {
                     Anim.SetBool("CrouchL", false);
+                    Anim.SetBool("CrouchR", true);
+                }
+                if(horizontal == 0)
+                {
+                    Anim.SetBool("CrouchL", false);
+                    Anim.SetBool("CrouchR", false);
                 }
 
                 if (horizontal >= 0 && !CanGoL)

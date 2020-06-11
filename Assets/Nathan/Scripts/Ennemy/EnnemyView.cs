@@ -23,6 +23,8 @@ public class EnnemyView : MonoBehaviour
     float LostTimer;
     float SoundTimer;
 
+    public bool Stunned;
+    float StunDuration;
 
     bool Done;
     bool Follow;
@@ -40,6 +42,18 @@ public class EnnemyView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Stunned)
+        {
+            StunDuration -= Time.deltaTime;
+
+            if (StunDuration <= 0)
+            {
+                Anim.SetBool("Stun", false);
+                Stunned = false;
+                gameObject.GetComponent<NavMeshAgent>().enabled = true;
+            }
+        }
+
         if (GameManager.s_Singleton.gameState == GameState.PlayMode)
         {
             Timer -= Time.deltaTime;
@@ -147,5 +161,12 @@ public class EnnemyView : MonoBehaviour
                 IsVisible = false;
             }
         }
+    }
+
+    public void Stun(float Duration)
+    {
+        Anim.SetBool("Stun", true);
+        StunDuration = Duration;
+        Stunned = true;
     }
 }

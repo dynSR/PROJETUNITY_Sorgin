@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
 
     [Header("STUN PARAMETERS")]
     public GameObject FieldOfView;
+    public Transform Target;
 
     [Header("TRANSFORMATIONS STATES")]
     public bool playerIsTranformedInMouse = false;

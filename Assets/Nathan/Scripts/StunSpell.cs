@@ -25,9 +25,19 @@ public class StunSpell : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Target != null)
+        {
+            Player.s_Singleton.Target = Target.transform;
+        }
+
         CooldownRaycast -= Time.deltaTime;
 
         if (TargetIndex == PossibleTargets.Count && PossibleTargets.Count > 0)
+        {
+            TargetIndex = PossibleTargets.Count - 1;
+        }
+
+        if(TargetIndex >PossibleTargets.Count && PossibleTargets.Count > 0)
         {
             TargetIndex = PossibleTargets.Count - 1;
         }
@@ -52,25 +62,32 @@ public class StunSpell : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            if (TargetIndex == 0)
+            if (PossibleTargets.Count > 1)
             {
-                TargetIndex = PossibleTargets.Count-1;
+                if (TargetIndex == 0)
+                {
+                    TargetIndex = PossibleTargets.Count - 1;
+                }
+                else
+                {
+                    TargetIndex--;
+                }
             }
-            else
-            {
-                TargetIndex--;
-            }
+
         }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            if(TargetIndex == PossibleTargets.Count-1)
+            if (PossibleTargets.Count > 1)
             {
-                TargetIndex = 0;
-            }
-            else
-            {
-                TargetIndex++;
+                if (TargetIndex == PossibleTargets.Count - 1)
+                {
+                    TargetIndex = 0;
+                }
+                else
+                {
+                    TargetIndex++;
+                }
             }
         }
 

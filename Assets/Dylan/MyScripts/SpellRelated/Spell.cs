@@ -32,7 +32,14 @@ public class Spell : ScriptableObject
         switch (spellType)
         {
             case SpellType.Etourdissement:
-                ActivateAimMode();
+                if (Player.s_Singleton.isAiming ==false)
+                {
+                    ActivateAimMode();
+                }
+                if (Player.s_Singleton.isAiming && Player.s_Singleton.Target != null)
+                {
+                    Stun(Player.s_Singleton.Target);
+                }
                 break;
             case SpellType.Crochetage:
                 LockPicking();
@@ -189,8 +196,8 @@ public class Spell : ScriptableObject
 
     public void Stun(Transform target)
     {
-        //target.GetComponent<Animator>().SetBool("IsStun", true);
         target.GetComponent<NavMeshAgent>().enabled = false;
+        target.GetComponent<EnnemyView>().Stun(5);
         DeactivateAimMode();
         PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
 

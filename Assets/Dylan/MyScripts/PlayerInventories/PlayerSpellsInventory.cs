@@ -43,7 +43,7 @@ public class PlayerSpellsInventory : MonoBehaviour
             #endregion
 
             #region L2/LT
-            if (!Player.s_Singleton.isUsingASpell /*|| !MapHandler.s_Singleton.mapIsDisplayed*/ && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_LT")))
+            if (!Player.s_Singleton.isUsingASpell /*|| !MapHandler.s_Singleton.mapIsDisplayed*/ && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_LT")>=0.5f))
             {
                 if (PlayerObjectsInventory.s_Singleton.objectCompartmentIsActive)
                 {
@@ -55,7 +55,7 @@ public class PlayerSpellsInventory : MonoBehaviour
             #endregion
 
             #region Square/X
-            if (!Player.s_Singleton.isUsingASpell && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
+            if (/*!Player.s_Singleton.isUsingASpell &&*/ (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_Square") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_X")))
             {
                 Debug.Log("Square pressed in PlayerSpellsInventory");
                 if (spellCompartmentIsActive && spellsCompartments[0].MyCompartmentSpell != null)

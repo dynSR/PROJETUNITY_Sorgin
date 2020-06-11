@@ -585,7 +585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c5de31018c164564c865df7b033b7c0e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1540,6 +1540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsSelected: 0
+  IndexPlace: 0
   SelectedArrow: {fileID: 6333536169617041466}
 --- !u!1 &5021866552634345530
 GameObject:
@@ -1656,7 +1657,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b378451df591124f8f52f78117f0a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 0}
   Anim: {fileID: 7589981510618406406}
 --- !u!136 &408953196
 CapsuleCollider:
