@@ -187,7 +187,7 @@ public class UIManager : DefaultUIManager
         duplicationValidationPopupIsDisplayed = true;
 
         //Activation des boutons et attribution du bouton sélectionné par l'Event system
-        for (int i = 0; i < duplicationButtonLayout.transform.childCount; i++)
+        for (int i = 0; i < PlayerObjectsInventory.s_Singleton.numberOfObjectInInventory ; i++)
         {
             duplicationButtonLayout.transform.GetChild(i).gameObject.SetActive(true);
         }
@@ -197,6 +197,11 @@ public class UIManager : DefaultUIManager
 
     public void HideDuplicationPopup()
     {
+        for (int i = 0; i < duplicationButtonLayout.transform.childCount; i++)
+        {
+            duplicationButtonLayout.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
         HideAPopup(duplicationWindow);
         duplicationValidationPopupIsDisplayed = false;
         DisableButtonsInLayout(duplicationButtonLayout);

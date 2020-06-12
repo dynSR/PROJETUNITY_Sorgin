@@ -58,7 +58,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 7102da272752824285cc8cea843bd806
     GuidInternal: 
-    m_lastTime: -8586102353310117080
+    m_lastTime: -8586096432672593330
     List:
     - name: GameSFX
       guid: acc8e6fc076e964aa3ab11f9177eaec9
@@ -92,8 +92,32 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: f6d22cfe9df30d41a0fe5a80752cf912
     GuidInternal: 
-    m_lastTime: -8586099014211409080
+    m_lastTime: -8586096433972814157
     List:
+    - name: GSFX_BeginToPlay
+      guid: 47b1503909833646bec5a82738cb6800
+      id: 2849285074
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: GSFX_BeginToPlay
+        ObjectType: 3
+      Path: Default Work Unit\GSFX_BeginToPlay
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: GSFX_GavelHit
+      guid: 4a8c68cc1b29754dbc4c5d44eed8b552
+      id: 569837520
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: GSFX_GavelHit
+        ObjectType: 3
+      Path: Default Work Unit\GSFX_GavelHit
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
     - name: GSFX_OppeningADoor
       guid: 42184148c980b34f84b8d208663d421b
       id: 509683723
@@ -314,5 +338,7 @@ MonoBehaviour:
     List: []
   ExpandedItems:
   - /Unity_WwiseProject
+  - /Unity_WwiseProject/Events
+  - /Unity_WwiseProject/Events/Default Work Unit
   autoPopulateEnabled: 1
   CurrentPluginConfig: 

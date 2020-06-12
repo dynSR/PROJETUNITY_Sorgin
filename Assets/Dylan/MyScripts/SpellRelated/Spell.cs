@@ -145,7 +145,6 @@ public class Spell : ScriptableObject
         Debug.Log("Dupplication");
         if (!Player.s_Singleton.playerIsInHumanForm)
         {
-
             Debug.Log("Impossible de cloner");
             PlayerSpellsInventory.s_Singleton.CantUseASpell();
             return;
@@ -164,9 +163,9 @@ public class Spell : ScriptableObject
 
                     uiManagerReference.duplicationButtonLayout.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>().sprite = uiManagerReference.duplicationButtonLayout.transform.GetChild(i).GetComponent<DuplicationButtons>().objectFound.MyObjectIcon;
 
-                    EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
+                    //EventSystem.current.SetSelectedGameObject(uiManagerReference.duplicationButtonLayout.transform.GetChild(0).gameObject);
                 }
-                else if (playerObjInventoryRef.numberOfObjectInInventory == 0)
+                else if (playerObjInventoryRef.numberOfObjectInInventory == 0 || playerObjInventoryRef.numberOfObjectInInventory  == 3)
                 {
                     Debug.Log("No object found, duplication is impossible");
                     PlayerSpellsInventory.s_Singleton.CantUseASpell();

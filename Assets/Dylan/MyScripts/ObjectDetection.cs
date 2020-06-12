@@ -49,7 +49,7 @@ public class ObjectDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Object"))
+        if (other.gameObject.CompareTag("ObjectDetection"))
         {
             other.gameObject.GetComponentInParent<Outliner>().OutlineColor = new Color(255, 255, 255, 255);
             player.objectsFound.Add(other.gameObject.transform);
@@ -62,7 +62,7 @@ public class ObjectDetection : MonoBehaviour
     {
         //List<Transform> removedObject = new List<Transform>();
 
-        if (other.gameObject.CompareTag("Object"))
+        if (other.gameObject.CompareTag("ObjectDetection"))
         {
             other.gameObject.GetComponentInParent<Outliner>().OutlineColor = new Color(255, 255, 255, 0);
             player.objectsFound.Remove(other.gameObject.transform);

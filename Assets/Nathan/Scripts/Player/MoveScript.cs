@@ -81,12 +81,12 @@ public class MoveScript : MonoBehaviour
             {
                 Anim.SetBool("Lean", false);
 
-                if (ConnectedController.s_Singleton.PS4ControllerIsConnected)
+                if (!UIManager.s_Singleton.duplicationValidationPopupIsDisplayed && ConnectedController.s_Singleton.PS4ControllerIsConnected)
                 {
                     vertical = Mathf.MoveTowards(vertical, Input.GetAxis("PS4_LStick_Vertical"), 0.1f);
                     horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("PS4_LStick_Horizontal"), 0.1f);
                 }
-                if (ConnectedController.s_Singleton.XboxControllerIsConnected)
+                if (!UIManager.s_Singleton.duplicationValidationPopupIsDisplayed && ConnectedController.s_Singleton.XboxControllerIsConnected)
                 {
                     vertical = Mathf.MoveTowards(vertical, Input.GetAxis("XBOX_LStick_Vertical"), 0.1f);
                     horizontal = Mathf.MoveTowards(horizontal, Input.GetAxis("XBOX_LStick_Horizontal"), 0.1f);                

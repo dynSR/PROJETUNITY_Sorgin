@@ -76,6 +76,8 @@ public class UIManager_MainMenu : DefaultUIManager
 
     new void Update()
     {
+        base.Update();
+
         if (splashScreenIsDisplayed && !mainMenuIsDisplayed && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
         {
             HideSplashScreenAndDisplayMainMenu();

@@ -9,6 +9,7 @@ public class OppeningDoor : MonoBehaviour
 {
     [Header("SETTINGS")]
     [SerializeField] private GameObject interactionPopup;
+    [SerializeField] private GameObject openingDoorEffect;
     public DoorType doorType;
     public bool doorIsLocked = true;
     private Rigidbody parentRigidBody;
@@ -58,10 +59,22 @@ public class OppeningDoor : MonoBehaviour
 
     public void UnlockDoor()
     {
-        doorIsLocked = false;
-        parentRigidBody.isKinematic = false;
+        StartCoroutine(EnableAndDisableOpeningDoorEffect());
+        //doorIsLocked = false;
+        //parentRigidBody.isKinematic = false;
         AkSoundEngine.PostEvent(oppeningADoorSFX, transform.gameObject);
         Player.s_Singleton.doorNearPlayerCharacter = null;
         interactionPopup.SetActive(false);
+    }
+
+    IEnumerator EnableAndDisableOpeningDoorEffect()
+    {
+        openingDoorEffect.SetActive(true);
+
+        yield return new WaitForSeconds(1.5f);
+
+        openingDoorEffect.SetActive(false);
+        doorIsLocked = false;
+        parentRigidBody.isKinematic = false;
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - ObjectMap
   - WayMap
   - Object
+  - ObjectDetection
   layers:
   - Default
   - TransparentFX

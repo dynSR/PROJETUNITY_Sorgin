@@ -21,6 +21,7 @@ public class UIManager_BeforeTrial : DefaultUIManager
 
     public GameObject changeDocumentTypeLandmark;
     [SerializeField] private GameObject firstDayIndications;
+    [SerializeField] private GameObject firstDayIndicationsInputLandmark;
 
     [Header("VALIDATION POPUP PARAMETERS")]
     [SerializeField] private CanvasGroup validationPopupWindow;
@@ -53,6 +54,8 @@ public class UIManager_BeforeTrial : DefaultUIManager
         if (GameManager.s_Singleton.trialDayNumber == 1)
             firstDayIndications.SetActive(true);
 
+        Invoke("DisplayFirstDayIndicationsInputLandmark", 5f);
+
         SetOSTStateAndPostEvent("state_BeforeTrial");
     }
 
@@ -60,7 +63,7 @@ public class UIManager_BeforeTrial : DefaultUIManager
     {
         base.Update();
 
-        if (firstDayIndications.activeInHierarchy && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
+        if (firstDayIndicationsInputLandmark.activeInHierarchy && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_X") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_A")))
         {
             Debug.Log("Croix ou A presed");
             firstDayIndications.SetActive(false);
@@ -130,5 +133,10 @@ public class UIManager_BeforeTrial : DefaultUIManager
     {
         dayNumber.text = "Jour " + GameManager.s_Singleton.trialDayNumber.ToString();
         trialSubject.text = titreProcesTxt.text;
+    }
+
+    void DisplayFirstDayIndicationsInputLandmark()
+    {
+        firstDayIndicationsInputLandmark.SetActive(true);
     }
 }
