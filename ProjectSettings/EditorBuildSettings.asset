@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Nathan/Scenes/SceneBuild.unity
     guid: ad37918f978074c4cac50928e7bd0433
+  - enabled: 1
+    path: Assets/Maxime/MyScenes/SceneAvProces002.unity
+    guid: 3bba48b55ab7c3c4f94a515658db6caf
+  - enabled: 1
+    path: Assets/Maxime/MyScenes/SceneProces002.unity
+    guid: ed517fa240ab9ed41832e96c7e407afc
   m_configObjects: {}
