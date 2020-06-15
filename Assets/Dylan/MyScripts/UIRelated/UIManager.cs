@@ -259,6 +259,7 @@ public class UIManager : DefaultUIManager
 
         StartCoroutine(SubstractionCoroutine(valueToSubstract, valueToSubstractPerTicks));
         SetPlayerPointsCountValue();
+        GameManager.s_Singleton.SaveTheIntVariable("PlayerPoints", GameManager.s_Singleton.playerPointsValue);
     }
 
     //Summary : Permet de mettre à jour la valeur des points possédés par le joueur.
