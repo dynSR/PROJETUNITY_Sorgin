@@ -460,10 +460,10 @@ RectTransform:
   m_Father: {fileID: 398690088}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -259.76254}
-  m_SizeDelta: {x: 1920, y: 519.5251}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &71936772
 MonoBehaviour:
@@ -1376,10 +1376,10 @@ RectTransform:
   m_Father: {fileID: 398690088}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960, y: -819.2876}
-  m_SizeDelta: {x: 1920, y: 519.5251}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &322854140
 MonoBehaviour:
@@ -2707,7 +2707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &787545485
 Animator:
   serializedVersion: 3
@@ -2741,7 +2741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   mainMenuSceneId: 0
-  trialSceneId: 2
+  trialSceneId: 6
   exfiltrationSceneId: 4
 --- !u!4 &787545487
 Transform:
@@ -3853,11 +3853,12 @@ MonoBehaviour:
   titreProcesTxt: {fileID: 862528290}
   chefAccusation:
   - Une affaire de potions, des statuettes humaines
-  - Un meurtre, une disparition et un moine
+  - Le vol par la manipulation
   - "L'\xE9cho de l'eau"
   docActuelTxt: {fileID: 849933817}
   changeDocumentTypeLandmark: {fileID: 535338359}
   firstDayIndications: {fileID: 1700558086}
+  firstDayIndicationsInputLandmark: {fileID: 887441762}
   validationPopupWindow: {fileID: 650889827}
   validationPopupButtonLayout: {fileID: 194970730}
   validationPopupIsDisplayed: 0
@@ -6892,7 +6893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76aa4cf0fee7117458e925fe5cda2010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trialDayNumber: 1
+  trialDayNumber: 2
   gameState: 0
   playerPointsValue: 0
   exfiltrationHasBegun: 0
