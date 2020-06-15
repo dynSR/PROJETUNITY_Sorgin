@@ -17,4 +17,5 @@ MonoBehaviour:
   spellIcon: {fileID: 21300000, guid: 6b6bf98b77c865b4a9ff676c7a6fa858, type: 3}
   spellDurationOfEffect: 0
   spellValue: 250
-  spellEffectDescription: "Permet de d\xE9verrouiller une porte."
+  spellEffectDescription: "Permet de d\xE9verrouiller une porte.\nUtile pour se frayer
+    un passage rapidement."

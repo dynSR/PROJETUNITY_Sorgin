@@ -18,4 +18,4 @@ MonoBehaviour:
   spellDurationOfEffect: 5
   spellValue: 300
   spellEffectDescription: "Permet de d\xE9tecter les objets et les dangers autour
-    de Marie."
+    de Marie.\nCet effet ne dure qu'un certain temps."
