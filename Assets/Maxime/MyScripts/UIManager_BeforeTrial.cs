@@ -126,11 +126,11 @@ public class UIManager_BeforeTrial : DefaultUIManager
 
     public void GoToTrial()
     {
-        if (GameManager.s_Singleton.trialDayNumber == 0)
+        if (GameManager.s_Singleton.trialDayNumber == 1)
         {
             LevelChanger.s_Singleton.LoadFirstTrialScene();
         }
-        else if (GameManager.s_Singleton.trialDayNumber == 1)
+        else if (GameManager.s_Singleton.trialDayNumber == 2)
         {
             LevelChanger.s_Singleton.LoadSecondTrialScene();
         }

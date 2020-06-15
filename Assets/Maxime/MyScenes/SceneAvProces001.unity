@@ -3846,7 +3846,7 @@ MonoBehaviour:
   trialSubject: {fileID: 322854140}
   beforeTrialPhaseHasBegun: 0
   titreProcesTxt: {fileID: 862528290}
-  chefAccusation: 
+  chefAccusation: "Des rem\xE8des probl\xE9matiques, des statuettes de forme humaine"
   docActuelTxt: {fileID: 849933817}
   changeDocumentTypeLandmark: {fileID: 535338359}
   firstDayIndications: {fileID: 1700558086}

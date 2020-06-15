@@ -10,7 +10,7 @@ public class LevelChanger : MonoBehaviour
     //public pour DEBUG 
     private int levelToLoadId;
 
-    [HideInInspector] public Animator animator;
+    /*[HideInInspector] */public Animator animator;
 
     private int mainMenuSceneId = 0;
     private int firstBeforeTrialSceneId = 1;
@@ -55,11 +55,11 @@ public class LevelChanger : MonoBehaviour
     #region MainMenu
     public void LoadFirstBeforeTrialScene()
     {
-        if (GameManager.s_Singleton.trialDayNumber == 0)
+        if (GameManager.s_Singleton.trialDayNumber == 1)
         {
             LevelToLoad(firstBeforeTrialSceneId);
         }
-        else if (GameManager.s_Singleton.trialDayNumber == 1)
+        else if (GameManager.s_Singleton.trialDayNumber == 2)
         {
             LevelToLoad(secondBeforeTrialSceneId);
         }

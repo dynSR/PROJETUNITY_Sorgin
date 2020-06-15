@@ -26,6 +26,7 @@ public class UIManagerTrial : DefaultUIManager
     {
         LevelChanger.s_Singleton.DeactivateFlowCharts();
         LevelChanger.s_Singleton.SetAnimatorTrigger("FadeOut");
+        Debug.Log("Fade Out at start");
         SetOSTStateAndPostEvent("state_Trial");
     }
 
