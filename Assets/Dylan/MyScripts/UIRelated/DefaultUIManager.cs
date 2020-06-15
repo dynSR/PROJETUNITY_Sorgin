@@ -52,7 +52,7 @@ public class DefaultUIManager : MonoBehaviour
                 {
                     Pause();
                 }
-                else
+                else if (pauseWindowIsDisplayed && !pauseWindowOptionsAreDisplayed && !pauseWindowInputsDisplayerIsDisplayed)
                 {
                     Resume();
                 }
@@ -140,7 +140,10 @@ public class DefaultUIManager : MonoBehaviour
     {
         UIWindowsDisplay(pauseMenuOptionsWindow);
         pauseWindowOptionsAreDisplayed = true;
+
         DisableButtonsInLayout(pauseMenuButtonLayout);
+
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(optionsFirstSelectedButton);
     }
 

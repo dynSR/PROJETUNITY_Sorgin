@@ -81,7 +81,7 @@ public class MapHandler : MonoBehaviour
             {
                 //HideMap();
                 canDisplayOrHideMap = false;
-                LevelChanger.s_Singleton.LoadBeforeTrialScene();
+                LevelChanger.s_Singleton.LoadFirstBeforeTrialScene();
             }
             #endregion
         }

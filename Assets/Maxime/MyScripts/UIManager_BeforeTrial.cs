@@ -15,7 +15,7 @@ public class UIManager_BeforeTrial : DefaultUIManager
 
     public TextMeshProUGUI titreProcesTxt;
     //public int numeroProces;
-    public string[] chefAccusation;
+    public string chefAccusation;
 
     public TextMeshProUGUI docActuelTxt;
 
@@ -43,7 +43,7 @@ public class UIManager_BeforeTrial : DefaultUIManager
             singleton = this;
         }
 
-        titreProcesTxt.text = chefAccusation[GameManager.s_Singleton.trialDayNumber - 1];
+        titreProcesTxt.text = chefAccusation;
         SetFadeOutTextsIndicator();
         LevelChanger.s_Singleton.SetAnimatorTrigger("FadeOut");
     }
@@ -126,7 +126,14 @@ public class UIManager_BeforeTrial : DefaultUIManager
 
     public void GoToTrial()
     {
-        LevelChanger.s_Singleton.LoadTrialScene();
+        if (GameManager.s_Singleton.trialDayNumber == 0)
+        {
+            LevelChanger.s_Singleton.LoadFirstTrialScene();
+        }
+        else if (GameManager.s_Singleton.trialDayNumber == 1)
+        {
+            LevelChanger.s_Singleton.LoadSecondTrialScene();
+        }
     }
 
     void SetFadeOutTextsIndicator()

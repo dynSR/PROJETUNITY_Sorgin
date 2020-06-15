@@ -12,9 +12,12 @@ public class LevelChanger : MonoBehaviour
 
     [HideInInspector] public Animator animator;
 
-    [SerializeField] private int mainMenuSceneId;
-    [SerializeField] private int trialSceneId;
-    [SerializeField] private int exfiltrationSceneId;
+    private int mainMenuSceneId = 0;
+    private int firstBeforeTrialSceneId = 1;
+    private int firstTrialSceneId = 2;
+    private int secondBeforeTrialSceneId = 5;
+    private int secondTrialSceneId = 6;
+    private int exfiltrationSceneId = 4;
 
 
     public static LevelChanger s_Singleton;
@@ -50,23 +53,16 @@ public class LevelChanger : MonoBehaviour
     }
 
     #region MainMenu
-    public void LoadBeforeTrialScene()
+    public void LoadFirstBeforeTrialScene()
     {
-        LevelToLoad(1);
-
-        //Utile lorsqu'il y aura plusieurs scènes pour l'avant-procès
-        //if (GameManager.s_Singleton.trialDayNumber == 0)
-        //{
-        //    LevelToLoad(GameManager.s_Singleton.trialDayNumber);
-        //}
-        //else if (GameManager.s_Singleton.trialDayNumber == 1)
-        //{
-        //    LevelToLoad(GameManager.s_Singleton.trialDayNumber);
-        //}
-        //else if (GameManager.s_Singleton.trialDayNumber == 2)
-        //{
-        //    LevelToLoad(GameManager.s_Singleton.trialDayNumber);
-        //}
+        if (GameManager.s_Singleton.trialDayNumber == 0)
+        {
+            LevelToLoad(firstBeforeTrialSceneId);
+        }
+        else if (GameManager.s_Singleton.trialDayNumber == 1)
+        {
+            LevelToLoad(secondBeforeTrialSceneId);
+        }
     }
     #endregion
 
@@ -83,9 +79,14 @@ public class LevelChanger : MonoBehaviour
 
     }
 
-    public void LoadTrialScene()
+    public void LoadFirstTrialScene()
     {
-        LevelToLoad(trialSceneId);
+        LevelToLoad(firstTrialSceneId);
+    }
+
+    public void LoadSecondTrialScene()
+    {
+        LevelToLoad(secondTrialSceneId);
     }
     #endregion
 
