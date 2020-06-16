@@ -35,7 +35,7 @@ public class AddObjectToPlayerInventory : MonoBehaviour
             Debug.Log("Cannot pick the object");
             //transform.GetChild(0).gameObject.SetActive(false);
             canBePickuped = false;
-            Player.s_Singleton.canPickObject = false;
+            Invoke("ChangePlayerCanPickObject", 0.01f);
         }
     }
 
@@ -64,13 +64,22 @@ public class AddObjectToPlayerInventory : MonoBehaviour
                             PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<ObjectCompartment>().MyCompartmentObject = ObjectDataBase.s_Singleton.objectsInTheGame[x];
                             PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().enabled = true;
                             PlayerObjectsInventory.s_Singleton.objectsCompartments[i].GetComponent<Image>().sprite = ObjectDataBase.s_Singleton.objectsInTheGame[x].MyObjectIcon;
-                            Player.s_Singleton.canPickObject = false;
-                            Destroy(this.gameObject);
+                            Invoke("PlayerCollect", 0.01f);
                             return;
                         }
                     }
                 }
             }
         }
+    }
+
+    void PlayerCollect()
+    {
+        Player.s_Singleton.canPickObject = false;
+        Destroy(this.gameObject);
+    }
+    void ChangePlayerCanPickObject()
+    {
+        Player.s_Singleton.canPickObject = false;
     }
 }

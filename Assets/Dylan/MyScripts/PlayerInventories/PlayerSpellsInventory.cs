@@ -43,7 +43,7 @@ public class PlayerSpellsInventory : MonoBehaviour
             #endregion
 
             #region L2/LT
-            if (!Player.s_Singleton.isUsingASpell /*|| !MapHandler.s_Singleton.mapIsDisplayed*/ && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_L2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_LT")>=0.5f))
+            if (!Player.s_Singleton.isUsingASpell /*|| !MapHandler.s_Singleton.mapIsDisplayed*/ && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_L2") >= 0.5f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_LT")>=0.5f))
             {
                 if (PlayerObjectsInventory.s_Singleton.objectCompartmentIsActive)
                 {

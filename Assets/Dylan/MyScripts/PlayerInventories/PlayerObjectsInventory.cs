@@ -43,7 +43,7 @@ public class PlayerObjectsInventory : MonoBehaviour
             #endregion
 
             #region R2/RT
-            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetButtonDown("PS4_R2") || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetButtonDown("XBOX_RT"))
+            if (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_R2") >= 0.5f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_RT") >= 0.5f)
             {
                 if (PlayerSpellsInventory.s_Singleton.spellCompartmentIsActive)
                 {
