@@ -10,6 +10,8 @@ public class MoveScript : MonoBehaviour
     GameObject CameraTopDown;
     public CharacterController Controller;
     public Animator Anim;
+    public Animator AnimCat;
+
     public float gravity = 20.0F;
 
     public SoundSpawner Sound;
@@ -66,6 +68,8 @@ public class MoveScript : MonoBehaviour
             OnWall = Player.s_Singleton.onWall;
 
             Anim.SetFloat("Blend", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+            AnimCat.SetFloat("Blend", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+
             StandardView.SetActive(true);
             WallLight.SetActive(false);
 
@@ -101,16 +105,7 @@ public class MoveScript : MonoBehaviour
 
                 moveDirection = new Vector3(horizontal, 0, vertical);
                 moveDirection.Normalize();
-                Controller.SimpleMove(moveDirection * speed);
-
-                if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
-                {
-                    speed = Mathf.Abs(horizontal) * 5;
-                }
-                else
-                {
-                    speed = Mathf.Abs(vertical) * 5;
-                }
+                Controller.SimpleMove(moveDirection * 5);
 
                 ChangedCam = false;
             }
