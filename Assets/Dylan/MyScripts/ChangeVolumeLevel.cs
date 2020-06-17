@@ -71,6 +71,8 @@ public class ChangeVolumeLevel : MonoBehaviour
 
     private void SetSpecificVolumeValueText(TextMeshProUGUI valueTextToSet, int value)
     {
-        valueTextToSet.text = value.ToString() + " %";
+        int actualValue = value * 10;
+        valueTextToSet.text = actualValue.ToString();
     }
+
 }
