@@ -6,6 +6,7 @@ using UnityEngine;
 public class MapHandler : MonoBehaviour
 {
     [SerializeField] private GameObject mapWindow;
+    [SerializeField] private GameObject mapCamera;
     //DEBUG
     [SerializeField] private GameObject shopWindow;
 
@@ -117,6 +118,7 @@ public class MapHandler : MonoBehaviour
     {
         //Debug.Log("Display Map");
         UIManager.s_Singleton.UIWindowsDisplay(mapWindow);
+        mapCamera.SetActive(true);
 
         //if(shopWindow.activeInHierarchy)
         //    UIManager.s_Singleton.UIWindowsHide(shopWindow);
@@ -150,6 +152,7 @@ public class MapHandler : MonoBehaviour
         CursorHandlerScript.Save();
         //Debug.Log("Hide Map");
         UIManager.s_Singleton.UIWindowsHide(mapWindow);
+        mapCamera.SetActive(false);
         mapIsDisplayed = false;
 
         if(GameManager.s_Singleton.exfiltrationHasBegun)

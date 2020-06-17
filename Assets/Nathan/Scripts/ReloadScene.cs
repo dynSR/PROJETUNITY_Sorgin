@@ -18,7 +18,7 @@ public class ReloadScene : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && EnnemiScript.Detection>1)
         {
             GameManager.s_Singleton.EndExfiltration();
             Nav.enabled = false;
