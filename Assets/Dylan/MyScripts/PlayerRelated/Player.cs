@@ -13,17 +13,17 @@ public class Player : MonoBehaviour
     public GameObject defaultCharacterModel;
     public GameObject defaultCharacterModelClone;
     public GameObject catCharacterModel;
-    public GameObject mouseCharacterModel;
+    //public GameObject mouseCharacterModel;
 
-    [Header("CLONE PARAMETERS")]
-    public Transform posToInstantiateTheClone;
+    //[Header("CLONE PARAMETERS")]
+    //public Transform posToInstantiateTheClone;
 
     [Header("STUN PARAMETERS")]
     public GameObject FieldOfView;
     public Transform Target;
 
     [Header("TRANSFORMATIONS STATES")]
-    public bool playerIsTranformedInMouse = false;
+    //public bool playerIsTranformedInMouse = false;
     public bool playerIsTranformedInCat = false;
     public bool playerIsInHumanForm = true;
 
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
             #endregion
 
             #region Transformation Duration
-            if (playerIsTranformedInCat || playerIsTranformedInMouse)
+            if (playerIsTranformedInCat /*|| playerIsTranformedInMouse*/)
             {
                 if (_durationOfEffectSinceLaunched == 0)
                     _durationOfEffectSinceLaunched = spellDurationOfEffect;
@@ -103,11 +103,11 @@ public class Player : MonoBehaviour
                         Debug.Log("FROM CAT TO HUMAN");
                         HumanTransformation(catCharacterModel, defaultCharacterModel);
                     }
-                    else if (playerIsTranformedInMouse)
-                    {
-                        Debug.Log("FROM MOUSE TO HUMAN");
-                        HumanTransformation(mouseCharacterModel, defaultCharacterModel);
-                    }
+                    //else if (playerIsTranformedInMouse)
+                    //{
+                    //    Debug.Log("FROM MOUSE TO HUMAN");
+                    //    HumanTransformation(mouseCharacterModel, defaultCharacterModel);
+                    //}
                 }
             }
             #endregion
@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
         //GameObject modelToSwitchTo = Instantiate(newPlayerCharacterModel, activePlayerCharacter) as GameObject;
         //modelToSwitchTo.transform.SetParent(activePlayerCharacter);
 
-        Player.s_Singleton.playerIsTranformedInMouse = false;
+        //Player.s_Singleton.playerIsTranformedInMouse = false;
         Player.s_Singleton.playerIsTranformedInCat = false;
         Player.s_Singleton.playerIsInHumanForm = true;
         Player.s_Singleton.playerAnimator.SetBool("EndOfTransformation", false);

@@ -50,28 +50,28 @@ public class Spell : ScriptableObject
             case SpellType.Duplication:
                 Duplication();
                 break;
-            case SpellType.Clone:
-                PreviewClonage(Player.s_Singleton.posToInstantiateTheClone);
-                break;
-            case SpellType.TransformationEnSouris:
-                if (Player.s_Singleton.playerIsInHumanForm)
-                {
-                    MouseTransformation(Player.s_Singleton.defaultCharacterModel, Player.s_Singleton.mouseCharacterModel);
-                }
-                else if (Player.s_Singleton.playerIsTranformedInCat)
-                {
-                    MouseTransformation(Player.s_Singleton.catCharacterModel, Player.s_Singleton.mouseCharacterModel);
-                }
-                break;
+            //case SpellType.Clone:
+            //    PreviewClonage(Player.s_Singleton.posToInstantiateTheClone);
+            //    break;
+            //case SpellType.TransformationEnSouris:
+            //    if (Player.s_Singleton.playerIsInHumanForm)
+            //    {
+            //        MouseTransformation(Player.s_Singleton.defaultCharacterModel, Player.s_Singleton.mouseCharacterModel);
+            //    }
+            //    else if (Player.s_Singleton.playerIsTranformedInCat)
+            //    {
+            //        MouseTransformation(Player.s_Singleton.catCharacterModel, Player.s_Singleton.mouseCharacterModel);
+            //    }
+            //    break;
             case SpellType.TransformationEnChat:
                 if (Player.s_Singleton.playerIsInHumanForm)
                 {
                     CatTransformation(Player.s_Singleton.defaultCharacterModel, Player.s_Singleton.catCharacterModel);
                 }
-                else if (Player.s_Singleton.playerIsTranformedInMouse)
-                {
-                    CatTransformation(Player.s_Singleton.mouseCharacterModel, Player.s_Singleton.catCharacterModel);
-                }
+                //else if (Player.s_Singleton.playerIsTranformedInMouse)
+                //{
+                //    CatTransformation(Player.s_Singleton.mouseCharacterModel, Player.s_Singleton.catCharacterModel);
+                //}
                 break;
             default:
                 break;
@@ -87,53 +87,53 @@ public class Spell : ScriptableObject
         objToActive.SetActive(true);
 
         Player.s_Singleton.playerIsTranformedInCat = true;
-        Player.s_Singleton.playerIsTranformedInMouse = false;
+        //Player.s_Singleton.playerIsTranformedInMouse = false;
         Player.s_Singleton.playerIsInHumanForm = false;
 
         PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
     }
 
-    private void MouseTransformation(GameObject objToDisactive, GameObject objToActive)
-    {
-        Debug.Log("Trying to transform the player character in a mouse...");
+    //private void MouseTransformation(GameObject objToDisactive, GameObject objToActive)
+    //{
+    //    Debug.Log("Trying to transform the player character in a mouse...");
 
-        objToDisactive.SetActive(false);
-        objToActive.SetActive(true);
+    //    objToDisactive.SetActive(false);
+    //    objToActive.SetActive(true);
 
-        Player.s_Singleton.playerIsTranformedInMouse = true;
-        Player.s_Singleton.playerIsTranformedInCat = false;
-        Player.s_Singleton.playerIsInHumanForm = false;
+    //    Player.s_Singleton.playerIsTranformedInMouse = true;
+    //    Player.s_Singleton.playerIsTranformedInCat = false;
+    //    Player.s_Singleton.playerIsInHumanForm = false;
 
-        PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
-    }
+    //    PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
+    //}
     #endregion
 
-    #region Clonage
-    private void PreviewClonage(Transform posToSpawnClone)
-    {
-        if (!Player.s_Singleton.playerIsInHumanForm)
-        {
-            Debug.Log("Impossible de cloner");
-            PlayerSpellsInventory.s_Singleton.CantUseASpell();
-            return;
-        }
-        else
-        {
-            //Previsualisation
-            Player.s_Singleton.isTryingToClone = true;
-            posToSpawnClone.gameObject.SetActive(true);
-            //PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
-        }
-    }
+    //#region Clonage
+    //private void PreviewClonage(Transform posToSpawnClone)
+    //{
+    //    if (!Player.s_Singleton.playerIsInHumanForm)
+    //    {
+    //        Debug.Log("Impossible de cloner");
+    //        PlayerSpellsInventory.s_Singleton.CantUseASpell();
+    //        return;
+    //    }
+    //    else
+    //    {
+    //        //Previsualisation
+    //        Player.s_Singleton.isTryingToClone = true;
+    //        posToSpawnClone.gameObject.SetActive(true);
+    //        //PlayerSpellsInventory.s_Singleton.DeactivateSpellActivationFeedback();
+    //    }
+    //}
 
-    public void Clonage(GameObject objToClone, Transform posToSpawnClone)
-    {
-        GameObject objToInstantiate = Instantiate(objToClone, posToSpawnClone.position, Quaternion.identity) as GameObject;
-        objToInstantiate.transform.rotation = posToSpawnClone.rotation;
+    //public void Clonage(GameObject objToClone, Transform posToSpawnClone)
+    //{
+    //    GameObject objToInstantiate = Instantiate(objToClone, posToSpawnClone.position, Quaternion.identity) as GameObject;
+    //    objToInstantiate.transform.rotation = posToSpawnClone.rotation;
 
-        PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
-    }
-    #endregion
+    //    PlayerSpellsInventory.s_Singleton.UseTheSpellInTheSpellCompartment();
+    //}
+    //#endregion
 
     #region Duplication
     private void Duplication()

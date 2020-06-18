@@ -67,9 +67,12 @@ public class MoveScript : MonoBehaviour
             OnArmoire = Player.s_Singleton.inWardrobe;
             OnWall = Player.s_Singleton.onWall;
 
-            Anim.SetFloat("Blend", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
-            AnimCat.SetFloat("Blend", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+            if (Player.s_Singleton.playerIsInHumanForm)
+                Anim.SetFloat("Blend", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
 
+            if (Player.s_Singleton.playerIsTranformedInCat)
+                AnimCat.SetFloat("Blend", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
+            
             StandardView.SetActive(true);
             WallLight.SetActive(false);
 
