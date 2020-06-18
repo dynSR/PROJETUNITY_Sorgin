@@ -27,6 +27,7 @@ public class DetectionLevel : MonoBehaviour
 
     public string Ennemi;
 
+    public GameObject ParentToDisable;
     void Start()
     {
         
@@ -35,7 +36,14 @@ public class DetectionLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (DetectionAmount <= 0.05f)
+        {
+            ParentToDisable.SetActive(false);
+        }
+        if (DetectionAmount > 0.05f)
+        {
+            ParentToDisable.SetActive(true);
+        }
     }
 
     public void Detection(string EnnemiActuel, float DetectionValue)

@@ -1,0 +1,10 @@
+diff a/Assets/Dylan/MyPrefabs/UI/UIManager.prefab b/Assets/Dylan/MyPrefabs/UI/UIManager.prefab	(rejected hunks)
+@@ -378,7 +378,7 @@
+   m_LocalPosition: {x: 0, y: 0, z: 0}
+   m_LocalScale: {x: 1, y: 1, z: 1}
+   m_Children: []
+-  m_Father: {fileID: 1284910647}
++  m_Father: {fileID: 1910353187}
+   m_RootOrder: 0
+   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+   m_AnchorMin: {x: 0.20834361, y: 0}
