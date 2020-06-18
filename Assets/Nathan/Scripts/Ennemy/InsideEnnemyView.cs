@@ -7,7 +7,7 @@ public class InsideEnnemyView : MonoBehaviour
 
     public EnnemyView EnnemiScript;
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {

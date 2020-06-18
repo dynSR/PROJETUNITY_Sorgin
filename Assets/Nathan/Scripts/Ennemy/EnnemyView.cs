@@ -13,6 +13,7 @@ public class EnnemyView : MonoBehaviour
     public NavMeshAgent Nav;
     public Animator Anim;
     public Transform Eye;
+    public LookAt LookatScript;
 
     public bool OnTrigger;
     public bool IsVisible;
@@ -73,7 +74,7 @@ public class EnnemyView : MonoBehaviour
 
             if (IsVisible)
             {
-                Detection += (Time.deltaTime / Vector3.Distance(Eye.position, PlayerPos.position)) *4.5f;
+                Detection += (Time.deltaTime / Vector3.Distance(Eye.position, PlayerPos.position)) *4f;
                 LostTimer = 1;
                 Destination = PlayerPos.position;
                 if (!Done)
@@ -81,9 +82,17 @@ public class EnnemyView : MonoBehaviour
                     Done = true;
                 }
             }
-            else
+            if(!IsVisible)
             {
-                Detection -= Time.deltaTime / 3;
+                if (Follow)
+                {
+                    Detection -= Time.deltaTime / 12f;
+
+                }
+                else
+                {
+                    Detection -= Time.deltaTime / 5;
+                }
                 Detection = Mathf.Clamp(Detection, 0, 1.1f);
 
                 if (Done)
@@ -93,16 +102,22 @@ public class EnnemyView : MonoBehaviour
             }
 
 
-            if (Detection >= 1)
+            if (Detection >= 0.75f)
             {
                 LostTimer = 1;
                 Follow = true;
             }
 
+            if (Detection >= 0.5f)
+            {
+                LookatScript.m_Target = PlayerPos.gameObject;
+                LookatScript.enabled = true;
+            }
+
             if (Follow && LostTimer > 0)
             {
                 Nav.destination = Destination;
-                Nav.speed = 4.5f;
+                Nav.speed = 4f;
                 Anim.SetBool("run", true);
             }
 
@@ -113,9 +128,11 @@ public class EnnemyView : MonoBehaviour
 
             if (LostTimer <= 0 && WaypointTimer <= 0)
             {
+                Follow = false;
+                LookatScript.enabled = false;
                 Anim.SetBool("run", false);
                 Anim.SetBool("walk", true);
-                Nav.speed = 2.5f;
+                Nav.speed = 2f;
                 Waypoint = Waypoints[WaypointLevel];
                 Nav.destination = Waypoint.position;
                 WaypointLevel++;
@@ -137,12 +154,13 @@ public class EnnemyView : MonoBehaviour
                             transform.rotation = Quaternion.RotateTowards(transform.rotation, Waypoint.transform.rotation, 15);
                             WaypointTimer -= Time.deltaTime;
                             Anim.SetBool("walk", false);
+                            Anim.SetBool("run", false);
                         }
                     }
                 }
             }
 
-            //DetectionLevel.Instance.Detection(gameObject.name, Detection);
+            DetectionLevel.Instance.Detection(gameObject.name, Detection);
         }
         
     }

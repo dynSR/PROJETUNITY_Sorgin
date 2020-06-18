@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
             trialDayNumber = GetTheIntVariable("TrialDayNumber");
 
         playerPointsValue = GetTheIntVariable("PlayerPoints");
+        playerPointsValue = 2000; Debug.Log("Ligne a supprimer, tests");
+
         Debug.Log(trialDayNumber);
 
         //Pour les tests, à commenter pour les builds etc
