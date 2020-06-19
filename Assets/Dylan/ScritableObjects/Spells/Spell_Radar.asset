@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellType: 2
   spellName: Radar
-  spellIcon: {fileID: 21300000, guid: 9962fca153bef98488d030e110d96421, type: 3}
+  spellIcon: {fileID: 21300000, guid: 19bcd653044e6564e845680dd40d574f, type: 3}
   spellDurationOfEffect: 5
   spellValue: 300
   spellEffectDescription: "Permet de d\xE9tecter les objets et les dangers autour

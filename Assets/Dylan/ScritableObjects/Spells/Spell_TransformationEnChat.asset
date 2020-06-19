@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellType: 5
   spellName: Transformation en Chat
-  spellIcon: {fileID: 21300000, guid: be2ee974973afc84f8e155618af6ef8b, type: 3}
+  spellIcon: {fileID: 21300000, guid: 7ded566393abd1e4997c24d9909a9a21, type: 3}
   spellDurationOfEffect: 5
   spellValue: 600
   spellEffectDescription: "Transforme Marie en chat. \nCet effet ne dure qu'un certain

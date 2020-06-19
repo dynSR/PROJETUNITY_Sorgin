@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellType: 6
   spellName: Transformation en Souris
-  spellIcon: {fileID: 21300000, guid: f4373539beb160e43825dee84f39e787, type: 3}
+  spellIcon: {fileID: 21300000, guid: 081fefb0cdfd1124fbcbe40a2e7de45c, type: 3}
   spellDurationOfEffect: 5
   spellValue: 600
   spellEffectDescription: "Transforme Marie en souris. \nCette transformation modifie

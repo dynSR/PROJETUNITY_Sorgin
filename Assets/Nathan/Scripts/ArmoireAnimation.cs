@@ -52,7 +52,7 @@ public class ArmoireAnimation : MonoBehaviour
                 Text.SetActive(InTrigger);
                 if (playerCharacter != null)
                 {
-                    playerCharacter.transform.Find("View").gameObject.SetActive(true);
+                    playerCharacter.transform.Find("StandardView").gameObject.SetActive(true);
                     Light.SetActive(false);
 
                 }
@@ -62,7 +62,7 @@ public class ArmoireAnimation : MonoBehaviour
                 Text.SetActive(false);
                 if (playerCharacter != null)
                 {
-                    playerCharacter.transform.Find("View").gameObject.SetActive(false);
+                    playerCharacter.transform.Find("StandardView").gameObject.SetActive(false);
                     Light.SetActive(true);
                 }
             }

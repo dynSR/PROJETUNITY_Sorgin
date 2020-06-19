@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellType: 4
   spellName: Clone
-  spellIcon: {fileID: 21300000, guid: 47176aa53b7562348b033b55fee4c9f0, type: 3}
+  spellIcon: {fileID: 21300000, guid: 495cb957868ce99419684dc83f6b564b, type: 3}
   spellDurationOfEffect: 0
   spellValue: 170
   spellEffectDescription: "Permet de cr\xE9er une image de Marie, qui saura attirer

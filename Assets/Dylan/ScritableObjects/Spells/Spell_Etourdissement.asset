@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellType: 0
   spellName: Etourdissement
-  spellIcon: {fileID: 21300000, guid: a13da128f747152498f7372d029ea330, type: 3}
+  spellIcon: {fileID: 21300000, guid: e4edc9872b2fdaf43a2b50cc3f457a6e, type: 3}
   spellDurationOfEffect: 0
   spellValue: 300
   spellEffectDescription: "Permet de neutraliser un garde pendant un certain temps.

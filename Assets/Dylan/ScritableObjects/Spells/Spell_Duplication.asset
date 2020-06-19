@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellType: 3
   spellName: Duplication d'objets
-  spellIcon: {fileID: 21300000, guid: 9302fa4e0b2ecb44589f1ab0f796eb72, type: 3}
+  spellIcon: {fileID: 21300000, guid: bfd258fbbcd8e3c468ec5940c6af9144, type: 3}
   spellDurationOfEffect: 0
   spellValue: 400
   spellEffectDescription: "Permet de duppliquer un des objets de l'inventaire.\nUne
