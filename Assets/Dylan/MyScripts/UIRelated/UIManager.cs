@@ -139,7 +139,7 @@ public class UIManager : DefaultUIManager
 
         StartCoroutine(FadeCanvasGroup(shopWindow, shopWindow.alpha, 1, fadeDuration));
         shopWindowIsDisplayed = true;
-        EnableButtonsInLayout(shopButtonsGroup, null);
+        EnableButtonsInLayout(shopButtonsGroup, shopButtonsGroup.transform.GetChild(0).gameObject);
 
         playerPoints.SetActive(true);
     }
@@ -175,8 +175,20 @@ public class UIManager : DefaultUIManager
 
         DisableButtonsInLayout(beginExfiltrationValidationPopupButtonLayout);
 
-        lastSelectedButton.GetComponent<ButtonSoundEffects>().isSelected = true;
-        ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+        //lastSelectedButton.GetComponent<ButtonSoundEffects>().isSelected = true;
+        //ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
+    }
+
+    public void HideBeginExfiltrationPopupDisplayShop()
+    {
+        HideAPopup(beginExfiltrationValidationPopupWindow);
+        beginExfiltrationValidationPopupIsDisplayed = false;
+
+        DisableButtonsInLayout(beginExfiltrationValidationPopupButtonLayout);
+        EnableButtonsInLayout(shopButtonsGroup, shopButtonsGroup.transform.GetChild(0).gameObject);
+
+        //lastSelectedButton.GetComponent<ButtonSoundEffects>().isSelected = true;
+        //ResetEventSystemFirstSelectedGameObjet(lastSelectedButton);
     }
     #endregion
 
