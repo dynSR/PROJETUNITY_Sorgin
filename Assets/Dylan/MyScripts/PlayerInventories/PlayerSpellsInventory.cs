@@ -15,6 +15,8 @@ public class PlayerSpellsInventory : MonoBehaviour
     
     public static PlayerSpellsInventory s_Singleton;
 
+    bool AnalogIsReleased;
+
     #region Singleton
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class PlayerSpellsInventory : MonoBehaviour
             #endregion
 
             #region L2/LT
-            if (!Player.s_Singleton.isUsingASpell /*|| !MapHandler.s_Singleton.mapIsDisplayed*/ && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_L2") >= 0.5f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_LT")>=0.5f))
+            if (!Player.s_Singleton.isUsingASpell /*|| !MapHandler.s_Singleton.mapIsDisplayed*/ && AnalogIsReleased && (ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_L2") >= 0.3f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_LT")>=0.3f))
             {
                 if (PlayerObjectsInventory.s_Singleton.objectCompartmentIsActive)
                 {
@@ -51,6 +53,12 @@ public class PlayerSpellsInventory : MonoBehaviour
                 }
                 Debug.Log("L2 pressed");
                 ToggleSpellActivationFeedback();
+                AnalogIsReleased = false;
+            }
+
+            if(ConnectedController.s_Singleton.PS4ControllerIsConnected && Input.GetAxis("PS4_L2") <= 0.1f || ConnectedController.s_Singleton.XboxControllerIsConnected && Input.GetAxis("XBOX_LT") <= 0.1f)
+            {
+                AnalogIsReleased = true;
             }
             #endregion
 

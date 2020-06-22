@@ -46,6 +46,8 @@ public class EnnemyView : MonoBehaviour
         if (Stunned)
         {
             StunDuration -= Time.deltaTime;
+            Detection = 0;
+            DetectionLevel.Instance.Detection(gameObject.name, Detection);
 
             if (StunDuration <= 0)
             {
@@ -72,7 +74,7 @@ public class EnnemyView : MonoBehaviour
                 IsVisible = false;
             }
 
-            if (IsVisible)
+            if (IsVisible && !Stunned)
             {
                 Detection += (Time.deltaTime / Vector3.Distance(Eye.position, PlayerPos.position)) *4f;
                 LostTimer = 1;
